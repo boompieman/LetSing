@@ -1,0 +1,17 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'LetSing' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for LetSing
+
+  pod 'SDWebImage'
+  pod "Alamofire"
+  pod 'YouTubePlayer'
+  pod 'SwiftLint'
+  pod 'Firebase/Core'
+  pod "XCDYouTubeKit", "~> 2.5"
+
+end

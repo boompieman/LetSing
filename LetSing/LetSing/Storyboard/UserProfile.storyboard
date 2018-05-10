@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wqB-d6-hUy">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Let Sing Navigation Controller-->
+        <scene sceneID="2bD-Kq-fCP">
+            <objects>
+                <navigationController id="wqB-d6-hUy" customClass="LetSingNavigationController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ytN-UV-jNE">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pwl-nB-yBy" kind="relationship" relationship="rootViewController" id="L52-cQ-B1F"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kOy-sU-vRn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254" y="-4"/>
+        </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="QlW-eN-LIw">
+            <objects>
+                <viewController id="pwl-nB-yBy" customClass="userProfileViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iWf-xc-dB2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cA2-xU-VK1" customClass="YouTubePlayerView" customModule="YouTubePlayer">
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cA2-xU-VK1" secondAttribute="height" multiplier="16:9" id="1Pi-Tb-Zes"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="cA2-xU-VK1" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="IU9-iE-1GP"/>
+                            <constraint firstItem="cA2-xU-VK1" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="fv7-vt-2VQ"/>
+                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="cA2-xU-VK1" secondAttribute="trailing" id="vtT-oB-SjN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="i3m-Gc-DjK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zq6-10-RZu"/>
+                    <connections>
+                        <outlet property="YoutubeView" destination="cA2-xU-VK1" id="jCT-Nu-XNN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w2m-2G-wgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="728.79999999999995" y="-4.0479760119940034"/>
+        </scene>
+    </scenes>
+</document>
