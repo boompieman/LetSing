@@ -24,17 +24,24 @@ class RecordViewController: UIViewController {
 
     let recorder = RPScreenRecorder.shared()
 
-    var isRecording: Bool = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setBar()
-        setupRecordNavigationView()
+        
+
+//        setBar()
+//        setupRecordNavigationView()
 
         observePlayerCurrentTime()
 
         generatePlayer(videoID: (song?.youtube_url)!)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setBar()
+        setupRecordNavigationView()
     }
 
     private func observePlayerCurrentTime() {
@@ -49,15 +56,7 @@ class RecordViewController: UIViewController {
 
     func generatePlayer(videoID: String) {
 
-        recordVideoPanelView.videoPlayerView.clear()
-
-        recordVideoPanelView.videoPlayerView.isUserInteractionEnabled = false
-
-        recordVideoPanelView.playBtn.isSelected = true
-
-        recordVideoPanelView.updateEndTime(time: LSConstants.PlayerTime.originTime)
-
-        recordVideoPanelView.updateCurrentTime(time: LSConstants.PlayerTime.originTime, proportion: LSConstants.PlayerTime.originProportion)
+        recordVideoPanelView.updatePlayer()
 
         recordVideoPanelView.videoPlayerView.delegate = self
 
@@ -67,7 +66,7 @@ class RecordViewController: UIViewController {
     // MARK: Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        if !sender.isSelected {
+        if !self.recorder.isRecording {
             self.recorder.isMicrophoneEnabled = true
             self.recorder.startRecording { (error) in
                 if let error = error {
@@ -92,6 +91,8 @@ class RecordViewController: UIViewController {
                 }
             }
         }
+
+
     }
 
     func removeObserverAndPlayer() {
@@ -102,10 +103,10 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func playBtnDidTouched(_ sender: UIButton) {
-
         sender.isSelected = !sender.isSelected
-
-        sender.isSelected ? videoProvider.play() : videoProvider.pause()
+        navigationController?.popToRootViewController(animated: true)
+//
+//        sender.isSelected ? videoProvider.play() : videoProvider.pause()
     }
 
 //    // MARK: - KVO
@@ -152,6 +153,7 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func didTappedBackButton(_ sender: Any) {
+
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -183,7 +185,6 @@ extension RecordViewController: YouTubePlayerDelegate {
         print("record")
     }
 
-
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
 
@@ -212,7 +213,12 @@ extension RecordViewController: YouTubePlayerDelegate {
 extension RecordViewController: RPPreviewViewControllerDelegate {
 
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
-        dismiss(animated: true, completion: nil)
+
+        guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
+            withIdentifier: String(describing: TabBarViewController.self)
+            ) as? TabBarViewController else { return }
+
+        previewController.present(controller, animated: true, completion: nil)
     }
 
 }

@@ -33,6 +33,10 @@ class SearchViewController: UIViewController {
         songManager.delegate = self
     }
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//    }
+
     func setupTableView() {
 
         self.tableView.delegate = self
@@ -45,7 +49,9 @@ class SearchViewController: UIViewController {
 
     func configureCustomSearchController() {
 
-        
+//        self.navigationController?.isNavigationBarHidden = false
+
+        print(self.navigationController) 
 
         let barFrame = CGRect(x: 0.0, y: 0.0, width: (self.navigationController?.navigationBar.frame.width)!, height: (self.navigationController?.navigationBar.frame.height)!)
 
@@ -118,7 +124,7 @@ extension SearchViewController: LSSearchControllerDelegate {
     }
 
     func didChangeSearchText(searchText: String) {
-//        songManager.getSearchResult(songName: searchText)
+        songManager.getSearchResult(songName: searchText)
         print("did change")
     }
 }

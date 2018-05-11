@@ -34,10 +34,17 @@ class RecordVideoPanelView: UIView {
         recordingProgress.value = Float(proportion)
     }
 
-    func updatePlayer(player: YouTubePlayerView) {
+    func updatePlayer() {
 
-        self.videoPlayerView = player
+        videoPlayerView.clear()
+
         videoPlayerView.isUserInteractionEnabled = false
+
+        playBtn.isSelected = true
+
+        updateEndTime(time: LSConstants.PlayerTime.originTime)
+
+        updateCurrentTime(time: LSConstants.PlayerTime.originTime, proportion: LSConstants.PlayerTime.originProportion)
     }
 
     func playerDidPlay() {
