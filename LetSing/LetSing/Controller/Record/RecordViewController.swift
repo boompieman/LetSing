@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Alamofire
 import AVFoundation
 import YouTubePlayer
+import ReplayKit
 
 class RecordViewController: UIViewController {
 
@@ -21,6 +21,10 @@ class RecordViewController: UIViewController {
     var song: Song?
 
     let videoProvider = LSYoutubeVideoProvider()
+
+    let recorder = RPScreenRecorder.shared()
+
+    var isRecording: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +66,39 @@ class RecordViewController: UIViewController {
 
     // MARK: Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
-        recordVideoPanelView.playBtn.isSelected = true
 
-        videoProvider.play()
+        if !sender.isSelected {
+            self.recorder.isMicrophoneEnabled = true
+            self.recorder.startRecording { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
+            videoProvider.play()
+            sender.isSelected = !sender.isSelected
+            sender.setTitle("停止錄製", for: .selected)
+        }
 
+        else {
+            sender.isSelected = !sender.isSelected
+
+            self.recorder.stopRecording { (previewVC, error) in
+                if let previewVC = previewVC {
+                    previewVC.previewControllerDelegate = self
+                    self.present(previewVC, animated: true, completion: nil)
+                }
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+    }
+
+    func removeObserverAndPlayer() {
+        videoProvider.pause()
+        videoProvider.clear()
+        videoProvider.invalidateTimer()
+        videoProvider.removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
     }
 
     @IBAction func playBtnDidTouched(_ sender: UIButton) {
@@ -131,9 +164,7 @@ class RecordViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        videoProvider.clear()
-        videoProvider.invalidateTimer()
-        videoProvider.removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
+        removeObserverAndPlayer()
 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -164,22 +195,25 @@ extension RecordViewController: YouTubePlayerDelegate {
 
             print("playing")
 
-        case .Paused:
-            videoProvider.invalidateTimer()
-            
         case .Ended:
             // record end
             print("Ended")
-            videoProvider.invalidateTimer()
+//            videoProvider.invalidateTimer()
             // go to next page
         default:
             print("done")
         }
-
-
     }
     func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
 
     }
+}
+
+extension RecordViewController: RPPreviewViewControllerDelegate {
+
+    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+
 }
 

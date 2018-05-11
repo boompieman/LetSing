@@ -42,6 +42,22 @@
                                     <constraint firstAttribute="width" secondItem="cA2-xU-VK1" secondAttribute="height" multiplier="16:9" id="1Pi-Tb-Zes"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSk-7C-vKB">
+                                <rect key="frame" x="151" y="431" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="record Btn"/>
+                                <connections>
+                                    <action selector="recordBtnTapped:" destination="pwl-nB-yBy" eventType="touchUpInside" id="bf4-Z2-HTQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOJ-0X-F80">
+                                <rect key="frame" x="157" y="507" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stop Btn"/>
+                                <connections>
+                                    <action selector="stopBtnTapped:" destination="pwl-nB-yBy" eventType="touchUpInside" id="G5p-Eg-JtD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="cA2-xU-VK1" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="IU9-iE-1GP"/>

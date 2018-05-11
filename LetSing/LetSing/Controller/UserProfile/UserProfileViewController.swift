@@ -9,38 +9,16 @@
 import AVFoundation
 import UIKit
 import YouTubePlayer
+import ReplayKit
 
 
-class userProfileViewController: UIViewController, YouTubePlayerDelegate, AVAudioRecorderDelegate {
+class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
-
-    var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!
-    var recordButton: UIButton!
+    let recorder = RPScreenRecorder.shared()
 
     @IBOutlet weak var YoutubeView: YouTubePlayerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        recordingSession = AVAudioSession.sharedInstance()
-
-        do {
-            print("aaa")
-            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        print("user allows to use mic")
-                        self.loadRecordingUI()
-                    } else {
-                        // failed to record!
-                    }
-                }
-            }
-        } catch {
-            // failed to record!
-        }
 
 
 //        YoutubeView.isUserInteractionEnabled = false
@@ -64,70 +42,6 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate, AVAudi
 
     }
 
-    func loadRecordingUI() {
-        recordButton = UIButton(frame: CGRect(x: 64, y: 300, width: 128, height: 64))
-        recordButton.setTitle("Tap to Record", for: .normal)
-        recordButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1)
-        recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
-        view.addSubview(recordButton)
-    }
-
-    @objc private func recordTapped() {
-
-        if audioRecorder == nil {
-            startRecording()
-        } else {
-            finishRecording(success: true)
-        }
-    }
-
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-
-        print(paths[0])
-
-        return paths[0]
-    }
-
-    func startRecording() {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-
-            recordButton.setTitle("Tap to Stop", for: .normal)
-        } catch {
-            finishRecording(success: false)
-        }
-    }
-
-    func finishRecording(success: Bool) {
-        audioRecorder.stop()
-        audioRecorder = nil
-
-        if success {
-            recordButton.setTitle("Tap to Re-record", for: .normal)
-        } else {
-            recordButton.setTitle("Tap to Record", for: .normal)
-            // recording failed :(
-        }
-    }
-
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if !flag {
-            finishRecording(success: false)
-        }
-    }
-
     func playerReady(_ videoPlayer: YouTubePlayerView) {
         YoutubeView.play()
 
@@ -136,7 +50,44 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate, AVAudi
         // put record
     }
 
+    @IBAction func recordBtnTapped(_ sender: UIButton) {
 
+        recorder.isMicrophoneEnabled = true
+
+        recorder.startCapture(handler: { (cmSampleBuffer, rpSampleType, error) in
+            switch rpSampleType {
+            case .audioApp:
+                print("audio")
+            case .audioMic:
+                print("mic")
+            case .video:
+                print("video")
+
+            }
+        }) { (error) in
+            print(error)
+        }
+
+        recorder.startRecording { (error) in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+
+    @IBAction func stopBtnTapped(_ sender: Any) {
+
+        recorder.stopRecording { (previewVC, error) in
+            if let previewVC = previewVC {
+                previewVC.previewControllerDelegate = self
+                self.present(previewVC, animated: true, completion: nil)
+            }
+            if let error = error {
+                print(error)
+            }
+        }
+
+    }
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
 
@@ -156,6 +107,14 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate, AVAudi
     func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
 
         print("bbbbb", playbackQuality)
+    }
+
+}
+
+extension userProfileViewController: RPPreviewViewControllerDelegate {
+
+    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        dismiss(animated: true, completion: nil)
     }
 
 }

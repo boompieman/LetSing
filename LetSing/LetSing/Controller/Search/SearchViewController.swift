@@ -45,6 +45,8 @@ class SearchViewController: UIViewController {
 
     func configureCustomSearchController() {
 
+        
+
         let barFrame = CGRect(x: 0.0, y: 0.0, width: (self.navigationController?.navigationBar.frame.width)!, height: (self.navigationController?.navigationBar.frame.height)!)
 
         searchController = LSSearchController(searchResultsController: self, searchBarFrame: barFrame, searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.white, searchBarTintColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1))
@@ -99,15 +101,19 @@ extension SearchViewController: SongManagerDelegate {
 
 extension SearchViewController: LSSearchControllerDelegate {
     func didStartSearching() {
+
+        searchController.customSearchBar.showsCancelButton = true
         print("did start")
     }
 
     func didTapOnSearchButton(searchText: String) {
+        searchController.customSearchBar.showsCancelButton = false
         songManager.getSearchResult(songName: searchText)
     }
 
 
     func didTapOnCancelButton() {
+        searchController.customSearchBar.showsCancelButton = false
         print("did cancel")
     }
 
