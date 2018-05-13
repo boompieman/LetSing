@@ -16,11 +16,18 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
     let recorder = RPScreenRecorder.shared()
 
+
+
+
     
 
     @IBOutlet weak var YoutubeView: YouTubePlayerView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+
 
 
 //        YoutubeView.isUserInteractionEnabled = false

@@ -24,6 +24,11 @@ class RecordViewController: UIViewController {
 
     let recorder = RPScreenRecorder.shared()
 
+    // play music using speaker
+    let audioSession = AVAudioSession.sharedInstance()
+
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,10 +74,24 @@ class RecordViewController: UIViewController {
         if !self.recorder.isRecording {
             self.recorder.isMicrophoneEnabled = true
             self.recorder.startRecording { (error) in
+
                 if let error = error {
                     print(error)
                 }
+
+                do {
+                    try self.audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                    try self.audioSession.setActive(true)
+                } catch {
+
+                }
             }
+
+            do {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                try audioSession.setActive(true)
+            } catch { }
+
             videoProvider.play()
             sender.isSelected = !sender.isSelected
             sender.setTitle("停止錄製", for: .selected)
@@ -218,7 +237,7 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
             withIdentifier: String(describing: TabBarViewController.self)
             ) as? TabBarViewController else { return }
 
-        previewController.present(controller, animated: true, completion: nil)
+        previewController.present(controller, animated: false, completion: nil)
     }
 
 }
