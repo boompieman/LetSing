@@ -16,6 +16,8 @@ class RecordViewController: UIViewController {
 
     private static var observerContext = 0
 
+    @IBOutlet weak var loadingView: LoadingView!
+
     @IBOutlet weak var recordNavigationView: RecordNavigationView!
     @IBOutlet weak var recordVideoPanelView: RecordVideoPanelView!
 
@@ -186,6 +188,8 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Playing:
 
+//            loadingView.removeView()
+
             if !self.recorder.isRecording {
                 print("record start")
                 self.recorder.isMicrophoneEnabled = true
@@ -204,7 +208,7 @@ extension RecordViewController: YouTubePlayerDelegate {
         case .Ended:
             // record end
             print("Ended")
-//            videoProvider.invalidateTimer()
+            videoProvider.invalidateTimer()
             // go to next page
         default:
             print("done")

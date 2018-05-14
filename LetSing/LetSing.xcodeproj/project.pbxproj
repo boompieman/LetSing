@@ -54,6 +54,7 @@
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA92785720A9777B00CFBF94 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785620A9777B00CFBF94 /* LoadingViewController.swift */; };
 		FA92785920A979F800CFBF94 /* LSRecordProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordProvider.swift */; };
+		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		FA92785620A9777B00CFBF94 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		FA92785820A979F800CFBF94 /* LSRecordProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordProvider.swift; sourceTree = "<group>"; };
+		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				FA1DD00F20A1713700F92475 /* RecordNavigationView.swift */,
 				FA1DD01120A18EF000F92475 /* RecordVideoPanelView.swift */,
 				FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */,
+				FA92785A20A997E700CFBF94 /* LoadingView.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */,
 				FA7C96BD20995D9800890325 /* UIStoryboard+Sam.swift in Sources */,
 				FA92785720A9777B00CFBF94 /* LoadingViewController.swift in Sources */,
+				FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */,
 				FA7C96962098205400890325 /* RecordViewController.swift in Sources */,
 				FA1DD01D20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift in Sources */,
 				FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */,
