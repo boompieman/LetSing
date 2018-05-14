@@ -188,7 +188,7 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Playing:
 
-//            loadingView.removeView()
+            loadingView.removeView()
 
             if !self.recorder.isRecording {
                 print("record start")
@@ -229,6 +229,5 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
 
         previewController.present(controller, animated: false, completion: nil)
     }
-
 }
 

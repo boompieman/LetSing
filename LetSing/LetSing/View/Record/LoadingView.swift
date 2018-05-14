@@ -20,14 +20,14 @@ class LoadingView: UIView {
         setLoadingAnimation()
     }
 
-//    func removeView() {
-//
-//        UIView.animate(withDuration: 0.5, animations: { () in
-//            self.alpha = 0
-//        })
-//
-//        self.removeFromSuperview()
-//    }
+    func removeView() {
+
+        UIView.animate(withDuration: 0.5, animations: { () in
+            self.alpha = 0
+        }) { (finished) in
+            self.removeFromSuperview()
+        }
+    }
 
     func setLoadingAnimation() {
 
