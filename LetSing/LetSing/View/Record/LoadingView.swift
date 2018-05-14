@@ -20,12 +20,13 @@ class LoadingView: UIView {
         setLoadingAnimation()
     }
 
-    func removeView() {
+    func removeView(_ record: @escaping () -> Void) {
 
         UIView.animate(withDuration: 0.5, animations: { () in
             self.alpha = 0
         }) { (finished) in
             self.removeFromSuperview()
+            record()
         }
     }
 

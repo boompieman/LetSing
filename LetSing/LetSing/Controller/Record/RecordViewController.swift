@@ -180,6 +180,19 @@ extension RecordViewController: YouTubePlayerDelegate {
         print("player Ready")
     }
 
+    func startRecord() {
+        if !self.recorder.isRecording {
+            print("record start")
+            self.recorder.isMicrophoneEnabled = true
+            self.recorder.startRecording { (error) in
+
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+    }
+
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
 
@@ -188,18 +201,7 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Playing:
 
-            loadingView.removeView()
-
-            if !self.recorder.isRecording {
-                print("record start")
-                self.recorder.isMicrophoneEnabled = true
-                self.recorder.startRecording { (error) in
-
-                    if let error = error {
-                        print(error)
-                    }
-                }
-            }
+            loadingView.removeView(startRecord)
 
             videoProvider.startTimer()
 
