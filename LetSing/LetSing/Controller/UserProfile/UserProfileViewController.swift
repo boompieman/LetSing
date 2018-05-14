@@ -16,14 +16,25 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
     let recorder = RPScreenRecorder.shared()
 
+
+
+
+    
+
     @IBOutlet weak var YoutubeView: YouTubePlayerView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+
 
 
 //        YoutubeView.isUserInteractionEnabled = false
 
         YoutubeView.delegate = self
+
+
 
         YoutubeView.playerVars = ["playsinline": 1 as AnyObject,
                                   "showinfo": 0 as AnyObject,
@@ -53,20 +64,6 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
     @IBAction func recordBtnTapped(_ sender: UIButton) {
 
         recorder.isMicrophoneEnabled = true
-
-        recorder.startCapture(handler: { (cmSampleBuffer, rpSampleType, error) in
-            switch rpSampleType {
-            case .audioApp:
-                print("audio")
-            case .audioMic:
-                print("mic")
-            case .video:
-                print("video")
-
-            }
-        }) { (error) in
-            print(error)
-        }
 
         recorder.startRecording { (error) in
             if let error = error {

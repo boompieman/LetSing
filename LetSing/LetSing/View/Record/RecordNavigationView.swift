@@ -14,10 +14,11 @@ class RecordNavigationView: UIView {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
+    var btn = UIButton()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         print("navi view")
+
     }
-
-
 }

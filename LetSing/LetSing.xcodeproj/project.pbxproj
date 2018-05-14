@@ -51,6 +51,7 @@
 		FA7C96BD20995D9800890325 /* UIStoryboard+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96BC20995D9800890325 /* UIStoryboard+Sam.swift */; };
 		FA7C96BF209962B800890325 /* LetSingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96BE209962B800890325 /* LetSingColor.swift */; };
 		FA7C96C12099675200890325 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96C02099675200890325 /* UserProfileViewController.swift */; };
+		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		FA7C96BC20995D9800890325 /* UIStoryboard+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Sam.swift"; sourceTree = "<group>"; };
 		FA7C96BE209962B800890325 /* LetSingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetSingColor.swift; sourceTree = "<group>"; };
 		FA7C96C02099675200890325 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */,
 				9D4C4BD04F5461B3D8CADA9D /* Pods_LetSing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +131,7 @@
 		044DA50AADB60636A16D8875 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA92785420A574BD00CFBF94 /* ReplayKit.framework */,
 				C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */,
 			);
 			name = Frameworks;
@@ -438,6 +442,11 @@
 					FA7C968F2098205400890325 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

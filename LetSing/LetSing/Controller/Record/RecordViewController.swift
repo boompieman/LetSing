@@ -11,6 +11,7 @@ import AVFoundation
 import YouTubePlayer
 import ReplayKit
 
+
 class RecordViewController: UIViewController {
 
     private static var observerContext = 0
@@ -24,17 +25,31 @@ class RecordViewController: UIViewController {
 
     let recorder = RPScreenRecorder.shared()
 
-    var isRecording: Bool = false
+    // play music using speaker
+    let audioSession = AVAudioSession.sharedInstance()
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setBar()
-        setupRecordNavigationView()
-
+//
+        do {
+            // 需要使用者打開手機旁邊的音源鍵，不然不會有聲音...
+            try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+            try self.audioSession.setActive(true)
+        } catch {
+            print(error)
+        }
         observePlayerCurrentTime()
 
         generatePlayer(videoID: (song?.youtube_url)!)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setBar()
+        setupRecordNavigationView()
     }
 
     private func observePlayerCurrentTime() {
@@ -49,15 +64,7 @@ class RecordViewController: UIViewController {
 
     func generatePlayer(videoID: String) {
 
-        recordVideoPanelView.videoPlayerView.clear()
-
-        recordVideoPanelView.videoPlayerView.isUserInteractionEnabled = false
-
-        recordVideoPanelView.playBtn.isSelected = true
-
-        recordVideoPanelView.updateEndTime(time: LSConstants.PlayerTime.originTime)
-
-        recordVideoPanelView.updateCurrentTime(time: LSConstants.PlayerTime.originTime, proportion: LSConstants.PlayerTime.originProportion)
+        recordVideoPanelView.updatePlayer()
 
         recordVideoPanelView.videoPlayerView.delegate = self
 
@@ -67,13 +74,19 @@ class RecordViewController: UIViewController {
     // MARK: Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        if !sender.isSelected {
+        if !self.recorder.isRecording {
             self.recorder.isMicrophoneEnabled = true
             self.recorder.startRecording { (error) in
+
+
+
+//                self.enableAudioSpeaker()
+
                 if let error = error {
                     print(error)
                 }
             }
+
             videoProvider.play()
             sender.isSelected = !sender.isSelected
             sender.setTitle("停止錄製", for: .selected)
@@ -85,6 +98,11 @@ class RecordViewController: UIViewController {
             self.recorder.stopRecording { (previewVC, error) in
                 if let previewVC = previewVC {
                     previewVC.previewControllerDelegate = self
+
+
+
+
+
                     self.present(previewVC, animated: true, completion: nil)
                 }
                 if let error = error {
@@ -92,6 +110,8 @@ class RecordViewController: UIViewController {
                 }
             }
         }
+
+
     }
 
     func removeObserverAndPlayer() {
@@ -102,10 +122,10 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func playBtnDidTouched(_ sender: UIButton) {
-
         sender.isSelected = !sender.isSelected
-
-        sender.isSelected ? videoProvider.play() : videoProvider.pause()
+        navigationController?.popToRootViewController(animated: true)
+//
+//        sender.isSelected ? videoProvider.play() : videoProvider.pause()
     }
 
 //    // MARK: - KVO
@@ -152,6 +172,7 @@ class RecordViewController: UIViewController {
     }
 
     @IBAction func didTappedBackButton(_ sender: Any) {
+
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -173,6 +194,17 @@ class RecordViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+
+
+//    func enableAudioSpeaker() {
+//
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.5) * NSEC_PER_SEC)) {
+//            do {
+//                try self.audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+//                try self.audioSession.setActive(true)
+//            } catch { }
+//        }
+//    }
 }
 
 extension RecordViewController: YouTubePlayerDelegate {
@@ -182,7 +214,6 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         print("record")
     }
-
 
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
@@ -212,7 +243,12 @@ extension RecordViewController: YouTubePlayerDelegate {
 extension RecordViewController: RPPreviewViewControllerDelegate {
 
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
-        dismiss(animated: true, completion: nil)
+
+        guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
+            withIdentifier: String(describing: TabBarViewController.self)
+            ) as? TabBarViewController else { return }
+
+        previewController.present(controller, animated: false, completion: nil)
     }
 
 }
