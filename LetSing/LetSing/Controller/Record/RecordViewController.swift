@@ -32,20 +32,14 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//
         do {
-
-//            self.enableAudioSpeaker()
-            try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, mode: AVAudioSessionModeVideoRecording, options: .mixWithOthers)
+            // 需要使用者打開手機旁邊的音源鍵，不然不會有聲音...
+            try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             try self.audioSession.setActive(true)
         } catch {
             print(error)
-
         }
-
-//        setBar()
-//        setupRecordNavigationView()
-
         observePlayerCurrentTime()
 
         generatePlayer(videoID: (song?.youtube_url)!)
@@ -83,6 +77,8 @@ class RecordViewController: UIViewController {
         if !self.recorder.isRecording {
             self.recorder.isMicrophoneEnabled = true
             self.recorder.startRecording { (error) in
+
+
 
 //                self.enableAudioSpeaker()
 
@@ -200,14 +196,15 @@ class RecordViewController: UIViewController {
     }
 
 
-    func enableAudioSpeaker() {
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.5) * NSEC_PER_SEC)) {
-            do {
-                try self.audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
-            } catch { }
-        }
-    }
+//    func enableAudioSpeaker() {
+//
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.5) * NSEC_PER_SEC)) {
+//            do {
+//                try self.audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+//                try self.audioSession.setActive(true)
+//            } catch { }
+//        }
+//    }
 }
 
 extension RecordViewController: YouTubePlayerDelegate {
