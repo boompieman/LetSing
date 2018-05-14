@@ -74,44 +74,16 @@ class RecordViewController: UIViewController {
     // MARK: Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        if !self.recorder.isRecording {
-            self.recorder.isMicrophoneEnabled = true
-            self.recorder.startRecording { (error) in
+        self.recorder.stopRecording { (previewVC, error) in
+            if let previewVC = previewVC {
+                previewVC.previewControllerDelegate = self
 
-
-
-//                self.enableAudioSpeaker()
-
-                if let error = error {
-                    print(error)
-                }
+                self.present(previewVC, animated: true, completion: nil)
             }
-
-            videoProvider.play()
-            sender.isSelected = !sender.isSelected
-            sender.setTitle("停止錄製", for: .selected)
-        }
-
-        else {
-            sender.isSelected = !sender.isSelected
-
-            self.recorder.stopRecording { (previewVC, error) in
-                if let previewVC = previewVC {
-                    previewVC.previewControllerDelegate = self
-
-
-
-
-
-                    self.present(previewVC, animated: true, completion: nil)
-                }
-                if let error = error {
-                    print(error)
-                }
+            if let error = error {
+                print(error)
             }
         }
-
-
     }
 
     func removeObserverAndPlayer() {
@@ -123,9 +95,9 @@ class RecordViewController: UIViewController {
 
     @IBAction func playBtnDidTouched(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        navigationController?.popToRootViewController(animated: true)
-//
-//        sender.isSelected ? videoProvider.play() : videoProvider.pause()
+//        navigationController?.popToRootViewController(animated: true)
+
+        sender.isSelected ? videoProvider.play() : videoProvider.pause()
     }
 
 //    // MARK: - KVO
@@ -194,17 +166,6 @@ class RecordViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-
-
-//    func enableAudioSpeaker() {
-//
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.5) * NSEC_PER_SEC)) {
-//            do {
-//                try self.audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
-//                try self.audioSession.setActive(true)
-//            } catch { }
-//        }
-//    }
 }
 
 extension RecordViewController: YouTubePlayerDelegate {
@@ -212,7 +173,9 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         recordVideoPanelView.updateEndTime(time: videoProvider.getDurationString())
 
-        print("record")
+        videoProvider.play()
+
+        print("player Ready")
     }
 
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
@@ -220,7 +183,19 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         print("aaaaaa",playerState)
         switch playerState {
+
         case .Playing:
+
+            if !self.recorder.isRecording {
+                print("record start")
+                self.recorder.isMicrophoneEnabled = true
+                self.recorder.startRecording { (error) in
+
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
 
             videoProvider.startTimer()
 

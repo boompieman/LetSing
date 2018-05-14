@@ -36,6 +36,13 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
 
 
+
+
+
+
+
+
+
         YoutubeView.playerVars = ["playsinline": 1 as AnyObject,
                                   "showinfo": 0 as AnyObject,
                                   "controls": 1 as AnyObject,
@@ -45,20 +52,11 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
                                   "iv_load_policy": 3 as AnyObject,
                                   "modestbranding": 1 as AnyObject,
                                   "enablejsapi": 1 as AnyObject,
-                                  "origin": "https://www.example.com" as AnyObject
 //                                  "end": 5 as AnyObject   // end in 5th second
         ]
 
         YoutubeView.loadVideoID("T0LfHEwEXXw")
 
-    }
-
-    func playerReady(_ videoPlayer: YouTubePlayerView) {
-        YoutubeView.play()
-
-        print(videoPlayer.getDuration())
-        print("record")
-        // put record
     }
 
     @IBAction func recordBtnTapped(_ sender: UIButton) {
@@ -83,29 +81,66 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
                 print(error)
             }
         }
+    }
+    var timer: Timer?
+    var duration: Int?
+
+    func startTimer() {
+
+        timer = Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(observeIfLoaded),
+            userInfo:nil,
+            repeats:true
+        )
+    }
+
+    @objc func observeIfLoaded() {
+
+
 
     }
+
+    func playerReady(_ videoPlayer: YouTubePlayerView) {
+
+//        videoPlayer.play()
+
+        duration = Int(videoPlayer.getDuration()!)
+
+        print("ready to play")
+        // put record
+    }
+
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
 
         print("aaaaaa",playerState)
         switch playerState {
+
+        case .Unstarted:
+            break
+//            videoPlayer.play()
+//            videoPlayer.pause()
+
+        case .Buffering:
+            break
         case .Playing:
-            print("playing")
+            break
         case .Ended:
             // record end
-            print("Ended")
+            break
         default:
-            print("nothing")
+            break
         }
-
-
     }
+
+
     func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
 
         print("bbbbb", playbackQuality)
-    }
 
+    }
 }
 
 extension userProfileViewController: RPPreviewViewControllerDelegate {
@@ -113,5 +148,4 @@ extension userProfileViewController: RPPreviewViewControllerDelegate {
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         dismiss(animated: true, completion: nil)
     }
-
 }
