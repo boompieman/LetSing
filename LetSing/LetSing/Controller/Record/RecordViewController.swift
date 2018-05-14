@@ -11,6 +11,7 @@ import AVFoundation
 import YouTubePlayer
 import ReplayKit
 
+
 class RecordViewController: UIViewController {
 
     private static var observerContext = 0
@@ -27,12 +28,20 @@ class RecordViewController: UIViewController {
     // play music using speaker
     let audioSession = AVAudioSession.sharedInstance()
 
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        do {
+
+//            self.enableAudioSpeaker()
+            try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, mode: AVAudioSessionModeVideoRecording, options: .mixWithOthers)
+            try self.audioSession.setActive(true)
+        } catch {
+            print(error)
+
+        }
 
 //        setBar()
 //        setupRecordNavigationView()
@@ -75,22 +84,12 @@ class RecordViewController: UIViewController {
             self.recorder.isMicrophoneEnabled = true
             self.recorder.startRecording { (error) in
 
+//                self.enableAudioSpeaker()
+
                 if let error = error {
                     print(error)
                 }
-
-                do {
-                    try self.audioSession.setCategory(AVAudioSessionCategoryPlayback)
-                    try self.audioSession.setActive(true)
-                } catch {
-
-                }
             }
-
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-                try audioSession.setActive(true)
-            } catch { }
 
             videoProvider.play()
             sender.isSelected = !sender.isSelected
@@ -103,6 +102,11 @@ class RecordViewController: UIViewController {
             self.recorder.stopRecording { (previewVC, error) in
                 if let previewVC = previewVC {
                     previewVC.previewControllerDelegate = self
+
+
+
+
+
                     self.present(previewVC, animated: true, completion: nil)
                 }
                 if let error = error {
@@ -193,6 +197,16 @@ class RecordViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+
+
+    func enableAudioSpeaker() {
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.5) * NSEC_PER_SEC)) {
+            do {
+                try self.audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+            } catch { }
+        }
     }
 }
 
