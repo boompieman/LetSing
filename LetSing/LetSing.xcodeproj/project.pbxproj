@@ -52,7 +52,6 @@
 		FA7C96BF209962B800890325 /* LetSingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96BE209962B800890325 /* LetSingColor.swift */; };
 		FA7C96C12099675200890325 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96C02099675200890325 /* UserProfileViewController.swift */; };
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		FA92785720A9777B00CFBF94 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785620A9777B00CFBF94 /* LoadingViewController.swift */; };
 		FA92785920A979F800CFBF94 /* LSRecordProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordProvider.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
@@ -107,7 +106,6 @@
 		FA7C96BE209962B800890325 /* LetSingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetSingColor.swift; sourceTree = "<group>"; };
 		FA7C96C02099675200890325 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
-		FA92785620A9777B00CFBF94 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		FA92785820A979F800CFBF94 /* LSRecordProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordProvider.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				FA7C96952098205400890325 /* RecordViewController.swift */,
-				FA92785620A9777B00CFBF94 /* LoadingViewController.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -541,16 +538,22 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${PODS_ROOT}/AudioKit/iOS/AudioKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Chronos-Swift/Chronos.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TuningFork/TuningFork.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chronos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TuningFork.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -586,7 +589,6 @@
 				FA7C96AA20994B1600890325 /* SearchViewController.swift in Sources */,
 				FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */,
 				FA7C96BD20995D9800890325 /* UIStoryboard+Sam.swift in Sources */,
-				FA92785720A9777B00CFBF94 /* LoadingViewController.swift in Sources */,
 				FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */,
 				FA7C96962098205400890325 /* RecordViewController.swift in Sources */,
 				FA1DD01D20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift in Sources */,
