@@ -12,7 +12,6 @@ target 'LetSing' do
   pod 'YouTubePlayer', :git => 'https://github.com/boompieman/Swift-YouTube-Player.git'
   pod 'SwiftLint'
   pod 'Firebase/Core'
-  pod 'AudioKit'
-  pod 'TuningFork'
+  pod 'AudioKit', '~> 4.2'
 
 end

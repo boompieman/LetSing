@@ -37,6 +37,7 @@ class RecordViewController: UIViewController {
 //
         do {
             // 需要使用者打開手機旁邊的音源鍵，不然不會有聲音...
+
             try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             try self.audioSession.setActive(true)
         } catch {
@@ -75,6 +76,8 @@ class RecordViewController: UIViewController {
 
     // MARK: Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
+
+        
 
         self.recorder.stopRecording { (previewVC, error) in
             if let previewVC = previewVC {

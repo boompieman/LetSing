@@ -1,7 +1,8 @@
 PODS:
   - Alamofire (4.7.2)
-  - AudioKit (3.7.1)
-  - Chronos-Swift (0.3.0)
+  - AudioKit (4.2.4):
+    - AudioKit/UI (= 4.2.4)
+  - AudioKit/UI (4.2.4)
   - Firebase/Core (5.0.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.0)
@@ -28,18 +29,14 @@ PODS:
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
   - SwiftLint (0.25.1)
-  - TuningFork (0.2.0):
-    - AudioKit (~> 3.4)
-    - Chronos-Swift (~> 0.3.0)
   - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
   - Alamofire
-  - AudioKit
+  - AudioKit (~> 4.2)
   - Firebase/Core
   - SDWebImage
   - SwiftLint
-  - TuningFork
   - YouTubePlayer (from `https://github.com/boompieman/Swift-YouTube-Player.git`)
 
 EXTERNAL SOURCES:
@@ -53,8 +50,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  AudioKit: e04d3282bf904cdf7121965edb067177c6d1c7d1
-  Chronos-Swift: 0f14508c33b7f2ede194f45fd604308b387ef455
+  AudioKit: 90ed0de2bc50ab68306f4b424ae1622fc9149b8e
   Firebase: 4bd804448ab2596794698773d41520a0af101e65
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseCore: e46e4babb9de298fb2f736958edcc6da1dc60d73
@@ -63,9 +59,8 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
-  TuningFork: 6aa4849b2b1c5e2d070df442aad0c6c29bad8cea
   YouTubePlayer: b6b44df6bb613dbb6e82f8130ed468f7e04cc1e5
 
-PODFILE CHECKSUM: 362c01c983e224483a9c10b71a57b891ddc1a744
+PODFILE CHECKSUM: 297aeb17137985e281e18c500a04037d5783ce9b
 
 COCOAPODS: 1.4.0

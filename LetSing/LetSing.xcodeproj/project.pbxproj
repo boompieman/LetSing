@@ -27,6 +27,7 @@
 		FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4335AF209C4AD200BC90FC /* SongProvider.swift */; };
 		FA4335B2209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4335B1209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift */; };
 		FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4335B3209C689500BC90FC /* DiscoverSongCollectionViewController.swift */; };
+		FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */; };
 		FA5CA13B209976E500811B4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA13A209976E500811B4B /* GoogleService-Info.plist */; };
 		FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA13C209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift */; };
 		FA5CA142209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA140209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift */; };
@@ -79,6 +80,7 @@
 		FA4335AF209C4AD200BC90FC /* SongProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongProvider.swift; sourceTree = "<group>"; };
 		FA4335B1209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTypeCollectionViewController.swift; sourceTree = "<group>"; };
 		FA4335B3209C689500BC90FC /* DiscoverSongCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSongCollectionViewController.swift; sourceTree = "<group>"; };
+		FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProductionViewController.swift; sourceTree = "<group>"; };
 		FA5CA13A209976E500811B4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FA5CA13C209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		FA5CA140209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTypeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -274,6 +276,14 @@
 			path = Discover;
 			sourceTree = "<group>";
 		};
+		FA553BC920AAEFBC00A72A3D /* PostProduction */ = {
+			isa = PBXGroup;
+			children = (
+				FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */,
+			);
+			path = PostProduction;
+			sourceTree = "<group>";
+		};
 		FA5CA144209AE33600811B4B /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +361,7 @@
 		FA7C96A5209949CB00890325 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FA553BC920AAEFBC00A72A3D /* PostProduction */,
 				FA41DDF6209D7A1400CDAB08 /* UserProfile */,
 				FA41DDF5209D7A0200CDAB08 /* Navigation */,
 				FA41DDF4209D79F000CDAB08 /* TabBar */,
@@ -538,22 +549,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${PODS_ROOT}/AudioKit/iOS/AudioKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Chronos-Swift/Chronos.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/TuningFork/TuningFork.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chronos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TuningFork.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -586,6 +591,7 @@
 				FA4335B2209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift in Sources */,
 				FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */,
 				FA5CA142209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift in Sources */,
+				FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */,
 				FA7C96AA20994B1600890325 /* SearchViewController.swift in Sources */,
 				FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */,
 				FA7C96BD20995D9800890325 /* UIStoryboard+Sam.swift in Sources */,
