@@ -41,16 +41,6 @@
                                         <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gE2-jf-Zq4">
-                                        <rect key="frame" x="164" y="344" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="playBtnDidTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rm9-9n-N3R"/>
-                                        </connections>
-                                    </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-DV-70c">
                                         <rect key="frame" x="14" y="46" width="292" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,7 +61,6 @@
                                     <constraint firstItem="Evy-7c-Vwo" firstAttribute="leading" secondItem="fqd-2s-Hky" secondAttribute="leading" id="zss-dv-8fe"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="playBtn" destination="gE2-jf-Zq4" id="L5c-AA-Dd7"/>
                                     <outlet property="recordingProgress" destination="e6s-DV-70c" id="GQy-5s-UEb"/>
                                     <outlet property="timeEndLabel" destination="uzG-z9-Bgd" id="OMf-ov-gdV"/>
                                     <outlet property="timeStartLabel" destination="S9l-qe-KLX" id="fsd-th-Pmz"/>

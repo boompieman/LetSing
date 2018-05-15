@@ -124,7 +124,6 @@ extension SearchViewController: LSSearchControllerDelegate {
     }
 
     func didChangeSearchText(searchText: String) {
-        songManager.getSearchResult(songName: searchText)
         print("did change")
     }
 }

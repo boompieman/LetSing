@@ -53,7 +53,7 @@
 		FA7C96BF209962B800890325 /* LetSingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96BE209962B800890325 /* LetSingColor.swift */; };
 		FA7C96C12099675200890325 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96C02099675200890325 /* UserProfileViewController.swift */; };
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		FA92785920A979F800CFBF94 /* LSRecordProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordProvider.swift */; };
+		FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +108,7 @@
 		FA7C96BE209962B800890325 /* LetSingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetSingColor.swift; sourceTree = "<group>"; };
 		FA7C96C02099675200890325 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
-		FA92785820A979F800CFBF94 /* LSRecordProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordProvider.swift; sourceTree = "<group>"; };
+		FA92785820A979F800CFBF94 /* LSRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +159,7 @@
 			children = (
 				FA1DD01C20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift */,
 				FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */,
-				FA92785820A979F800CFBF94 /* LSRecordProvider.swift */,
+				FA92785820A979F800CFBF94 /* LSRecordManager.swift */,
 			);
 			path = LSVideoAndRecord;
 			sourceTree = "<group>";
@@ -581,7 +581,7 @@
 				FA1DD01B20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift in Sources */,
 				FA3B815720A00B5300915CC6 /* LSSearchController.swift in Sources */,
 				FA7C96BA20995C9600890325 /* LetSingNavigationController.swift in Sources */,
-				FA92785920A979F800CFBF94 /* LSRecordProvider.swift in Sources */,
+				FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */,
 				FA1DD01020A1713700F92475 /* RecordNavigationView.swift in Sources */,
 				FA7C96AF2099592C00890325 /* TabBarViewController.swift in Sources */,
 				FA4335AE209C4A0700BC90FC /* LSHTTPSession.swift in Sources */,

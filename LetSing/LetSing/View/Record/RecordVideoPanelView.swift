@@ -17,7 +17,6 @@ class RecordVideoPanelView: UIView {
     @IBOutlet weak var recordingProgress: UISlider!
     @IBOutlet weak var timeStartLabel: UILabel!
     @IBOutlet weak var timeEndLabel: UILabel!
-    @IBOutlet weak var playBtn: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,15 +39,9 @@ class RecordVideoPanelView: UIView {
 
         videoPlayerView.isUserInteractionEnabled = false
 
-        playBtn.isSelected = true
-
         updateEndTime(time: LSConstants.PlayerTime.originTime)
 
         updateCurrentTime(time: LSConstants.PlayerTime.originTime, proportion: LSConstants.PlayerTime.originProportion)
-    }
-
-    func playerDidPlay() {
-        playBtn.isSelected = true
     }
 
     func playerDidStopWithError(error: Error) {
