@@ -92,16 +92,9 @@ class RecordViewController: UIViewController {
     // MARK: record Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        recordManager.recorder.stopRecording { (previewVC, error) in
-            if let previewVC = previewVC {
-                previewVC.previewControllerDelegate = self
-
-                self.present(previewVC, animated: true, completion: nil)
-            }
-            if let error = error {
-                print(error)
-            }
-        }
+        recordManager.stop(self, present: { (previewVC) in
+            self.present(previewVC, animated: true, completion: nil)
+        })
     }
 
 //    // MARK: - KVO

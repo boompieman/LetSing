@@ -56,20 +56,21 @@ class LSRecordManager {
         }
     }
 
-    func stop() {
-//        if self.recorder.isRecording {
-//            recorder.stopRecording { (previewController, error) in
-//                if let previewVC = previewController {
-//                    previewVC.previewControllerDelegate = self
-//
-//                    self.present(previewVC, animated: true, completion: nil)
-//                }
-//                if let error = error {
-//                    print(error)
-//                }
-//            }
-//
-//        }
+    func stop(_ controller: RPPreviewViewControllerDelegate, present: @escaping (UIViewController) -> Void) {
+        if self.recorder.isRecording {
+            recorder.stopRecording { (previewController, error) in
+                if let previewVC = previewController {
+
+                    previewVC.previewControllerDelegate = controller
+
+                    present(previewVC)
+                }
+                if let error = error {
+                    print(error)
+                }
+            }
+
+        }
     }
 
     func discard() {
