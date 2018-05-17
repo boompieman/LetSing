@@ -15,7 +15,10 @@ import Photos
 
 class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
+    @IBOutlet weak var LSPlayerView: LSPlayerView!
     let recorder = RPScreenRecorder.shared()
+
+    var player = AVPlayer()
 
     var mic: AKMicrophone!
     var tracker: AKFrequencyTracker!
@@ -68,6 +71,15 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
             print("audioMix", audioMix)
 
             print("info", info?.keys)
+
+            let item = AVPlayerItem(asset: asset!)
+
+            self.player = AVPlayer(playerItem: item)
+
+            self.LSPlayerView.player = self.player
+
+            
+
         }
 
         PHAssetResourceManager.default().requestData(for: resources[0], options: nil , dataReceivedHandler: { (data) in
