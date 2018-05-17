@@ -22,14 +22,13 @@ class RecordViewController: UIViewController {
     var song: Song?
 
     var recordManager = LSRecordManager()
-    // play music using speaker
-//    let audioSession = AVAudioSession.sharedInstance()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         recordManager.setLSAudioCategory(isActive: true)
+
+        recordManager.delegate = self
 
         observePlayerCurrentTime()
         generatePlayer(videoID: (song?.youtube_url)!)
@@ -92,9 +91,8 @@ class RecordViewController: UIViewController {
     // MARK: record Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        recordManager.stop(self, present: { (previewVC) in
-            self.present(previewVC, animated: true, completion: nil)
-        })
+        recordManager.stop()
+
     }
 
 //    // MARK: - KVO
@@ -141,8 +139,6 @@ extension RecordViewController: YouTubePlayerDelegate {
 
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
-
-        print("aaaaaa",playerState)
         switch playerState {
 
         case .Playing:
@@ -164,15 +160,38 @@ extension RecordViewController: YouTubePlayerDelegate {
     }
 }
 
-extension RecordViewController: RPPreviewViewControllerDelegate {
+extension RecordViewController: ScreenCaptureManagerDelegate {
+    func didStartRecord() {
+        print("did Start")
+    }
 
-    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+    func didFinishRecord(preview: UIViewController) {
+        print("did finish")
 
-        guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
-            withIdentifier: String(describing: TabBarViewController.self)
-            ) as? TabBarViewController else { return }
+        self.present(preview, animated: true, completion: nil)
 
-        previewController.present(controller, animated: false, completion: nil)
+        
+    }
+
+    func didStopWithError(error: Error) {
+        print("did Stop: ", error)
+    }
+
+    func savingRecord() {
+        print("did save")
+    }
+
+    func discardingRecord() {
+        
+        print("did discard")
+//
+//        guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
+//            withIdentifier: String(describing: TabBarViewController.self)
+//            ) as? TabBarViewController else { return }
+//
+//        previewController.present(controller, animated: false, completion: nil)
     }
 }
+
+
 

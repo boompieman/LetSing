@@ -11,7 +11,7 @@ import UIKit
 import YouTubePlayer
 import ReplayKit
 import AudioKit
-
+import Photos
 
 class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
@@ -45,36 +45,6 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
         mic = AKMicrophone()
         tracker = AKFrequencyTracker(mic)
         silence = AKBooster(tracker, gain: 0)
-
-
-
-
-//        YoutubeView.isUserInteractionEnabled = false
-//
-//        YoutubeView.delegate = self
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//        YoutubeView.playerVars = ["playsinline": 1 as AnyObject,
-//                                  "showinfo": 0 as AnyObject,
-//                                  "controls": 1 as AnyObject,
-//
-////                                  "start": 120 as AnyObject, // 單位：sec
-////                                  "autoplay": 1 as AnyObject,
-//                                  "iv_load_policy": 3 as AnyObject,
-//                                  "modestbranding": 1 as AnyObject,
-//                                  "enablejsapi": 1 as AnyObject,
-////                                  "end": 5 as AnyObject   // end in 5th second
-//        ]
-//
-//        YoutubeView.loadVideoID("T0LfHEwEXXw")
 
     }
 
