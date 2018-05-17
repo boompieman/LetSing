@@ -31,6 +31,16 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        let status = PHPhotoLibrary.authorizationStatus()
+//
+//        UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+//            let pc = UIImagePickerController()
+//            pc.delegate = self
+//            pc.sourceType = .photoLibrary
+//            self.present(pc, animated: true, completion: nil)
+//        }
+
 //
 //        waitTimer = Timer.scheduledTimer(
 //            timeInterval: 1,
@@ -41,10 +51,10 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 //        )
 
 
-        AKSettings.audioInputEnabled = true
-        mic = AKMicrophone()
-        tracker = AKFrequencyTracker(mic)
-        silence = AKBooster(tracker, gain: 0)
+//        AKSettings.audioInputEnabled = true
+//        mic = AKMicrophone()
+//        tracker = AKFrequencyTracker(mic)
+//        silence = AKBooster(tracker, gain: 0)
 
     }
 

@@ -168,7 +168,12 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
     func didFinishRecord(preview: UIViewController) {
         print("did finish")
 
-        self.present(preview, animated: true, completion: nil)
+
+        let previewController = preview as! RPPreviewViewController
+
+        previewController.previewControllerDelegate = self
+
+        self.present(previewController, animated: true, completion: nil)
 
         
     }
@@ -193,5 +198,30 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
     }
 }
 
+extension RecordViewController: RPPreviewViewControllerDelegate {
 
+    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        DispatchQueue.main.async {
+
+            guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
+                withIdentifier: String(describing: TabBarViewController.self)
+                ) as? TabBarViewController else { return }
+
+            previewController.present(controller, animated: false, completion: nil)
+
+        }
+    }
+
+    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+
+        print("enter to delegate 2")
+
+        if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
+            DispatchQueue.main.async {
+
+                previewController.present((PostProductionViewController()), animated: false, completion: nil)
+            }
+        }
+    }
+}
 
