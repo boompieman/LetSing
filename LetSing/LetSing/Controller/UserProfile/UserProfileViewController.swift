@@ -32,14 +32,74 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let status = PHPhotoLibrary.authorizationStatus()
+        let status = PHPhotoLibrary.authorizationStatus()
+
+        if status == .authorized {
+            saveVideoSuccess()
+        }
+    }
+
+    func saveVideoSuccess() {
+
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        options.includeAssetSourceTypes = .typeUserLibrary
+
+
+        let results = PHAsset.fetchAssets(with: .video, options: options)
+
+        let firstObject = results.firstObject
+
+        guard let firstAsset = firstObject else {
+            return
+        }
+
+        let resources = PHAssetResource.assetResources(for: firstAsset)
+
+
+        let videoOption = PHVideoRequestOptions()
+        videoOption.version = .original
+
+        print(resources)
+
+        PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, audioMix, info) in
+            print("assets", asset)
+
+            print("audioMix", audioMix)
+
+            print("info", info?.keys)
+        }
+
+        PHAssetResourceManager.default().requestData(for: resources[0], options: nil , dataReceivedHandler: { (data) in
+
+            print("data:", data)
+
+        }) { (error) in
+
+            print("error:", error)
+        }
+
+//        guard let url = URL(string: resource[0].originalFilename) else {
 //
-//        UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-//            let pc = UIImagePickerController()
-//            pc.delegate = self
-//            pc.sourceType = .photoLibrary
-//            self.present(pc, animated: true, completion: nil)
+//            return
+//
 //        }
+//
+//        print(url)
+//
+//        let videoURL = Bundle.main.
+//        print(videoURL)
+
+//        PHPhotoLibrary.shared().performChanges({
+//
+//
+//
+//        }) { (success, error) in
+//            if let error = error {
+//                print("Error: ", error)
+//            }
+//        }
+    }
 
 //
 //        waitTimer = Timer.scheduledTimer(
@@ -55,8 +115,6 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 //        mic = AKMicrophone()
 //        tracker = AKFrequencyTracker(mic)
 //        silence = AKBooster(tracker, gain: 0)
-
-    }
 
     @objc func updateProgressLinear() {
 
