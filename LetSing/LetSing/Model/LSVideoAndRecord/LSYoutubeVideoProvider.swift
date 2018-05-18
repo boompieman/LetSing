@@ -89,7 +89,7 @@ class LSYoutubeVideoProvider: NSObject {
         guard let player = player, let duration = player.getDuration() else {
             return LSConstants.PlayerTime.originTime
         }
-
+        
         return self.timeTransformer.time(duration)
     }
 
@@ -113,5 +113,16 @@ class LSYoutubeVideoProvider: NSObject {
         guard let player = player else { return }
 
         player.clear()
+    }
+
+    // clear all setting
+
+    func removeObserverAndPlayer(_ controller: UIViewController) {
+        guard let player = player else { return }
+
+        player.pause()
+        player.clear()
+        invalidateTimer()
+        removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
     }
 }

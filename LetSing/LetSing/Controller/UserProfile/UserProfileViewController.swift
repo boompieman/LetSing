@@ -10,103 +10,153 @@ import AVFoundation
 import UIKit
 import YouTubePlayer
 import ReplayKit
+import AudioKit
+import Photos
+
+class userProfileViewController: UIViewController, YouTubePlayerDelegate, LyricsManagerDelegate {
+    func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
+        print("-----")
+        print(lyrics)
+    }
 
 
-class userProfileViewController: UIViewController, YouTubePlayerDelegate {
-
+    @IBOutlet weak var LSPlayerView: LSPlayerView!
     let recorder = RPScreenRecorder.shared()
 
+    var player = AVPlayer()
 
+    var mic: AKMicrophone!
+    var tracker: AKFrequencyTracker!
+    fileprivate var silence: AKBooster!
+    var timer: Timer?
+    var waitTimer: Timer?
 
+    var manager = LyricsManager()
 
-    
+    var oscillator: AKOscillator!
+    var filter: AKLowPassFilter!
+    var envelope: AKAmplitudeEnvelope!
 
     @IBOutlet weak var YoutubeView: YouTubePlayerView!
+
+
+    var url: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        manager.delegate = self
+
+        manager.getLyricBySong(id: "A8390cHMfY8")
+
+//        let status = PHPhotoLibrary.authorizationStatus()
+//
+//        if status == .authorized {
+//            getRecordingVideo()
+//        }
+    }
+
+    func getRecordingVideo() {
+
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        options.includeAssetSourceTypes = .typeUserLibrary
+
+
+        let results = PHAsset.fetchAssets(with: .video, options: options)
+
+        let firstObject = results.firstObject
+
+        guard let firstAsset = firstObject else {
+            return
+        }
+
+        let resources = PHAssetResource.assetResources(for: firstAsset)
+
+
+        let videoOption = PHVideoRequestOptions()
+        videoOption.version = .original
+
+        print(resources)
+
+        var videoURL: URL?
+
+        PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, audioMix, info) in
+            print("assets", asset)
+
+            print("audioMix", audioMix)
+
+            print("info", info?.keys)
+
+            if let urlAsset = asset as? AVURLAsset {
+                let localVideoURL = urlAsset.url
+
+                print("videoURL: ",localVideoURL)
+                videoURL = localVideoURL
+            }
+
+            let item = AVPlayerItem(asset: asset!)
+
+            self.player = AVPlayer(playerItem: item)
+
+
+            self.LSPlayerView.player = self.player
+
+        }
+
+        print("url: ",videoURL!)
+    }
 
 
 
+    @objc func updateProgressLinear() {
 
-//        YoutubeView.isUserInteractionEnabled = false
+        print(tracker.frequency)
 
-        YoutubeView.delegate = self
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-
-
-
-
-
-
-
-
-        YoutubeView.playerVars = ["playsinline": 1 as AnyObject,
-                                  "showinfo": 0 as AnyObject,
-                                  "controls": 1 as AnyObject,
-
-//                                  "start": 120 as AnyObject, // 單位：sec
-//                                  "autoplay": 1 as AnyObject,
-                                  "iv_load_policy": 3 as AnyObject,
-                                  "modestbranding": 1 as AnyObject,
-                                  "enablejsapi": 1 as AnyObject,
-//                                  "end": 5 as AnyObject   // end in 5th second
-        ]
-
-        YoutubeView.loadVideoID("T0LfHEwEXXw")
-
+        AudioKit.output = silence
+        try! AudioKit.start()
     }
 
     @IBAction func recordBtnTapped(_ sender: UIButton) {
 
-        recorder.isMicrophoneEnabled = true
+        tracker.start()
+        print(tracker.frequency)
 
-        recorder.startRecording { (error) in
-            if let error = error {
-                print(error)
-            }
-        }
+//        recorder.isMicrophoneEnabled = true
+//
+//        recorder.startRecording { (error) in
+//            if let error = error {
+//                print(error)
+//            }
+//        }
     }
 
     @IBAction func stopBtnTapped(_ sender: Any) {
 
-        recorder.stopRecording { (previewVC, error) in
-            if let previewVC = previewVC {
-                previewVC.previewControllerDelegate = self
-                self.present(previewVC, animated: true, completion: nil)
-            }
-            if let error = error {
-                print(error)
-            }
-        }
-    }
-    var timer: Timer?
-    var duration: Int?
+        mic.stop()
 
-    func startTimer() {
-
-        timer = Timer.scheduledTimer(
-            timeInterval: 0.1,
-            target: self,
-            selector: #selector(observeIfLoaded),
-            userInfo:nil,
-            repeats:true
-        )
+//        recorder.stopRecording { (previewVC, error) in
+//            if let previewVC = previewVC {
+//                previewVC.previewControllerDelegate = self
+//                self.present(previewVC, animated: true, completion: nil)
+//            }
+//            if let error = error {
+//                print(error)
+//            }
+//        }
     }
 
-    @objc func observeIfLoaded() {
-
-
-
-    }
 
     func playerReady(_ videoPlayer: YouTubePlayerView) {
 
 //        videoPlayer.play()
 
-        duration = Int(videoPlayer.getDuration()!)
+//        duration = Int(videoPlayer.getDuration()!)
 
         print("ready to play")
         // put record

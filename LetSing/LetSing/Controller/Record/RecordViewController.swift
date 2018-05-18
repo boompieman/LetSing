@@ -11,40 +11,37 @@ import AVFoundation
 import YouTubePlayer
 import ReplayKit
 
-
 class RecordViewController: UIViewController {
 
     private static var observerContext = 0
 
     @IBOutlet weak var loadingView: LoadingView!
-
     @IBOutlet weak var recordNavigationView: RecordNavigationView!
     @IBOutlet weak var recordVideoPanelView: RecordVideoPanelView!
-
+    let videoProvider = LSYoutubeVideoProvider()
     var song: Song?
 
-    let videoProvider = LSYoutubeVideoProvider()
-
-    let recorder = RPScreenRecorder.shared()
-
-    // play music using speaker
-    let audioSession = AVAudioSession.sharedInstance()
-
-
+    var recordManager = LSRecordManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-        do {
-            // 需要使用者打開手機旁邊的音源鍵，不然不會有聲音...
-            try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
-            try self.audioSession.setActive(true)
-        } catch {
-            print(error)
-        }
-        observePlayerCurrentTime()
 
-        generatePlayer(videoID: (song?.youtube_url)!)
+        sendData()
+
+
+        setupRecordManager()
+        observePlayerCurrentTime()
+        generatePlayer()
+    }
+
+    func sendData() {
+        let lyricsVC = childViewControllers[0] as? LyricsViewController
+
+        guard let song = song else {
+            return
+        }
+
+        lyricsVC?.requestLyrics(song: song)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +51,41 @@ class RecordViewController: UIViewController {
         setupRecordNavigationView()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        videoProvider.removeObserverAndPlayer(self)
+
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    func setupRecordManager() {
+        recordManager.setLSAudioCategory(isActive: true)
+        recordManager.delegate = self
+    }
+
+    // MARK: Navigation and Bar
+    func setupRecordNavigationView() {
+        recordNavigationView.titleLabel.text = song?.name
+    }
+
+    @IBAction func didTappedBackButton(_ sender: Any) {
+        recordManager.discard()
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func setBar() {
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
+
+    // MARK: vedioProvider
     private func observePlayerCurrentTime() {
 
         videoProvider.addObserver(
@@ -64,42 +96,22 @@ class RecordViewController: UIViewController {
         )
     }
 
-    func generatePlayer(videoID: String) {
+    func generatePlayer() {
+
+        guard let song = song else {
+            return
+        }
 
         recordVideoPanelView.updatePlayer()
-
         recordVideoPanelView.videoPlayerView.delegate = self
-
-        videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, videoID, observer: self, context: &RecordViewController.observerContext)
+        videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, song.id, observer: self, context: &RecordViewController.observerContext)
     }
 
-    // MARK: Action
+    // MARK: record Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        self.recorder.stopRecording { (previewVC, error) in
-            if let previewVC = previewVC {
-                previewVC.previewControllerDelegate = self
+        recordManager.stop()
 
-                self.present(previewVC, animated: true, completion: nil)
-            }
-            if let error = error {
-                print(error)
-            }
-        }
-    }
-
-    func removeObserverAndPlayer() {
-        videoProvider.pause()
-        videoProvider.clear()
-        videoProvider.invalidateTimer()
-        videoProvider.removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
-    }
-
-    @IBAction func playBtnDidTouched(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-//        navigationController?.popToRootViewController(animated: true)
-
-        sender.isSelected ? videoProvider.play() : videoProvider.pause()
     }
 
 //    // MARK: - KVO
@@ -132,42 +144,6 @@ class RecordViewController: UIViewController {
             proportion: videoProvider.currentProportion()
         )
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    // set Navigation
-    func setupRecordNavigationView() {
-        recordNavigationView.titleLabel.text = song?.name
-    }
-
-    @IBAction func didTappedBackButton(_ sender: Any) {
-
-        self.navigationController?.popViewController(animated: true)
-    }
-
-    // set Bar hidden
-    func setBar() {
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        removeObserverAndPlayer()
-
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 }
 
 extension RecordViewController: YouTubePlayerDelegate {
@@ -180,28 +156,13 @@ extension RecordViewController: YouTubePlayerDelegate {
         print("player Ready")
     }
 
-    func startRecord() {
-        if !self.recorder.isRecording {
-            print("record start")
-            self.recorder.isMicrophoneEnabled = true
-            self.recorder.startRecording { (error) in
-
-                if let error = error {
-                    print(error)
-                }
-            }
-        }
-    }
-
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
 
-
-        print("aaaaaa",playerState)
         switch playerState {
 
         case .Playing:
 
-            loadingView.removeView(startRecord)
+            loadingView.removeView(recordManager.start)
 
             videoProvider.startTimer()
 
@@ -210,26 +171,56 @@ extension RecordViewController: YouTubePlayerDelegate {
         case .Ended:
             // record end
             print("Ended")
-            videoProvider.invalidateTimer()
+            videoProvider.removeObserverAndPlayer(self)
             // go to next page
         default:
             print("done")
         }
     }
-    func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
+}
 
+extension RecordViewController: ScreenCaptureManagerDelegate {
+    func didStartRecord() {
+        print("Record did Start")
+    }
+
+    func didFinishRecord(preview: UIViewController) {
+        print("Record did finish")
+
+        let previewController = preview as! RPPreviewViewController
+
+        previewController.previewControllerDelegate = self
+
+        self.present(previewController, animated: true, completion: nil)
+    }
+
+    func didStopWithError(error: Error) {
+        print("Record did Stop with Error: ", error)
     }
 }
 
 extension RecordViewController: RPPreviewViewControllerDelegate {
 
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        DispatchQueue.main.async {
 
-        guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
-            withIdentifier: String(describing: TabBarViewController.self)
-            ) as? TabBarViewController else { return }
+            guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
+                withIdentifier: String(describing: TabBarViewController.self)
+                ) as? TabBarViewController else { return }
 
-        previewController.present(controller, animated: false, completion: nil)
+            previewController.present(controller, animated: false, completion: nil)
+
+        }
+    }
+
+    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+        
+        if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
+            DispatchQueue.main.async {
+
+                previewController.present((PostProductionViewController()), animated: false, completion: nil)
+            }
+        }
     }
 }
 

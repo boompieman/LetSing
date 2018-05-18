@@ -13,6 +13,8 @@ struct LSConstants {
 
     static let youtubeKey = "AIzaSyBNMdTRxwA1waBGk_qFxUSRadSAw_dg3Bc"
 
+    static let captionsUrl = "http://video.google.com/timedtext"
+
     struct NotificationKey {
 
         static let finishVideoDuration = "finishVideoDuration"
@@ -38,7 +40,6 @@ struct LSConstants {
         "iv_load_policy": 3 as AnyObject,
         "modestbranding": 1 as AnyObject,
         "widget_referrer": "origin" as AnyObject
-//        "autoplay": 1 as AnyObject
     ]
 
 //    static let firebaseUrl = "https://letsing.firebaseio.com/"

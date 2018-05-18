@@ -33,10 +33,6 @@ class SearchViewController: UIViewController {
         songManager.delegate = self
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//    }
-
     func setupTableView() {
 
         self.tableView.delegate = self
@@ -87,13 +83,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
-        guard let controller = UIStoryboard.recordStoryboard().instantiateViewController(
-                withIdentifier: String(describing: RecordViewController.self)
+
+        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
+            withIdentifier: String(describing: RecordViewController.self)
             ) as? RecordViewController else { return }
 
-        controller.song = songs[indexPath.row]
+        recordController.song = songs[indexPath.row]
+        show(recordController, sender: nil)
 
-        show(controller, sender: nil)
     }
 }
 
@@ -109,22 +106,21 @@ extension SearchViewController: LSSearchControllerDelegate {
     func didStartSearching() {
 
         searchController.customSearchBar.showsCancelButton = true
-        print("did start")
     }
 
     func didTapOnSearchButton(searchText: String) {
+
         searchController.customSearchBar.showsCancelButton = false
         songManager.getSearchResult(songName: searchText)
     }
 
 
     func didTapOnCancelButton() {
+
         searchController.customSearchBar.showsCancelButton = false
-        print("did cancel")
     }
 
     func didChangeSearchText(searchText: String) {
-        songManager.getSearchResult(songName: searchText)
-        print("did change")
+
     }
 }
