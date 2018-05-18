@@ -107,7 +107,6 @@ extension LyricsViewController: LyricsManagerDelegate {
     func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
 
         self.lyrics = lyrics
-        print(lyrics)
         self.tableView.reloadData()
     }
 }
