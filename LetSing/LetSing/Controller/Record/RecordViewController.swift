@@ -162,19 +162,23 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Playing:
 
-            loadingView.removeView(recordManager.start)
-
+            
             videoProvider.startTimer()
+
+            loadingView.removeView(recordManager.start)
 
             print("playing")
 
         case .Ended:
-            // record end
             print("Ended")
             videoProvider.removeObserverAndPlayer(self)
             // go to next page
+
+        case .Paused:
+            print("Pause")
+
         default:
-            print("done")
+            break
         }
     }
 }

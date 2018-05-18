@@ -120,6 +120,8 @@ class LSYoutubeVideoProvider: NSObject {
     func removeObserverAndPlayer(_ controller: UIViewController) {
         guard let player = player else { return }
 
+        print("removeObserverAndPlayer")
+
         player.pause()
         player.clear()
         invalidateTimer()

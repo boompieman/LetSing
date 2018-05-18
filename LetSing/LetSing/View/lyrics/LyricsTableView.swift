@@ -9,13 +9,12 @@
 
 import UIKit
 
-class LyricsView: UIView {
+class LyricsTableView: UITableView {
 
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.backgroundColor = UIColor.red
     }
 
 

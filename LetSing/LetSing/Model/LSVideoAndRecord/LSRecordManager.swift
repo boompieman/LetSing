@@ -31,6 +31,7 @@ class LSRecordManager: NSObject {
         do {
             // 需要使用者打開手機旁邊的音源鍵，不然不會有聲音...
             try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+            
             try self.audioSession.setActive(flag)
         } catch {
             print(error)
@@ -43,9 +44,12 @@ class LSRecordManager: NSObject {
 
     // MARK: recorder action
     func start() {
+        
         self.recorder.delegate = self
         if !self.recorder.isRecording {
+
             self.recorder.isMicrophoneEnabled = true
+
             self.recorder.startRecording { (error) in
 
                 self.delegate?.didStartRecord()

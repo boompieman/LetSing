@@ -19,44 +19,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5U7-gR-oit" customClass="LoadingView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPW-0p-oe6" userLabel="Lyrics View">
+                                <rect key="frame" x="0.0" y="336" width="320" height="172"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYE-id-6be">
-                                        <rect key="frame" x="85.5" y="263" width="149" height="42"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPW-0p-oe6">
-                                        <rect key="frame" x="0.0" y="336" width="320" height="172"/>
-                                        <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpV-pn-jqv">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
-                                                <connections>
-                                                    <segue destination="niz-ZS-gm9" kind="embed" id="Jmn-lf-qDy"/>
-                                                </connections>
-                                            </containerView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="RpV-pn-jqv" secondAttribute="trailing" id="65c-Y8-X7e"/>
-                                            <constraint firstAttribute="bottom" secondItem="RpV-pn-jqv" secondAttribute="bottom" id="ZFe-JX-hJr"/>
-                                            <constraint firstItem="RpV-pn-jqv" firstAttribute="leading" secondItem="fPW-0p-oe6" secondAttribute="leading" id="mfK-D3-Ikg"/>
-                                            <constraint firstItem="RpV-pn-jqv" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="top" id="t2Y-50-ffa"/>
-                                        </constraints>
-                                    </view>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpV-pn-jqv">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
+                                        <connections>
+                                            <segue destination="niz-ZS-gm9" kind="embed" id="Jmn-lf-qDy"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.19996032118797302" green="0.22739714384078979" blue="0.25874394178390503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="oYE-id-6be" firstAttribute="centerY" secondItem="5U7-gR-oit" secondAttribute="centerY" id="NBl-no-q8y"/>
-                                    <constraint firstAttribute="trailing" secondItem="fPW-0p-oe6" secondAttribute="trailing" id="eta-Wm-Ph0"/>
-                                    <constraint firstItem="fPW-0p-oe6" firstAttribute="leading" secondItem="5U7-gR-oit" secondAttribute="leading" id="hbX-bo-Zd1"/>
-                                    <constraint firstItem="oYE-id-6be" firstAttribute="centerX" secondItem="5U7-gR-oit" secondAttribute="centerX" id="jPd-a7-7Q7"/>
+                                    <constraint firstAttribute="trailing" secondItem="RpV-pn-jqv" secondAttribute="trailing" id="65c-Y8-X7e"/>
+                                    <constraint firstAttribute="bottom" secondItem="RpV-pn-jqv" secondAttribute="bottom" id="ZFe-JX-hJr"/>
+                                    <constraint firstItem="RpV-pn-jqv" firstAttribute="leading" secondItem="fPW-0p-oe6" secondAttribute="leading" id="mfK-D3-Ikg"/>
+                                    <constraint firstItem="RpV-pn-jqv" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="top" id="t2Y-50-ffa"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="loadingLabel" destination="oYE-id-6be" id="FIK-Xd-PnB"/>
-                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqd-2s-Hky" customClass="RecordVideoPanelView" customModule="LetSing" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="320" height="276"/>
@@ -153,20 +132,41 @@
                                     <outlet property="titleLabel" destination="QBi-lh-Ubq" id="HY5-K3-zQf"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5U7-gR-oit" customClass="LoadingView" customModule="LetSing" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYE-id-6be">
+                                        <rect key="frame" x="85.5" y="263" width="149" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.19996032118797302" green="0.22739714384078979" blue="0.25874394178390503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="oYE-id-6be" firstAttribute="centerY" secondItem="5U7-gR-oit" secondAttribute="centerY" id="NBl-no-q8y"/>
+                                    <constraint firstItem="oYE-id-6be" firstAttribute="centerX" secondItem="5U7-gR-oit" secondAttribute="centerX" id="jPd-a7-7Q7"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="loadingLabel" destination="oYE-id-6be" id="FIK-Xd-PnB"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.19996032118797302" green="0.22739714384078979" blue="0.25874394178390503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="fPW-0p-oe6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2um-ml-ZTA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u1Y-bk-kJw" secondAttribute="bottom" constant="20" id="7ZO-k6-I0G"/>
                             <constraint firstItem="5U7-gR-oit" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bqi-6P-bon"/>
-                            <constraint firstItem="u1Y-bk-kJw" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="bottom" constant="10" id="M07-dS-nd4"/>
-                            <constraint firstItem="fPW-0p-oe6" firstAttribute="top" secondItem="Evy-7c-Vwo" secondAttribute="bottom" constant="10" id="NXW-ty-Ej7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fqd-2s-Hky" secondAttribute="trailing" id="Spy-PX-fw5"/>
                             <constraint firstAttribute="trailing" secondItem="5U7-gR-oit" secondAttribute="trailing" id="VPJ-8U-RnW"/>
                             <constraint firstItem="u1Y-bk-kJw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W1j-FC-AlE"/>
+                            <constraint firstItem="fPW-0p-oe6" firstAttribute="top" secondItem="fqd-2s-Hky" secondAttribute="bottom" constant="10" id="Wb1-HT-Gcs"/>
                             <constraint firstItem="zz4-iB-DtH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZcP-Pa-KMr"/>
                             <constraint firstItem="fqd-2s-Hky" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bb8-QD-9i2"/>
+                            <constraint firstItem="fPW-0p-oe6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fTB-a0-BW3"/>
                             <constraint firstAttribute="bottom" secondItem="5U7-gR-oit" secondAttribute="bottom" id="g4P-By-PQh"/>
                             <constraint firstItem="zz4-iB-DtH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="int-ur-kmL"/>
+                            <constraint firstItem="u1Y-bk-kJw" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="bottom" constant="10" id="qB6-sK-x8U"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zz4-iB-DtH" secondAttribute="trailing" id="qlo-uD-tb0"/>
                             <constraint firstItem="fqd-2s-Hky" firstAttribute="top" secondItem="zz4-iB-DtH" secondAttribute="bottom" id="r3C-Xd-IiS"/>
                             <constraint firstItem="S9l-qe-KLX" firstAttribute="top" secondItem="zz4-iB-DtH" secondAttribute="bottom" constant="16" id="t2P-De-jOC"/>
@@ -189,13 +189,13 @@
         <scene sceneID="2Ci-qA-xml">
             <objects>
                 <viewController id="niz-ZS-gm9" customClass="LyricsViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dLv-vq-lGi" customClass="LyricsView" customModule="LetSing" customModuleProvider="target">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1PP-Ss-aq6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
+                    </tableView>
                     <connections>
-                        <outlet property="lyricsView" destination="dLv-vq-lGi" id="RM9-jc-pxE"/>
+                        <outlet property="tableView" destination="1PP-Ss-aq6" id="3ww-fa-dhh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIV-fV-KhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
