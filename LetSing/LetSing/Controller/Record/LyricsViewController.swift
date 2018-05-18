@@ -10,41 +10,32 @@ import Foundation
 import UIKit
 
 
-class lyricsViewController: UIViewController {
+class LyricsViewController: UIViewController {
 
     var manager = LyricsManager()
 
     var lyrics: Lyrics?
 
-    var song: Song?
+    
+    @IBOutlet var lyricsView: LyricsView!
 
     override func viewDidLoad() {
          super.viewDidLoad()
-
-        requestLyrics()
-        
     }
 
-    func requestLyrics() {
+    func requestLyrics(song: Song) {
 
         manager.delegate = self
 
-        guard let song = song else {
-            return
-        }
-
         self.manager.getLyricBySong(id: song.id)
-
-
     }
 
 }
 
-extension lyricsViewController: LyricsManagerDelegate {
+extension LyricsViewController: LyricsManagerDelegate {
     func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
 
         self.lyrics = lyrics
+        print(lyrics)
     }
-
-
 }

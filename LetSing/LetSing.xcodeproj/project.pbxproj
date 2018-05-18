@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9D4C4BD04F5461B3D8CADA9D /* Pods_LetSing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */; };
 		FA0A090920AEC339004D9696 /* LSXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090820AEC339004D9696 /* LSXMLParser.swift */; };
+		FA0A090D20AED231004D9696 /* LyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090C20AED231004D9696 /* LyricsView.swift */; };
 		FA1DD01020A1713700F92475 /* RecordNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD00F20A1713700F92475 /* RecordNavigationView.swift */; };
 		FA1DD01220A18EF000F92475 /* RecordVideoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01120A18EF000F92475 /* RecordVideoPanelView.swift */; };
 		FA1DD01920A1A6F900F92475 /* LSPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */; };
@@ -61,7 +62,7 @@
 		FACCB76C20AE7AFB0067ADC5 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */; };
 		FACCB76E20AE7C840067ADC5 /* LyricsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */; };
 		FACCB77020AE885A0067ADC5 /* LyricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */; };
-		FACCB77220AE89EA0067ADC5 /* lyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB77120AE89EA0067ADC5 /* lyricsViewController.swift */; };
+		FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		4093D1CACF0D3B54835936A7 /* Pods-LetSing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSing.release.xcconfig"; path = "Pods/Target Support Files/Pods-LetSing/Pods-LetSing.release.xcconfig"; sourceTree = "<group>"; };
 		C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetSing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0A090820AEC339004D9696 /* LSXMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSXMLParser.swift; sourceTree = "<group>"; };
+		FA0A090C20AED231004D9696 /* LyricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsView.swift; sourceTree = "<group>"; };
 		FA1DD00F20A1713700F92475 /* RecordNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordNavigationView.swift; sourceTree = "<group>"; };
 		FA1DD01120A18EF000F92475 /* RecordVideoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVideoPanelView.swift; sourceTree = "<group>"; };
 		FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSPlayerView.swift; sourceTree = "<group>"; };
@@ -123,7 +125,7 @@
 		FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
 		FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsProvider.swift; sourceTree = "<group>"; };
 		FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsManager.swift; sourceTree = "<group>"; };
-		FACCB77120AE89EA0067ADC5 /* lyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lyricsViewController.swift; sourceTree = "<group>"; };
+		FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,14 @@
 				FA0A090820AEC339004D9696 /* LSXMLParser.swift */,
 			);
 			path = parser;
+			sourceTree = "<group>";
+		};
+		FA0A090B20AED220004D9696 /* lyrics */ = {
+			isa = PBXGroup;
+			children = (
+				FA0A090C20AED231004D9696 /* LyricsView.swift */,
+			);
+			path = lyrics;
 			sourceTree = "<group>";
 		};
 		FA1DD00E20A170FA00F92475 /* Record */ = {
@@ -249,7 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7C96952098205400890325 /* RecordViewController.swift */,
-				FACCB77120AE89EA0067ADC5 /* lyricsViewController.swift */,
+				FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -412,6 +422,7 @@
 		FA7C96A7209949E400890325 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA0A090B20AED220004D9696 /* lyrics */,
 				FA1DD00E20A170FA00F92475 /* Record */,
 				FA3B8151209FF5B300915CC6 /* Search */,
 				FA5CA144209AE33600811B4B /* Discover */,
@@ -621,7 +632,7 @@
 			files = (
 				FA4335A2209C334C00BC90FC /* Song.swift in Sources */,
 				FA4335AA209C37C000BC90FC /* LSConstants.swift in Sources */,
-				FACCB77220AE89EA0067ADC5 /* lyricsViewController.swift in Sources */,
+				FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */,
 				FA4335A7209C353C00BC90FC /* LSError.swift in Sources */,
 				FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */,
 				FACCB76E20AE7C840067ADC5 /* LyricsProvider.swift in Sources */,
@@ -659,6 +670,7 @@
 				FA7C96B820995ABD00890325 /* DiscoverViewController.swift in Sources */,
 				FA3B815520A0058600915CC6 /* LSSearchBar.swift in Sources */,
 				FA3B815E20A060EE00915CC6 /* SearchResultTableViewCell.swift in Sources */,
+				FA0A090D20AED231004D9696 /* LyricsView.swift in Sources */,
 				FA4335A5209C344200BC90FC /* LSHTTPRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,9 +26,22 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        sendData()
+
+
         setupRecordManager()
         observePlayerCurrentTime()
         generatePlayer()
+    }
+
+    func sendData() {
+        let lyricsVC = childViewControllers[0] as? LyricsViewController
+
+        guard let song = song else {
+            return
+        }
+
+        lyricsVC?.requestLyrics(song: song)
     }
 
     override func viewWillAppear(_ animated: Bool) {

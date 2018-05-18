@@ -83,13 +83,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
-        guard let controller = UIStoryboard.recordStoryboard().instantiateViewController(
-                withIdentifier: String(describing: RecordViewController.self)
+
+        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
+            withIdentifier: String(describing: RecordViewController.self)
             ) as? RecordViewController else { return }
 
-        controller.song = songs[indexPath.row]
+        recordController.song = songs[indexPath.row]
+        show(recordController, sender: nil)
 
-        show(controller, sender: nil)
     }
 }
 
