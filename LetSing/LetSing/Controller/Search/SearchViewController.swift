@@ -33,10 +33,6 @@ class SearchViewController: UIViewController {
         songManager.delegate = self
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//    }
-
     func setupTableView() {
 
         self.tableView.delegate = self
@@ -109,21 +105,21 @@ extension SearchViewController: LSSearchControllerDelegate {
     func didStartSearching() {
 
         searchController.customSearchBar.showsCancelButton = true
-        print("did start")
     }
 
     func didTapOnSearchButton(searchText: String) {
+
         searchController.customSearchBar.showsCancelButton = false
         songManager.getSearchResult(songName: searchText)
     }
 
 
     func didTapOnCancelButton() {
+
         searchController.customSearchBar.showsCancelButton = false
-        print("did cancel")
     }
 
     func didChangeSearchText(searchText: String) {
-        print("did change")
+
     }
 }

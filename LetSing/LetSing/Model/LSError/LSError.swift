@@ -12,4 +12,6 @@ enum LSError: String, Error {
     case youtubeError = "Get data from youtube failed"
 
     case LSFirebaseError = "Get data from Let Sing firebase failed"
+
+    case LSFirstAssetError = "Could not get first asset"
 }

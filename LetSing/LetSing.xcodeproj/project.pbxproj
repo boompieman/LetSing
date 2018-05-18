@@ -55,6 +55,8 @@
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
+		FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */; };
+		FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,8 @@
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		FA92785820A979F800CFBF94 /* LSRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sam.swift"; sourceTree = "<group>"; };
+		FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTransformatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +379,7 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FACCB76720AE6E800067ADC5 /* PostProduction */,
 				FA1DD01320A1995900F92475 /* LSVideoAndRecord */,
 				FA4335AC209C3F6800BC90FC /* Song */,
 				FA4335AB209C3F5600BC90FC /* LSError */,
@@ -419,8 +424,17 @@
 			isa = PBXGroup;
 			children = (
 				FA7C96BC20995D9800890325 /* UIStoryboard+Sam.swift */,
+				FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		FACCB76720AE6E800067ADC5 /* PostProduction */ = {
+			isa = PBXGroup;
+			children = (
+				FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */,
+			);
+			path = PostProduction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -578,6 +592,7 @@
 				FA4335AA209C37C000BC90FC /* LSConstants.swift in Sources */,
 				FA4335A7209C353C00BC90FC /* LSError.swift in Sources */,
 				FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */,
+				FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */,
 				FA1DD01B20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift in Sources */,
 				FA3B815720A00B5300915CC6 /* LSSearchController.swift in Sources */,
 				FA7C96BA20995C9600890325 /* LetSingNavigationController.swift in Sources */,
@@ -598,6 +613,7 @@
 				FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */,
 				FA7C96962098205400890325 /* RecordViewController.swift in Sources */,
 				FA1DD01D20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift in Sources */,
+				FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */,
 				FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */,
 				FA7C96942098205400890325 /* AppDelegate.swift in Sources */,
 				FA41DDF9209DA4C700CDAB08 /* SongManager.swift in Sources */,

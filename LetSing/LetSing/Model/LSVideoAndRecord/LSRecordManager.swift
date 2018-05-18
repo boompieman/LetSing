@@ -11,13 +11,11 @@ import AVFoundation
 import ReplayKit
 import AssetsLibrary
 
-// 自定义录屏manager协议
+// manager protocol to notify controller when to start or end
 protocol ScreenCaptureManagerDelegate: class{
     func didStartRecord() // 開始錄製
     func didFinishRecord(preview: UIViewController) // 完成錄製
     func didStopWithError(error: Error) //發生錯誤
-    func savingRecord() // 保存
-    func discardingRecord() // 取消保存
 }
 
 class LSRecordManager: NSObject {
@@ -67,8 +65,6 @@ class LSRecordManager: NSObject {
                 
                 if let previewController = previewController {
 
-                    previewController.previewControllerDelegate = self
-
                     self.delegate?.didFinishRecord(preview: previewController)
 
                 }
@@ -101,33 +97,6 @@ extension LSRecordManager: RPScreenRecorderDelegate {
     {
         if let error = error {
             self.delegate?.didStopWithError(error: error)
-        }
-    }
-}
-
-extension LSRecordManager: RPPreviewViewControllerDelegate {
-    func previewControllerDidFinish(previewController: RPPreviewViewController) {
-        print("previewControllerDidFinish")
-        DispatchQueue.main.async {
-            self.delegate?.discardingRecord() // 取消保存
-        }
-    }
-
-    func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
-
-        print("enter to delegate 2")
-
-        if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
-            DispatchQueue.main.async {
-
-                guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
-                    withIdentifier: String(describing: TabBarViewController.self)
-                    ) as? TabBarViewController else { return }
-
-                previewController.present(controller, animated: false, completion: nil)
-
-                self.delegate?.savingRecord() // 正在保存
-            }
         }
     }
 }

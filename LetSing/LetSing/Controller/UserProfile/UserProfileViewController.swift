@@ -32,17 +32,20 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
     @IBOutlet weak var YoutubeView: YouTubePlayerView!
 
+
+    var url: URL?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let status = PHPhotoLibrary.authorizationStatus()
 
         if status == .authorized {
-            saveVideoSuccess()
+            getRecordingVideo()
         }
     }
 
-    func saveVideoSuccess() {
+    func getRecordingVideo() {
 
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
@@ -72,61 +75,26 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
             print("info", info?.keys)
 
+            if let urlAsset = asset as? AVURLAsset {
+                let localVideoURL = urlAsset.url
+
+                print("videoURL: ",localVideoURL)
+                self.url = localVideoURL
+            }
+
             let item = AVPlayerItem(asset: asset!)
 
             self.player = AVPlayer(playerItem: item)
 
+
             self.LSPlayerView.player = self.player
 
-            
-
         }
 
-        PHAssetResourceManager.default().requestData(for: resources[0], options: nil , dataReceivedHandler: { (data) in
-
-            print("data:", data)
-
-        }) { (error) in
-
-            print("error:", error)
-        }
-
-//        guard let url = URL(string: resource[0].originalFilename) else {
-//
-//            return
-//
-//        }
-//
-//        print(url)
-//
-//        let videoURL = Bundle.main.
-//        print(videoURL)
-
-//        PHPhotoLibrary.shared().performChanges({
-//
-//
-//
-//        }) { (success, error) in
-//            if let error = error {
-//                print("Error: ", error)
-//            }
-//        }
+        print("url: ",self.url)
     }
 
-//
-//        waitTimer = Timer.scheduledTimer(
-//            timeInterval: 1,
-//            target: self,
-//            selector: #selector(updateProgressLinear),
-//            userInfo: nil,
-//            repeats: true
-//        )
 
-
-//        AKSettings.audioInputEnabled = true
-//        mic = AKMicrophone()
-//        tracker = AKFrequencyTracker(mic)
-//        silence = AKBooster(tracker, gain: 0)
 
     @objc func updateProgressLinear() {
 

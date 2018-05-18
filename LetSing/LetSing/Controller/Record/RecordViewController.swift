@@ -26,10 +26,7 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        recordManager.setLSAudioCategory(isActive: true)
-
-        recordManager.delegate = self
-
+        setupRecordManager()
         observePlayerCurrentTime()
         generatePlayer(videoID: (song?.youtube_url)!)
     }
@@ -48,6 +45,11 @@ class RecordViewController: UIViewController {
 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    func setupRecordManager() {
+        recordManager.setLSAudioCategory(isActive: true)
+        recordManager.delegate = self
     }
 
     // MARK: Navigation and Bar
@@ -162,39 +164,21 @@ extension RecordViewController: YouTubePlayerDelegate {
 
 extension RecordViewController: ScreenCaptureManagerDelegate {
     func didStartRecord() {
-        print("did Start")
+        print("Record did Start")
     }
 
     func didFinishRecord(preview: UIViewController) {
-        print("did finish")
-
+        print("Record did finish")
 
         let previewController = preview as! RPPreviewViewController
 
         previewController.previewControllerDelegate = self
 
         self.present(previewController, animated: true, completion: nil)
-
-        
     }
 
     func didStopWithError(error: Error) {
-        print("did Stop: ", error)
-    }
-
-    func savingRecord() {
-        print("did save")
-    }
-
-    func discardingRecord() {
-        
-        print("did discard")
-//
-//        guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
-//            withIdentifier: String(describing: TabBarViewController.self)
-//            ) as? TabBarViewController else { return }
-//
-//        previewController.present(controller, animated: false, completion: nil)
+        print("Record did Stop with Error: ", error)
     }
 }
 
@@ -213,9 +197,7 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
     }
 
     func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
-
-        print("enter to delegate 2")
-
+        
         if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
             DispatchQueue.main.async {
 
