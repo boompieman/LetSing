@@ -16,7 +16,7 @@ import Photos
 class userProfileViewController: UIViewController, YouTubePlayerDelegate, LyricsManagerDelegate {
     func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
         print("-----")
-        print("get")
+        print(lyrics)
     }
 
 

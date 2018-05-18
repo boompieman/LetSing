@@ -78,7 +78,7 @@ struct SongProvider {
                     return
                 }
 
-                let song = Song(name: title, singer: nil, image: imageUrl, youtube_url: vedioID, hasCaption: false, rank: nil, type: nil)
+                let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, hasCaption: false, rank: nil, type: nil)
 
                 songList.append(song)
             }

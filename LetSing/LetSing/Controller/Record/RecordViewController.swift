@@ -28,7 +28,7 @@ class RecordViewController: UIViewController {
 
         setupRecordManager()
         observePlayerCurrentTime()
-        generatePlayer(videoID: (song?.youtube_url)!)
+        generatePlayer()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,11 +83,15 @@ class RecordViewController: UIViewController {
         )
     }
 
-    func generatePlayer(videoID: String) {
+    func generatePlayer() {
+
+        guard let song = song else {
+            return
+        }
 
         recordVideoPanelView.updatePlayer()
         recordVideoPanelView.videoPlayerView.delegate = self
-        videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, videoID, observer: self, context: &RecordViewController.observerContext)
+        videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, song.id, observer: self, context: &RecordViewController.observerContext)
     }
 
     // MARK: record Action
