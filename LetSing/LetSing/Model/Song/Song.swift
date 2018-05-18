@@ -14,6 +14,7 @@ struct Song {
     let singer: String?
     let image: String
     let youtube_url: String
+    var hasCaption: Bool
     let rank: Int?
     var type: String? // chinese, english, holiday ...
 }

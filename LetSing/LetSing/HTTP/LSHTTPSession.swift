@@ -55,7 +55,7 @@ class LSHTTPClient {
 
         do {
 
-            return try request(LSHTTPRequest.requestFromYoutube(), success: success, failure: failure)
+            return try request(LSHTTPRequest.request(), success: success, failure: failure)
 
         } catch {
 
@@ -64,6 +64,5 @@ class LSHTTPClient {
             return nil
         }
     }
-
 }
 

@@ -13,7 +13,12 @@ import ReplayKit
 import AudioKit
 import Photos
 
-class userProfileViewController: UIViewController, YouTubePlayerDelegate {
+class userProfileViewController: UIViewController, YouTubePlayerDelegate, LyricsManagerDelegate {
+    func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
+        print("-----")
+        print("get")
+    }
+
 
     @IBOutlet weak var LSPlayerView: LSPlayerView!
     let recorder = RPScreenRecorder.shared()
@@ -25,6 +30,8 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
     fileprivate var silence: AKBooster!
     var timer: Timer?
     var waitTimer: Timer?
+
+    var manager = LyricsManager()
 
     var oscillator: AKOscillator!
     var filter: AKLowPassFilter!
@@ -38,11 +45,15 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let status = PHPhotoLibrary.authorizationStatus()
+        manager.delegate = self
 
-        if status == .authorized {
-            getRecordingVideo()
-        }
+        manager.getLyricBySong(id: "A8390cHMfY8")
+
+//        let status = PHPhotoLibrary.authorizationStatus()
+//
+//        if status == .authorized {
+//            getRecordingVideo()
+//        }
     }
 
     func getRecordingVideo() {
@@ -68,6 +79,8 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
         print(resources)
 
+        var videoURL: URL?
+
         PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, audioMix, info) in
             print("assets", asset)
 
@@ -79,7 +92,7 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
                 let localVideoURL = urlAsset.url
 
                 print("videoURL: ",localVideoURL)
-                self.url = localVideoURL
+                videoURL = localVideoURL
             }
 
             let item = AVPlayerItem(asset: asset!)
@@ -91,7 +104,7 @@ class userProfileViewController: UIViewController, YouTubePlayerDelegate {
 
         }
 
-        print("url: ",self.url)
+        print("url: ",videoURL!)
     }
 
 

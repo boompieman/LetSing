@@ -47,7 +47,7 @@ protocol LSHTTPRequest {
 
     func urlString() -> String
 
-    func requestFromYoutube() throws -> URLRequest
+    func request() throws -> URLRequest
 }
 
 extension LSHTTPRequest {
@@ -81,11 +81,9 @@ extension LSHTTPRequest {
 
 //    func requestBody() -> [String: Any] { return [:] }
 
-    func urlString() -> String { return LSConstants.youtubeUrl + urlParameter() }
+    func request() throws -> URLRequest {
 
-    func requestFromYoutube() throws -> URLRequest {
-
-        var url = URLComponents(string: urlString())
+        var url = URLComponents(string: urlString() + urlParameter())
 
         let parameters = requestParameters()
 
@@ -95,12 +93,14 @@ extension LSHTTPRequest {
             url?.queryItems?.append(URLQueryItem(name: key, value: value))
         }
 
-        guard let youtubeUrl = url else {
+        guard let requestUrl = url else {
 
             throw LSError.youtubeError
         }
 
-        var request = URLRequest(url: youtubeUrl.url!)
+        print("requestUrl: ", requestUrl)
+
+        var request = URLRequest(url: requestUrl.url!)
 
 //        request.allHTTPHeaderFields = requestHeader()
 
@@ -115,5 +115,4 @@ extension LSHTTPRequest {
 
         return request
     }
-
 }

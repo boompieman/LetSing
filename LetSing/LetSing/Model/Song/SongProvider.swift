@@ -12,6 +12,10 @@ private enum searchSongAPI: LSHTTPRequest {
 
     case getSongBySearch(String)
 
+    func urlString() -> String {
+        return LSConstants.youtubeUrl
+    }
+
     func urlParameter() -> String {
 
         switch self {
@@ -74,7 +78,7 @@ struct SongProvider {
                     return
                 }
 
-                let song = Song(name: title, singer: nil, image: imageUrl, youtube_url: vedioID, rank: nil, type: nil)
+                let song = Song(name: title, singer: nil, image: imageUrl, youtube_url: vedioID, hasCaption: false, rank: nil, type: nil)
 
                 songList.append(song)
             }
@@ -87,84 +91,3 @@ struct SongProvider {
 
     }
 }
-
-//struct AuthorProvider {
-//
-//    private weak var httpClient = VoyageHTTPClient.shared
-//
-//    func getAuthor(
-//        authorId: String = VYConstants.emptyString,
-//        success: @escaping (Author) -> Void,
-//        failure: @escaping (VoyageError) -> Void
-//        ) {
-//        httpClient?.request(AuthorAPI.getAuthor(authorId), success: { value in
-//
-//            do {
-//                var author = [Author]
-//
-//                guard let value = value else {
-//                    return
-//                }
-//
-//                for val in value {
-//
-//                    let author = Author.fromFirebaseValue(value: val)
-//
-//                    if author != nil {
-//                        print("no author")
-//                    }
-//                }
-//
-//                success(author)
-//
-//            }
-//
-//        }, failure: {
-//
-//            print("error: can't not retrieve data")
-//
-//        })
-//    }
-//
-//    func getSpotArticles(
-//        spotId: String,
-//        success: @escaping ([Article]) -> Void,
-//        failure: @escaping (VoyageError) -> Void) {
-//
-//        httpClient?.request(ArticleAPI.getSpotAritles(spotId), success: { (value) in
-//
-//            do {
-//                var articles = [Article]()
-//
-//                guard let value = value else {
-//                    return
-//                }
-//
-//                for val in value {
-//
-//                    let request = Database.database().reference().child("articles").child(val.key)
-//
-//                    request.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//                        guard let a = (key: snapshot.key, value: snapshot.value) as? (key: String, value: AnyObject) else { return }
-//
-//                        let article = Article.fromFirebaseValue(value: a)
-//
-//                        if article != nil {
-//                            articles.append(article!)
-//                        }
-//
-//                    }, withCancel: { (error) in
-//                        print(error)
-//                    })
-//                }
-//
-//
-//            }
-//
-//        }, failure: {
-//            print("error: can't not retrieve data")
-//        })
-//    }
-//}
-//

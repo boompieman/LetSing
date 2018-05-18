@@ -13,6 +13,8 @@ struct LSConstants {
 
     static let youtubeKey = "AIzaSyBNMdTRxwA1waBGk_qFxUSRadSAw_dg3Bc"
 
+    static let captionsUrl = "http://video.google.com/timedtext"
+
     struct NotificationKey {
 
         static let finishVideoDuration = "finishVideoDuration"

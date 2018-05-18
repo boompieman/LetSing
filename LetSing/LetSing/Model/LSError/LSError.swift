@@ -14,4 +14,6 @@ enum LSError: String, Error {
     case LSFirebaseError = "Get data from Let Sing firebase failed"
 
     case LSFirstAssetError = "Could not get first asset"
+
+    case timedTextError = "Get captions from timedtext failed: See: http://video.google.com/timedtext?lang={lang, ex: zh-TW}}&v={VideoID}}"
 }
