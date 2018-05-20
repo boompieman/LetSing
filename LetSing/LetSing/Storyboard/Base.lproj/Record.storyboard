@@ -193,6 +193,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" red="0.26024651529999998" green="0.1441762435" blue="0.097449938829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tableView>
                     <connections>
                         <outlet property="tableView" destination="1PP-Ss-aq6" id="3ww-fa-dhh"/>

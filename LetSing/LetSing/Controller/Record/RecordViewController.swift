@@ -26,12 +26,10 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sendData()
-
-
         setupRecordManager()
         observePlayerCurrentTime()
         generatePlayer()
+        sendData()
     }
 
     func sendData() {
@@ -41,6 +39,10 @@ class RecordViewController: UIViewController {
             return
         }
 
+
+
+        lyricsVC?.currentTimeProvider = videoProvider
+        lyricsVC?.currentTimeProvider.delegate = lyricsVC
         lyricsVC?.requestLyrics(song: song)
     }
 

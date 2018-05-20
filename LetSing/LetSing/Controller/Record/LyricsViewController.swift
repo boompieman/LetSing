@@ -14,6 +14,10 @@ class LyricsViewController: UIViewController {
 
     var manager = LyricsManager()
 
+    var currentTimeProvider = LSYoutubeVideoProvider()
+
+    var timer: Timer?
+
     var lyrics: Lyrics?
 
     @IBOutlet var tableView: UITableView!
@@ -22,20 +26,34 @@ class LyricsViewController: UIViewController {
          super.viewDidLoad()
 
         setupTableView()
-
     }
 
+    func startTimer() {
 
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(detactTimeBySecond),
+            userInfo:nil,
+            repeats:true
+        )
+        
+    }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
-        print("view will disappear")
+    @objc func detactTimeBySecond() {
+
+        self.currentTimeProvider.getCurrentTime()
     }
 
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+
+        self.tableView.backgroundColor = UIColor(red: 51/255, green: 58/255, blue: 66/255, alpha: 1.0)
 
         let nib = UINib (
             nibName: String(describing: LyricsTableViewCell.self),
@@ -91,6 +109,8 @@ extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.updatelineWith(line: lyrics.lines[indexPath.row].words)
 
+            cell.lineLabel.textColor = UIColor.white
+
             return cell
         }
 
@@ -100,13 +120,35 @@ extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
+        let cell = tableView.cellForRow(at: indexPath) as! LyricsTableViewCell
+
+        cell.lineLabel.textColor = UIColor.orange
+
+        print("selected")
+
     }
 }
 
 extension LyricsViewController: LyricsManagerDelegate {
     func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
 
-        self.lyrics = lyrics
-        self.tableView.reloadData()
+        if lyrics.lines.count == 0 {
+            print("screen should show 這首歌在youtube上沒有歌詞")
+
+
+        }
+
+        else {
+            self.lyrics = lyrics
+            self.tableView.reloadData()
+            startTimer()
+        }
+    }
+}
+
+extension LyricsViewController: currentTimeProviderDelegate {
+    func didCurrentTimeChangedBySecond(didGet currentTime: Float) {
+
+        print("did sent Time", currentTime)
     }
 }

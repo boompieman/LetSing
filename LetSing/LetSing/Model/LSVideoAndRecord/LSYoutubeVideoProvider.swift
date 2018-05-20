@@ -9,6 +9,11 @@
 import Foundation
 import YouTubePlayer
 
+
+protocol currentTimeProviderDelegate: class {
+    func didCurrentTimeChangedBySecond(didGet currentTime: Float)
+}
+
 extension Notification.Name {
 
     static let currentTimeChanged = Notification.Name(LSConstants.NotificationKey.currentTimeChanged)
@@ -18,6 +23,8 @@ extension Notification.Name {
 class LSYoutubeVideoProvider: NSObject {
 
     private var player: YouTubePlayerView?
+
+    weak var delegate: currentTimeProviderDelegate?
 
     private let timeTransformer = LSYoutubeTimerTransformer()
 
@@ -54,9 +61,6 @@ class LSYoutubeVideoProvider: NSObject {
             userInfo:nil,
             repeats:true
         )
-
-        print("timer start")
-
     }
 
     func invalidateTimer() {
@@ -72,7 +76,31 @@ class LSYoutubeVideoProvider: NSObject {
         guard let player = player, let currentTime = player.getCurrentTime() else { return }
 
         self.currentTime = self.timeTransformer.time(currentTime)
+    }
 
+    func getCurrentTime() {
+
+        
+
+        guard let player = player, let currentTime = player.getCurrentTime() else {
+
+            print("player is nil")
+            
+            
+            return
+
+        }
+
+        // 詢問是這邊送currentTime過去比較好，還是lyrics送過來，在改成didLyricsLineShouldChange的delegate
+
+        if let floatCurrentTime = Float(currentTime) {
+
+            // it works
+            DispatchQueue.main.async {
+                
+                self.delegate?.didCurrentTimeChangedBySecond(didGet: floatCurrentTime)
+            }
+        }
     }
 
     func currentProportion() -> Double {
