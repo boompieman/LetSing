@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class SearchResultTableViewCell: UITableViewCell {
+class SongTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var youtubeImageView: UIImageView!

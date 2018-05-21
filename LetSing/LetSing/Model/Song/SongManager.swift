@@ -20,9 +20,9 @@ struct SongManager {
 
     private let provider = SongProvider()
 
-    func getSearchResult(songName: String) {
+    func getSearchResult(searchText: String) {
 
-        provider.getSearchSongs(songName: songName, success: { (songs) in
+        provider.getSearchSongs(searchText: searchText, success: { (songs) in
             var songArray = songs
 
             DispatchQueue.main.async {

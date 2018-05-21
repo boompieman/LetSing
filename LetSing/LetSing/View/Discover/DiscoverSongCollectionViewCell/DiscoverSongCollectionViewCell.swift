@@ -19,17 +19,17 @@ class DiscoverSongCollectionViewCell: UICollectionViewCell {
     }
 
     func setupTableView() {
-//        let nib = UINib(nibName: String(describing: DiscoverSongTableViewCell.self), bundle: nil)
-//
-//        self.discoverSongTableView.register(nib, forCellReuseIdentifier: String(describing: DiscoverSongTableViewCell.self))
+        let nib = UINib(nibName: String(describing: SongTableViewCell.self), bundle: nil)
+
+        self.discoverSongTableView.register(nib, forCellReuseIdentifier: String(describing: SongTableViewCell.self))
     }
 
-//    func setTableViewDataSourceDelegate <D: UICollectionViewDataSource & UICollectionViewDelegate>
-//        (dataSourceDelegate: D, forRow row: Int) {
-//
-//        self.discoverSongTableView.delegate = dataSourceDelegate
-//        self.discoverSongTableView.dataSource = dataSourceDelegate
-//        self.discoverSongTableView.tag = row
-//    }
+    func setTableViewDataSourceDelegate <D: UITableViewDataSource & UITableViewDelegate>
+        (dataSourceDelegate: D, forRow row: Int) {
+
+        self.discoverSongTableView.delegate = dataSourceDelegate
+        self.discoverSongTableView.dataSource = dataSourceDelegate
+        self.discoverSongTableView.tag = row
+    }
 
 }

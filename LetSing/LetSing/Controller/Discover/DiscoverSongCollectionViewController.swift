@@ -21,6 +21,7 @@ class DiscoverSongCollectionViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+
     override func viewDidLoad() {
 
         setupCollectionView()
@@ -37,8 +38,6 @@ class DiscoverSongCollectionViewController: UIViewController {
         // set song collection view layout
         let discoverSongCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         discoverSongCollectionViewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.collectionView.bounds.height)
-
-
 
         discoverSongCollectionViewFlowLayout.minimumLineSpacing = 0
         
@@ -58,21 +57,18 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DiscoverSongCollectionViewCell.self), for: indexPath)
 
-
-        if indexPath.row == 1 {
-            cell.backgroundColor = UIColor.red
-        }
-
-        guard let discoverSongCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else {return cell}
+        guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {return cell}
 
         return discoverSongCollectionViewCell
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 
-        let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
-        self.delegate?.songViewDidScroll(self, translation: offsetX)
+        guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {
+            return
+        }
 
+        discoverSongCollectionViewCell.setTableViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
 }
 
@@ -99,3 +95,44 @@ extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayo
     }
 }
 
+extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return 200
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+
+        let tableViewCell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: SongTableViewCell.self),
+            for: indexPath
+            ) as! SongTableViewCell
+
+        if indexPath.row == 1 {
+            tableViewCell.backgroundColor = UIColor.red
+        }
+
+        else if indexPath.row == 4 {
+            tableViewCell.backgroundColor = UIColor.blue
+        }
+        else {
+            tableViewCell.backgroundColor = UIColor.yellow
+        }
+        tableViewCell.titleLabel.text = "66666666"
+
+
+        return tableViewCell
+    }
+
+}

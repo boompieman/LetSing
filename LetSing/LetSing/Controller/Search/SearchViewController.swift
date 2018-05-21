@@ -38,9 +38,9 @@ class SearchViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
-        let nib = UINib(nibName: String(describing: SearchResultTableViewCell.self), bundle: nil)
+        let nib = UINib(nibName: String(describing: SongTableViewCell.self), bundle: nil)
 
-        self.tableView.register(nib, forCellReuseIdentifier: String(describing: SearchResultTableViewCell.self))
+        self.tableView.register(nib, forCellReuseIdentifier: String(describing: SongTableViewCell.self))
     }
 
     func configureCustomSearchController() {
@@ -71,9 +71,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SearchResultTableViewCell.self), for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SongTableViewCell.self), for: indexPath)
 
-        guard let searchResultTableViewCell = cell as? SearchResultTableViewCell else {return cell}
+        guard let searchResultTableViewCell = cell as? SongTableViewCell else {return cell}
 
         searchResultTableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
@@ -111,7 +111,7 @@ extension SearchViewController: LSSearchControllerDelegate {
     func didTapOnSearchButton(searchText: String) {
 
         searchController.customSearchBar.showsCancelButton = false
-        songManager.getSearchResult(songName: searchText)
+        songManager.getSearchResult(searchText: searchText)
     }
 
 

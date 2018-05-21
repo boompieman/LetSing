@@ -12,6 +12,8 @@ private enum searchSongAPI: LSHTTPRequest {
 
     case getSongBySearch(String)
 
+    case getSongByDiscover(String)
+
     func urlString() -> String {
         return LSConstants.youtubeUrl
     }
@@ -20,9 +22,13 @@ private enum searchSongAPI: LSHTTPRequest {
 
         switch self {
 
-        case .getSongBySearch(let song):
+        case .getSongBySearch(let searchText):
 
             return "/search"
+
+        case .getSongByDiscover(let songName):
+
+            return "/Search"
 
         }
     }
@@ -30,9 +36,13 @@ private enum searchSongAPI: LSHTTPRequest {
     func requestParameters() -> [String : String] {
 
         switch self {
-        case .getSongBySearch(let song):
+        case .getSongBySearch(let searchText):
 
-            return ["part" : "snippet", "q" : song, "maxResult": "1", "key" : LSConstants.youtubeKey]
+            return ["part" : "snippet", "q" : searchText, "maxResult": "20", "key" : LSConstants.youtubeKey]
+
+        case .getSongByDiscover(let songName):
+
+            return ["part" : "snippet", "q" : songName, "maxResult": "1", "key" : LSConstants.youtubeKey]
         }
     }
 
@@ -44,6 +54,10 @@ private enum searchSongAPI: LSHTTPRequest {
         case .getSongBySearch:
 
             return .get
+
+        case .getSongByDiscover:
+
+            return .get
         }
     }
 }
@@ -52,9 +66,9 @@ struct SongProvider {
 
     private weak var httpClient = LSHTTPClient.shared
 
-    func getSearchSongs(songName: String, success: @escaping ([Song]) -> Void, failure: @escaping(LSError) -> Void) {
+    func getSearchSongs(searchText: String, success: @escaping ([Song]) -> Void, failure: @escaping(LSError) -> Void) {
 
-        httpClient?.request(searchSongAPI.getSongBySearch(songName), success: { (data) in
+        httpClient?.request(searchSongAPI.getSongBySearch(searchText), success: { (data) in
 
             guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
                 return
@@ -78,7 +92,7 @@ struct SongProvider {
                     return
                 }
 
-                let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, hasCaption: false, rank: nil, type: nil)
+                let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, rank: nil, type: nil)
 
                 songList.append(song)
             }
@@ -88,6 +102,5 @@ struct SongProvider {
         }, failure: { (error) in
             print(error)
         })
-
     }
 }
