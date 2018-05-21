@@ -50,7 +50,7 @@ class LSYoutubeVideoProvider: NSObject {
     func startTimer() {
 
         timer = Timer.scheduledTimer(
-            timeInterval: 1,
+            timeInterval: 0.1,
             target: self,
             selector: #selector(setCurrentTime),
             userInfo:nil,
@@ -129,5 +129,6 @@ class LSYoutubeVideoProvider: NSObject {
         player.clear()
         invalidateTimer()
         removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
+        removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
     }
 }

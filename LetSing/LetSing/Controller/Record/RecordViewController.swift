@@ -39,8 +39,6 @@ class RecordViewController: UIViewController {
             return
         }
 
-        lyricsVC?.videoProvider = videoProvider
-
         lyricsVC?.requestLyrics(song: song)
     }
 
@@ -94,6 +92,13 @@ class RecordViewController: UIViewController {
             options: NSKeyValueObservingOptions.new,
             context: &RecordViewController.observerContext
         )
+
+        videoProvider.addObserver(
+            self,
+            forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime),
+            options: NSKeyValueObservingOptions.new,
+            context: &RecordViewController.observerContext
+        )
     }
 
     func generatePlayer() {
@@ -133,6 +138,23 @@ class RecordViewController: UIViewController {
 
             playerCurrentTimeHandler(change: change)
         }
+
+        if path == #keyPath(LSYoutubeVideoProvider.floatCurrentTime) {
+
+            playerCurrentLyricsHandler(change: change)
+        }
+    }
+
+    private func playerCurrentLyricsHandler(change: [NSKeyValueChangeKey : Any]) {
+
+        guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
+
+        print("new:", newValue)
+
+        let lyricsVC = childViewControllers[0] as? LyricsViewController
+
+        lyricsVC?.moveLyrics(currentTime: newValue)
+
     }
 
     private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {

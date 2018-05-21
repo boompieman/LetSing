@@ -16,6 +16,8 @@ class LyricsViewController: UIViewController {
 
     var lyrics: Lyrics?
 
+    var currentIndex = 0
+
     var videoProvider: LSYoutubeVideoProvider?
 
     private static var observerContext = 0
@@ -26,21 +28,6 @@ class LyricsViewController: UIViewController {
          super.viewDidLoad()
 
         setupTableView()
-    }
-
-    private func observePlayerCurrentTime() {
-
-        guard let videoProvider = videoProvider else {
-            
-            return
-        }
-
-        videoProvider.addObserver(
-            self,
-            forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime),
-            options: NSKeyValueObservingOptions.new,
-            context: &LyricsViewController.observerContext
-        )
     }
 
     func setupTableView() {
@@ -57,6 +44,8 @@ class LyricsViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: String(describing: LyricsTableViewCell.self))
 
         tableView.separatorStyle = .none
+
+        tableView.allowsSelection = false
     }
 
     func requestLyrics(song: Song) {
@@ -65,38 +54,29 @@ class LyricsViewController: UIViewController {
         self.manager.getLyricBySong(id: song.id)
     }
 
-    // MARK: - KVO
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    func moveLyrics(currentTime: Float) {
 
-        guard context == &LyricsViewController.observerContext else {
-
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-
+        guard let lyrics = lyrics else {
             return
         }
 
-        guard let path = keyPath,
-            let change = change
-            else { return }
 
-        if path == #keyPath(LSYoutubeVideoProvider.floatCurrentTime) {
+        if currentTime - lyrics.lines[currentIndex].start >= 0 {
 
-            playerCurrentTimeHandler(change: change)
+            self.tableView.scrollToRow(
+                at: IndexPath(row: currentIndex, section: 0),
+                at: .middle,
+                animated: true
+            )
+
+            let lyricsCell = self.tableView.cellForRow(at: IndexPath(row: currentIndex, section: 0)) as? LyricsTableViewCell
+            let lastLyricsCell = self.tableView.cellForRow(at: IndexPath(row: currentIndex - 1, section: 0)) as? LyricsTableViewCell
+
+            lyricsCell?.lineLabel.textColor = UIColor.orange
+            lastLyricsCell?.lineLabel.textColor = UIColor.white
+
+            currentIndex += 1
         }
-    }
-
-    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
-
-        guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
-
-        print("new:", newValue)
-
-        // todo
-
-//        recordVideoPanelView.updateCurrentTime(
-//            time: newValue,
-//            proportion: videoProvider.currentProportion()
-//        )
     }
 }
 
@@ -143,19 +123,6 @@ extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        let cell = tableView.cellForRow(at: indexPath) as! LyricsTableViewCell
-
-        cell.lineLabel.textColor = UIColor.orange
-
-        print("selected")
-
-    }
-
-
 }
 
 extension LyricsViewController: LyricsManagerDelegate {
@@ -168,7 +135,6 @@ extension LyricsViewController: LyricsManagerDelegate {
         else {
             self.lyrics = lyrics
             self.tableView.reloadData()
-            observePlayerCurrentTime()
         }
     }
 }
