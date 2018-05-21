@@ -9,11 +9,6 @@
 import Foundation
 import YouTubePlayer
 
-
-protocol currentTimeProviderDelegate: class {
-    func didCurrentTimeChangedBySecond(didGet currentTime: Float)
-}
-
 extension Notification.Name {
 
     static let currentTimeChanged = Notification.Name(LSConstants.NotificationKey.currentTimeChanged)
@@ -24,8 +19,6 @@ class LSYoutubeVideoProvider: NSObject {
 
     private var player: YouTubePlayerView?
 
-    weak var delegate: currentTimeProviderDelegate?
-
     private let timeTransformer = LSYoutubeTimerTransformer()
 
     private static var observerContext = 0
@@ -34,6 +27,8 @@ class LSYoutubeVideoProvider: NSObject {
 
     //kvo
     @objc dynamic var currentTime: String = LSConstants.emptyString
+
+    @objc dynamic var floatCurrentTime: Float = 0.0
 
     var timer: Timer?
 
@@ -73,34 +68,14 @@ class LSYoutubeVideoProvider: NSObject {
 
     @objc func setCurrentTime() {
 
-        guard let player = player, let currentTime = player.getCurrentTime() else { return }
+        guard let player = player, let currentTime = player.getCurrentTime(), let floatCurrentTime = Float(currentTime) else { return }
+
+
+
+        self.floatCurrentTime = floatCurrentTime
+
 
         self.currentTime = self.timeTransformer.time(currentTime)
-    }
-
-    func getCurrentTime() {
-
-        
-
-        guard let player = player, let currentTime = player.getCurrentTime() else {
-
-            print("player is nil")
-            
-            
-            return
-
-        }
-
-        // 詢問是這邊送currentTime過去比較好，還是lyrics送過來，在改成didLyricsLineShouldChange的delegate
-
-        if let floatCurrentTime = Float(currentTime) {
-
-            // it works
-            DispatchQueue.main.async {
-                
-                self.delegate?.didCurrentTimeChangedBySecond(didGet: floatCurrentTime)
-            }
-        }
     }
 
     func currentProportion() -> Double {

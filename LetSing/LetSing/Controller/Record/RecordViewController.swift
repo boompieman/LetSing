@@ -39,10 +39,8 @@ class RecordViewController: UIViewController {
             return
         }
 
+        lyricsVC?.videoProvider = videoProvider
 
-
-        lyricsVC?.currentTimeProvider = videoProvider
-        lyricsVC?.currentTimeProvider.delegate = lyricsVC
         lyricsVC?.requestLyrics(song: song)
     }
 
@@ -116,7 +114,7 @@ class RecordViewController: UIViewController {
 
     }
 
-//    // MARK: - KVO
+    // MARK: - KVO
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 

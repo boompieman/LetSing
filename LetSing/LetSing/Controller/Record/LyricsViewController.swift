@@ -14,11 +14,11 @@ class LyricsViewController: UIViewController {
 
     var manager = LyricsManager()
 
-    var currentTimeProvider = LSYoutubeVideoProvider()
-
-    var timer: Timer?
-
     var lyrics: Lyrics?
+
+    var videoProvider: LSYoutubeVideoProvider?
+
+    private static var observerContext = 0
 
     @IBOutlet var tableView: UITableView!
 
@@ -28,25 +28,19 @@ class LyricsViewController: UIViewController {
         setupTableView()
     }
 
-    func startTimer() {
+    private func observePlayerCurrentTime() {
 
-        timer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(detactTimeBySecond),
-            userInfo:nil,
-            repeats:true
+        guard let videoProvider = videoProvider else {
+            
+            return
+        }
+
+        videoProvider.addObserver(
+            self,
+            forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime),
+            options: NSKeyValueObservingOptions.new,
+            context: &LyricsViewController.observerContext
         )
-        
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    @objc func detactTimeBySecond() {
-
-        self.currentTimeProvider.getCurrentTime()
     }
 
     func setupTableView() {
@@ -63,7 +57,6 @@ class LyricsViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: String(describing: LyricsTableViewCell.self))
 
         tableView.separatorStyle = .none
-
     }
 
     func requestLyrics(song: Song) {
@@ -72,7 +65,41 @@ class LyricsViewController: UIViewController {
         self.manager.getLyricBySong(id: song.id)
     }
 
+    // MARK: - KVO
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+        guard context == &LyricsViewController.observerContext else {
+
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+
+            return
+        }
+
+        guard let path = keyPath,
+            let change = change
+            else { return }
+
+        if path == #keyPath(LSYoutubeVideoProvider.floatCurrentTime) {
+
+            playerCurrentTimeHandler(change: change)
+        }
+    }
+
+    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
+
+        guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
+
+        print("new:", newValue)
+
+        // todo
+
+//        recordVideoPanelView.updateCurrentTime(
+//            time: newValue,
+//            proportion: videoProvider.currentProportion()
+//        )
+    }
 }
+
 
 extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -127,6 +154,8 @@ extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
         print("selected")
 
     }
+
+
 }
 
 extension LyricsViewController: LyricsManagerDelegate {
@@ -134,21 +163,12 @@ extension LyricsViewController: LyricsManagerDelegate {
 
         if lyrics.lines.count == 0 {
             print("screen should show 這首歌在youtube上沒有歌詞")
-
-
         }
 
         else {
             self.lyrics = lyrics
             self.tableView.reloadData()
-            startTimer()
+            observePlayerCurrentTime()
         }
-    }
-}
-
-extension LyricsViewController: currentTimeProviderDelegate {
-    func didCurrentTimeChangedBySecond(didGet currentTime: Float) {
-
-        print("did sent Time", currentTime)
     }
 }
