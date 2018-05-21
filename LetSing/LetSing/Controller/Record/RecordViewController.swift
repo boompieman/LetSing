@@ -145,11 +145,10 @@ class RecordViewController: UIViewController {
         }
     }
 
+    // 需要解決若此首歌沒有歌詞就不要追蹤的問題
     private func playerCurrentLyricsHandler(change: [NSKeyValueChangeKey : Any]) {
 
         guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
-
-        print("new:", newValue)
 
         let lyricsVC = childViewControllers[0] as? LyricsViewController
 
