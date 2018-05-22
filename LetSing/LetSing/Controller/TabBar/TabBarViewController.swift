@@ -116,6 +116,8 @@ class TabBarViewController: UITabBarController {
 
     private func setupTab() {
 
+        // 避免擋住tableView
+
         tabBar.tintColor = LetSingColor.tabBarTintColor.color()
 
         var controllers: [UIViewController] = []

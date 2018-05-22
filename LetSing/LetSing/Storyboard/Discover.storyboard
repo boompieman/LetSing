@@ -17,7 +17,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xrr-v3-P5k">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.84414172172546387" green="0.26513424515724182" blue="0.24483883380889893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.65105926990509033" green="0.64737147092819214" blue="0.63059043884277344" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="1vP-sV-0BS" kind="relationship" relationship="rootViewController" id="64O-d2-1bU"/>
@@ -66,36 +66,26 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Z9P-MV-O0W" firstAttribute="top" secondItem="buj-LG-u7B" secondAttribute="top" id="56l-uJ-Fq2"/>
+                                    <constraint firstItem="Z9P-MV-O0W" firstAttribute="top" secondItem="buj-LG-u7B" secondAttribute="top" id="G9F-ko-Wzm"/>
                                     <constraint firstAttribute="trailing" secondItem="Z9P-MV-O0W" secondAttribute="trailing" id="YTh-2r-qan"/>
                                     <constraint firstAttribute="bottom" secondItem="Z9P-MV-O0W" secondAttribute="bottom" id="gDW-Ky-9XN"/>
                                     <constraint firstItem="Z9P-MV-O0W" firstAttribute="leading" secondItem="buj-LG-u7B" secondAttribute="leading" id="uKU-H0-lAX"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuC-Sn-rN6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="j7e-Yl-Gcj" firstAttribute="leading" secondItem="Qhu-vQ-vlB" secondAttribute="leading" id="3Nb-24-aCM"/>
-                            <constraint firstItem="uuC-Sn-rN6" firstAttribute="leading" secondItem="Qhu-vQ-vlB" secondAttribute="leading" id="71c-PJ-LRF"/>
-                            <constraint firstItem="Qhu-vQ-vlB" firstAttribute="bottom" secondItem="uuC-Sn-rN6" secondAttribute="bottom" id="7at-5a-rO1"/>
-                            <constraint firstItem="Qhu-vQ-vlB" firstAttribute="trailing" secondItem="uuC-Sn-rN6" secondAttribute="trailing" id="Ihv-Be-obA"/>
                             <constraint firstItem="j7e-Yl-Gcj" firstAttribute="top" secondItem="Qhu-vQ-vlB" secondAttribute="top" id="MCQ-3L-tRq"/>
                             <constraint firstItem="Qhu-vQ-vlB" firstAttribute="bottom" secondItem="buj-LG-u7B" secondAttribute="bottom" id="QcQ-kg-hJI"/>
-                            <constraint firstItem="uuC-Sn-rN6" firstAttribute="top" secondItem="Qhu-vQ-vlB" secondAttribute="top" id="Qh1-Rj-dJe"/>
+                            <constraint firstItem="buj-LG-u7B" firstAttribute="top" secondItem="j7e-Yl-Gcj" secondAttribute="bottom" id="TV8-Vl-obr"/>
                             <constraint firstItem="Qhu-vQ-vlB" firstAttribute="trailing" secondItem="j7e-Yl-Gcj" secondAttribute="trailing" id="aor-sL-8wc"/>
                             <constraint firstItem="buj-LG-u7B" firstAttribute="leading" secondItem="Qhu-vQ-vlB" secondAttribute="leading" id="cp6-Me-K5B"/>
                             <constraint firstItem="Qhu-vQ-vlB" firstAttribute="trailing" secondItem="buj-LG-u7B" secondAttribute="trailing" id="hvQ-cV-3Pz"/>
-                            <constraint firstItem="buj-LG-u7B" firstAttribute="top" secondItem="GIE-Bm-gVV" secondAttribute="bottom" id="n6u-I8-Id4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qhu-vQ-vlB"/>
                     </view>
                     <navigationItem key="navigationItem" id="JkT-OY-ps1"/>
-                    <connections>
-                        <outlet property="scrollView" destination="uuC-Sn-rN6" id="7X0-pE-Mhb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EN7-cn-UET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -109,10 +99,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jPb-8f-Ger">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jPb-8f-Ger">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8Iu-ms-AkM">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="8Iu-ms-AkM">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -141,14 +131,14 @@
         <!--Discover Type Collection View Controller-->
         <scene sceneID="Nwh-fB-qaF">
             <objects>
-                <viewController id="hOS-A8-Fd3" customClass="DiscoverTypeCollectionViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverTypeCollectionViewController" id="hOS-A8-Fd3" customClass="DiscoverTypeCollectionViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="baV-1e-6nC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZMT-GA-trN">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZMT-GA-trN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                <color key="backgroundColor" red="0.1990639865398407" green="0.22694072127342224" blue="0.26024651527404785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.2813245952129364" green="0.31332844495773315" blue="0.34251910448074341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="blO-4g-20m">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>

@@ -29,8 +29,9 @@ class DiscoverTypeCollectionViewController: UIViewController {
 
     override func viewDidLoad() {
 
-        setupCollectionView()
+        super.viewDidLoad()
 
+        setupCollectionView()
     }
 
     func setupCollectionView() {
@@ -50,7 +51,7 @@ class DiscoverTypeCollectionViewController: UIViewController {
 }
 
 
-extension DiscoverTypeCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         return typeList.count
@@ -72,14 +73,32 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
+
+        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
+
+        cell?.typeLabel.textColor = UIColor.orange
 
     }
 
-    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
+
+        cell?.typeLabel.textColor = UIColor.white
+    }
+
+//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
+//
+//        cell?.typeLabel.textColor = UIColor.orange
+//    }
+
+
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        
 
         let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
         self.delegate?.typeViewDidScroll(self, translation: offsetX)

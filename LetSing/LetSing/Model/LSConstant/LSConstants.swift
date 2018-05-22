@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct LSConstants {
     static let youtubeUrl = "https://www.googleapis.com/youtube/v3"
@@ -28,6 +29,8 @@ struct LSConstants {
 
         static let originProportion = 0.0
     }
+
+    static let tableViewInset = UIEdgeInsets(top: 0, left: 0, bottom: 49, right: 0)
 
     static let emptyString = ""
 

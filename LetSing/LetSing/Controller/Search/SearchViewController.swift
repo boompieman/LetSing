@@ -35,6 +35,8 @@ class SearchViewController: UIViewController {
 
     func setupTableView() {
 
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: (self.tabBarController?.tabBar.frame.height)!, right: 0)
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
 

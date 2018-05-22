@@ -124,16 +124,7 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
             for: indexPath
             ) as! SongTableViewCell
 
-        if indexPath.row == 1 {
-            tableViewCell.backgroundColor = UIColor.red
-        }
 
-        else if indexPath.row == 4 {
-            tableViewCell.backgroundColor = UIColor.blue
-        }
-        else {
-            tableViewCell.backgroundColor = UIColor.yellow
-        }
         tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
 
