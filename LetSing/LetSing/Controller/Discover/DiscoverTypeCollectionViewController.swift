@@ -13,7 +13,7 @@ import UIKit
 protocol DiscoverTypeCollectionViewControllerDelegate: class {
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat)
 
-    func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, indexPath: IndexPath)
+    func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType)
 }
 
 
@@ -28,7 +28,6 @@ class DiscoverTypeCollectionViewController: UIViewController {
     var discoverTypeDistanceBetweenItemsCenter: CGFloat?
 
     override func viewDidLoad() {
-
 
         setupCollectionView()
 
@@ -74,15 +73,16 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
 
-        self.delegate?.typeViewDidSelect(self, indexPath: indexPath)
+        self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
 
     }
+
+    
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
         self.delegate?.typeViewDidScroll(self, translation: offsetX)
-
     }
 }
 

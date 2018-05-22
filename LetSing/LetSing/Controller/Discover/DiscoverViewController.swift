@@ -29,9 +29,15 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         scrollView.delegate = self
 
+        requestYoutubeData(type: .chinese)
+
+    }
+
+    func requestYoutubeData(type: LSSongType) {
+
         manager.delegate = self
 
-        manager.getDiscoverBoard(type: .chinese)
+        manager.getDiscoverBoard(type: type)
 
     }
 
@@ -85,6 +91,8 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
+
+        typeVC?.delegate = self
 
         offsetFactor = (typeVC?.discoverTypeDistanceBetweenItemsCenter)! / (songVC?.discoverSongDistanceBetweenItemsCenter)!
 
@@ -142,8 +150,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 extension DiscoverViewController: SongManagerDelegate {
     func manager(_ manager: SongManager, didGet songs: [Song]) {
 
-//        self.songs = songs
-
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
         songVC?.songs = songs
 
@@ -152,5 +158,19 @@ extension DiscoverViewController: SongManagerDelegate {
         currentCollectionViewCell?.discoverSongTableView.reloadData()
 
     }
+}
+
+extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
+    func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat) {
+
+    }
+
+    func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType) {
+        requestYoutubeData(type: type)
+
+        print(type.hashValue)
+    }
+
+
 }
 
