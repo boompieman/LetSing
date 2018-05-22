@@ -39,7 +39,6 @@
 		FA5CA143209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA141209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib */; };
 		FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA145209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift */; };
 		FA5CA148209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA146209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib */; };
-		FA7049DF20B2A8580007EF06 /* DiscoverProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7049DE20B2A8570007EF06 /* DiscoverProvider.swift */; };
 		FA7049E120B3BE830007EF06 /* LSJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7049E020B3BE820007EF06 /* LSJsonParser.swift */; };
 		FA7C96942098205400890325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96932098205400890325 /* AppDelegate.swift */; };
 		FA7C96962098205400890325 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96952098205400890325 /* RecordViewController.swift */; };
@@ -103,7 +102,6 @@
 		FA5CA141209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		FA5CA145209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSongCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA5CA146209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverSongCollectionViewCell.xib; sourceTree = "<group>"; };
-		FA7049DE20B2A8570007EF06 /* DiscoverProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProvider.swift; sourceTree = "<group>"; };
 		FA7049E020B3BE820007EF06 /* LSJsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSJsonParser.swift; sourceTree = "<group>"; };
 		FA7C96902098205400890325 /* LetSing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetSing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7C96932098205400890325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -353,14 +351,6 @@
 			path = DiscoverSongCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		FA7049DD20B2A46E0007EF06 /* Discover */ = {
-			isa = PBXGroup;
-			children = (
-				FA7049DE20B2A8570007EF06 /* DiscoverProvider.swift */,
-			);
-			path = Discover;
-			sourceTree = "<group>";
-		};
 		FA7C96872098205400890325 = {
 			isa = PBXGroup;
 			children = (
@@ -415,7 +405,6 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA7049DD20B2A46E0007EF06 /* Discover */,
 				FA0A090A20AEC342004D9696 /* parser */,
 				FACCB76A20AE7AEA0067ADC5 /* lyrics */,
 				FACCB76720AE6E800067ADC5 /* PostProduction */,
@@ -686,7 +675,6 @@
 				FA3B815520A0058600915CC6 /* LSSearchBar.swift in Sources */,
 				FA3B815E20A060EE00915CC6 /* SongTableViewCell.swift in Sources */,
 				FA0A090D20AED231004D9696 /* LyricsTableView.swift in Sources */,
-				FA7049DF20B2A8580007EF06 /* DiscoverProvider.swift in Sources */,
 				FA4335A5209C344200BC90FC /* LSHTTPRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

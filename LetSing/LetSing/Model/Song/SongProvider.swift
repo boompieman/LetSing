@@ -38,11 +38,11 @@ private enum searchSongAPI: LSHTTPRequest {
         switch self {
         case .getSongBySearch(let searchText):
 
-            return ["part" : "snippet", "q" : searchText, "maxResult": "20", "key" : LSConstants.youtubeKey]
+            return ["part" : "snippet", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
 
         case .getSongByDiscover(let songName):
 
-            return ["part" : "snippet", "q" : songName, "maxResult": "1", "key" : LSConstants.youtubeKey]
+            return ["part" : "snippet", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
         }
     }
 
@@ -74,24 +74,22 @@ struct SongProvider {
             searchSongAPI.getSongBySearch(searchText),
             success: { (data) in
 
-                let songList: [Song] = self.parser.parseToSong(data: data)
-
+                let songList = self.parser.parseToSongs(data: data)
                 success(songList)
-
         },
             failure: { (error) in
             print(error)
         })
     }
 
-    func getDiscoverSongs(songName: String, success: @escaping ([Song]) -> Void, failure: @escaping(LSError) -> Void) {
+    func getDiscoverSongs(songName: String, success: @escaping (Song) -> Void, failure: @escaping(LSError) -> Void) {
         httpClient?.request(
             searchSongAPI.getSongByDiscover(songName),
             success: { (data) in
 
-                let songList: [Song] = self.parser.parseToSong(data: data)
+                let songList: [Song] = self.parser.parseToSongs(data: data)
 
-                success(songList)
+                success(songList[0])
 
         },
             failure: { (error) in

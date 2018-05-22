@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseDatabase
 
 
 protocol SongManagerDelegate: class {
@@ -29,9 +30,11 @@ struct SongManager {
             success: { (songs) in
 //            var songArray = songs
 
-            DispatchQueue.main.async {
-                self.delegate?.manager(self, didGet: songs)
-            }
+
+
+                DispatchQueue.main.async {
+                    self.delegate?.manager(self, didGet: songs)
+                }
 
         },
             failure: { (error) in
@@ -39,23 +42,58 @@ struct SongManager {
         })
     }
 
-    func getDiscoverSong(songName: String) {
+    private func callYoutubeAPI(songName: String) { // 需要call 20次api
 
-        provider.getDiscoverSongs(songName: songName, success: { (songs) in
+        print(songName)
 
-            DispatchQueue.main.async {
-                self.delegate?.manager(self, didGet: songs)
+        
+
+//        DispatchQueue.main.async {
+//            self.delegate?.manager(self, didGet: [Song(id: "1", name: "2", singer: "3", image: "4", rank: 5, type: "6")])
+//        }
+
+//        provider.getDiscoverSongs(songName: songName, success: { (song) in
+//            
+//        }) { (error) in
+//            print(error)
+//        }
+    }
+
+    func getDiscoverBoard(type: LSSongType) {
+        let ref = Database.database().reference()
+
+        let request = ref.child("ktv")
+
+        request.observeSingleEvent(of: .value) { (snapshot) in
+            guard let types = snapshot.value as? [String: AnyObject] else { return }
+
+            guard let typeValue = types[type.rawValue] as? [AnyObject] else {
+                print("No~~")
+                return
             }
 
-        }) { (error) in
-            print(error)
+            for value in typeValue {
+
+                guard let songName = value["name"] as? String else {
+                    return
+                }
+
+                self.callYoutubeAPI(songName: songName)
+            }
         }
     }
+}
 
-    func getBoardFromFireBase() -> String {
-        let ref = Database.database()
+enum LSSongType: String {
 
-        return ""
-    }
+    case chinese = "holiday_chinese_hot"
+
+    case english = "holiday_english_hot"
+
+    case guan = "holiday_guan_hot"
+
+    case japanese = "holiday_japanese_hot"
+
+    case taiwanese = "holiday_taiwanese_hot"
 
 }

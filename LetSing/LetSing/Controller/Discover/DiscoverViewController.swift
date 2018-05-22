@@ -18,6 +18,8 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     lazy var lastOffsetY: CGFloat = self.scrollView.frame.origin.y
 
+    var manager = SongManager()
+
     @IBOutlet weak var scrollView: UIScrollView!
 
     
@@ -25,6 +27,9 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         scrollView.delegate = self
 
+        manager.delegate = self
+
+        manager.getDiscoverBoard(type: .chinese)
 
     }
 
@@ -131,4 +136,12 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 //
 //    }
 //}
+
+extension DiscoverViewController: SongManagerDelegate {
+    func manager(_ manager: SongManager, didGet songs: [Song]) {
+        
+    }
+
+
+}
 

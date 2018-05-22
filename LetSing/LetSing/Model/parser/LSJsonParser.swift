@@ -10,7 +10,7 @@ import Foundation
 
 class LSJsonParser {
 
-    func parseToSong(data: Data) -> [Song] {
+    func parseToSongs(data: Data) -> [Song] {
 
 
         guard let json = try? parse(data: data) else {
@@ -39,7 +39,7 @@ class LSJsonParser {
         return songList
     }
 
-    func parse(data: Data) throws -> [String : AnyObject] {
+    private func parse(data: Data) throws -> [String : AnyObject] {
 
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
             throw LSError.jsonParsedError
