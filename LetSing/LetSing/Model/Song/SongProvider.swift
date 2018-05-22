@@ -66,40 +66,35 @@ struct SongProvider {
 
     private weak var httpClient = LSHTTPClient.shared
 
+    let parser = LSJsonParser()
+
     func getSearchSongs(searchText: String, success: @escaping ([Song]) -> Void, failure: @escaping(LSError) -> Void) {
 
-        httpClient?.request(searchSongAPI.getSongBySearch(searchText), success: { (data) in
+        httpClient?.request(
+            searchSongAPI.getSongBySearch(searchText),
+            success: { (data) in
 
-            guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
-                return
-            }
+                let songList: [Song] = self.parser.parseToSong(data: data)
 
-            guard let jj = json else {
-                return
-            }
+                success(songList)
 
-            guard let items = jj["items"] as? [AnyObject] else { return }
+        },
+            failure: { (error) in
+            print(error)
+        })
+    }
 
-            var songList = [Song]()
+    func getDiscoverSongs(songName: String, success: @escaping ([Song]) -> Void, failure: @escaping(LSError) -> Void) {
+        httpClient?.request(
+            searchSongAPI.getSongByDiscover(songName),
+            success: { (data) in
 
-            for result in items {
+                let songList: [Song] = self.parser.parseToSong(data: data)
 
-                guard let snippetDict = result["snippet"] as? [String:Any], let id = result["id"] as? [String: AnyObject] else {
-                    return
-                }
+                success(songList)
 
-                guard let thumbnails = snippetDict["thumbnails"] as? [String: AnyObject], let vedioID = id["videoId"] as? String, let title = snippetDict["title"] as? String, let defaultImage = thumbnails["default"] as? [String: AnyObject], let imageUrl = defaultImage["url"] as? String else {
-                    return
-                }
-
-                let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, rank: nil, type: nil)
-
-                songList.append(song)
-            }
-
-            success(songList)
-
-        }, failure: { (error) in
+        },
+            failure: { (error) in
             print(error)
         })
     }

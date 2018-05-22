@@ -14,14 +14,18 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     var offsetFactor: CGFloat = 0.0
 
+    lazy var lastOffsetX: CGFloat = self.scrollView.frame.origin.x
+
+    lazy var lastOffsetY: CGFloat = self.scrollView.frame.origin.y
+
     @IBOutlet weak var scrollView: UIScrollView!
 
     
     override func viewDidLoad() {
 
         scrollView.delegate = self
-        
-        self.scrollView.contentSize = CGSize(width: self.view.frame.width * 5, height: self.view.frame.height * 5)
+
+
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -30,39 +34,45 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         let offsetY = scrollView.contentOffset.y - scrollView.frame.origin.y
 
+        print("offsetX:", offsetX, "offsetY:", offsetY)
+        print("lastOffsetX:", lastOffsetX, "lastOffsetY:", lastOffsetY)
+        print("contentOffsetX: ", scrollView.contentOffset.x, "contentOffsetY:", scrollView.contentOffset.y)
+
+//        print("offsetX - currentX ",  offsetX - lastOffsetX, "offsetY - currentY:", offsetY - lastOffsetY)
+
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-
-        let collectionViewCell = songVC?.collectionView.cellForItem(at: IndexPath(row: 0, section: 1)) as? DiscoverSongCollectionViewCell
-
-        songVC?.collectionView.setContentOffset(CGPoint(x: offsetX, y: (songVC?.collectionView.frame.origin.y)! + offsetY), animated: false)
-
-        collectionViewCell?.discoverSongTableView.setContentOffset(CGPoint(x: (songVC?.collectionView.frame.origin.x)!, y: (songVC?.collectionView.frame.origin.y)! + offsetY), animated: false)
 
         let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
 
-        typeVC?.collectionView.setContentOffset(CGPoint(x: offsetX * offsetFactor, y: (typeVC?.collectionView.frame.origin.y)!), animated: false)
+        let currentCollectionViewCell = songVC?.collectionView.visibleCells[0] as? DiscoverSongCollectionViewCell
 
-//        self.delegate?.songViewDidScroll(self, translation: offsetX)
+        if fabs(offsetX - lastOffsetX) > 0{ // 往左右滑
 
+            scrollView.isPagingEnabled = true
+            songVC?.collectionView.setContentOffset(
+                CGPoint(x: offsetX, y: (songVC?.collectionView.frame.origin.y)! + offsetY),
+                animated: false
+            )
+
+            DispatchQueue.main.async {
+                currentCollectionViewCell?.discoverSongTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            }
+
+            typeVC?.collectionView.setContentOffset(CGPoint(x: offsetX * offsetFactor, y: (typeVC?.collectionView.frame.origin.y)!), animated: false)
+
+            lastOffsetX = offsetX
+        }
+
+        if fabs(offsetY - lastOffsetY) > 0 { // 往上下滑
+
+            scrollView.isPagingEnabled = false
+            
+            currentCollectionViewCell?.discoverSongTableView.setContentOffset(CGPoint(x: (songVC?.collectionView.frame.origin.x)!, y: (songVC?.collectionView.frame.origin.y)! + scrollView.contentOffset.y), animated: false)
+
+            lastOffsetY = offsetY
+        }
     }
 
-
-//    @IBAction func scrollButtonDidTapped(_ sender: Any) {
-//
-//        print("tapped")
-//
-//
-//        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-//
-//        songVC?.collectionView.setContentOffset(CGPoint(x: 187.5 / offsetFactor, y: (songVC?.collectionView.frame.origin.y)!), animated: true)
-//
-//
-//
-//        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
-//
-//        typeVC?.collectionView.setContentOffset(CGPoint(x: 375 * offsetFactor, y: (typeVC?.collectionView.frame.origin.y)!), animated: true)
-//
-//    }
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
 
@@ -71,9 +81,10 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         offsetFactor = (typeVC?.discoverTypeDistanceBetweenItemsCenter)! / (songVC?.discoverSongDistanceBetweenItemsCenter)!
 
-        print(offsetFactor)
+        self.scrollView.contentSize = CGSize(width: self.view.frame.width * 5, height: self.view.frame.height * 5)
 
     }
+
 //
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if let identifier = segue.identifier {

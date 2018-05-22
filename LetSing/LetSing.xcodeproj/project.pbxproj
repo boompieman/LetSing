@@ -40,6 +40,7 @@
 		FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA145209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift */; };
 		FA5CA148209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA146209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib */; };
 		FA7049DF20B2A8580007EF06 /* DiscoverProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7049DE20B2A8570007EF06 /* DiscoverProvider.swift */; };
+		FA7049E120B3BE830007EF06 /* LSJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7049E020B3BE820007EF06 /* LSJsonParser.swift */; };
 		FA7C96942098205400890325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96932098205400890325 /* AppDelegate.swift */; };
 		FA7C96962098205400890325 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96952098205400890325 /* RecordViewController.swift */; };
 		FA7C96992098205400890325 /* Record.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7C96972098205400890325 /* Record.storyboard */; };
@@ -103,6 +104,7 @@
 		FA5CA145209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSongCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA5CA146209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverSongCollectionViewCell.xib; sourceTree = "<group>"; };
 		FA7049DE20B2A8570007EF06 /* DiscoverProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProvider.swift; sourceTree = "<group>"; };
+		FA7049E020B3BE820007EF06 /* LSJsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSJsonParser.swift; sourceTree = "<group>"; };
 		FA7C96902098205400890325 /* LetSing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetSing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7C96932098205400890325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA7C96952098205400890325 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				FA0A090820AEC339004D9696 /* LSXMLParser.swift */,
+				FA7049E020B3BE820007EF06 /* LSJsonParser.swift */,
 			);
 			path = parser;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Shimmer/Shimmer.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -624,6 +628,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Shimmer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,6 +662,7 @@
 				FA1DD01220A18EF000F92475 /* RecordVideoPanelView.swift in Sources */,
 				FACCB76C20AE7AFB0067ADC5 /* Lyrics.swift in Sources */,
 				FA4335B2209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift in Sources */,
+				FA7049E120B3BE830007EF06 /* LSJsonParser.swift in Sources */,
 				FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */,
 				FA5CA142209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift in Sources */,
 				FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */,

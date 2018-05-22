@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol DiscoverSongCollectionViewControllerDelegate: class {
-    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat)
+    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController,to indexPath: IndexPath)
 }
 
 class DiscoverSongCollectionViewController: UIViewController {
@@ -69,6 +69,7 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         }
 
         discoverSongCollectionViewCell.setTableViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+
     }
 }
 
@@ -110,6 +111,8 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 
         return 200
     }
+
+//    func tableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 

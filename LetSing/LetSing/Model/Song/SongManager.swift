@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Firebase
+
 
 protocol SongManagerDelegate: class {
 
@@ -22,16 +24,38 @@ struct SongManager {
 
     func getSearchResult(searchText: String) {
 
-        provider.getSearchSongs(searchText: searchText, success: { (songs) in
-            var songArray = songs
+        provider.getSearchSongs(
+            searchText: searchText,
+            success: { (songs) in
+//            var songArray = songs
 
             DispatchQueue.main.async {
-                self.delegate?.manager(self, didGet: songArray)
+                self.delegate?.manager(self, didGet: songs)
             }
 
-        }, failure: { (error) in
+        },
+            failure: { (error) in
             print(error)
         })
+    }
+
+    func getDiscoverSong(songName: String) {
+
+        provider.getDiscoverSongs(songName: songName, success: { (songs) in
+
+            DispatchQueue.main.async {
+                self.delegate?.manager(self, didGet: songs)
+            }
+
+        }) { (error) in
+            print(error)
+        }
+    }
+
+    func getBoardFromFireBase() -> String {
+        let ref = Database.database()
+
+        return ""
     }
 
 }
