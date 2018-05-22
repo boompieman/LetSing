@@ -32,6 +32,10 @@ class RecordViewController: UIViewController {
         sendData()
     }
 
+    deinit {
+        
+    }
+
     func sendData() {
         let lyricsVC = childViewControllers[0] as? LyricsViewController
 

@@ -19,6 +19,8 @@ protocol DiscoverTypeCollectionViewControllerDelegate: class {
 
 class DiscoverTypeCollectionViewController: UIViewController {
 
+    print(LSSongType.hashValue)
+
     @IBOutlet weak var collectionView: UICollectionView!
 
     weak var delegate: DiscoverTypeCollectionViewControllerDelegate? // to pass offset for parent controller
@@ -51,7 +53,7 @@ class DiscoverTypeCollectionViewController: UIViewController {
 extension DiscoverTypeCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return 5
+        return
 
     }
 

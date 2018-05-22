@@ -98,8 +98,6 @@ extension LSHTTPRequest {
             throw LSError.youtubeError
         }
 
-        print("requestUrl: ", requestUrl)
-
         var request = URLRequest(url: requestUrl.url!)
 
 //        request.allHTTPHeaderFields = requestHeader()

@@ -62,6 +62,8 @@ struct SongManager {
 
         var songList = [Song]()
 
+        let dispatchGroup = DispatchGroup()
+
         request.observeSingleEvent(of: .value) { (snapshot) in
             guard let types = snapshot.value as? [String: AnyObject] else { return }
 
@@ -81,18 +83,22 @@ struct SongManager {
                     return
                 }
 
+                dispatchGroup.enter()
+
                 self.callYoutubeAPI(songName: songName, rank: rank, singer: singer, type: type, completion: {(song) in
 
 //                    print("song:", song)
                     songList.append(song)
 
                     //都append完才能傳回去
+
+                    dispatchGroup.leave()
                 })
             }
-        }
 
-        DispatchQueue.main.async {
-            self.delegate?.manager(self, didGet: songList)
+            dispatchGroup.notify(queue: .main) {
+                self.delegate?.manager(self, didGet: songList)
+            }
         }
     }
 }
