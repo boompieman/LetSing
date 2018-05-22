@@ -12,9 +12,9 @@ import Foundation
 struct Song {
     let id: String
     let name: String
-    let singer: String?
+    var singer: String?
     let image: String
-    let rank: Int?
-    var type: String? // chinese, english, holiday ...
+    var rank: Int?
+    var type: LSSongType? // chinese, english, holiday ...
 }
 

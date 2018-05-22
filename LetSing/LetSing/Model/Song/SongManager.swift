@@ -28,41 +28,39 @@ struct SongManager {
         provider.getSearchSongs(
             searchText: searchText,
             success: { (songs) in
-//            var songArray = songs
-
-
 
                 DispatchQueue.main.async {
                     self.delegate?.manager(self, didGet: songs)
                 }
-
         },
             failure: { (error) in
             print(error)
         })
     }
 
-    private func callYoutubeAPI(songName: String) { // 需要call 20次api
+    private func callYoutubeAPI(songName: String, rank: Int, singer: String, type: LSSongType, completion: @escaping (Song) -> Void) { // 需要call 20次api
 
-        print(songName)
+        provider.getDiscoverSong(songName: songName, success: { (song) in
 
-        
+            var songVar = song
 
-//        DispatchQueue.main.async {
-//            self.delegate?.manager(self, didGet: [Song(id: "1", name: "2", singer: "3", image: "4", rank: 5, type: "6")])
-//        }
+            songVar.rank = rank
+            songVar.singer = singer
+            songVar.type = type
 
-//        provider.getDiscoverSongs(songName: songName, success: { (song) in
-//            
-//        }) { (error) in
-//            print(error)
-//        }
+            completion(songVar)
+
+        }) { (error) in
+            print(error)
+        }
     }
 
     func getDiscoverBoard(type: LSSongType) {
         let ref = Database.database().reference()
 
         let request = ref.child("ktv")
+
+        var songList = [Song]()
 
         request.observeSingleEvent(of: .value) { (snapshot) in
             guard let types = snapshot.value as? [String: AnyObject] else { return }
@@ -74,12 +72,27 @@ struct SongManager {
 
             for value in typeValue {
 
-                guard let songName = value["name"] as? String else {
+                guard let songName = value["name"] as? String, let rankString = value["rank"] as? String, let singer = value["singer"] as? String else {
+
                     return
                 }
 
-                self.callYoutubeAPI(songName: songName)
+                guard let rank = Int(rankString) else {
+                    return
+                }
+
+                self.callYoutubeAPI(songName: songName, rank: rank, singer: singer, type: type, completion: {(song) in
+
+//                    print("song:", song)
+                    songList.append(song)
+
+                    //都append完才能傳回去
+                })
             }
+        }
+
+        DispatchQueue.main.async {
+            self.delegate?.manager(self, didGet: songList)
         }
     }
 }

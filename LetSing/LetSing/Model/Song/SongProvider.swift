@@ -28,7 +28,7 @@ private enum searchSongAPI: LSHTTPRequest {
 
         case .getSongByDiscover(let songName):
 
-            return "/Search"
+            return "/search"
 
         }
     }
@@ -38,11 +38,11 @@ private enum searchSongAPI: LSHTTPRequest {
         switch self {
         case .getSongBySearch(let searchText):
 
-            return ["part" : "snippet", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
+            return ["type" : "video", "part" : "snippet", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
 
         case .getSongByDiscover(let songName):
 
-            return ["part" : "snippet", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
+            return ["type" : "video", "part" : "snippet", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
         }
     }
 
@@ -82,7 +82,8 @@ struct SongProvider {
         })
     }
 
-    func getDiscoverSongs(songName: String, success: @escaping (Song) -> Void, failure: @escaping(LSError) -> Void) {
+    func getDiscoverSong(songName: String, success: @escaping (Song) -> Void, failure: @escaping(LSError) -> Void) {
+
         httpClient?.request(
             searchSongAPI.getSongByDiscover(songName),
             success: { (data) in

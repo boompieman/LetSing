@@ -139,7 +139,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
 extension DiscoverViewController: SongManagerDelegate {
     func manager(_ manager: SongManager, didGet songs: [Song]) {
-        
+        print("songs:", songs)
     }
 
 
