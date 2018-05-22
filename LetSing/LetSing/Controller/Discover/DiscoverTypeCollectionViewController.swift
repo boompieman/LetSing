@@ -19,15 +19,16 @@ protocol DiscoverTypeCollectionViewControllerDelegate: class {
 
 class DiscoverTypeCollectionViewController: UIViewController {
 
-    print(LSSongType.hashValue)
-
     @IBOutlet weak var collectionView: UICollectionView!
+
+    var typeList:[LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
 
     weak var delegate: DiscoverTypeCollectionViewControllerDelegate? // to pass offset for parent controller
 
     var discoverTypeDistanceBetweenItemsCenter: CGFloat?
 
     override func viewDidLoad() {
+
 
         setupCollectionView()
 
@@ -53,7 +54,7 @@ class DiscoverTypeCollectionViewController: UIViewController {
 extension DiscoverTypeCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return
+        return typeList.count
 
     }
 
@@ -63,7 +64,7 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDelegate, UIColl
 
         guard let discoverTypeCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else {return cell}
 
-        discoverTypeCollectionViewCell.typeLabel.text = "777777"
+        discoverTypeCollectionViewCell.typeLabel.text = typeList[indexPath.row].title()
 
         discoverTypeCollectionViewCell.layer.cornerRadius = 10
 

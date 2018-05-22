@@ -141,15 +141,16 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
 extension DiscoverViewController: SongManagerDelegate {
     func manager(_ manager: SongManager, didGet songs: [Song]) {
-        self.songs = songs
 
+//        self.songs = songs
+
+        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
+        songVC?.songs = songs
+
+        let currentCollectionViewCell = songVC?.collectionView.visibleCells[0] as? DiscoverSongCollectionViewCell
+
+        currentCollectionViewCell?.discoverSongTableView.reloadData()
 
     }
-
-    func sendDataToChildVC() {
-        
-    }
-
-
 }
 

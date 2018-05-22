@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 protocol DiscoverSongCollectionViewControllerDelegate: class {
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController,to indexPath: IndexPath)
@@ -21,6 +22,7 @@ class DiscoverSongCollectionViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    var songs = [Song]()
 
     override func viewDidLoad() {
 
@@ -104,12 +106,12 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 10
+        return songs.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 200
+        return 150
     }
 
 //    func tableView
@@ -132,7 +134,7 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
         else {
             tableViewCell.backgroundColor = UIColor.yellow
         }
-        tableViewCell.titleLabel.text = "66666666"
+        tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
 
         return tableViewCell

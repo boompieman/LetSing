@@ -102,17 +102,3 @@ struct SongManager {
         }
     }
 }
-
-enum LSSongType: String {
-
-    case chinese = "holiday_chinese_hot"
-
-    case english = "holiday_english_hot"
-
-    case guan = "holiday_guan_hot"
-
-    case japanese = "holiday_japanese_hot"
-
-    case taiwanese = "holiday_taiwanese_hot"
-
-}
