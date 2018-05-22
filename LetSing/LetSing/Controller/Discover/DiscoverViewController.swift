@@ -14,9 +14,9 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     var offsetFactor: CGFloat = 0.0
 
-    lazy var lastOffsetX: CGFloat = self.scrollView.frame.origin.x
+    var lastCellRow: Int = 0
 
-    lazy var lastOffsetY: CGFloat = self.scrollView.frame.origin.y
+    var currentCellRow: Int = 0
 
     var manager = SongManager()
 
@@ -26,6 +26,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     
     override func viewDidLoad() {
+
 
         requestYoutubeData(type: .chinese)
 
@@ -39,50 +40,22 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     }
 
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//        let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
-//
-//        let offsetY = scrollView.contentOffset.y - scrollView.frame.origin.y
-//
-//        print("offsetX:", offsetX, "offsetY:", offsetY)
-//        print("lastOffsetX:", lastOffsetX, "lastOffsetY:", lastOffsetY)
-//        print("contentOffsetX: ", scrollView.contentOffset.x, "contentOffsetY:", scrollView.contentOffset.y)
-//
-////        print("offsetX - currentX ",  offsetX - lastOffsetX, "offsetY - currentY:", offsetY - lastOffsetY)
-//
-//        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-//
-//        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
-//
-//        let currentCollectionViewCell = songVC?.collectionView.visibleCells[0] as? DiscoverSongCollectionViewCell
-//
-//        if fabs(offsetX - lastOffsetX) > 0{ // 往左右滑
-//
-//            scrollView.isPagingEnabled = true
-//            songVC?.collectionView.setContentOffset(
-//                CGPoint(x: offsetX, y: (songVC?.collectionView.frame.origin.y)! + offsetY),
-//                animated: false
-//            )
-//
-//            DispatchQueue.main.async {
-//                currentCollectionViewCell?.discoverSongTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-//            }
-//
-//            typeVC?.collectionView.setContentOffset(CGPoint(x: offsetX * offsetFactor, y: (typeVC?.collectionView.frame.origin.y)!), animated: false)
-//
-//            lastOffsetX = offsetX
-//        }
-//
-//        if fabs(offsetY - lastOffsetY) > 0 { // 往上下滑
-//
-//            scrollView.isPagingEnabled = false
-//
-//            currentCollectionViewCell?.discoverSongTableView.setContentOffset(CGPoint(x: (songVC?.collectionView.frame.origin.x)!, y: (songVC?.collectionView.frame.origin.y)! + scrollView.contentOffset.y), animated: false)
-//
-//            lastOffsetY = offsetY
-//        }
-//    }
+    func resetCell(row: Int) {
+
+        currentCellRow = row
+
+        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
+
+        let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastCellRow, section: 0)) as? DiscoverTypeCollectionViewCell
+
+        lastCell?.typeLabel.textColor = UIColor.white
+
+        let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: row, section: 0)) as? DiscoverTypeCollectionViewCell
+
+        currentCell?.typeLabel.textColor = UIColor.orange
+
+        lastCellRow = row
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
@@ -91,56 +64,22 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
 
         typeVC?.delegate = self
+        songVC?.delegate = self
 
         offsetFactor = (typeVC?.discoverTypeDistanceBetweenItemsCenter)! / (songVC?.discoverSongDistanceBetweenItemsCenter)!
     }
-
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let identifier = segue.identifier {
-//
-//            switch identifier {
-//            case "DiscoverTypeCollectionViewController":
-//                if let typeVC = segue.destination as? DiscoverTypeCollectionViewController {
-//                    typeVC.delegate = self
-//                }
-//            default:
-//                if let songVC = segue.destination as? DiscoverSongCollectionViewController {
-//                    songVC.delegate = self
-//                }
-//            }
-//        }
-//    }
 }
-//
-//extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate, DiscoverSongCollectionViewControllerDelegate {
-//
-//    // did scroll
-//    func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat) {
-//
-//        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-//
-//        songVC?.collectionView.contentOffset.x = translation / offsetFactor
-//    }
-//
-//    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat) {
-////        self.songTranslation = translation
-//
-//        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
-//
-//        typeVC?.collectionView.contentOffset.x = translation * offsetFactor
-//    }
-//}
 
 extension DiscoverViewController: SongManagerDelegate {
     func manager(_ manager: SongManager, didGet songs: [Song]) {
 
+
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
         songVC?.songs = songs
 
-        let currentCollectionViewCell = songVC?.collectionView.visibleCells[0] as? DiscoverSongCollectionViewCell
+        let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
 
-        currentCollectionViewCell?.tableView.reloadData()
+        currentSongCell?.tableView.reloadData()
 
     }
 }
@@ -148,17 +87,38 @@ extension DiscoverViewController: SongManagerDelegate {
 extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat) {
 
+        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
+        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
+
+
+        songVC?.collectionView.bounds.origin.x = translation / offsetFactor
+
     }
 
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType) {
+
+        resetCell(row: type.hashValue)
         requestYoutubeData(type: type)
-
-        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-        songVC?.collectionView.scrollToItem(at: IndexPath(row: type.hashValue, section: 0), at: .centeredHorizontally, animated: false)
-
-        print(type.hashValue)
     }
-
-
 }
 
+extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {
+    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat) {
+
+        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
+        typeVC?.collectionView.bounds.origin.x = translation * offsetFactor
+
+        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
+
+
+
+        if translation.truncatingRemainder(dividingBy: (songVC?.collectionView.frame.width)!) == 0 {
+
+            let row = Int(translation / (songVC?.collectionView.frame.width)!)
+
+            resetCell(row: row)
+            requestYoutubeData(type: (typeVC?.typeList[row])!)
+        }
+    }
+
+}

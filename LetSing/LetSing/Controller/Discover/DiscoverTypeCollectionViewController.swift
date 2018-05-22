@@ -76,32 +76,24 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
 
-        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
+//        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
 
-        cell?.typeLabel.textColor = UIColor.orange
+//        cell?.typeLabel.textColor = UIColor.orange
 
     }
 
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
-
-        cell?.typeLabel.textColor = UIColor.white
-    }
-
-//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
 //
-//        cell?.typeLabel.textColor = UIColor.orange
+//        cell?.typeLabel.textColor = UIColor.white
 //    }
-
-
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        
-
         let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
         self.delegate?.typeViewDidScroll(self, translation: offsetX)
+
+        
     }
 }
 

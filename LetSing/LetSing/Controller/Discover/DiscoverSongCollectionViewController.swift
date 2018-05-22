@@ -11,7 +11,7 @@ import UIKit
 import SDWebImage
 
 protocol DiscoverSongCollectionViewControllerDelegate: class {
-    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController,to indexPath: IndexPath)
+    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat)
 }
 
 class DiscoverSongCollectionViewController: UIViewController {
@@ -71,7 +71,12 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         }
 
         discoverSongCollectionViewCell.setTableViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+    }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
+        self.delegate?.songViewDidScroll(self, translation: offsetX)
     }
 }
 
@@ -129,6 +134,18 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 
 
         return tableViewCell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+
+        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
+            withIdentifier: String(describing: RecordViewController.self)
+            ) as? RecordViewController else { return }
+
+        recordController.song = songs[indexPath.row]
+        show(recordController, sender: nil)
     }
 
 }
