@@ -58,23 +58,23 @@ struct SongManager {
     func getDiscoverBoard(type: LSSongType) {
         let ref = Database.database().reference()
 
-        let request = ref.child("ktv")
+        let request = ref.child("ktv").child(type.rawValue).queryLimited(toFirst: 5)
+        
 
         var songList = [Song]()
 
         let dispatchGroup = DispatchGroup()
 
         request.observeSingleEvent(of: .value) { (snapshot) in
-            guard let types = snapshot.value as? [String: AnyObject] else { return }
+            guard let songs = snapshot.value as? [AnyObject] else {
 
-            guard let typeValue = types[type.rawValue] as? [AnyObject] else {
-                print("No~~")
-                return
-            }
+                return }
 
-            for value in typeValue {
+            print(songs)
 
-                guard let songName = value["name"] as? String, let rankString = value["rank"] as? String, let singer = value["singer"] as? String else {
+            for song in songs {
+
+                guard let songName = song["name"] as? String, let rankString = song["rank"] as? String, let singer = song["singer"] as? String else {
 
                     return
                 }
@@ -87,10 +87,7 @@ struct SongManager {
 
                 self.callYoutubeAPI(songName: songName, rank: rank, singer: singer, type: type, completion: {(song) in
 
-//                    print("song:", song)
                     songList.append(song)
-
-                    //都append完才能傳回去
 
                     dispatchGroup.leave()
                 })

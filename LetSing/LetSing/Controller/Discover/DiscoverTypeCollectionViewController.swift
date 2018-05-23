@@ -11,15 +11,22 @@ import UIKit
 
 
 protocol DiscoverTypeCollectionViewControllerDelegate: class {
+
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat)
 
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType)
+
+    func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow:Int, to currentRow: Int)
 }
 
 
 class DiscoverTypeCollectionViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+
+    var lastRow: Int = 0
+
+    var currentRow: Int = 0
 
     var typeList:[LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
 
@@ -39,8 +46,10 @@ class DiscoverTypeCollectionViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
 
+
         let nib = UINib(nibName: String(describing: DiscoverTypeCollectionViewCell.self), bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self))
+
 
         let discoverTypeCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         discoverTypeCollectionViewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2, height: 40)
@@ -68,7 +77,24 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         discoverTypeCollectionViewCell.layer.cornerRadius = 10
 
+        if indexPath.row == 0 {
+            discoverTypeCollectionViewCell.typeLabel.textColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
+            discoverTypeCollectionViewCell.typeLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+        }
+
         return discoverTypeCollectionViewCell
+    }
+
+    // 將cell初始化
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        guard let cell = cell as? DiscoverTypeCollectionViewCell else {
+            return
+        }
+
+        cell.typeLabel.textColor = UIColor.white
+
+        cell.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -76,25 +102,85 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
 
-//        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
-
-//        cell?.typeLabel.textColor = UIColor.orange
-
     }
-
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTypeCollectionViewCell
-//
-//        cell?.typeLabel.textColor = UIColor.white
-//    }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
         self.delegate?.typeViewDidScroll(self, translation: offsetX)
 
-        
     }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+
+        lastRow = Int(self.collectionView.contentOffset.x / discoverTypeDistanceBetweenItemsCenter!)
+
+        print("lastRow", lastRow)
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+        currentRow = lastRow
+        // stop the sliding effect
+        targetContentOffset.pointee = scrollView.contentOffset
+
+
+        if (velocity.x == 0) {
+
+            currentRow = Int(self.collectionView.contentOffset.x  / discoverTypeDistanceBetweenItemsCenter!)
+
+            print("lastRow: ", lastRow)
+
+            print("currentRow", currentRow)
+        }
+
+        else {
+
+            if velocity.x > 0 {
+                currentRow = currentRow + 1
+            }
+
+            else {
+                currentRow = currentRow - 1
+            }
+
+
+             // 判斷是最左邊還最右邊
+            if currentRow < 0 {
+
+                currentRow = 0
+            }
+            if (currentRow > Int(self.collectionView.contentSize.width / discoverTypeDistanceBetweenItemsCenter!) - 2) {
+
+                currentRow = Int(ceil(self.collectionView.contentSize.width / discoverTypeDistanceBetweenItemsCenter!)) - 2
+            }
+        }
+
+        self.collectionView.scrollToItem(at: IndexPath(row: currentRow, section: 0), at: .centeredHorizontally, animated: true)
+
+        print("targetContentOffset: ", targetContentOffset.pointee.x)
+
+        self.delegate?.typeViewDidScroll(self, from: lastRow, to: currentRow)
+    }
+
+//    func reloadData() {
+//        if currentRow == typeList.count - 1 {
+//            let newRow = 1
+//            currentRow = newRow
+//
+//            self.collectionView.scrollToItem(at: IndexPath(row: newRow, section: 0), at: .centeredHorizontally, animated: false)
+//        }
+//
+//        else if currentRow == 0 {
+//            let newRow = typeList.count - 2
+//            print("newRow:", newRow)
+//            currentRow = newRow
+//
+//            self.collectionView.scrollToItem(at: IndexPath(row: newRow, section: 0), at: .centeredHorizontally, animated: false)
+//        }
+//    }
+
+    
 }
 
 

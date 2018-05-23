@@ -24,11 +24,11 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
 
-    
     override func viewDidLoad() {
 
-
         requestYoutubeData(type: .chinese)
+
+//        resetCell(from: lastCellRow, to: currentCellRow)
 
     }
 
@@ -40,21 +40,23 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     }
 
-    func resetCell(row: Int) {
+    func resetCell(from lastRow:Int, to currentRow: Int) {
 
-        currentCellRow = row
+        currentCellRow = currentRow
 
         let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
 
-        let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastCellRow, section: 0)) as? DiscoverTypeCollectionViewCell
+        let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastRow, section: 0)) as? DiscoverTypeCollectionViewCell
 
         lastCell?.typeLabel.textColor = UIColor.white
+        lastCell?.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
 
-        let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: row, section: 0)) as? DiscoverTypeCollectionViewCell
+        let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: currentRow, section: 0)) as? DiscoverTypeCollectionViewCell
 
-        currentCell?.typeLabel.textColor = UIColor.orange
+        currentCell?.typeLabel.textColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
+        currentCell?.typeLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
 
-        lastCellRow = row
+        lastCellRow = currentRow
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +75,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 extension DiscoverViewController: SongManagerDelegate {
     func manager(_ manager: SongManager, didGet songs: [Song]) {
 
-
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
         songVC?.songs = songs
 
@@ -85,21 +86,26 @@ extension DiscoverViewController: SongManagerDelegate {
 }
 
 extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
+
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat) {
 
         let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
 
-
         songVC?.collectionView.bounds.origin.x = translation / offsetFactor
-
     }
 
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType) {
 
-        resetCell(row: type.hashValue)
-        requestYoutubeData(type: type)
+        resetCell(from: lastCellRow, to: type.hashValue)
+//        requestYoutubeData(type: type)
     }
+
+    func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow: Int, to currentRow: Int) {
+        
+        resetCell(from: lastRow, to: currentRow)
+    }
+
 }
 
 extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {
@@ -110,14 +116,12 @@ extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {
 
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
 
-
-
         if translation.truncatingRemainder(dividingBy: (songVC?.collectionView.frame.width)!) == 0 {
 
             let row = Int(translation / (songVC?.collectionView.frame.width)!)
 
-            resetCell(row: row)
-            requestYoutubeData(type: (typeVC?.typeList[row])!)
+            resetCell(from: lastCellRow,to: row)
+//            requestYoutubeData(type: (typeVC?.typeList[row])!)
         }
     }
 

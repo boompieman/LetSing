@@ -92,7 +92,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
         recordController.song = songs[indexPath.row]
         show(recordController, sender: nil)
-
     }
 }
 
