@@ -103,7 +103,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
         self.delegate?.typeViewDidScroll(self, translation: offsetX)
-
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -147,7 +146,9 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         print("targetContentOffset: ", targetContentOffset.pointee.x)
 
-        self.delegate?.typeViewDidScroll(self, from: lastRow, to: currentRow)
+        if lastRow != currentRow {
+            self.delegate?.typeViewDidScroll(self, from: lastRow, to: currentRow)
+        }
     }
 }
 

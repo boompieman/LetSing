@@ -58,7 +58,7 @@ struct SongManager {
     func getDiscoverBoard(type: LSSongType) {
         let ref = Database.database().reference()
 
-        let request = ref.child("ktv").child(type.rawValue).queryLimited(toFirst: 5)
+        let request = ref.child("ktv").child(type.rawValue).queryLimited(toFirst: 4)
         
 
         var songList = [Song]()

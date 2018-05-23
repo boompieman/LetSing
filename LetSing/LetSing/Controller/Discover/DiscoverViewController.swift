@@ -84,6 +84,7 @@ extension DiscoverViewController: SongManagerDelegate {
 
         let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
 
+        
         currentSongCell?.tableView.reloadData()
 
     }
@@ -93,9 +94,7 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
 
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat) {
 
-        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-
         songVC?.collectionView.bounds.origin.x = translation / offsetFactor
     }
 
@@ -108,25 +107,26 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow: Int, to currentRow: Int) {
         
         resetCell(from: lastRow, to: currentRow)
+//        requestYoutubeData(type: controller.typeList[currentCellRow])
     }
 
 }
 
 extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {
+    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, from lastRow: Int, to currentRow: Int) {
+
+        resetCell(from: lastRow,to: currentRow)
+
+        guard let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController else {
+            return
+        }
+
+        requestYoutubeData(type: typeVC.typeList[currentRow])
+    }
+
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat) {
 
         let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
         typeVC?.collectionView.bounds.origin.x = translation * offsetFactor
-
-        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-
-        if translation.truncatingRemainder(dividingBy: (songVC?.collectionView.frame.width)!) == 0 {
-
-            let row = Int(translation / (songVC?.collectionView.frame.width)!)
-
-            resetCell(from: lastCellRow,to: row)
-//            requestYoutubeData(type: (typeVC?.typeList[row])!)
-        }
     }
-
 }

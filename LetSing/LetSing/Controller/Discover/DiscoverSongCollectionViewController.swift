@@ -12,6 +12,8 @@ import SDWebImage
 
 protocol DiscoverSongCollectionViewControllerDelegate: class {
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat)
+
+    func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, from lastRow: Int, to currentRow: Int)
 }
 
 class DiscoverSongCollectionViewController: UIViewController {
@@ -23,6 +25,10 @@ class DiscoverSongCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var songs = [Song]()
+
+    var lastRow: Int = 0
+
+    var currentRow: Int = 0
 
     override func viewDidLoad() {
 
@@ -78,6 +84,22 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
         self.delegate?.songViewDidScroll(self, translation: offsetX)
     }
+
+    // scrollView
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastRow = Int(self.collectionView.contentOffset.x / discoverSongDistanceBetweenItemsCenter!)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        currentRow = Int(self.collectionView.contentOffset.x  / discoverSongDistanceBetweenItemsCenter!)
+
+        if lastRow != currentRow {
+            self.delegate?.songViewDidScroll(self, from: lastRow, to: currentRow)
+        }
+    }
+
+
 }
 
 extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -122,8 +144,7 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 //    func tableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-
+        
         let tableViewCell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: SongTableViewCell.self),
             for: indexPath
