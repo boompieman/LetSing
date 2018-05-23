@@ -38,11 +38,11 @@ private enum searchSongAPI: LSHTTPRequest {
         switch self {
         case .getSongBySearch(let searchText):
 
-            return ["type" : "video", "part" : "snippet", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
+            return ["type" : "video", "part" : "snippet", "fields": "items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
 
         case .getSongByDiscover(let songName):
 
-            return ["type" : "video", "part" : "snippet", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
+            return ["type" : "video", "part" : "snippet", "fields": "items(id,snippet(title,thumbnails(default)))", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
         }
     }
 
@@ -90,6 +90,7 @@ struct SongProvider {
 
                 let songList: [Song] = self.parser.parseToSongs(data: data)
 
+                
                 success(songList[0])
 
         },

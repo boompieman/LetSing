@@ -50,7 +50,6 @@ class DiscoverTypeCollectionViewController: UIViewController {
         let nib = UINib(nibName: String(describing: DiscoverTypeCollectionViewCell.self), bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self))
 
-
         let discoverTypeCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         discoverTypeCollectionViewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2, height: 40)
         discoverTypeCollectionViewFlowLayout.minimumLineSpacing = 0

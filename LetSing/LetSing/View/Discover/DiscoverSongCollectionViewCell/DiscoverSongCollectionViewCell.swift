@@ -23,8 +23,6 @@ class DiscoverSongCollectionViewCell: UICollectionViewCell {
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: SongTableViewCell.self))
 
-
-
         tableView.contentInset = LSConstants.tableViewInset
     }
 

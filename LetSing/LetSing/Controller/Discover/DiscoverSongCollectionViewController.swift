@@ -81,8 +81,10 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
-        self.delegate?.songViewDidScroll(self, translation: offsetX)
+        if scrollView == self.collectionView {
+            let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
+            self.delegate?.songViewDidScroll(self, translation: offsetX)
+        }
     }
 
     // scrollView
