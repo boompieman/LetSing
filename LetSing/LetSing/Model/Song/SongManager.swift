@@ -66,11 +66,7 @@ struct SongManager {
         let dispatchGroup = DispatchGroup()
 
         request.observeSingleEvent(of: .value) { (snapshot) in
-            guard let songs = snapshot.value as? [AnyObject] else {
-
-                return }
-
-            print(songs)
+            guard let songs = snapshot.value as? [AnyObject] else { return }
 
             for song in songs {
 

@@ -77,11 +77,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         discoverTypeCollectionViewCell.layer.cornerRadius = 10
 
-        if indexPath.row == 0 {
-            discoverTypeCollectionViewCell.typeLabel.textColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
-            discoverTypeCollectionViewCell.typeLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
-        }
-
         return discoverTypeCollectionViewCell
     }
 
@@ -136,16 +131,8 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         else {
 
-            if velocity.x > 0 {
-                currentRow = currentRow + 1
-            }
+            currentRow = velocity.x > 0 ? currentRow + 1 : currentRow - 1
 
-            else {
-                currentRow = currentRow - 1
-            }
-
-
-             // 判斷是最左邊還最右邊
             if currentRow < 0 {
 
                 currentRow = 0
@@ -162,25 +149,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         self.delegate?.typeViewDidScroll(self, from: lastRow, to: currentRow)
     }
-
-//    func reloadData() {
-//        if currentRow == typeList.count - 1 {
-//            let newRow = 1
-//            currentRow = newRow
-//
-//            self.collectionView.scrollToItem(at: IndexPath(row: newRow, section: 0), at: .centeredHorizontally, animated: false)
-//        }
-//
-//        else if currentRow == 0 {
-//            let newRow = typeList.count - 2
-//            print("newRow:", newRow)
-//            currentRow = newRow
-//
-//            self.collectionView.scrollToItem(at: IndexPath(row: newRow, section: 0), at: .centeredHorizontally, animated: false)
-//        }
-//    }
-
-    
 }
 
 
