@@ -29,6 +29,29 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb204105703540918</string>
+            </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>204105703540918</string>
+    <key>FacebookDisplayName</key>
+    <string>LetSing</string>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

@@ -65,6 +65,8 @@
 		FA7F708220B6A66100D9DDA1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708120B6A66100D9DDA1 /* AlertManager.swift */; };
 		FA7F708520B6D36A00D9DDA1 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708420B6D36A00D9DDA1 /* LoginInputView.swift */; };
 		FA7F708720B6EEC100D9DDA1 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708620B6EEC100D9DDA1 /* LoginButtonView.swift */; };
+		FA7F708A20B6F3BF00D9DDA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708920B6F3BF00D9DDA1 /* User.swift */; };
+		FA7F708C20B6F43C00D9DDA1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */; };
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
@@ -139,6 +141,8 @@
 		FA7F708120B6A66100D9DDA1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		FA7F708420B6D36A00D9DDA1 /* LoginInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
 		FA7F708620B6EEC100D9DDA1 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
+		FA7F708920B6F3BF00D9DDA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		FA92785820A979F800CFBF94 /* LSRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -181,13 +185,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FA0A090A20AEC342004D9696 /* parser */ = {
+		FA0A090A20AEC342004D9696 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
 				FA0A090820AEC339004D9696 /* LSXMLParser.swift */,
 				FA7049E020B3BE820007EF06 /* LSJsonParser.swift */,
 			);
-			path = parser;
+			path = Parser;
 			sourceTree = "<group>";
 		};
 		FA0A090B20AED220004D9696 /* lyrics */ = {
@@ -424,9 +428,10 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F708820B6F3B300D9DDA1 /* User */,
 				FA7F708020B6A65000D9DDA1 /* Alert */,
 				FA7F707D20B6A4CE00D9DDA1 /* Login */,
-				FA0A090A20AEC342004D9696 /* parser */,
+				FA0A090A20AEC342004D9696 /* Parser */,
 				FACCB76A20AE7AEA0067ADC5 /* lyrics */,
 				FACCB76720AE6E800067ADC5 /* PostProduction */,
 				FA1DD01320A1995900F92475 /* LSVideoAndRecord */,
@@ -532,6 +537,15 @@
 				FA7F708620B6EEC100D9DDA1 /* LoginButtonView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		FA7F708820B6F3B300D9DDA1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F708920B6F3BF00D9DDA1 /* User.swift */,
+				FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		FACCB76720AE6E800067ADC5 /* PostProduction */ = {
@@ -721,6 +735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7F708A20B6F3BF00D9DDA1 /* User.swift in Sources */,
 				FA4335A2209C334C00BC90FC /* Song.swift in Sources */,
 				FA4335AA209C37C000BC90FC /* LSConstants.swift in Sources */,
 				FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */,
@@ -767,6 +782,7 @@
 				FA3B815920A029E500915CC6 /* LSView.swift in Sources */,
 				FA7F707A20B69C0F00D9DDA1 /* LoginViewController.swift in Sources */,
 				FA7C96B820995ABD00890325 /* DiscoverViewController.swift in Sources */,
+				FA7F708C20B6F43C00D9DDA1 /* UserManager.swift in Sources */,
 				FA3B815520A0058600915CC6 /* LSSearchBar.swift in Sources */,
 				FA3B815E20A060EE00915CC6 /* SongTableViewCell.swift in Sources */,
 				FA7F707320B6977800D9DDA1 /* UserVideoTableViewCell.swift in Sources */,

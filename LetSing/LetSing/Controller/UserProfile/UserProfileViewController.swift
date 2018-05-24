@@ -15,6 +15,8 @@ class userProfileViewController: UIViewController {
     @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var tableView: UITableView!
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

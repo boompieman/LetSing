@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,10 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
 
-        window?.rootViewController = UIStoryboard.loginStoryboard().instantiateInitialViewController()
+        FBSDKApplicationDelegate.sharedInstance()
 
-
-//        switchToMainStoryBoard()
+        switchToMainStoryBoard()
 
         return true
     }

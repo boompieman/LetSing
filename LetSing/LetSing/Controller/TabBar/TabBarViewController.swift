@@ -10,23 +10,17 @@ import UIKit
 
 enum TabBar {
 
-//    case main
-
     case discover
 
     case search
 //
     case userProfile
 
-//    case more
+    case login
 
     func controller() -> UIViewController {
 
         switch self {
-
-//        case .main:
-//
-//            return UIStoryboard.recommendationStoryboard().instantiateInitialViewController()!
 
         case .discover:
 
@@ -40,9 +34,9 @@ enum TabBar {
 
             return UIStoryboard.userProfileStoryboard().instantiateInitialViewController()!
 //
-//        case .more:
-//
-//            return UIStoryboard.profileStoryboard().instantiateInitialViewController()!
+        case .login:
+
+            return UIStoryboard.loginStoryBoard().instantiateInitialViewController()!
 
         }
     }
@@ -64,6 +58,10 @@ enum TabBar {
             return #imageLiteral(resourceName: "search")
 
         case .userProfile:
+
+            return #imageLiteral(resourceName: "userProfile")
+
+        case .login:
 
             return #imageLiteral(resourceName: "userProfile")
 
@@ -94,22 +92,17 @@ enum TabBar {
 
 class TabBarViewController: UITabBarController {
 
-    let tabs: [TabBar] = [.discover, .search, .userProfile]
+    var tabs = [TabBar]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        //TODO
-//        UserManager.shared.userProfile(
-//            success: { _ in
-//
-//        },
-//            failure: { _ in
-//
-//        }
-//        )
-
-
+        if UserManager.shared.getUserToken() != nil {
+            tabs = [.discover, .search, .userProfile]
+        }
+        else {
+            tabs = [.discover, .search, .login]
+        }
 
         setupTab()
     }

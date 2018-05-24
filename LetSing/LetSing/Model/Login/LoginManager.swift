@@ -35,7 +35,6 @@ struct LoginManager {
                 }
 
                 completion(nil, token)
-        }
-        )
+        })
     }
 }

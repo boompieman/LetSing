@@ -30,7 +30,7 @@
         <!--登入-->
         <scene sceneID="VNJ-8s-9uG">
             <objects>
-                <viewController id="w4M-E5-chK" customClass="LoginViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="w4M-E5-chK" customClass="LoginViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aSU-Dt-JUq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

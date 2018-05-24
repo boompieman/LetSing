@@ -82,8 +82,6 @@ struct SongManager {
 
         let dispatchGroup = DispatchGroup()
 
-        deleteAllSongsInRealm()
-
         request.observeSingleEvent(of: .value) { (snapshot) in
             guard let songs = snapshot.value as? [AnyObject] else { return }
 
@@ -112,8 +110,8 @@ struct SongManager {
                 songList.sort(by: { (song1, song2) -> Bool in
                     return song1.rank! < song2.rank!
                 })
-                self.delegate?.manager(self, didGet: songList)
                 self.writeSongToRealm(songs: songList)
+                self.delegate?.manager(self, didGet: songList)
             }
         }
     }
