@@ -17,7 +17,6 @@ class RecordNavigationView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("navi view")
 
     }
 }

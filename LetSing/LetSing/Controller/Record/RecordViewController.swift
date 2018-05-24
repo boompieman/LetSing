@@ -248,7 +248,9 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
         if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
             DispatchQueue.main.async {
 
-                previewController.present((PostProductionViewController()), animated: false, completion: nil)
+                previewController.present((PostProductionViewController()), animated: false, completion: {[unowned self] in
+                    self.removeFromParentViewController()
+                })
             }
         }
     }

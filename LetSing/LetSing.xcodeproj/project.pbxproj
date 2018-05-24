@@ -56,6 +56,9 @@
 		FA7C96BD20995D9800890325 /* UIStoryboard+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96BC20995D9800890325 /* UIStoryboard+Sam.swift */; };
 		FA7C96BF209962B800890325 /* LetSingColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96BE209962B800890325 /* LetSingColor.swift */; };
 		FA7C96C12099675200890325 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96C02099675200890325 /* UserProfileViewController.swift */; };
+		FA7F707320B6977800D9DDA1 /* UserVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F707120B6977800D9DDA1 /* UserVideoTableViewCell.swift */; };
+		FA7F707420B6977800D9DDA1 /* UserVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7F707220B6977800D9DDA1 /* UserVideoTableViewCell.xib */; };
+		FA7F707620B69A8300D9DDA1 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F707520B69A8300D9DDA1 /* UserInfoView.swift */; };
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
@@ -121,6 +124,9 @@
 		FA7C96BC20995D9800890325 /* UIStoryboard+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Sam.swift"; sourceTree = "<group>"; };
 		FA7C96BE209962B800890325 /* LetSingColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetSingColor.swift; sourceTree = "<group>"; };
 		FA7C96C02099675200890325 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		FA7F707120B6977800D9DDA1 /* UserVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVideoTableViewCell.swift; sourceTree = "<group>"; };
+		FA7F707220B6977800D9DDA1 /* UserVideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserVideoTableViewCell.xib; sourceTree = "<group>"; };
+		FA7F707520B69A8300D9DDA1 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		FA92785820A979F800CFBF94 /* LSRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -419,6 +425,7 @@
 		FA7C96A7209949E400890325 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F706D20B68D3D00D9DDA1 /* UserProfile */,
 				FA0A090B20AED220004D9696 /* lyrics */,
 				FA1DD00E20A170FA00F92475 /* Record */,
 				FA3B8151209FF5B300915CC6 /* Search */,
@@ -457,6 +464,24 @@
 				FA32EF5F20AF0EE700A0F3F6 /* UIView+Sam.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		FA7F706D20B68D3D00D9DDA1 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F707520B69A8300D9DDA1 /* UserInfoView.swift */,
+				FA7F707020B6972D00D9DDA1 /* UserVideoTableViewCell */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		FA7F707020B6972D00D9DDA1 /* UserVideoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F707120B6977800D9DDA1 /* UserVideoTableViewCell.swift */,
+				FA7F707220B6977800D9DDA1 /* UserVideoTableViewCell.xib */,
+			);
+			path = UserVideoTableViewCell;
 			sourceTree = "<group>";
 		};
 		FACCB76720AE6E800067ADC5 /* PostProduction */ = {
@@ -545,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7C96B6209959C800890325 /* UserProfile.storyboard in Resources */,
+				FA7F707420B6977800D9DDA1 /* UserVideoTableViewCell.xib in Resources */,
 				FA5CA13B209976E500811B4B /* GoogleService-Info.plist in Resources */,
 				FA7C969E2098205400890325 /* LaunchScreen.storyboard in Resources */,
 				FA0A091120AEDD39004D9696 /* LyricsTableViewCell.xib in Resources */,
@@ -659,6 +685,7 @@
 				FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */,
 				FA5CA142209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift in Sources */,
 				FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */,
+				FA7F707620B69A8300D9DDA1 /* UserInfoView.swift in Sources */,
 				FA7C96AA20994B1600890325 /* SearchViewController.swift in Sources */,
 				FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */,
 				FA0A091020AEDD39004D9696 /* LyricsTableViewCell.swift in Sources */,
@@ -678,6 +705,7 @@
 				FA7C96B820995ABD00890325 /* DiscoverViewController.swift in Sources */,
 				FA3B815520A0058600915CC6 /* LSSearchBar.swift in Sources */,
 				FA3B815E20A060EE00915CC6 /* SongTableViewCell.swift in Sources */,
+				FA7F707320B6977800D9DDA1 /* UserVideoTableViewCell.swift in Sources */,
 				FA0A090D20AED231004D9696 /* LyricsTableView.swift in Sources */,
 				FA4335A5209C344200BC90FC /* LSHTTPRequest.swift in Sources */,
 			);

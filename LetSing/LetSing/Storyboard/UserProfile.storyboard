@@ -33,13 +33,67 @@
                     <view key="view" contentMode="scaleToFill" id="iWf-xc-dB2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5b-go-KdB" customClass="UserInfoView" customModule="LetSing" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userProfile" translatesAutoresizingMaskIntoConstraints="NO" id="apB-od-5vn">
+                                        <rect key="frame" x="147" y="30" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="eHa-Yg-fdm"/>
+                                            <constraint firstAttribute="width" constant="80" id="trb-oQ-hlL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNi-qr-uQ7">
+                                        <rect key="frame" x="80" y="118" width="215" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="apB-od-5vn" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="top" constant="30" id="6yt-aX-dT6"/>
+                                    <constraint firstAttribute="height" constant="180" id="7XK-Sh-yU8"/>
+                                    <constraint firstItem="zNi-qr-uQ7" firstAttribute="leading" secondItem="u5b-go-KdB" secondAttribute="leading" constant="80" id="MFa-wO-2iN"/>
+                                    <constraint firstItem="apB-od-5vn" firstAttribute="centerX" secondItem="u5b-go-KdB" secondAttribute="centerX" id="Q4R-6Y-fi0"/>
+                                    <constraint firstAttribute="trailing" secondItem="zNi-qr-uQ7" secondAttribute="trailing" constant="80" id="ggB-rA-2WX"/>
+                                    <constraint firstItem="zNi-qr-uQ7" firstAttribute="top" secondItem="apB-od-5vn" secondAttribute="bottom" constant="8" id="mPO-16-aBd"/>
+                                    <constraint firstItem="zNi-qr-uQ7" firstAttribute="centerX" secondItem="u5b-go-KdB" secondAttribute="centerX" id="zrx-nh-VjU"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="apB-od-5vn" id="0Y6-nc-RJ5"/>
+                                    <outlet property="nameLabel" destination="zNi-qr-uQ7" id="vpf-We-QDz"/>
+                                </connections>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aF6-QS-Xyc">
+                                <rect key="frame" x="0.0" y="244" width="375" height="423"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="u5b-go-KdB" secondAttribute="trailing" id="FzL-rb-hV0"/>
+                            <constraint firstItem="u5b-go-KdB" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="LZS-dX-7rv"/>
+                            <constraint firstItem="aF6-QS-Xyc" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="NpK-WK-4d4"/>
+                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="aF6-QS-Xyc" secondAttribute="trailing" id="dyD-DD-ihq"/>
+                            <constraint firstItem="u5b-go-KdB" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="hFP-1J-xg8"/>
+                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="bottom" secondItem="aF6-QS-Xyc" secondAttribute="bottom" id="hqB-NY-idZ"/>
+                            <constraint firstItem="aF6-QS-Xyc" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="bottom" id="qZ9-Wc-88T"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="i3m-Gc-DjK"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zq6-10-RZu"/>
+                    <connections>
+                        <outlet property="tableView" destination="aF6-QS-Xyc" id="VbD-Ol-cBp"/>
+                        <outlet property="userInfoView" destination="u5b-go-KdB" id="gkK-Tt-rmh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2m-2G-wgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="728.79999999999995" y="-4.0479760119940034"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="userProfile" width="24" height="24"/>
+    </resources>
 </document>
