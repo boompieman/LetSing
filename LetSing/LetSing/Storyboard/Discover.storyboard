@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="1vP-sV-0BS" kind="relationship" relationship="rootViewController" id="64O-d2-1bU"/>
@@ -27,7 +30,7 @@
             </objects>
             <point key="canvasLocation" x="-876" y="-90"/>
         </scene>
-        <!--Discover View Controller-->
+        <!--好樂迪熱門榜-->
         <scene sceneID="87c-vG-fOd">
             <objects>
                 <viewController id="1vP-sV-0BS" customClass="DiscoverViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,7 +88,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qhu-vQ-vlB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="JkT-OY-ps1"/>
+                    <navigationItem key="navigationItem" title="好樂迪熱門榜" id="JkT-OY-ps1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EN7-cn-UET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,7 +104,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jPb-8f-Ger">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="376"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.75894694370000004" green="0.86780151039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="8Iu-ms-AkM" customClass="POMCollectionViewFlowLayout" customModule="LetSing" customModuleProvider="target">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>

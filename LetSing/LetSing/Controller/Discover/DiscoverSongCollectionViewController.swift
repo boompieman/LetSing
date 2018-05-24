@@ -40,15 +40,6 @@ class DiscoverSongCollectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let discoverSongCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-
-        let needToGetRidOf = (self.tabBarController?.tabBar.frame.height)! + (self.navigationController?.navigationBar.frame.height)!
-
-        discoverSongCollectionViewFlowLayout.itemSize = CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height - needToGetRidOf)
-
-        discoverSongCollectionViewFlowLayout.minimumLineSpacing = 0
-
-        discoverSongDistanceBetweenItemsCenter = discoverSongCollectionViewFlowLayout.minimumLineSpacing + discoverSongCollectionViewFlowLayout.itemSize.width
     }
 
     func setupCollectionView() {
@@ -63,6 +54,7 @@ class DiscoverSongCollectionViewController: UIViewController {
 
         // set song collection view layout
 
+        discoverSongDistanceBetweenItemsCenter = UIScreen.main.bounds.width
     }
 }
 
@@ -118,10 +110,12 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
 extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayout {
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let itemSize = CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+
+        return itemSize
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 

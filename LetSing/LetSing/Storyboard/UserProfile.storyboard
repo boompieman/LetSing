@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="pwl-nB-yBy" kind="relationship" relationship="rootViewController" id="L52-cQ-B1F"/>
@@ -27,7 +30,7 @@
             </objects>
             <point key="canvasLocation" x="-254" y="-4"/>
         </scene>
-        <!--User Profile View Controller-->
+        <!--個人資料-->
         <scene sceneID="QlW-eN-LIw">
             <objects>
                 <viewController id="pwl-nB-yBy" customClass="userProfileViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
@@ -84,7 +87,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i3m-Gc-DjK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Zq6-10-RZu"/>
+                    <navigationItem key="navigationItem" title="個人資料" id="Zq6-10-RZu"/>
                     <connections>
                         <outlet property="tableView" destination="aF6-QS-Xyc" id="VbD-Ol-cBp"/>
                         <outlet property="userInfoView" destination="u5b-go-KdB" id="gkK-Tt-rmh"/>
