@@ -37,9 +37,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         manager.delegate = self
 
-
-        print(!realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
-
         let hasDataInRealm: Bool =
             !(realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
 

@@ -33,7 +33,7 @@ class RecordViewController: UIViewController {
     }
 
     deinit {
-        
+        print("---------recordVC deinit---------")
     }
 
     func sendData() {
@@ -70,11 +70,6 @@ class RecordViewController: UIViewController {
     // MARK: Navigation and Bar
     func setupRecordNavigationView() {
         recordNavigationView.titleLabel.text = song?.name
-    }
-
-    @IBAction func didTappedBackButton(_ sender: Any) {
-        recordManager.discard()
-        self.navigationController?.popViewController(animated: true)
     }
 
     func setBar() {
@@ -116,11 +111,16 @@ class RecordViewController: UIViewController {
         videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, song.id, observer: self, context: &RecordViewController.observerContext)
     }
 
-    // MARK: record Action
+    // MARK: Btn Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
         recordManager.stop()
 
+    }
+
+    @IBAction func didTappedBackButton(_ sender: Any) {
+        recordManager.discard()
+        self.navigationController?.popViewController(animated: true)
     }
 
     // MARK: - KVO
@@ -156,8 +156,9 @@ class RecordViewController: UIViewController {
 
         let lyricsVC = childViewControllers[0] as? LyricsViewController
 
-        lyricsVC?.moveLyrics(currentTime: newValue)
+        print(newValue)
 
+        lyricsVC?.moveLyrics(currentTime: newValue)
     }
 
     private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
@@ -187,7 +188,6 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Playing:
 
-            
             videoProvider.startTimer()
 
             loadingView.removeView(recordManager.start)
@@ -196,7 +196,6 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Ended:
             print("Ended")
-            videoProvider.removeObserverAndPlayer(self)
             recordManager.stop()
 
         case .Paused:
@@ -210,7 +209,7 @@ extension RecordViewController: YouTubePlayerDelegate {
 
 extension RecordViewController: ScreenCaptureManagerDelegate {
     func didStartRecord() {
-        print("Record did Start")
+        print("Record did start")
     }
 
     func didFinishRecord(preview: UIViewController) {
@@ -237,7 +236,9 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
                 withIdentifier: String(describing: TabBarViewController.self)
                 ) as? TabBarViewController else { return }
 
-            previewController.present(controller, animated: false, completion: nil)
+            previewController.present(controller, animated: false, completion: {[unowned self] in
+                self.removeFromParentViewController()
+            })
 
         }
     }
