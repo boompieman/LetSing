@@ -18,4 +18,8 @@ enum LSError: String, Error {
     case timedTextError = "Get captions from timedtext failed: See: http://video.google.com/timedtext?lang={lang, ex: zh-TW}}&v={VideoID}}"
 
     case jsonParsedError = "Data parse to json fail"
+
+    case loginFacebookReject = "Please permit the facebook login."
+
+    case loginFacebookFail = "Login with facebook fail."
 }

@@ -11,10 +11,14 @@ target 'LetSing' do
   pod "Alamofire"
   pod 'YouTubePlayer', :git => 'https://github.com/boompieman/Swift-YouTube-Player.git'
   pod 'SwiftLint'
-  pod 'Firebase/Core'
   pod 'AudioKit', '~> 4.2'
-  pod 'Shimmer'
-  pod 'Firebase/Database'
   pod 'RealmSwift'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
+  pod 'FBSDKLoginKit'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
 end

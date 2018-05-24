@@ -20,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
 
+        window?.rootViewController = UIStoryboard.loginStoryboard().instantiateInitialViewController()
 
-        switchToMainStoryBoard()
+
+//        switchToMainStoryBoard()
 
         return true
     }

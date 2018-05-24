@@ -10,7 +10,7 @@ import UIKit
 
 class RecordNavigationView: UIView {
 
-    @IBOutlet weak var backBtn: UIButton!
+    
     @IBOutlet weak var titleLabel: UILabel!
 
     var btn = UIButton()
