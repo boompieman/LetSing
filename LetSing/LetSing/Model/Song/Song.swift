@@ -7,18 +7,49 @@
 //
 
 import Foundation
+import RealmSwift
+import Realm
 
-
-struct Song {
-    let id: String
-    let name: String
+struct Song: Codable {
+    var id: String
+    var name: String
     var singer: String?
-    let image: String
+    var image: String
     var rank: Int?
     var type: LSSongType? // chinese, english, holiday ...
 }
 
-enum LSSongType: String {
+class SongObject: Object {
+
+    @objc dynamic var typeString: String? = nil
+
+    var type: LSSongType? {
+        get {
+            guard let typeRaw = typeString else { return nil }
+            return LSSongType(rawValue: typeRaw)
+        }
+        set(newValue) {
+            guard let newValue = newValue else { return typeString = nil }
+            typeString = newValue.rawValue
+        }
+    }
+
+    @objc dynamic var structData: Data? = nil
+
+    var song: Song? {
+        get {
+            if let data = structData {
+                return try? JSONDecoder().decode(Song.self, from: data)
+            }
+            return nil
+        }
+        set {
+            structData = try? JSONEncoder().encode(newValue)
+        }
+    }
+}
+
+enum LSSongType: String, Codable {
 
     case chinese = "holiday_chinese_hot"
 

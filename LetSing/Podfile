@@ -15,5 +15,6 @@ target 'LetSing' do
   pod 'AudioKit', '~> 4.2'
   pod 'Shimmer'
   pod 'Firebase/Database'
+  pod 'RealmSwift'
 
 end

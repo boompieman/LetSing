@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import RealmSwift
 
 
 protocol SongManagerDelegate: class {
@@ -22,6 +23,22 @@ struct SongManager {
     weak var delegate: SongManagerDelegate?
 
     private let provider = SongProvider()
+
+    private let realm = try! Realm()
+
+    func getSongFromRealm(type: LSSongType) {
+
+        var songList = [Song]()
+
+        let songObjects = realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'")
+
+        for songObject in songObjects {
+            guard let song = songObject.song else { return }
+            songList.append(song)
+        }
+
+        self.delegate?.manager(self, didGet: songList)
+    }
 
     func getSearchResult(searchText: String) {
 
@@ -47,6 +64,7 @@ struct SongManager {
             songVar.rank = rank
             songVar.singer = singer
             songVar.type = type
+            
 
             completion(songVar)
 
@@ -55,10 +73,10 @@ struct SongManager {
         }
     }
 
-    func getDiscoverBoard(type: LSSongType) {
+    func getBoardSongFromYoutube(type: LSSongType) {
         let ref = Database.database().reference()
 
-        let request = ref.child("ktv").child(type.rawValue).queryLimited(toFirst: 4)
+        let request = ref.child("ktv").child(type.rawValue).queryLimited(toFirst: 20)
         
 
         var songList = [Song]()
@@ -94,7 +112,22 @@ struct SongManager {
                     return song1.rank! < song2.rank!
                 })
                 self.delegate?.manager(self, didGet: songList)
+                self.writeSongToRealm(songs: songList)
             }
         }
+    }
+
+    private func writeSongToRealm(songs: [Song]) {
+
+        realm.beginWrite()
+
+        for song in songs {
+            let songObject = SongObject()
+            songObject.song = song
+            songObject.type = song.type
+            realm.add(songObject)
+        }
+
+        try! realm.commitWrite()
     }
 }

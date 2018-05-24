@@ -155,7 +155,6 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 
         tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
-
         return tableViewCell
     }
 

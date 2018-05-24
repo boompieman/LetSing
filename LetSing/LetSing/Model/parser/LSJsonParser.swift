@@ -17,8 +17,6 @@ class LSJsonParser {
             return [Song]()
         }
 
-        print(json)
-
         guard let items = json["items"] as? [AnyObject] else { return [Song]() }
 
         var songList = [Song]()
@@ -53,5 +51,4 @@ class LSJsonParser {
 
         return jsonGuard
     }
-
 }

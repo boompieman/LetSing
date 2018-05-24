@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 
 class DiscoverViewController: UIViewController, UIScrollViewDelegate {
@@ -20,7 +21,9 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     var manager = SongManager()
 
-    var songs = [Song]()
+    let realm = try! Realm()
+
+    var songList = [Song]()
 
     @IBOutlet weak var scrollView: UIScrollView!
 
@@ -34,8 +37,27 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         manager.delegate = self
 
-        manager.getDiscoverBoard(type: type)
+        let hasDataInRealm: Bool = realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").count != 0
 
+        if hasDataInRealm {
+
+            manager.getSongFromRealm(type: type)
+        }
+
+        else {
+
+            manager.getBoardSongFromYoutube(type: type)
+        }
+    }
+
+    func printSongFromRealm(songs: [Song]) {
+
+        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
+        songVC?.songs = songs
+
+        let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
+
+        currentSongCell?.tableView.reloadData()
     }
 
     func resetCell(from lastRow:Int, to currentRow: Int) {
@@ -84,9 +106,7 @@ extension DiscoverViewController: SongManagerDelegate {
 
         let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
 
-        
         currentSongCell?.tableView.reloadData()
-
     }
 }
 
@@ -101,13 +121,13 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType) {
 
         resetCell(from: lastCellRow, to: type.hashValue)
-//        requestYoutubeData(type: type)
+        requestYoutubeData(type: type)
     }
 
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow: Int, to currentRow: Int) {
         
         resetCell(from: lastRow, to: currentRow)
-//        requestYoutubeData(type: controller.typeList[currentCellRow])
+        requestYoutubeData(type: controller.typeList[currentCellRow])
     }
 
 }

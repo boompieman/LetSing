@@ -197,7 +197,7 @@ extension RecordViewController: YouTubePlayerDelegate {
         case .Ended:
             print("Ended")
             videoProvider.removeObserverAndPlayer(self)
-            // go to next page
+            recordManager.stop()
 
         case .Paused:
             print("Pause")
