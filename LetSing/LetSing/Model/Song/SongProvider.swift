@@ -22,11 +22,11 @@ private enum searchSongAPI: LSHTTPRequest {
 
         switch self {
 
-        case .getSongBySearch(let searchText):
+        case .getSongBySearch(let _):
 
             return "/search"
 
-        case .getSongByDiscover(let songName):
+        case .getSongByDiscover(let _):
 
             return "/search"
 
@@ -38,6 +38,7 @@ private enum searchSongAPI: LSHTTPRequest {
         switch self {
         case .getSongBySearch(let searchText):
 
+            // partial request
             return ["type" : "video", "part" : "snippet", "fields": "items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
 
         case .getSongByDiscover(let songName):

@@ -100,8 +100,6 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
             self.delegate?.songViewDidScroll(self, from: lastRow, to: currentRow)
         }
     }
-
-
 }
 
 extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -127,6 +125,7 @@ extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayo
     }
 }
 
+// 可以在封裝進一個childViewController，如此一來一個ViewController就可以只管好一個scrollView
 extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
 
@@ -142,8 +141,6 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 
         return 150
     }
-
-//    func tableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -169,5 +166,4 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
         recordController.song = songs[indexPath.row]
         show(recordController, sender: nil)
     }
-
 }

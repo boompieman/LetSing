@@ -37,7 +37,11 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         manager.delegate = self
 
-        let hasDataInRealm: Bool = realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").count != 0
+
+        print(!realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
+
+        let hasDataInRealm: Bool =
+            !(realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
 
         if hasDataInRealm {
 
@@ -48,35 +52,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
             manager.getBoardSongFromYoutube(type: type)
         }
-    }
-
-    func printSongFromRealm(songs: [Song]) {
-
-        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-        songVC?.songs = songs
-
-        let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
-
-        currentSongCell?.tableView.reloadData()
-    }
-
-    func resetCell(from lastRow:Int, to currentRow: Int) {
-
-        currentCellRow = currentRow
-
-        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
-
-        let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastRow, section: 0)) as? DiscoverTypeCollectionViewCell
-
-        lastCell?.typeLabel.textColor = UIColor.white
-        lastCell?.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
-
-        let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: currentRow, section: 0)) as? DiscoverTypeCollectionViewCell
-
-        currentCell?.typeLabel.textColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
-        currentCell?.typeLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
-
-        lastCellRow = currentRow
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +70,26 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidAppear(animated)
 
         resetCell(from: lastCellRow, to: currentCellRow)
+    }
+
+    // 可以封裝進view裏，將包覆兩個大collectionView的View在定義成一個swift檔出來
+    func resetCell(from lastRow:Int, to currentRow: Int) {
+
+        currentCellRow = currentRow
+
+        let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
+
+        let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastRow, section: 0)) as? DiscoverTypeCollectionViewCell
+
+        lastCell?.typeLabel.textColor = UIColor.white
+        lastCell?.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
+
+        let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: currentRow, section: 0)) as? DiscoverTypeCollectionViewCell
+
+        currentCell?.typeLabel.textColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
+        currentCell?.typeLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+
+        lastCellRow = currentRow
     }
 }
 
@@ -129,7 +124,6 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
         resetCell(from: lastRow, to: currentRow)
         requestYoutubeData(type: controller.typeList[currentCellRow])
     }
-
 }
 
 extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {

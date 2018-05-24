@@ -74,8 +74,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         discoverTypeCollectionViewCell.typeLabel.text = typeList[indexPath.row].title()
 
-        discoverTypeCollectionViewCell.layer.cornerRadius = 10
-
         return discoverTypeCollectionViewCell
     }
 
@@ -108,7 +106,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         lastRow = Int(self.collectionView.contentOffset.x / discoverTypeDistanceBetweenItemsCenter!)
 
-        print("lastRow", lastRow)
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -121,10 +118,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
         if (velocity.x == 0) {
 
             currentRow = Int(self.collectionView.contentOffset.x  / discoverTypeDistanceBetweenItemsCenter!)
-
-            print("lastRow: ", lastRow)
-
-            print("currentRow", currentRow)
         }
 
         else {
@@ -142,8 +135,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
         }
 
         self.collectionView.scrollToItem(at: IndexPath(row: currentRow, section: 0), at: .centeredHorizontally, animated: true)
-
-        print("targetContentOffset: ", targetContentOffset.pointee.x)
 
         if lastRow != currentRow {
             self.delegate?.typeViewDidScroll(self, from: lastRow, to: currentRow)

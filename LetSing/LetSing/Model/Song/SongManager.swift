@@ -77,11 +77,12 @@ struct SongManager {
         let ref = Database.database().reference()
 
         let request = ref.child("ktv").child(type.rawValue).queryLimited(toFirst: 20)
-        
 
         var songList = [Song]()
 
         let dispatchGroup = DispatchGroup()
+
+        deleteAllSongsInRealm()
 
         request.observeSingleEvent(of: .value) { (snapshot) in
             guard let songs = snapshot.value as? [AnyObject] else { return }
@@ -129,5 +130,9 @@ struct SongManager {
         }
 
         try! realm.commitWrite()
+    }
+
+    private func deleteAllSongsInRealm() {
+        realm.deleteAll()
     }
 }
