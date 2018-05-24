@@ -33,31 +33,31 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqd-2s-Hky" customClass="RecordVideoPanelView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="30" width="320" height="214"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="274"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evy-7c-Vwo" customClass="YouTubePlayerView" customModule="YouTubePlayer">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Evy-7c-Vwo" secondAttribute="height" multiplier="16:9" id="V9y-ei-MgV"/>
+                                            <constraint firstAttribute="width" secondItem="Evy-7c-Vwo" secondAttribute="height" multiplier="12:9" id="V9y-ei-MgV"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9l-qe-KLX">
-                                        <rect key="frame" x="8" y="188" width="42" height="18"/>
+                                        <rect key="frame" x="8" y="248" width="42" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-z9-Bgd">
-                                        <rect key="frame" x="270" y="188" width="42" height="18"/>
+                                        <rect key="frame" x="270" y="248" width="42" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-DV-70c">
-                                        <rect key="frame" x="56" y="182" width="208" height="31"/>
+                                        <rect key="frame" x="56" y="242" width="208" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="maximumTrackTintColor" red="0.19906398650000001" green="0.22694072130000001" blue="0.26024651529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="maximumTrackTintColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="thumbTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </slider>
                                 </subviews>
@@ -83,7 +83,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz4-iB-DtH" customClass="RecordNavigationView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="244" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="304" width="320" height="30"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDo-cd-T42">
                                         <rect key="frame" x="8" y="0.5" width="304" height="1"/>
@@ -113,11 +113,43 @@
                                     <outlet property="titleLabel" destination="QBi-lh-Ubq" id="HY5-K3-zQf"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPW-0p-oe6" userLabel="Lyrics View">
+                                <rect key="frame" x="0.0" y="334" width="320" height="90.5"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpV-pn-jqv">
+                                        <rect key="frame" x="0.0" y="0.5" width="320" height="90.5"/>
+                                        <connections>
+                                            <segue destination="niz-ZS-gm9" kind="embed" id="Jmn-lf-qDy"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="RpV-pn-jqv" secondAttribute="trailing" id="65c-Y8-X7e"/>
+                                    <constraint firstAttribute="bottom" secondItem="RpV-pn-jqv" secondAttribute="bottom" id="ZFe-JX-hJr"/>
+                                    <constraint firstItem="RpV-pn-jqv" firstAttribute="leading" secondItem="fPW-0p-oe6" secondAttribute="leading" id="mfK-D3-Ikg"/>
+                                    <constraint firstItem="RpV-pn-jqv" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="top" id="t2Y-50-ffa"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1Y-bk-kJw" customClass="EndRecordButton" customModule="LetSing" customModuleProvider="target">
+                                <rect key="frame" x="110" y="430" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="62c-Lo-kj4"/>
+                                </constraints>
+                                <state key="normal" title="結束錄音">
+                                    <color key="titleColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startRecordBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r42-TC-IAb"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5U7-gR-oit" customClass="LoadingView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYE-id-6be">
-                                        <rect key="frame" x="85.5" y="263" width="149" height="42"/>
+                                        <rect key="frame" x="85.5" y="219" width="149" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -132,33 +164,6 @@
                                     <outlet property="loadingLabel" destination="oYE-id-6be" id="FIK-Xd-PnB"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPW-0p-oe6" userLabel="Lyrics View">
-                                <rect key="frame" x="0.0" y="274" width="320" height="150.5"/>
-                                <subviews>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpV-pn-jqv">
-                                        <rect key="frame" x="0.0" y="0.5" width="320" height="150.5"/>
-                                        <connections>
-                                            <segue destination="niz-ZS-gm9" kind="embed" id="Jmn-lf-qDy"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="RpV-pn-jqv" secondAttribute="trailing" id="65c-Y8-X7e"/>
-                                    <constraint firstAttribute="bottom" secondItem="RpV-pn-jqv" secondAttribute="bottom" id="ZFe-JX-hJr"/>
-                                    <constraint firstItem="RpV-pn-jqv" firstAttribute="leading" secondItem="fPW-0p-oe6" secondAttribute="leading" id="mfK-D3-Ikg"/>
-                                    <constraint firstItem="RpV-pn-jqv" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="top" id="t2Y-50-ffa"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1Y-bk-kJw">
-                                <rect key="frame" x="129" y="430" width="62" height="30"/>
-                                <state key="normal" title="結束錄音">
-                                    <color key="titleColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startRecordBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r42-TC-IAb"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.19996032118797302" green="0.22739714384078979" blue="0.25874394178390503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -166,6 +171,7 @@
                             <constraint firstItem="fPW-0p-oe6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2um-ml-ZTA"/>
                             <constraint firstItem="fqd-2s-Hky" firstAttribute="top" secondItem="RoJ-Yh-zvl" secondAttribute="bottom" constant="5" id="70p-nJ-JXG"/>
                             <constraint firstItem="RoJ-Yh-zvl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="5" id="9Wo-mf-a2A"/>
+                            <constraint firstItem="5U7-gR-oit" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9au-mG-dpG"/>
                             <constraint firstItem="5U7-gR-oit" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bqi-6P-bon"/>
                             <constraint firstItem="u1Y-bk-kJw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KIO-cD-7A2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fqd-2s-Hky" secondAttribute="trailing" id="Spy-PX-fw5"/>
@@ -203,7 +209,7 @@
             <objects>
                 <viewController id="niz-ZS-gm9" customClass="LyricsViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1PP-Ss-aq6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="150.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" red="0.26024651529999998" green="0.1441762435" blue="0.097449938829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

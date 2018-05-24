@@ -8,19 +8,34 @@
 
 import Foundation
 import UIKit
-import Photos
 
 class userProfileViewController: UIViewController {
 
     @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var tableView: UITableView!
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        requestProfile()
         setupTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    func requestProfile() {
+
+        UserManager.shared.getUserProfile(success: { (user) in
+            DispatchQueue.main.async {
+
+                self.userInfoView.updateProfileWith(name: user.name, image: user.image)
+            }
+        }) { (error) in
+            print(error)
+        }
+
     }
 
     func setupTableView() {

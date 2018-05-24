@@ -54,6 +54,11 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
 
@@ -61,10 +66,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
         songVC?.delegate = self
 
         offsetFactor = (typeVC?.discoverTypeDistanceBetweenItemsCenter)! / (songVC?.discoverSongDistanceBetweenItemsCenter)!
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
 
         resetCell(from: lastCellRow, to: currentCellRow)
     }

@@ -11,6 +11,7 @@ import UIKit
 import SDWebImage
 
 protocol DiscoverSongCollectionViewControllerDelegate: class {
+
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat)
 
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, from lastRow: Int, to currentRow: Int)
@@ -33,6 +34,21 @@ class DiscoverSongCollectionViewController: UIViewController {
     override func viewDidLoad() {
 
         setupCollectionView()
+        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let discoverSongCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+
+        let needToGetRidOf = (self.tabBarController?.tabBar.frame.height)! + (self.navigationController?.navigationBar.frame.height)!
+
+        discoverSongCollectionViewFlowLayout.itemSize = CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height - needToGetRidOf)
+
+        discoverSongCollectionViewFlowLayout.minimumLineSpacing = 0
+
+        discoverSongDistanceBetweenItemsCenter = discoverSongCollectionViewFlowLayout.minimumLineSpacing + discoverSongCollectionViewFlowLayout.itemSize.width
     }
 
     func setupCollectionView() {
@@ -40,16 +56,13 @@ class DiscoverSongCollectionViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
 
+        self.collectionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+
         let nib = UINib(nibName: String(describing: DiscoverSongCollectionViewCell.self), bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverSongCollectionViewCell.self))
 
         // set song collection view layout
-        let discoverSongCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        discoverSongCollectionViewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: self.collectionView.bounds.height)
 
-        discoverSongCollectionViewFlowLayout.minimumLineSpacing = 0
-        
-        discoverSongDistanceBetweenItemsCenter = discoverSongCollectionViewFlowLayout.minimumLineSpacing + discoverSongCollectionViewFlowLayout.itemSize.width
     }
 }
 
@@ -81,7 +94,8 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        if scrollView == self.collectionView {
+        // 只要分childView，如此一來這邊就不用在寫if else惹
+        if scrollView === self.collectionView {
             let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
             self.delegate?.songViewDidScroll(self, translation: offsetX)
         }
@@ -103,6 +117,11 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 }
 
 extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayout {
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+//    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 

@@ -10,8 +10,6 @@ import UIKit
 
 class DiscoverSongCollectionViewCell: UICollectionViewCell {
 
-    
-
     @IBOutlet weak var tableView: UITableView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,11 +19,10 @@ class DiscoverSongCollectionViewCell: UICollectionViewCell {
     }
 
     func setupTableView() {
+
         let nib = UINib(nibName: String(describing: SongTableViewCell.self), bundle: nil)
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: SongTableViewCell.self))
-
-
 
         tableView.contentInset = LSConstants.tableViewInset
     }
@@ -37,5 +34,4 @@ class DiscoverSongCollectionViewCell: UICollectionViewCell {
         self.tableView.dataSource = dataSourceDelegate
         self.tableView.tag = row
     }
-
 }

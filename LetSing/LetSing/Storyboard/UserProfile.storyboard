@@ -17,6 +17,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ytN-UV-jNE">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="pwl-nB-yBy" kind="relationship" relationship="rootViewController" id="L52-cQ-B1F"/>
@@ -37,21 +38,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5b-go-KdB" customClass="UserInfoView" customModule="LetSing" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="180"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userProfile" translatesAutoresizingMaskIntoConstraints="NO" id="apB-od-5vn">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="apB-od-5vn">
                                         <rect key="frame" x="147" y="30" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="eHa-Yg-fdm"/>
                                             <constraint firstAttribute="width" constant="80" id="trb-oQ-hlL"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNi-qr-uQ7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNi-qr-uQ7">
                                         <rect key="frame" x="80" y="118" width="215" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="apB-od-5vn" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="top" constant="30" id="6yt-aX-dT6"/>
                                     <constraint firstAttribute="height" constant="180" id="7XK-Sh-yU8"/>
@@ -71,6 +72,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="u5b-go-KdB" secondAttribute="trailing" id="FzL-rb-hV0"/>
                             <constraint firstItem="u5b-go-KdB" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="LZS-dX-7rv"/>
@@ -93,7 +95,4 @@
             <point key="canvasLocation" x="728.79999999999995" y="-4.0479760119940034"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="userProfile" width="24" height="24"/>
-    </resources>
 </document>

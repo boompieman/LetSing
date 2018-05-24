@@ -1,5 +1,5 @@
 //
-//  UserInfoView.swift
+//  EndRecordButton.swift
 //  LetSing
 //
 //  Created by MACBOOK on 2018/5/24.
@@ -9,16 +9,18 @@
 import Foundation
 import UIKit
 
-class UserInfoView: UIView {
-
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+class EndRecordButton: UIButton {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
+        setupButton()
+    }
+
+    func setupButton() {
+
+        self.layer.cornerRadius = 5
 
     }
-    
 
 }

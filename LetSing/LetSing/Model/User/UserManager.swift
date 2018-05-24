@@ -54,6 +54,35 @@ class UserManager {
         failure(LSError.loginFacebookReject)
     }
 
+    func getUserProfile(
+        success: @escaping (User) -> Void,
+        failure: @escaping (LSError) -> Void)
+    {
+        
+        guard let userToken = getUserToken() else {
+            return
+        }
+
+        print(userToken)
+
+        let request = ref.child("users").child(userToken)
+
+        request.observeSingleEvent(of: .value) { (snapshot) in
+
+            guard let profile = snapshot.value as? [String: AnyObject] else {
+
+                return }
+
+            let id = snapshot.key
+
+            guard let name = profile["name"] as? String, let email = profile["email"] as? String, let image = profile["image"] as? String else { return }
+
+
+            print("-------",profile,"-------")
+
+            success(User(name: name, email: email, image: image, id: id))
+        }
+    }
 
     private func saveToken(_ token: String) {
 

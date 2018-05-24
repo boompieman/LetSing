@@ -81,8 +81,6 @@ class LSRecordManager: NSObject {
 
     func discard() {
 
-        print(self.recorder.isRecording)
-
         recorder.stopRecording { (preViewController, error) in
             self.recorder.discardRecording {
                 print("did discard")

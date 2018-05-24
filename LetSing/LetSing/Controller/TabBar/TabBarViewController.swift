@@ -13,7 +13,7 @@ enum TabBar {
     case discover
 
     case search
-//
+
     case userProfile
 
     case login
@@ -33,7 +33,7 @@ enum TabBar {
         case .userProfile:
 
             return UIStoryboard.userProfileStoryboard().instantiateInitialViewController()!
-//
+
         case .login:
 
             return UIStoryboard.loginStoryBoard().instantiateInitialViewController()!
@@ -44,10 +44,6 @@ enum TabBar {
     func image() -> UIImage {
 
         switch self {
-
-//        case .main:
-//
-//            return #imageLiteral(resourceName: "main_icon")
 
         case .discover:
 
@@ -64,10 +60,6 @@ enum TabBar {
         case .login:
 
             return #imageLiteral(resourceName: "userProfile")
-
-//        case .more:
-//
-//            return #imageLiteral(resourceName: "more_icon")
         }
     }
 

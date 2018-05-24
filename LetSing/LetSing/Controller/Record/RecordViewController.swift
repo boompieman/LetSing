@@ -156,8 +156,6 @@ class RecordViewController: UIViewController {
 
         let lyricsVC = childViewControllers[0] as? LyricsViewController
 
-        print(newValue)
-
         lyricsVC?.moveLyrics(currentTime: newValue)
     }
 
