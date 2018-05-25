@@ -24,20 +24,27 @@ struct SongManager {
 
     private let provider = SongProvider()
 
-    private let realm = try! Realm()
-
-    func getSongFromRealm(type: LSSongType) {
+    func getBoardFromRealm(type: LSSongType) {
 
         var songList = [Song]()
 
-        let songObjects = realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'")
+        let queue = DispatchQueue(label: UUID().uuidString, qos: .default, attributes: .concurrent)
 
-        for songObject in songObjects {
-            guard let song = songObject.song else { return }
-            songList.append(song)
+        // 使用concurrent thread的方式，讓程式跑起來更順暢
+        queue.async {
+
+            let realm = try! Realm()
+
+            let songObjects = realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'")
+            for songObject in songObjects {
+                guard let song = songObject.song else { return }
+                songList.append(song)
+            }
+
+            DispatchQueue.main.async(execute: {
+                self.delegate?.manager(self, didGet: songList)
+            })
         }
-
-        self.delegate?.manager(self, didGet: songList)
     }
 
     func getSearchResult(searchText: String) {
@@ -118,6 +125,8 @@ struct SongManager {
 
     private func writeSongToRealm(songs: [Song]) {
 
+        let realm = try! Realm()
+
         realm.beginWrite()
 
         for song in songs {
@@ -131,6 +140,9 @@ struct SongManager {
     }
 
     private func deleteAllSongsInRealm() {
+
+        let realm = try! Realm()
+
         realm.deleteAll()
     }
 }

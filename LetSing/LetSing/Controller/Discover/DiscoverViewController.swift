@@ -42,7 +42,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         if hasDataInRealm {
 
-            manager.getSongFromRealm(type: type)
+            manager.getBoardFromRealm(type: type)
         }
 
         else {
