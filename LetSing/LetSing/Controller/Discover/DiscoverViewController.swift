@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import RealmSwift
 
 
 class DiscoverViewController: UIViewController, UIScrollViewDelegate {
@@ -20,8 +19,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     var currentCellRow: Int = 0
 
     var manager = SongManager()
-
-    let realm = try! Realm()
 
     var songList = [Song]()
 
@@ -38,7 +35,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
         manager.delegate = self
 
         let hasDataInRealm: Bool =
-            !(realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
+            !(manager.generateRealm().objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
 
         if hasDataInRealm {
 

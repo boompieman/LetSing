@@ -14,7 +14,7 @@ import AudioKit
 
 class AudioTransformatter {
 
-    private func getRecoringViedoURL() throws -> URL {
+    func getRecoringViedoURL(completion: @escaping (URL) -> Void) {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         options.includeAssetSourceTypes = .typeUserLibrary
@@ -24,25 +24,23 @@ class AudioTransformatter {
         let firstObject = results.firstObject
 
         guard let firstAsset = firstObject else {
-            throw LSError.LSFirstAssetError
+
+            return
         }
 
         let videoOption = PHVideoRequestOptions()
         videoOption.version = .original
 
-        var videoURL: URL?
-
         PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, audioMix, info) in
 
             guard let urlAsset = asset as? AVURLAsset else {
+
                     return
             }
 
-            videoURL = urlAsset.url
+            let videoURL = urlAsset.url
+
+            completion(videoURL)
         }
-
-        return videoURL!
     }
-
-    
 }

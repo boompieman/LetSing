@@ -57,8 +57,6 @@ class LoginViewController: UIViewController {
             facebookToken: token,
             success: { [weak self] (user) in
 
-                print("-------",user.name,"---------")
-
                 DispatchQueue.main.async {
 
                     guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }

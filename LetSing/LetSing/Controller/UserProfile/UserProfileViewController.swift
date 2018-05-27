@@ -14,11 +14,16 @@ class userProfileViewController: UIViewController {
     @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var tableView: UITableView!
 
+    let manager = RecordManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         requestProfile()
         setupTableView()
+
+        manager.getRecordFromRealm()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

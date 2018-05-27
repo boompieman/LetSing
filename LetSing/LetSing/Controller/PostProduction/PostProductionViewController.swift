@@ -7,51 +7,54 @@
 //
 
 import UIKit
-import Photos
-import AVFoundation
-import AudioKit
+//import Photos
+//import AVFoundation
+//import AudioKit
 
 
 class PostProductionViewController: UIViewController {
 
+    let transformatter = AudioTransformatter()
+    let manager = RecordManager()
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        deleteLocalFile()
 
+//        writeRecord()
     }
 
-    func getRecordingVideo() {
+    func deleteLocalFile() {
 
-        let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        options.includeAssetSourceTypes = .typeUserLibrary
+        transformatter.getRecoringViedoURL { (url) in
+
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as NSString
+
+            let destinationPath = documentsPath.appendingPathComponent(url.absoluteString)
 
 
-        let results = PHAsset.fetchAssets(with: .video, options: options)
+            print(destinationPath)
 
-        let firstObject = results.firstObject
-
-        guard let firstAsset = firstObject else {
-            return
+            do {
+                try FileManager.default.removeItem(atPath: destinationPath)
+            } catch let error {
+                print("delete failed because of \(error)")
+            }
         }
+    }
 
-//        let resources = PHAssetResource.assetResources(for: firstAsset)
-//
-//
-        let videoOption = PHVideoRequestOptions()
-        videoOption.version = .original
+    func writeRecord() {
+        
+        transformatter.getRecoringViedoURL { (url) in
+            self.manager.writeRecordToRealm(videoUrl: url)
 
-        PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, audioMix, info) in
-            print("assets", asset)
+            DispatchQueue.main.async {
 
-            print("audioMix", audioMix)
+                guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
-            print("info", info?.keys)
-
-            if let urlAsset = asset as? AVURLAsset {
-                let localVideoURL = urlAsset.url
-
-                print(localVideoURL)
+                delegate.window?.rootViewController = UIStoryboard.mainStoryboard().instantiateInitialViewController()
             }
         }
     }

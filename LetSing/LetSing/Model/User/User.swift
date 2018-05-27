@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
 
     let name: String
 
@@ -17,5 +17,4 @@ struct User {
     let image: String
 
     let id: String
-    
 }

@@ -187,11 +187,6 @@
                             <constraint firstItem="fPW-0p-oe6" firstAttribute="top" secondItem="zz4-iB-DtH" secondAttribute="bottom" id="yvd-cJ-edW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="5U7-gR-oit"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="XFo-aa-gcd"/>
                     <connections>

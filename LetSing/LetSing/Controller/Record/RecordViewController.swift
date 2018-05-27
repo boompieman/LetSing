@@ -32,10 +32,6 @@ class RecordViewController: UIViewController {
         sendData()
     }
 
-    deinit {
-        print("---------recordVC deinit---------")
-    }
-
     func sendData() {
         let lyricsVC = childViewControllers[0] as? LyricsViewController
 
@@ -194,6 +190,7 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         case .Ended:
             print("Ended")
+
             recordManager.stop()
 
         case .Paused:
@@ -211,6 +208,7 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
     }
 
     func didFinishRecord(preview: UIViewController) {
+
         print("Record did finish")
 
         let previewController = preview as! RPPreviewViewController
@@ -221,7 +219,23 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
     }
 
     func didStopWithError(error: Error) {
-        print("Record did Stop with Error: ", error)
+
+        let alert = AlertManager.shared.showAlert(
+            with: "error",
+            message: error.localizedDescription,
+            completion: { }
+        )
+
+        self.present(alert, animated: true, completion: { [unowned self] in
+
+            guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+                withIdentifier: String(describing: TabBarViewController.self)
+                ) as? TabBarViewController else { return }
+
+            self.present(tabbarController, animated: false, completion: { [unowned self] in
+                self.removeFromParentViewController()
+            })
+        })
     }
 }
 
@@ -230,11 +244,11 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         DispatchQueue.main.async {
 
-            guard let controller = UIStoryboard.mainStoryboard().instantiateViewController(
+            guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
                 withIdentifier: String(describing: TabBarViewController.self)
                 ) as? TabBarViewController else { return }
 
-            previewController.present(controller, animated: false, completion: {[unowned self] in
+            previewController.present(tabbarController, animated: false, completion: {[unowned self] in
                 self.removeFromParentViewController()
             })
 

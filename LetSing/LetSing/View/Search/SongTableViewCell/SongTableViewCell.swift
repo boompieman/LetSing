@@ -21,8 +21,6 @@ class SongTableViewCell: UITableViewCell {
     func updateDataWith(title: String, imageUrl: String) {
         self.titleLabel.text = title
 
-
         self.youtubeImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
     }
-    
 }

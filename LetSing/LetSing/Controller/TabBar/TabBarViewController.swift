@@ -53,33 +53,31 @@ enum TabBar {
 
             return #imageLiteral(resourceName: "search")
 
-        case .userProfile:
+        case .userProfile, .login:
 
             return #imageLiteral(resourceName: "userProfile")
 
-        case .login:
-
-            return #imageLiteral(resourceName: "userProfile")
         }
     }
 
-    //    func selectedImage() -> UIImage {
-    //
-    //        switch self {
-    //
-    //        case .article:
-    //
-    //            return #imageLiteral(resourceName: "tab_main_normal").withRenderingMode(.alwaysTemplate)
-    //
-    //        case .discover:
-    //
-    //            return #imageLiteral(resourceName: "tab_discover_normal").withRenderingMode(.alwaysTemplate)
-    //
-    //        case .profile:
-    //
-    //            return #imageLiteral(resourceName: "tab_profile_normal").withRenderingMode(.alwaysTemplate)
-    //        }
-    //    }
+    func selectedImage() -> UIImage {
+
+        switch self {
+
+        case .discover:
+
+            return #imageLiteral(resourceName: "discover").withRenderingMode(.alwaysTemplate)
+
+        case .search:
+
+            return #imageLiteral(resourceName: "search").withRenderingMode(.alwaysTemplate)
+
+        case .userProfile, .login:
+
+            return #imageLiteral(resourceName: "userProfile").withRenderingMode(.alwaysTemplate)
+
+        }
+    }
 }
 
 class TabBarViewController: UITabBarController {
@@ -111,10 +109,13 @@ class TabBarViewController: UITabBarController {
 
             let controller = tab.controller()
 
+
+
             let item = UITabBarItem(
                 title: nil,
                 image: tab.image(),
-                selectedImage: nil
+                selectedImage: tab.selectedImage()
+//                transform(withNewColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0))
             )
 
             item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)

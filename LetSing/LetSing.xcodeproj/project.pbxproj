@@ -77,6 +77,8 @@
 		FACCB76E20AE7C840067ADC5 /* LyricsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */; };
 		FACCB77020AE885A0067ADC5 /* LyricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */; };
 		FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */; };
+		FAD67C8420B7C0C900402335 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD67C8320B7C0C900402335 /* Record.swift */; };
+		FAD67C8620B7C5F100402335 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD67C8520B7C5F100402335 /* RecordManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +156,8 @@
 		FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsProvider.swift; sourceTree = "<group>"; };
 		FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsManager.swift; sourceTree = "<group>"; };
 		FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
+		FAD67C8320B7C0C900402335 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		FAD67C8520B7C5F100402335 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +435,7 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAD67C8220B7C0B300402335 /* Record */,
 				FA7F708820B6F3B300D9DDA1 /* User */,
 				FA7F708020B6A65000D9DDA1 /* Alert */,
 				FA7F707D20B6A4CE00D9DDA1 /* Login */,
@@ -575,6 +580,15 @@
 				FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */,
 			);
 			path = lyrics;
+			sourceTree = "<group>";
+		};
+		FAD67C8220B7C0B300402335 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				FAD67C8320B7C0C900402335 /* Record.swift */,
+				FAD67C8520B7C5F100402335 /* RecordManager.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -763,6 +777,7 @@
 				FA7C96BA20995C9600890325 /* LetSingNavigationController.swift in Sources */,
 				FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */,
 				FA1DD01020A1713700F92475 /* RecordNavigationView.swift in Sources */,
+				FAD67C8420B7C0C900402335 /* Record.swift in Sources */,
 				FA7C96AF2099592C00890325 /* TabBarViewController.swift in Sources */,
 				FA4335AE209C4A0700BC90FC /* LSHTTPSession.swift in Sources */,
 				FA7C96BF209962B800890325 /* LetSingColor.swift in Sources */,
@@ -785,6 +800,7 @@
 				FA0A090920AEC339004D9696 /* LSXMLParser.swift in Sources */,
 				FA7C96962098205400890325 /* RecordViewController.swift in Sources */,
 				FA1DD01D20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift in Sources */,
+				FAD67C8620B7C5F100402335 /* RecordManager.swift in Sources */,
 				FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */,
 				FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */,
 				FA7C96942098205400890325 /* AppDelegate.swift in Sources */,
