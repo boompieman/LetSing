@@ -96,6 +96,8 @@ extension DiscoverViewController: SongManagerDelegate {
 
         let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
 
+        
+
         currentSongCell?.tableView.reloadData()
     }
 }
@@ -106,6 +108,7 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
 
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
         songVC?.collectionView.bounds.origin.x = translation / offsetFactor
+
     }
 
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType) {

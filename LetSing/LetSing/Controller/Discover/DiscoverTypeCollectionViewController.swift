@@ -78,20 +78,20 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
     }
 
     // 將cell初始化
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
-        guard let cell = cell as? DiscoverTypeCollectionViewCell else {
-            return
-        }
-
-        cell.typeLabel.textColor = UIColor.white
-
-        cell.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
-    }
+//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//
+//        guard let cell = cell as? DiscoverTypeCollectionViewCell else {
+//            return
+//        }
+//
+////        cell.typeLabel.textColor = UIColor.white
+////        cell.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
+//    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        
         self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
 
     }

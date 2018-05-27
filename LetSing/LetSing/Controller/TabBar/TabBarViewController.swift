@@ -87,12 +87,16 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if UserManager.shared.getUserToken() != nil {
-            tabs = [.discover, .search, .userProfile]
-        }
-        else {
-            tabs = [.discover, .search, .login]
-        }
+        // 等到userProfile做好再打開
+
+//        if UserManager.shared.getUserToken() != nil {
+//            tabs = [.discover, .search, .userProfile]
+//        }
+//        else {
+//            tabs = [.discover, .search, .login]
+//        }
+
+        tabs = [.discover, .search]
 
         setupTab()
     }

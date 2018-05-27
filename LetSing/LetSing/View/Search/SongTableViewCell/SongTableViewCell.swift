@@ -16,11 +16,18 @@ class SongTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        updateDataWith(title: "", imageUrl: nil)
+        
     }
 
-    func updateDataWith(title: String, imageUrl: String) {
+    func updateDataWith(title: String, imageUrl: String?) {
         self.titleLabel.text = title
 
-        self.youtubeImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
+        guard  let url = imageUrl else {
+            return
+        }
+
+        self.youtubeImageView.sd_setImage(with: URL(string: url), completed: nil)
     }
 }

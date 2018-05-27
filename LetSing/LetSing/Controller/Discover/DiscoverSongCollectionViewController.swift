@@ -84,6 +84,19 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         discoverSongCollectionViewCell.setTableViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {
+            
+            return
+        }
+
+        for cell in discoverSongCollectionViewCell.tableView.subviews {
+            cell.removeFromSuperview()
+        }
+    }
+
+    // scrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         // 只要分childView，如此一來這邊就不用在寫if else惹
@@ -93,7 +106,6 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         }
     }
 
-    // scrollView
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         lastRow = Int(self.collectionView.contentOffset.x / discoverSongDistanceBetweenItemsCenter!)
     }
@@ -161,6 +173,7 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
             withIdentifier: String(describing: SongTableViewCell.self),
             for: indexPath
             ) as! SongTableViewCell
+
 
 
         tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
