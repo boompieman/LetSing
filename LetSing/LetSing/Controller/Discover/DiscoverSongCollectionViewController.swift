@@ -160,6 +160,7 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return songs.count
+
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -178,7 +179,9 @@ extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableView
 
         tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
+
         return tableViewCell
+        
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

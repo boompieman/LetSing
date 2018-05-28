@@ -10,33 +10,41 @@ import Foundation
 
 class LSJsonParser {
 
-    func parseToSongs(data: Data) -> [Song] {
+    var songList = [Song]()
+
+    var pageToken = LSConstants.emptyString
+
+    func getPaging(pageToken: String) -> String {
+        return pageToken
+    }
+
+    func parseToSongs(data: Data) {
 
 
         guard let json = try? parse(data: data) else {
-            return [Song]()
+            return
         }
 
-        guard let items = json["items"] as? [AnyObject] else { return [Song]() }
+        guard let items = json["items"] as? [AnyObject], let pageToken = json["nextPageToken"] as? String else { return }
 
-        var songList = [Song]()
+        self.pageToken = pageToken
 
         for result in items {
 
             guard let snippetDict = result["snippet"] as? [String:Any], let id = result["id"] as? [String: AnyObject] else {
-                return [Song]()
+                return
             }
 
             guard let thumbnails = snippetDict["thumbnails"] as? [String: AnyObject], let vedioID = id["videoId"] as? String, let title = snippetDict["title"] as? String, let defaultImage = thumbnails["default"] as? [String: AnyObject], let imageUrl = defaultImage["url"] as? String else {
-                return [Song]()
+                return
             }
 
             let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, rank: nil, type: nil)
 
-            songList.append(song)
+            self.songList.append(song)
         }
 
-        return songList
+
     }
 
     private func parse(data: Data) throws -> [String : AnyObject] {

@@ -10,7 +10,7 @@ import Foundation
 
 private enum searchSongAPI: LSHTTPRequest {
 
-    case getSongBySearch(String)
+    case getSongBySearch(String, String)
 
     case getSongByDiscover(String)
 
@@ -36,10 +36,10 @@ private enum searchSongAPI: LSHTTPRequest {
     func requestParameters() -> [String : String] {
 
         switch self {
-        case .getSongBySearch(let searchText):
+        case .getSongBySearch(let searchText, let pageToken):
 
             // partial request
-            return ["type" : "video", "part" : "snippet", "fields": "items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey]
+            return ["type" : "video", "part" : "snippet", "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey, "pageToken": pageToken]
 
         case .getSongByDiscover(let songName):
 
@@ -67,16 +67,19 @@ struct SongProvider {
 
     private weak var httpClient = LSHTTPClient.shared
 
-    let parser = LSJsonParser()
+    let response = LSJsonParser()
 
-    func getSearchSongs(searchText: String, success: @escaping ([Song]) -> Void, failure: @escaping(LSError) -> Void) {
+    func getSearchSongs(searchText: String, pageToken: String, success: @escaping ([Song], String) -> Void, failure: @escaping(LSError) -> Void) {
 
         httpClient?.request(
-            searchSongAPI.getSongBySearch(searchText),
+            searchSongAPI.getSongBySearch(searchText, pageToken),
             success: { (data) in
 
-                let songList = self.parser.parseToSongs(data: data)
-                success(songList)
+                self.response.parseToSongs(data: data)
+
+
+
+                success(self.response.songList, self.response.pageToken)
         },
             failure: { (error) in
             print(error)
@@ -89,10 +92,10 @@ struct SongProvider {
             searchSongAPI.getSongByDiscover(songName),
             success: { (data) in
 
-                let songList: [Song] = self.parser.parseToSongs(data: data)
+                self.response.parseToSongs(data: data)
 
                 
-                success(songList[0])
+                success(self.response.songList[0])
 
         },
             failure: { (error) in

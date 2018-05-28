@@ -91,6 +91,7 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         // 詢問為何animated = false可以，animated = true不行？？
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+
         
         self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
 

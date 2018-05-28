@@ -52,6 +52,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GTMSessionFetcher/Core (1.1.15)
   - leveldb-library (1.20)
+  - MJRefresh (3.1.15.3)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - MJRefresh
   - RealmSwift
   - SDWebImage
   - SwiftLint
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
@@ -116,6 +119,6 @@ SPEC CHECKSUMS:
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   YouTubePlayer: b6b44df6bb613dbb6e82f8130ed468f7e04cc1e5
 
-PODFILE CHECKSUM: 2a0606c060a4043f3251a0132b628a6b091206f2
+PODFILE CHECKSUM: fd09502b3e57f85d5aa7d4a3993b76398a4dbad9
 
 COCOAPODS: 1.4.0

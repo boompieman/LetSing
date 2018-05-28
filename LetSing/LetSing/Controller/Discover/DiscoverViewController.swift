@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 
 class DiscoverViewController: UIViewController, UIScrollViewDelegate {
@@ -32,6 +33,9 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     func requestYoutubeData(type: LSSongType) {
 
+        Analytics.logEvent("user trans its page to \(type.rawValue)", parameters: nil)
+
+
         manager.delegate = self
 
         let hasDataInRealm: Bool =
@@ -46,6 +50,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
             manager.getBoardSongFromYoutube(type: type)
         }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -89,16 +94,18 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 }
 
 extension DiscoverViewController: SongManagerDelegate {
-    func manager(_ manager: SongManager, didGet songs: [Song]) {
+
+    func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String) {
 
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
         songVC?.songs = songs
 
         let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
-
         
 
         currentSongCell?.tableView.reloadData()
+
+        
     }
 }
 

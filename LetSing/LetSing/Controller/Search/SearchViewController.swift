@@ -15,6 +15,12 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var isSetupTableView: Bool = false
+
+    var searchText = LSConstants.emptyString
+
+    var pageToken = LSConstants.emptyString
+
     var songManager = SongManager()
 
     var songs = [Song]()
@@ -24,7 +30,7 @@ class SearchViewController: UIViewController {
 
         configureCustomSearchController()
 
-        setupTableView()
+//        setupTableView()
 
         searchController.searchBarDelegate = self
 
@@ -43,6 +49,10 @@ class SearchViewController: UIViewController {
         let nib = UINib(nibName: String(describing: SongTableViewCell.self), bundle: nil)
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: SongTableViewCell.self))
+
+        self.tableView.mj_footer = LSRefresh.footer { [weak self] in
+            self?.songManager.getSearchResult(searchText: (self?.searchText)!, pageToken: (self?.pageToken)!)
+        }
     }
 
     func configureCustomSearchController() {
@@ -95,9 +105,19 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension SearchViewController: SongManagerDelegate {
 
-    func manager(_ manager: SongManager, didGet songs: [Song]) {
+    func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String) {
+
+        guard songs.count > 0 else{
+            self.tableView.mj_footer.endRefreshingWithNoMoreData()
+
+            return
+        }
+
         self.songs = songs
+        self.pageToken = pageToken
+        
         self.tableView.reloadData()
+        self.tableView.mj_footer.endRefreshing()
     }
 }
 
@@ -109,10 +129,18 @@ extension SearchViewController: LSSearchControllerDelegate {
 
     func didTapOnSearchButton(searchText: String) {
 
-        searchController.customSearchBar.showsCancelButton = false
-        songManager.getSearchResult(searchText: searchText)
-    }
+        self.searchText = searchText
 
+        searchController.customSearchBar.showsCancelButton = false
+        self.songs.removeAll()
+        songManager.getSearchResult(searchText: searchText, pageToken: LSConstants.emptyString)
+
+        if !isSetupTableView {
+
+            self.setupTableView()
+            isSetupTableView = !isSetupTableView
+        }
+    }
 
     func didTapOnCancelButton() {
 

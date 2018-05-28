@@ -15,7 +15,7 @@ import Realm
 
 protocol SongManagerDelegate: class {
 
-    func manager(_ manager: SongManager, didGet songs: [Song])
+    func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String)
 
 }
 
@@ -51,19 +51,20 @@ struct SongManager {
             }
 
             DispatchQueue.main.async(execute: {
-                self.delegate?.manager(self, didGet: songList)
+                self.delegate?.manager(self, didGet: songList, LSConstants.emptyString)
             })
         }
     }
 
-    func getSearchResult(searchText: String) {
+    func getSearchResult(searchText: String, pageToken: String) {
 
         provider.getSearchSongs(
             searchText: searchText,
-            success: { (songs) in
+            pageToken: pageToken,
+            success: { (songs, pageToken)  in
 
                 DispatchQueue.main.async {
-                    self.delegate?.manager(self, didGet: songs)
+                    self.delegate?.manager(self, didGet: songs, pageToken)
                 }
         },
             failure: { (error) in
@@ -131,7 +132,7 @@ struct SongManager {
                     return song1.rank! < song2.rank!
                 })
                 self.writeSongToRealm(songs: songList)
-                self.delegate?.manager(self, didGet: songList)
+                self.delegate?.manager(self, didGet: songList, LSConstants.emptyString)
             }
         }
     }
