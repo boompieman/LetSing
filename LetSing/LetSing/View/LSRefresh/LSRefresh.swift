@@ -15,7 +15,7 @@ struct LSRefresh {
 
         let footer = MJRefreshAutoNormalFooter(refreshingBlock: completion)
 
-        footer?.setTitle("Loading", for: .idle)
+        footer?.setTitle("pull to refresh", for: .idle)
 
         footer?.setTitle("Loading", for: .pulling)
 

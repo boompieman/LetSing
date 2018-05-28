@@ -20,12 +20,13 @@ class LSJsonParser {
 
     func parseToSongs(data: Data) {
 
+        songList.removeAll()
 
         guard let json = try? parse(data: data) else {
             return
         }
 
-        print(json)
+
 
         guard let items = json["items"] as? [AnyObject] else {
 
@@ -49,8 +50,6 @@ class LSJsonParser {
 
             self.songList.append(song)
         }
-
-
     }
 
     private func parse(data: Data) throws -> [String : AnyObject] {

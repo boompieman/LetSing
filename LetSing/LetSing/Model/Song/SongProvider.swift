@@ -39,11 +39,11 @@ private enum searchSongAPI: LSHTTPRequest {
         case .getSongBySearch(let searchText, let pageToken):
 
             // partial request
-            return ["type" : "video", "part" : "snippet", "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "7", "key" : LSConstants.youtubeKey, "pageToken": pageToken]
+            return ["type" : "video", "part" : "snippet", "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "5", "key" : LSConstants.youtubeKey, "pageToken": pageToken]
 
         case .getSongByDiscover(let songName):
 
-            return ["type" : "video", "part" : "snippet", "fields": "items(id,snippet(title,thumbnails(default)))", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
+            return ["type" : "video", "part" : "snippet", "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
         }
     }
 
@@ -77,7 +77,7 @@ struct SongProvider {
 
                 self.response.parseToSongs(data: data)
 
-
+                print(self.response.songList.count)
 
                 success(self.response.songList, self.response.pageToken)
         },

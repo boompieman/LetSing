@@ -113,7 +113,10 @@ extension SearchViewController: SongManagerDelegate {
             return
         }
 
-        self.songs = songs
+        for song in songs {
+            self.songs.append(song)
+        }
+        
         self.pageToken = pageToken
         
         self.tableView.reloadData()
@@ -134,6 +137,7 @@ extension SearchViewController: LSSearchControllerDelegate {
         searchController.customSearchBar.showsCancelButton = false
         self.songs.removeAll()
         songManager.getSearchResult(searchText: searchText, pageToken: LSConstants.emptyString)
+
 
         if !isSetupTableView {
 
