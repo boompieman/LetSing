@@ -25,7 +25,13 @@ class LSJsonParser {
             return
         }
 
-        guard let items = json["items"] as? [AnyObject], let pageToken = json["nextPageToken"] as? String else { return }
+        print(json)
+
+        guard let items = json["items"] as? [AnyObject] else {
+
+            return }
+
+        guard let pageToken = json["nextPageToken"] as? String else { return }
 
         self.pageToken = pageToken
 
