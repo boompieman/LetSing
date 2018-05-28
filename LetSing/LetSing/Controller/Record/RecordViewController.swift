@@ -179,6 +179,8 @@ extension RecordViewController: YouTubePlayerDelegate {
 
         videoProvider.play()
 
+        loadingView.removeView()
+
         print("player Ready")
     }
 
