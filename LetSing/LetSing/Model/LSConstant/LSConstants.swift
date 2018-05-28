@@ -44,6 +44,4 @@ struct LSConstants {
         "modestbranding": 1 as AnyObject,
         "widget_referrer": "origin" as AnyObject
     ]
-
-//    static let firebaseUrl = "https://letsing.firebaseio.com/"
 }

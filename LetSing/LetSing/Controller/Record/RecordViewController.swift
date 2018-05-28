@@ -110,8 +110,14 @@ class RecordViewController: UIViewController {
     // MARK: Btn Action
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
-        recordManager.stop()
+        sender.isSelected = !sender.isSelected
 
+        if sender.isSelected {
+            recordManager.start()
+            sender.titleLabel?.text = "結束錄音"
+        } else {
+            recordManager.stop()
+        }
     }
 
     @IBAction func didTappedBackButton(_ sender: Any) {
@@ -184,8 +190,6 @@ extension RecordViewController: YouTubePlayerDelegate {
 
             videoProvider.startTimer()
 
-            loadingView.removeView(recordManager.start)
-
             print("playing")
 
         case .Ended:
@@ -251,7 +255,6 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
             previewController.present(tabbarController, animated: false, completion: {[unowned self] in
                 self.removeFromParentViewController()
             })
-
         }
     }
 
@@ -260,9 +263,32 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
         if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
             DispatchQueue.main.async {
 
-                previewController.present((PostProductionViewController()), animated: false, completion: {[unowned self] in
-                    self.removeFromParentViewController()
-                })
+                let alert = AlertManager.shared.showAlert(
+                    with: "提醒您",
+                    message: "你的影片已儲存在手機相簿內",
+                    completion: { [unowned self] in
+                        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+                            withIdentifier: String(describing: TabBarViewController.self)
+                            ) as? TabBarViewController else { return }
+
+                        previewController.present(tabbarController, animated: false, completion: { [unowned self] in
+                            self.removeFromParentViewController()
+                        })
+                    }
+                )
+
+                previewController.present(alert, animated: false, completion: nil)
+
+//                guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+//                    withIdentifier: String(describing: TabBarViewController.self)
+//                    ) as? TabBarViewController else { return }
+//
+//                previewController.present(tabbarController, animated: false, completion: {[unowned self] in
+//                    self.removeFromParentViewController()
+//                })
+//                previewController.present((PostProductionViewController()), animated: false, completion: {[unowned self] in
+//                    self.removeFromParentViewController()
+//                })
             }
         }
     }
