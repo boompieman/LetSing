@@ -108,6 +108,11 @@ class RecordViewController: UIViewController {
     }
 
     // MARK: Btn Action
+
+    @IBAction func didMoveSlider(_ sender: UISlider) {
+        videoProvider.seekTo(percentage: sender.value)
+    }
+
     @IBAction func startRecordBtnTapped(_ sender: UIButton) {
 
         sender.isSelected = !sender.isSelected

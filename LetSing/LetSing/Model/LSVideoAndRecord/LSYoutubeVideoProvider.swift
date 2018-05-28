@@ -118,6 +118,19 @@ class LSYoutubeVideoProvider: NSObject {
         player.clear()
     }
 
+    func seekTo(percentage: Float) {
+
+        guard let player = player, let duration = player.getDuration() else {
+            return
+        }
+
+        guard let floatDuration = Float(duration) else {
+            return
+        }
+
+        player.seekTo(percentage * floatDuration, seekAhead: true)
+    }
+
     // clear all setting
 
     func removeObserverAndPlayer(_ controller: UIViewController) {

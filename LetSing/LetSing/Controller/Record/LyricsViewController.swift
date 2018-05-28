@@ -20,6 +20,7 @@ class LyricsViewController: UIViewController {
 
     var videoProvider: LSYoutubeVideoProvider?
 
+    @IBOutlet weak var noLyricsLabel: UILabel!
     private static var observerContext = 0
 
     @IBOutlet var tableView: UITableView!
@@ -129,10 +130,12 @@ extension LyricsViewController: LyricsManagerDelegate {
     func manager(_ manager: LyricsManager, didGet lyrics: Lyrics) {
 
         if lyrics.lines.count == 0 {
-            print("screen should show 這首歌在youtube上沒有歌詞")
+            self.tableView.removeFromSuperview()
+
         }
 
         else {
+            noLyricsLabel.isHidden = true
             self.lyrics = lyrics
             self.tableView.reloadData()
         }
