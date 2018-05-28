@@ -81,7 +81,7 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         guard let discoverTypeCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else { return }
 
-        discoverTypeCollectionViewCell.typeLabel.textColor = UIColor.white
+        discoverTypeCollectionViewCell.typeLabel.textColor = UIColor(red: 255/255, green: 205/255, blue: 200/255, alpha: 1.0)
         discoverTypeCollectionViewCell.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
 
 
