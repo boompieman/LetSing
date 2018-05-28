@@ -105,7 +105,7 @@ class TabBarViewController: UITabBarController {
 
         // 避免擋住tableView
 
-        tabBar.tintColor = LetSingColor.tabBarTintColor.color()
+        tabBar.tintColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
 
         var controllers: [UIViewController] = []
 
@@ -119,7 +119,6 @@ class TabBarViewController: UITabBarController {
                 title: nil,
                 image: tab.image(),
                 selectedImage: tab.selectedImage()
-//                transform(withNewColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0))
             )
 
             item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
