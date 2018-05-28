@@ -62,7 +62,7 @@ class LyricsViewController: UIViewController {
         }
 
 
-        if currentTime - lyrics.lines[currentIndex].start >= 0 {
+        if currentIndex < lyrics.lines.count && currentTime - lyrics.lines[currentIndex].start >= 0 {
 
             self.tableView.scrollToRow(
                 at: IndexPath(row: currentIndex, section: 0),
