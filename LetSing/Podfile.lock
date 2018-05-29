@@ -9,6 +9,9 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Fabric (1.7.6)
   - FBSDKCoreKit (4.33.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.33.0):
@@ -72,6 +75,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AudioKit (~> 4.2)
+  - Crashlytics
+  - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -98,6 +103,8 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AudioKit: 90ed0de2bc50ab68306f4b424ae1622fc9149b8e
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   FBSDKCoreKit: 572b047a7e029bc44542bcf8a59414e7ff2b543e
   FBSDKLoginKit: 88cb456349cfb3b554427ce4f8b43729d85dfb40
   FBSDKShareKit: b7b5002833a4104fbecad75e8e4e082e91c7a08a
@@ -119,6 +126,6 @@ SPEC CHECKSUMS:
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   YouTubePlayer: b6b44df6bb613dbb6e82f8130ed468f7e04cc1e5
 
-PODFILE CHECKSUM: fd09502b3e57f85d5aa7d4a3993b76398a4dbad9
+PODFILE CHECKSUM: c521afae2478b2739b49917773ffdcfe5e72f2c1
 
 COCOAPODS: 1.4.0

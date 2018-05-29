@@ -33,10 +33,9 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     func requestYoutubeData(type: LSSongType) {
 
-        Analytics.logEvent("user trans its page to \(type.rawValue)", parameters: nil)
-
-
         manager.delegate = self
+
+        Analytics.logEvent("type_in_\(type.rawValue)", parameters: nil)
 
         let hasDataInRealm: Bool =
             !(manager.generateRealm().objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)

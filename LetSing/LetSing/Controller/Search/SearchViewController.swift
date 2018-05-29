@@ -6,8 +6,8 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import Crashlytics
 
 class SearchViewController: UIViewController {
 
@@ -37,7 +37,9 @@ class SearchViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
 
         songManager.delegate = self
+
     }
+
 
     func setupTableView() {
 

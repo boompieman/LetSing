@@ -615,6 +615,7 @@
 				FA7C968E2098205400890325 /* Resources */,
 				AEF001CAA01E6819BCCEF02D /* [CP] Embed Pods Frameworks */,
 				7C9965EB3EA4E494F080417C /* [CP] Copy Pods Resources */,
+				FAC2946220BD0045002F87BF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -765,6 +766,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FAC2946220BD0045002F87BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 64bcf9ff24dc8fc8727c19fb1b9811703af2c5de 7015ed12c73593ed0da1632015fd8854b0b4547109500b28924092bcfddc4498";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -974,6 +988,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57PZX8729Q;
 				INFOPLIST_FILE = LetSing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "appWorksSchool-ios6.LetSing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -990,6 +1005,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57PZX8729Q;
 				INFOPLIST_FILE = LetSing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "appWorksSchool-ios6.LetSing";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import YouTubePlayer
 import ReplayKit
+import Firebase
 
 class RecordViewController: UIViewController {
 
@@ -121,6 +122,7 @@ class RecordViewController: UIViewController {
             recordManager.start()
             sender.titleLabel?.text = "結束錄音"
         } else {
+            Analytics.logEvent("record_button_tapped", parameters: nil)
             recordManager.stop()
         }
     }
