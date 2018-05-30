@@ -73,6 +73,7 @@
 		FABE5BF420B716610025D801 /* EndRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE5BF320B716610025D801 /* EndRecordButton.swift */; };
 		FAC2946620BD3499002F87BF /* PostProduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2946520BD3499002F87BF /* PostProduction.storyboard */; };
 		FAC2946C20BE435C002F87BF /* LSRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */; };
+		FAC2946F20BE590B002F87BF /* LSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2946E20BE590B002F87BF /* LSDateFormatter.swift */; };
 		FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */; };
 		FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */; };
 		FACCB76C20AE7AFB0067ADC5 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */; };
@@ -155,6 +156,7 @@
 		FABE5BF320B716610025D801 /* EndRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRecordButton.swift; sourceTree = "<group>"; };
 		FAC2946520BD3499002F87BF /* PostProduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostProduction.storyboard; sourceTree = "<group>"; };
 		FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordFileManager.swift; sourceTree = "<group>"; };
+		FAC2946E20BE590B002F87BF /* LSDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSDateFormatter.swift; sourceTree = "<group>"; };
 		FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sam.swift"; sourceTree = "<group>"; };
 		FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTransformatter.swift; sourceTree = "<group>"; };
 		FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAC2946D20BE58F1002F87BF /* DateFormatter */,
 				FAD67C8220B7C0B300402335 /* Record */,
 				FA7F708820B6F3B300D9DDA1 /* User */,
 				FA7F708020B6A65000D9DDA1 /* Alert */,
@@ -579,6 +582,14 @@
 				FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */,
 			);
 			path = LSVideoPlayer;
+			sourceTree = "<group>";
+		};
+		FAC2946D20BE58F1002F87BF /* DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				FAC2946E20BE590B002F87BF /* LSDateFormatter.swift */,
+			);
+			path = DateFormatter;
 			sourceTree = "<group>";
 		};
 		FACCB76720AE6E800067ADC5 /* PostProduction */ = {
@@ -812,6 +823,7 @@
 				FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */,
 				FA7F708720B6EEC100D9DDA1 /* LoginButtonView.swift in Sources */,
 				FA7F708520B6D36A00D9DDA1 /* LoginInputView.swift in Sources */,
+				FAC2946F20BE590B002F87BF /* LSDateFormatter.swift in Sources */,
 				FACCB76E20AE7C840067ADC5 /* LyricsProvider.swift in Sources */,
 				FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */,
 				FA1DD01B20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift in Sources */,

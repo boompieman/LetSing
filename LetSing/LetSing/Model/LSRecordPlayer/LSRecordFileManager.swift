@@ -31,14 +31,17 @@ class LSRecordFileManager {
         }
     }
 
-    func filePath(_ fileName: String) -> String {
+    func filePath() -> String {
         createFolder()
+
+        let dateFormatter = LSDateFormatter()
+
 
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         print(path[0])
         let documentsDirectory = path[0]
 
-        let filePath: String = "\(documentsDirectory)/Records/\(fileName).mp4"
+        let filePath: String = "\(documentsDirectory)/Records/\(dateFormatter.getCurrentTime()).mp4"
         return filePath
     }
 
@@ -49,6 +52,10 @@ class LSRecordFileManager {
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: recordPath!, includingPropertiesForKeys: nil, options: [])
 
         return directoryContents
+    }
+
+    func deleteRecord(at filePath: URL) {
+        try! FileManager.default.removeItem(at: filePath)
     }
 
 }

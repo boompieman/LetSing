@@ -16,6 +16,8 @@ class userProfileViewController: UIViewController {
 
     let manager = RecordManager()
 
+    var records = [URL]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +30,8 @@ class userProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.records = LSRecordFileManager.shared.fetchAllRecords()
+        self.tableView.reloadData()
     }
 
     func requestProfile() {
@@ -65,7 +69,7 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 6
+        return self.records.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,10 +84,18 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
             for: indexPath
             ) as! UserVideoTableViewCell
 
+        tableViewCell.urlLabel.text = self.records[indexPath.row].absoluteString
+
         return tableViewCell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
+
+        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row])
+        self.records.remove(at: indexPath.row)
+
+        self.tableView.reloadData()
+
     }
 }

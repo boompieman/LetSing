@@ -96,13 +96,13 @@ class TabBarViewController: UITabBarController {
         // 等到userProfile做好再打開
 
 //        if UserManager.shared.getUserToken() != nil {
-//            tabs = [.discover, .search, .userProfile]
+            tabs = [.discover, .search, .userProfile]
 //        }
 //        else {
 //            tabs = [.discover, .search, .login]
 //        }
 
-        tabs = [.discover, .search, .postProduction]
+//        tabs = [.discover, .search, .postProduction]
 
         setupTab()
     }

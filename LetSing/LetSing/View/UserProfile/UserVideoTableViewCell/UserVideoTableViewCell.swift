@@ -10,6 +10,7 @@ import UIKit
 
 class UserVideoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var urlLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

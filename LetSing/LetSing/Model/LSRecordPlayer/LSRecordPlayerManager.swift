@@ -102,44 +102,104 @@ class LSRecordPlayerManager: NSObject {
     func start() {
         self.recorder.delegate = self
 
-        let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.filePath("test2"))
+        let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.filePath())
         assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType: .mp4)
 
+        let videoOutputSettings: [String : Any] = [
+            AVVideoCodecKey: AVVideoCodecType.h264,
+            AVVideoWidthKey: UIScreen.main.bounds.size.width,
+            AVVideoHeightKey: UIScreen.main.bounds.size.height
+        ]
 
-        
+        videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
+        videoInput.expectsMediaDataInRealTime = true
+        self.assetWriter.add(videoInput)
 
-//        if self.recorder.isAvailable || !self.recorder.isRecording {
-//
-//            self.recorder.isMicrophoneEnabled = true
-////                self.recorder.isCameraEnabled = true
-//
-//            self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
-//
-//
-//
-//            }) { (error) in
-//                print("error:", error)
-//            }
-//        }
+
+
+        if self.recorder.isAvailable && !self.recorder.isRecording {
+
+            self.recorder.isMicrophoneEnabled = true
+//                self.recorder.isCameraEnabled = true
+
+            self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
+
+                if let error = error {
+
+
+                    print("error:", error)
+                    return
+                }
+
+                if CMSampleBufferDataIsReady(sampleBuffer) {
+
+                    if self.assetWriter.status == AVAssetWriterStatus.unknown {
+                        self.assetWriter.startWriting()
+                        self.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
+                        print("sampleBuffer:", sampleBuffer)
+                    }
+
+                    if self.assetWriter.status == AVAssetWriterStatus.failed {
+
+                        print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
+                        return
+                    }
+
+                    if sampleBufferType == .video {
+                        if self.videoInput.isReadyForMoreMediaData {
+                            self.videoInput.append(sampleBuffer)
+                        }
+                    }
+                }
+
+            }) { (error) in
+                if let error = error {
+                    print("error:", error)
+                }
+            }
+        }
+        else {
+            print("record is not available or is recording")
+        }
     }
 
     func stop() {
 
         if self.recorder.isRecording {
 
-            recorder.stopRecording { (previewController, error) in
-                
-                if let previewController = previewController {
+            self.recorder.stopCapture { (error) in
 
-                    self.delegate?.didFinishRecord(preview: previewController)
-
-                }
                 if let error = error {
-                    print(error)
+                    print("error: ", error)
+                }
+
+                self.assetWriter.finishWriting {
+                    print("All Records:", LSRecordFileManager.shared.fetchAllRecords())
                 }
             }
         }
+        else {
+            print("record is not available or is not recording")
+        }
     }
+
+//    func stop() {
+//
+//        if self.recorder.isRecording {
+//
+//            recorder.stopRecording { (previewController, error) in
+//
+//                if let previewController = previewController {
+//
+//                    self.delegate?.didFinishRecord(preview: previewController)
+//
+//                }
+//                if let error = error {
+//                    print(error)
+//                }
+//            }
+//        }
+//    }
 
     func discard() {
 
