@@ -38,11 +38,11 @@ enum TabBar {
 
         case .login:
 
-            return UIStoryboard.loginStoryBoard().instantiateInitialViewController()!
+            return UIStoryboard.loginStoryboard().instantiateInitialViewController()!
 
         case .postProduction:
 
-            return UIStoryboard.postProductionStoryBoard().instantiateInitialViewController()!
+            return UIStoryboard.postProductionStoryboard().instantiateInitialViewController()!
 
         }
     }

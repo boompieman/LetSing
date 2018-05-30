@@ -28,6 +28,8 @@ class LSRecordPlayerManager: NSObject {
 
     var assetWriter: AVAssetWriter!
     var videoInput: AVAssetWriterInput!
+    var audioInput: AVAssetWriterInput!
+    var microInput: AVAssetWriterInput!
 
     func setLSAudioCategory(isActive flag: Bool) {
 
@@ -119,7 +121,7 @@ class LSRecordPlayerManager: NSObject {
 
         if self.recorder.isAvailable && !self.recorder.isRecording {
 
-            self.recorder.isMicrophoneEnabled = true
+//            self.recorder.isMicrophoneEnabled = true
 //                self.recorder.isCameraEnabled = true
 
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in

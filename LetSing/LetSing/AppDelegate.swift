@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Fabric.with([Crashlytics.self])
 
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent 
+
         FBSDKApplicationDelegate.sharedInstance()
 
         switchToMainStoryBoard()

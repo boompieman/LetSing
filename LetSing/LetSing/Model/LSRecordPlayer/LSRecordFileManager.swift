@@ -55,7 +55,7 @@ class LSRecordFileManager {
     }
 
     func deleteRecord(at filePath: URL) {
-        try! FileManager.default.removeItem(at: filePath)
+        try? FileManager.default.removeItem(at: filePath)
     }
 
 }

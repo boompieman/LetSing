@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -91,11 +90,42 @@
                     <connections>
                         <outlet property="tableView" destination="aF6-QS-Xyc" id="VbD-Ol-cBp"/>
                         <outlet property="userInfoView" destination="u5b-go-KdB" id="gkK-Tt-rmh"/>
+                        <segue destination="0Gs-8V-OHm" kind="show" identifier="VideoPlayerViewController" id="BCz-pL-BKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2m-2G-wgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="728.79999999999995" y="-4.0479760119940034"/>
+        </scene>
+        <!--Video Player View Controller-->
+        <scene sceneID="cXz-9J-SBl">
+            <objects>
+                <viewController id="0Gs-8V-OHm" customClass="VideoPlayerViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="moM-Vu-Ses">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5O2-Hb-LZs" customClass="LSVideoPanelView" customModule="LetSing" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="503"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J1N-8Q-MVw" firstAttribute="trailing" secondItem="5O2-Hb-LZs" secondAttribute="trailing" id="15a-Nh-VOe"/>
+                            <constraint firstItem="5O2-Hb-LZs" firstAttribute="top" secondItem="J1N-8Q-MVw" secondAttribute="top" id="HL4-SN-t05"/>
+                            <constraint firstItem="5O2-Hb-LZs" firstAttribute="leading" secondItem="J1N-8Q-MVw" secondAttribute="leading" id="hsw-bN-ULl"/>
+                            <constraint firstItem="J1N-8Q-MVw" firstAttribute="bottom" secondItem="5O2-Hb-LZs" secondAttribute="bottom" constant="100" id="yLP-IR-mRC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="J1N-8Q-MVw"/>
+                    </view>
+                    <connections>
+                        <outlet property="videoPanelView" destination="5O2-Hb-LZs" id="8M3-ye-W4a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Osh-0H-3hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1654" y="-4"/>
         </scene>
     </scenes>
 </document>

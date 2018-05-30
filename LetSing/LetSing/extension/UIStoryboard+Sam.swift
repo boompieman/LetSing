@@ -40,11 +40,7 @@ extension UIStoryboard {
         return UIStoryboard(name: "Record", bundle: nil)
     }
 
-    static func loginStoryBoard() -> UIStoryboard {
-        return UIStoryboard(name: "Login", bundle: nil)
-    }
-
-    static func postProductionStoryBoard() -> UIStoryboard {
+    static func postProductionStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "PostProduction", bundle: nil)
     }
 }
