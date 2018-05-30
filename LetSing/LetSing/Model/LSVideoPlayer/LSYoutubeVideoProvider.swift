@@ -70,8 +70,6 @@ class LSYoutubeVideoProvider: NSObject {
 
         guard let player = player, let currentTime = player.getCurrentTime(), let floatCurrentTime = Float(currentTime) else { return }
 
-
-
         self.floatCurrentTime = floatCurrentTime
 
 

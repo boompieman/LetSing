@@ -26,8 +26,6 @@ class LSJsonParser {
             return
         }
 
-
-
         guard let items = json["items"] as? [AnyObject] else {
 
             return }

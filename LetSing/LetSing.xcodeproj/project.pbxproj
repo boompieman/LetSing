@@ -68,9 +68,11 @@
 		FA7F708A20B6F3BF00D9DDA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708920B6F3BF00D9DDA1 /* User.swift */; };
 		FA7F708C20B6F43C00D9DDA1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */; };
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordManager.swift */; };
+		FA92785920A979F800CFBF94 /* LSRecordPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
 		FABE5BF420B716610025D801 /* EndRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE5BF320B716610025D801 /* EndRecordButton.swift */; };
+		FAC2946620BD3499002F87BF /* PostProduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2946520BD3499002F87BF /* PostProduction.storyboard */; };
+		FAC2946C20BE435C002F87BF /* LSRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */; };
 		FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */; };
 		FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */; };
 		FACCB76C20AE7AFB0067ADC5 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */; };
@@ -148,9 +150,11 @@
 		FA7F708920B6F3BF00D9DDA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
-		FA92785820A979F800CFBF94 /* LSRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordManager.swift; sourceTree = "<group>"; };
+		FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordPlayerManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		FABE5BF320B716610025D801 /* EndRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRecordButton.swift; sourceTree = "<group>"; };
+		FAC2946520BD3499002F87BF /* PostProduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostProduction.storyboard; sourceTree = "<group>"; };
+		FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordFileManager.swift; sourceTree = "<group>"; };
 		FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sam.swift"; sourceTree = "<group>"; };
 		FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTransformatter.swift; sourceTree = "<group>"; };
 		FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
@@ -222,16 +226,6 @@
 				FABE5BF320B716610025D801 /* EndRecordButton.swift */,
 			);
 			path = Record;
-			sourceTree = "<group>";
-		};
-		FA1DD01320A1995900F92475 /* LSVideoAndRecord */ = {
-			isa = PBXGroup;
-			children = (
-				FA1DD01C20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift */,
-				FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */,
-				FA92785820A979F800CFBF94 /* LSRecordManager.swift */,
-			);
-			path = LSVideoAndRecord;
 			sourceTree = "<group>";
 		};
 		FA3B8151209FF5B300915CC6 /* Search */ = {
@@ -444,7 +438,8 @@
 				FA0A090A20AEC342004D9696 /* Parser */,
 				FACCB76A20AE7AEA0067ADC5 /* lyrics */,
 				FACCB76720AE6E800067ADC5 /* PostProduction */,
-				FA1DD01320A1995900F92475 /* LSVideoAndRecord */,
+				FAC2946920BE42F9002F87BF /* LSRecordPlayer */,
+				FAC2946A20BE4312002F87BF /* LSVideoPlayer */,
 				FA4335AC209C3F6800BC90FC /* Song */,
 				FA4335AB209C3F5600BC90FC /* LSError */,
 				FA4335A8209C37AD00BC90FC /* LSConstant */,
@@ -485,6 +480,7 @@
 				FA7C96B2209959B800890325 /* Search.storyboard */,
 				FA7C96B5209959C800890325 /* UserProfile.storyboard */,
 				FA7F707B20B69ED400D9DDA1 /* Login.storyboard */,
+				FAC2946520BD3499002F87BF /* PostProduction.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -565,6 +561,24 @@
 				FA7F707520B69A8300D9DDA1 /* UserInfoView.swift */,
 			);
 			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		FAC2946920BE42F9002F87BF /* LSRecordPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */,
+				FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */,
+			);
+			path = LSRecordPlayer;
+			sourceTree = "<group>";
+		};
+		FAC2946A20BE4312002F87BF /* LSVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DD01C20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift */,
+				FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */,
+			);
+			path = LSVideoPlayer;
 			sourceTree = "<group>";
 		};
 		FACCB76720AE6E800067ADC5 /* PostProduction */ = {
@@ -680,6 +694,7 @@
 				FA7C96B1209959A300890325 /* Discover.storyboard in Resources */,
 				FA7C96992098205400890325 /* Record.storyboard in Resources */,
 				FA3B815F20A060EE00915CC6 /* SongTableViewCell.xib in Resources */,
+				FAC2946620BD3499002F87BF /* PostProduction.storyboard in Resources */,
 				FA5CA148209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib in Resources */,
 				FA5CA143209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib in Resources */,
 				FA7C96B3209959B800890325 /* Search.storyboard in Resources */,
@@ -802,7 +817,7 @@
 				FA1DD01B20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift in Sources */,
 				FA3B815720A00B5300915CC6 /* LSSearchController.swift in Sources */,
 				FA7C96BA20995C9600890325 /* LetSingNavigationController.swift in Sources */,
-				FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */,
+				FA92785920A979F800CFBF94 /* LSRecordPlayerManager.swift in Sources */,
 				FA1DD01020A1713700F92475 /* RecordNavigationView.swift in Sources */,
 				FAD67C8420B7C0C900402335 /* Record.swift in Sources */,
 				FA7C96AF2099592C00890325 /* TabBarViewController.swift in Sources */,
@@ -832,6 +847,7 @@
 				FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */,
 				FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */,
 				FA7C96942098205400890325 /* AppDelegate.swift in Sources */,
+				FAC2946C20BE435C002F87BF /* LSRecordFileManager.swift in Sources */,
 				FA41DDF9209DA4C700CDAB08 /* SongManager.swift in Sources */,
 				FA7C96C12099675200890325 /* UserProfileViewController.swift in Sources */,
 				FA1DD01920A1A6F900F92475 /* LSPlayerView.swift in Sources */,

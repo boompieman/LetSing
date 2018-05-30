@@ -37,20 +37,7 @@ class SearchViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
 
         songManager.delegate = self
-
-        let button = UIButton(type: .roundedRect)
-        button.frame = CGRect(x: 20, y: 100, width: 100, height: 30)
-        button.setTitle("Crash", for: [])
-        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-        view.addSubview(button)
-
-
     }
-
-    @IBAction func crashButtonTapped(_ sender: AnyObject) {
-        Crashlytics.sharedInstance().crash()
-    }
-
 
     func setupTableView() {
 
@@ -66,6 +53,8 @@ class SearchViewController: UIViewController {
         self.tableView.mj_footer = LSRefresh.footer { [weak self] in
             self?.songManager.getSearchResult(searchText: (self?.searchText)!, pageToken: (self?.pageToken)!)
         }
+
+        self.tableView.separatorStyle = .singleLine
     }
 
     func configureCustomSearchController() {

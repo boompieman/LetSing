@@ -22,16 +22,19 @@ class RecordViewController: UIViewController {
     let videoProvider = LSYoutubeVideoProvider()
     var song: Song?
 
-    var recordManager = LSRecordManager()
+    @IBOutlet weak var endRecordButton: EndRecordButton!
+    var recordPlayerManager = LSRecordPlayerManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupRecordManager()
+        setupRecordPlayerManager()
         observePlayerCurrentTime()
         generatePlayer()
         sendData()
     }
+
+    
 
     func sendData() {
         let lyricsVC = childViewControllers[0] as? LyricsViewController
@@ -59,9 +62,9 @@ class RecordViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
-    func setupRecordManager() {
-        recordManager.setLSAudioCategory(isActive: true)
-        recordManager.delegate = self
+    func setupRecordPlayerManager() {
+        recordPlayerManager.setLSAudioCategory(isActive: true)
+        recordPlayerManager.delegate = self
     }
 
     // MARK: Navigation and Bar
@@ -119,16 +122,16 @@ class RecordViewController: UIViewController {
         sender.isSelected = !sender.isSelected
 
         if sender.isSelected {
-            recordManager.start()
+            recordPlayerManager.start()
             sender.titleLabel?.text = "結束錄音"
         } else {
             Analytics.logEvent("record_button_tapped", parameters: nil)
-            recordManager.stop()
+            recordPlayerManager.stop()
         }
     }
 
     @IBAction func didTappedBackButton(_ sender: Any) {
-        recordManager.discard()
+        recordPlayerManager.discard()
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -204,20 +207,39 @@ extension RecordViewController: YouTubePlayerDelegate {
         case .Ended:
             print("Ended")
 
-            recordManager.stop()
+            recordPlayerManager.stop()
 
         case .Paused:
+            
             print("Pause")
+
+//            videoPlayer.play()
 
         default:
             break
         }
     }
+
+
+
+
 }
 
 extension RecordViewController: ScreenCaptureManagerDelegate {
     func didStartRecord() {
-        print("Record did start")
+
+        guard let cameraView = recordPlayerManager.recorder.cameraPreviewView else {
+            print("cameraView did not generate")
+            return
+        }
+
+        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
+
+        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
+
+        print(cameraView.frame)
+
+        self.view.addSubview(cameraView)
     }
 
     func didFinishRecord(preview: UIViewController) {

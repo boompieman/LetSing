@@ -18,6 +18,8 @@ enum TabBar {
 
     case login
 
+    case postProduction
+
     func controller() -> UIViewController {
 
         switch self {
@@ -38,6 +40,10 @@ enum TabBar {
 
             return UIStoryboard.loginStoryBoard().instantiateInitialViewController()!
 
+        case .postProduction:
+
+            return UIStoryboard.postProductionStoryBoard().instantiateInitialViewController()!
+
         }
     }
 
@@ -53,7 +59,7 @@ enum TabBar {
 
             return #imageLiteral(resourceName: "search")
 
-        case .userProfile, .login:
+        case .userProfile, .login, .postProduction:
 
             return #imageLiteral(resourceName: "userProfile")
 
@@ -72,7 +78,7 @@ enum TabBar {
 
             return #imageLiteral(resourceName: "search").withRenderingMode(.alwaysTemplate)
 
-        case .userProfile, .login:
+        case .userProfile, .login, .postProduction:
 
             return #imageLiteral(resourceName: "userProfile").withRenderingMode(.alwaysTemplate)
 
@@ -96,7 +102,7 @@ class TabBarViewController: UITabBarController {
 //            tabs = [.discover, .search, .login]
 //        }
 
-        tabs = [.discover, .search]
+        tabs = [.discover, .search, .postProduction]
 
         setupTab()
     }

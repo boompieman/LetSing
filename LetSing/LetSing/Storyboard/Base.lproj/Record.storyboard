@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -33,29 +32,29 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqd-2s-Hky" customClass="RecordVideoPanelView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="375" height="315.33333333333331"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="245"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evy-7c-Vwo" customClass="YouTubePlayerView" customModule="YouTubePlayer">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="281.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                         <color key="backgroundColor" red="0.19906398650000001" green="0.22694072130000001" blue="0.26024651529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Evy-7c-Vwo" secondAttribute="height" multiplier="16:12" id="V9y-ei-MgV"/>
+                                            <constraint firstAttribute="width" secondItem="Evy-7c-Vwo" secondAttribute="height" multiplier="16:9" id="V9y-ei-MgV"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9l-qe-KLX">
-                                        <rect key="frame" x="8" y="289.33333333333331" width="42" height="18"/>
+                                        <rect key="frame" x="8" y="219" width="42" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzG-z9-Bgd">
-                                        <rect key="frame" x="325" y="289.33333333333331" width="42" height="18"/>
+                                        <rect key="frame" x="325" y="219" width="42" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-DV-70c">
-                                        <rect key="frame" x="56" y="283.33333333333331" width="263" height="31"/>
+                                        <rect key="frame" x="56" y="213" width="263" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="maximumTrackTintColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="thumbTintColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,7 +85,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz4-iB-DtH" customClass="RecordNavigationView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="365.33333333333331" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="295" width="375" height="30"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDo-cd-T42">
                                         <rect key="frame" x="8" y="0.66666666666668561" width="359" height="1"/>
@@ -186,19 +185,24 @@
                             <constraint firstItem="u1Y-bk-kJw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KIO-cD-7A2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fqd-2s-Hky" secondAttribute="trailing" id="Spy-PX-fw5"/>
                             <constraint firstAttribute="trailing" secondItem="5U7-gR-oit" secondAttribute="trailing" id="VPJ-8U-RnW"/>
-                            <constraint firstItem="u1Y-bk-kJw" firstAttribute="top" secondItem="RpV-pn-jqv" secondAttribute="bottom" constant="5" id="ahG-Mp-9yj"/>
                             <constraint firstItem="fqd-2s-Hky" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bb8-QD-9i2"/>
                             <constraint firstItem="fPW-0p-oe6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fTB-a0-BW3"/>
                             <constraint firstAttribute="bottom" secondItem="5U7-gR-oit" secondAttribute="bottom" id="g4P-By-PQh"/>
                             <constraint firstItem="zz4-iB-DtH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="int-ur-kmL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zz4-iB-DtH" secondAttribute="trailing" id="qlo-uD-tb0"/>
                             <constraint firstItem="zz4-iB-DtH" firstAttribute="top" secondItem="fqd-2s-Hky" secondAttribute="bottom" id="v27-uA-eWC"/>
-                            <constraint firstItem="fPW-0p-oe6" firstAttribute="top" secondItem="zz4-iB-DtH" secondAttribute="bottom" id="yvd-cJ-edW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="fPW-0p-oe6"/>
+                                <exclude reference="5U7-gR-oit"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="XFo-aa-gcd"/>
                     <connections>
+                        <outlet property="endRecordButton" destination="u1Y-bk-kJw" id="fwd-kX-ip1"/>
                         <outlet property="loadingView" destination="5U7-gR-oit" id="Qtd-JT-d0w"/>
                         <outlet property="recordNavigationView" destination="zz4-iB-DtH" id="bvn-gV-xtm"/>
                         <outlet property="recordVideoPanelView" destination="fqd-2s-Hky" id="ESP-YV-feo"/>

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -27,19 +26,31 @@
                             <constraint firstAttribute="height" constant="90" id="cQW-se-YtL"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Y-6A-IQI">
-                        <rect key="frame" x="160" y="36" width="164" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nif-Sg-ZN4">
+                        <rect key="frame" x="158" y="36" width="188" height="120.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Y-6A-IQI">
+                                <rect key="frame" x="0.0" y="0.0" width="188" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Z6Y-6A-IQI" secondAttribute="trailing" id="2mO-8B-Hup"/>
+                            <constraint firstItem="Z6Y-6A-IQI" firstAttribute="top" secondItem="Nif-Sg-ZN4" secondAttribute="top" id="U9i-6w-pvx"/>
+                            <constraint firstItem="Z6Y-6A-IQI" firstAttribute="leading" secondItem="Nif-Sg-ZN4" secondAttribute="leading" id="iST-e1-OkL"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Z6Y-6A-IQI" firstAttribute="top" secondItem="4k9-Hj-1oK" secondAttribute="top" id="aJl-Ra-yCn"/>
+                    <constraint firstAttribute="bottom" secondItem="Nif-Sg-ZN4" secondAttribute="bottom" constant="5" id="6PO-W6-cQb"/>
+                    <constraint firstItem="Nif-Sg-ZN4" firstAttribute="leading" secondItem="4k9-Hj-1oK" secondAttribute="trailing" constant="10" id="Crh-Gd-0ex"/>
+                    <constraint firstItem="Nif-Sg-ZN4" firstAttribute="top" secondItem="4k9-Hj-1oK" secondAttribute="top" id="VzM-iQ-yLW"/>
                     <constraint firstItem="4k9-Hj-1oK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="nhR-h7-iOr"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Z6Y-6A-IQI" secondAttribute="trailing" constant="16" id="ppr-on-3Kl"/>
                     <constraint firstItem="4k9-Hj-1oK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tLq-X5-v64"/>
-                    <constraint firstItem="Z6Y-6A-IQI" firstAttribute="leading" secondItem="4k9-Hj-1oK" secondAttribute="trailing" constant="12" id="y72-xe-m6H"/>
+                    <constraint firstAttribute="trailing" secondItem="Nif-Sg-ZN4" secondAttribute="trailing" constant="10" id="yDC-9Z-TD2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
