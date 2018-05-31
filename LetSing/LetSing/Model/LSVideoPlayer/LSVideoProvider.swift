@@ -27,9 +27,7 @@ class LSVideoProvider: NSObject {
 
     func generatePlayer(url: URL) -> AVPlayer? {
 
-        let item = AVPlayerItem(asset: generateAsset(url: URL(string: "/private/var/mobile/Containers/Data/Application/13823AE1-3C87-446E-BD5F-274073A582B0/Documents/Records/2018-05-30-12:24:00.mp4")!))
-
-
+        let item = AVPlayerItem(asset: generateAsset(url: url))
 
         player = AVPlayer(playerItem: item)
 

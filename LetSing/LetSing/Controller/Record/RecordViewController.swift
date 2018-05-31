@@ -56,7 +56,7 @@ class RecordViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        videoProvider.removeObserverAndPlayer(self)
+        self.removeObserverAndPlayer()
 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -314,7 +314,7 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
                 )
 
                 previewController.present(alert, animated: false, completion: nil)
-
+//
 //                guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
 //                    withIdentifier: String(describing: TabBarViewController.self)
 //                    ) as? TabBarViewController else { return }
@@ -327,6 +327,15 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
 //                })
             }
         }
+    }
+
+    func removeObserverAndPlayer() {
+
+        videoProvider.pause()
+        videoProvider.clear()
+        videoProvider.invalidateTimer()
+        removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
+        removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
     }
 }
 

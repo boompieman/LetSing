@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideoPlayerViewController: UIViewController {
 
@@ -21,10 +22,17 @@ class VideoPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
         setupPlayer()
 
+        registerNotification()
+
         videoProvider.play()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        removeObserverAndPlayer()
     }
 
     func registerNotification() {
@@ -53,9 +61,7 @@ class VideoPlayerViewController: UIViewController {
 
         videoPanelView.updatePlayer(player: player)
 
-        print("dddddd: ",videoProvider.duration)
-
-        videoProvider.play()
+//        videoProvider.play()
     }
 
     // MARK: - KVO
@@ -72,20 +78,37 @@ class VideoPlayerViewController: UIViewController {
             let change = change
             else { return }
 
-        if path == #keyPath(LSVideoProvider.currentTime) {
+        if path == #keyPath(AVPlayerItem.status) {
 
-            playerCurrentTimeHandler(change: change)
+            playerStatusHandler(change: change)
         }
     }
 
-    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
+    private func playerStatusHandler(change: [NSKeyValueChangeKey : Any]) {
 
-        guard let newValue = change[NSKeyValueChangeKey.newKey] as? String else { return }
+        guard let status = change[NSKeyValueChangeKey.newKey] as? Int,
+            let itemStatus = AVPlayerItemStatus(rawValue: status)
+            else { return }
 
-//        videoPanelView.updateCurrentTime(
-//            newValue,
-//            proportion: videoProvider.currentProportion()
-//        )
+        switch itemStatus {
+
+        case .unknown: break
+
+        case .failed: break
+
+        case .readyToPlay:
+
+            videoProvider.play()
+
+//            videoPanelView.playerDidPlay()
+        }
+
+    }
+
+    func removeObserverAndPlayer() {
+        videoProvider.pause()
+        removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+
     }
 
 }

@@ -31,6 +31,8 @@ class LSRecordPlayerManager: NSObject {
     var audioInput: AVAssetWriterInput!
     var microInput: AVAssetWriterInput!
 
+    private var queue = DispatchQueue(label: "audio")
+
     func setLSAudioCategory(isActive flag: Bool) {
 
         do {
@@ -45,30 +47,6 @@ class LSRecordPlayerManager: NSObject {
 
     func generateRecorder() -> RPScreenRecorder {
         return recorder
-    }
-
-    private func isSystemVersionSupport() -> Bool {
-
-//        guard let floatSystemVersion = Float(UIDevice.current.systemVersion) else {
-//            print(UIDevice.current.systemVersion)
-//            return false
-//        }
-//
-//        if floatSystemVersion < Float(9) {
-//            AlertManager.shared.showAlert(with: "提醒您", message: "請升級iOS系統至9.0，否則無法錄影", completion: {
-//                return false
-//            })
-//        }
-        return true
-    }
-
-    private func isRecorderAvailable() -> Bool {
-//        if !recorder.isAvailable{
-//            AlertManager.shared.showAlert(with: "提醒您", message: "您的手機的錄製功能目前有問題") {
-//                return false
-//            }
-//        }
-        return true
     }
 
     // MARK: recorder action
@@ -102,26 +80,45 @@ class LSRecordPlayerManager: NSObject {
 
     // using startCapture
     func start() {
+
         self.recorder.delegate = self
 
-        let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.filePath())
+        let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.newRecordFilePath())
+
+        LSRecordFileManager.shared.deleteRecord(at: fileURL)
         assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType: .mp4)
 
         let videoOutputSettings: [String : Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
-            AVVideoWidthKey: UIScreen.main.bounds.size.width,
-            AVVideoHeightKey: UIScreen.main.bounds.size.height
+            AVVideoWidthKey: UIScreen.main.bounds.width,
+            AVVideoHeightKey: UIScreen.main.bounds.height
         ]
 
+        var acl:AudioChannelLayout!
+        bzero(&acl, MemoryLayout.size(ofValue: acl))
+        acl.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo
+
+        let audioOutputSettings: [String : Any] = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: 44100,
+            AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
+        ]
+
+        audioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
+        microInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
         videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
+
         videoInput.expectsMediaDataInRealTime = true
+        audioInput.expectsMediaDataInRealTime = true
+        microInput.expectsMediaDataInRealTime = true
+
         self.assetWriter.add(videoInput)
-
-
+        self.assetWriter.add(audioInput)
+        self.assetWriter.add(microInput)
 
         if self.recorder.isAvailable && !self.recorder.isRecording {
 
-//            self.recorder.isMicrophoneEnabled = true
+            self.recorder.isMicrophoneEnabled = true
 //                self.recorder.isCameraEnabled = true
 
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
@@ -131,30 +128,50 @@ class LSRecordPlayerManager: NSObject {
                     return
                 }
 
-                if CMSampleBufferDataIsReady(sampleBuffer) {
+//                self.delegate?.didStartRecord()
+                self.queue.async(execute: {
+                    if CMSampleBufferDataIsReady(sampleBuffer) {
 
-                    if self.assetWriter.status == AVAssetWriterStatus.unknown {
-                        self.assetWriter.startWriting()
-                        self.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
-                        print("sampleBuffer:", sampleBuffer)
-                    }
+                        if self.assetWriter.status == AVAssetWriterStatus.unknown {
+                            self.assetWriter.startWriting()
 
-                    if self.assetWriter.status == AVAssetWriterStatus.failed {
+                            self.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
 
-                        print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
-                        return
-                    }
+                            print("unknown")
+                        }
 
-                    if sampleBufferType == .video {
-                        if self.videoInput.isReadyForMoreMediaData {
-                            self.videoInput.append(sampleBuffer)
+
+
+                        if self.assetWriter.status == AVAssetWriterStatus.failed {
+
+                            print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
+                            return
+                        }
+
+                        if sampleBufferType == .video {
+                            if self.videoInput.isReadyForMoreMediaData {
+                                self.videoInput.append(sampleBuffer)
+                            }
+                        }
+                        if sampleBufferType == .audioApp {
+                            if self.audioInput.isReadyForMoreMediaData {
+                                print("appInput")
+                                self.audioInput.append(sampleBuffer)
+                            }
+                        }
+
+                        if sampleBufferType == .audioMic {
+                            if self.microInput.isReadyForMoreMediaData {
+                                print("micInput")
+                                self.microInput.append(sampleBuffer)
+                            }
                         }
                     }
-                }
+                })
 
             }) { (error) in
                 if let error = error {
-                    self.delegate?.didStartRecord()
+                    self.delegate?.didStopWithError(error: error)
                 }
             }
         }
@@ -171,7 +188,9 @@ class LSRecordPlayerManager: NSObject {
                 }
 
                 self.assetWriter.finishWriting {
+
                     print("All Records:", LSRecordFileManager.shared.fetchAllRecords())
+
                 }
             }
         }

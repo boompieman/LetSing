@@ -106,10 +106,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5O2-Hb-LZs" customClass="LSVideoPanelView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="503"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8R-Bc-tF9" customClass="LSPlayerView" customModule="LetSing" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -130,7 +130,7 @@
                             <constraint firstItem="J1N-8Q-MVw" firstAttribute="trailing" secondItem="5O2-Hb-LZs" secondAttribute="trailing" id="15a-Nh-VOe"/>
                             <constraint firstItem="5O2-Hb-LZs" firstAttribute="top" secondItem="J1N-8Q-MVw" secondAttribute="top" id="HL4-SN-t05"/>
                             <constraint firstItem="5O2-Hb-LZs" firstAttribute="leading" secondItem="J1N-8Q-MVw" secondAttribute="leading" id="hsw-bN-ULl"/>
-                            <constraint firstItem="J1N-8Q-MVw" firstAttribute="bottom" secondItem="5O2-Hb-LZs" secondAttribute="bottom" constant="100" id="yLP-IR-mRC"/>
+                            <constraint firstItem="J1N-8Q-MVw" firstAttribute="bottom" secondItem="5O2-Hb-LZs" secondAttribute="bottom" id="yLP-IR-mRC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J1N-8Q-MVw"/>
                     </view>

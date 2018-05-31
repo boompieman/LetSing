@@ -31,7 +31,7 @@ class LSRecordFileManager {
         }
     }
 
-    func filePath() -> String {
+    func newRecordFilePath() -> String {
         createFolder()
 
         let dateFormatter = LSDateFormatter()
@@ -57,7 +57,9 @@ class LSRecordFileManager {
     }
 
     func deleteRecord(at filePath: URL) {
-        try? FileManager.default.removeItem(at: filePath)
+        if FileManager.default.fileExists(atPath: filePath.absoluteString) {
+            try? FileManager.default.removeItem(at: filePath)
+        }
     }
 
 }

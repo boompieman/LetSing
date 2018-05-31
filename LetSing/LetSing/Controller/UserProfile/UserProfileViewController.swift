@@ -88,6 +88,11 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        //刪資料！！
+//        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row])
+//        self.records.remove(at: indexPath.row)
+//        self.tableView.reloadData()
+
         performSegue(withIdentifier: String(describing: VideoPlayerViewController.self), sender: indexPath)
     }
 

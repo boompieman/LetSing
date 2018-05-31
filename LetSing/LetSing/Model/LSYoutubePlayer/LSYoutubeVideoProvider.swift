@@ -128,18 +128,4 @@ class LSYoutubeVideoProvider: NSObject {
 
         player.seekTo(percentage * floatDuration, seekAhead: true)
     }
-
-    // clear all setting
-
-    func removeObserverAndPlayer(_ controller: UIViewController) {
-        guard let player = player else { return }
-
-        print("removeObserverAndPlayer")
-
-        player.pause()
-        player.clear()
-        invalidateTimer()
-        removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
-        removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
-    }
 }
