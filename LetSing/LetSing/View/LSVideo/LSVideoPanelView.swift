@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
 
 class LSVideoPanelView: UIView {
 
+    @IBOutlet weak var playerView: LSPlayerView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
+    func updatePlayer(player: AVPlayer) {
+        playerView.player = player
+    }
 }

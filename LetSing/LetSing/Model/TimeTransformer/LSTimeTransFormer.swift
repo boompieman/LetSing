@@ -5,10 +5,25 @@
 //  Created by MACBOOK on 2018/5/10.
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
-import Foundation
+import AVFoundation
 
-struct LSYoutubeTimerTransformer {
+struct LSTimeTransFormer {
 
+    // CMTime
+    func time(_ time: CMTime) -> String {
+
+        let time = Int(CMTimeGetSeconds(time))
+
+        let hour = time / 3600
+
+        let min = time % 3600 / 60
+
+        let second = time % 3600 % 60
+
+        return manipulateTime(hour: hour, minute: min, second: second)
+    }
+
+    //String
     func time(_ time: String) -> String {
 
         guard let floatTime = Float(time) else {

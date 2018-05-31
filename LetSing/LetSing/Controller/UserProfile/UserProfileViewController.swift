@@ -92,6 +92,10 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
+//        let destinationVC = VideoPlayerViewController()
+//        destinationVC.videoURL = self.records[indexPath.row]
+
+
 
         performSegue(withIdentifier: String(describing: VideoPlayerViewController.self), sender: indexPath)
 
@@ -99,5 +103,24 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
 //        self.records.remove(at: indexPath.row)
 //
 //        self.tableView.reloadData()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        guard let identifier = segue.identifier else { return }
+
+        print(identifier)
+        print(String(describing: VideoPlayerViewController.self))
+
+
+        if identifier == String(describing: VideoPlayerViewController.self) {
+
+            
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+
+                let destinationVC = segue.destination as? VideoPlayerViewController
+                destinationVC?.videoURL = self.records[indexPath.row]
+            }
+        }
     }
 }

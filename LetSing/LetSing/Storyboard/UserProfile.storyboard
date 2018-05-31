@@ -107,7 +107,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5O2-Hb-LZs" customClass="LSVideoPanelView" customModule="LetSing" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="503"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8R-Bc-tF9" customClass="LSPlayerView" customModule="LetSing" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="D8R-Bc-tF9" secondAttribute="bottom" id="Xkm-Qb-bRd"/>
+                                    <constraint firstItem="D8R-Bc-tF9" firstAttribute="leading" secondItem="5O2-Hb-LZs" secondAttribute="leading" id="h8P-4Q-vL9"/>
+                                    <constraint firstItem="D8R-Bc-tF9" firstAttribute="top" secondItem="5O2-Hb-LZs" secondAttribute="top" id="qqd-jK-vSe"/>
+                                    <constraint firstAttribute="trailing" secondItem="D8R-Bc-tF9" secondAttribute="trailing" id="yQw-o1-JJ8"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="playerView" destination="D8R-Bc-tF9" id="mKU-Of-5GL"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

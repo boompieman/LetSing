@@ -30,11 +30,11 @@ struct LSConstants {
         static let originProportion = 0.0
     }
 
+    static let duration = "duration"
+
     static let tableViewInset = UIEdgeInsets(top: 0, left: 0, bottom: 49, right: 0)
 
     static let emptyString = ""
-
-    static let duration = "duration"
 
     static let playerVars = [
         "playsinline": 1 as AnyObject,

@@ -16,7 +16,7 @@
 		FA1DD01220A18EF000F92475 /* RecordVideoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01120A18EF000F92475 /* RecordVideoPanelView.swift */; };
 		FA1DD01920A1A6F900F92475 /* LSPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */; };
 		FA1DD01B20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */; };
-		FA1DD01D20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01C20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift */; };
+		FA1DD01D20A3EFBB00F92475 /* LSTimeTransFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DD01C20A3EFBB00F92475 /* LSTimeTransFormer.swift */; };
 		FA32EF6020AF0EE700A0F3F6 /* UIView+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32EF5F20AF0EE700A0F3F6 /* UIView+Sam.swift */; };
 		FA3B815520A0058600915CC6 /* LSSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B815420A0058600915CC6 /* LSSearchBar.swift */; };
 		FA3B815720A00B5300915CC6 /* LSSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3B815620A00B5300915CC6 /* LSSearchController.swift */; };
@@ -100,7 +100,7 @@
 		FA1DD01120A18EF000F92475 /* RecordVideoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVideoPanelView.swift; sourceTree = "<group>"; };
 		FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSPlayerView.swift; sourceTree = "<group>"; };
 		FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSYoutubeVideoProvider.swift; sourceTree = "<group>"; };
-		FA1DD01C20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSYoutubeTimerTransformer.swift; sourceTree = "<group>"; };
+		FA1DD01C20A3EFBB00F92475 /* LSTimeTransFormer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSTimeTransFormer.swift; sourceTree = "<group>"; };
 		FA32EF5F20AF0EE700A0F3F6 /* UIView+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Sam.swift"; sourceTree = "<group>"; };
 		FA3B815420A0058600915CC6 /* LSSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSSearchBar.swift; sourceTree = "<group>"; };
 		FA3B815620A00B5300915CC6 /* LSSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSSearchController.swift; sourceTree = "<group>"; };
@@ -439,6 +439,7 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAC2947D20BE7D3D002F87BF /* TimeTransformer */,
 				FAC2947020BE62CB002F87BF /* LSVideoPlayer */,
 				FAC2946D20BE58F1002F87BF /* DateFormatter */,
 				FAD67C8220B7C0B300402335 /* Record */,
@@ -586,7 +587,6 @@
 		FAC2946A20BE4312002F87BF /* LSYoutubePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				FA1DD01C20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift */,
 				FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */,
 			);
 			path = LSYoutubePlayer;
@@ -623,6 +623,14 @@
 				FAC2947720BE63E4002F87BF /* VideoPlayerViewController.swift */,
 			);
 			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		FAC2947D20BE7D3D002F87BF /* TimeTransformer */ = {
+			isa = PBXGroup;
+			children = (
+				FA1DD01C20A3EFBB00F92475 /* LSTimeTransFormer.swift */,
+			);
+			path = TimeTransformer;
 			sourceTree = "<group>";
 		};
 		FACCB76720AE6E800067ADC5 /* PostProduction */ = {
@@ -890,7 +898,7 @@
 				FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */,
 				FA0A090920AEC339004D9696 /* LSXMLParser.swift in Sources */,
 				FA7C96962098205400890325 /* RecordViewController.swift in Sources */,
-				FA1DD01D20A3EFBB00F92475 /* LSYoutubeTimerTransformer.swift in Sources */,
+				FA1DD01D20A3EFBB00F92475 /* LSTimeTransFormer.swift in Sources */,
 				FAD67C8620B7C5F100402335 /* RecordManager.swift in Sources */,
 				FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */,
 				FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */,

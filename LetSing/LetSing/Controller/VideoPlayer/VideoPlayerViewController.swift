@@ -6,7 +6,6 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-import AVFoundation
 import UIKit
 
 class VideoPlayerViewController: UIViewController {
@@ -15,10 +14,27 @@ class VideoPlayerViewController: UIViewController {
 
     @IBOutlet weak var videoPanelView: LSVideoPanelView!
 
-    override func viewDidLoad() {
-         super.viewDidLoad()
+    var videoURL: URL?
 
-        videoPanelView.backgroundColor = UIColor.blue
+    let videoProvider = LSVideoProvider()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPlayer()
+
+        videoProvider.play()
+    }
+
+    func setupPlayer() {
+        guard let url = videoURL else {
+
+            return }
+
+        guard let player = videoProvider.generatePlayer(url: url) else {
+
+            return }
+
+        videoPanelView.updatePlayer(player: player)
     }
 
 }

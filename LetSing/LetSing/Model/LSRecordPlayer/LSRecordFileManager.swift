@@ -38,7 +38,6 @@ class LSRecordFileManager {
 
 
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        print(path[0])
         let documentsDirectory = path[0]
 
         let filePath: String = "\(documentsDirectory)/Records/\(dateFormatter.getCurrentTime()).mp4"
@@ -46,9 +45,13 @@ class LSRecordFileManager {
     }
 
     func fetchAllRecords() -> [URL] {
+
+        createFolder()
+
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 
         let recordPath = documentsDirectory?.appendingPathComponent("/Records")
+
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: recordPath!, includingPropertiesForKeys: nil, options: [])
 
         return directoryContents

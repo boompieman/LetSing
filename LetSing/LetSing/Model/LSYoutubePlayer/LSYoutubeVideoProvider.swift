@@ -19,7 +19,7 @@ class LSYoutubeVideoProvider: NSObject {
 
     private var player: YouTubePlayerView?
 
-    private let timeTransformer = LSYoutubeTimerTransformer()
+    private let timeTransformer = LSTimeTransFormer()
 
     private static var observerContext = 0
 
