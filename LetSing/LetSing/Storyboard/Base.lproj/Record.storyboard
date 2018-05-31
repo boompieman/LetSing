@@ -116,10 +116,10 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPW-0p-oe6" userLabel="Lyrics View">
-                                <rect key="frame" x="0.0" y="395.33333333333337" width="375" height="327.33333333333337"/>
+                                <rect key="frame" x="0.0" y="395.33333333333337" width="375" height="325.33333333333337"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpV-pn-jqv">
-                                        <rect key="frame" x="0.0" y="0.66666666666668561" width="375" height="327"/>
+                                        <rect key="frame" x="0.0" y="0.66666666666668561" width="375" height="325"/>
                                         <color key="backgroundColor" red="0.1990639865398407" green="0.22694072127342224" blue="0.26024651527404785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <segue destination="niz-ZS-gm9" kind="embed" id="Jmn-lf-qDy"/>
@@ -134,20 +134,17 @@
                                     <constraint firstItem="RpV-pn-jqv" firstAttribute="top" secondItem="fPW-0p-oe6" secondAttribute="top" id="t2Y-50-ffa"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1Y-bk-kJw" customClass="EndRecordButton" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="137.66666666666666" y="728" width="100" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1Y-bk-kJw" customClass="EndRecordButton" customModule="LetSing" customModuleProvider="target">
+                                <rect key="frame" x="137.66666666666666" y="726" width="100" height="32"/>
                                 <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="62c-Lo-kj4"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="開始錄音">
-                                    <color key="titleColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <state key="selected" title="結束錄音">
-                                    <color key="titleColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="開始錄音"/>
+                                <state key="selected" title="錄音中">
+                                    <color key="titleColor" red="0.84414172170000001" green="0.26513424520000001" blue="0.24483883379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="startRecordBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r42-TC-IAb"/>
@@ -196,7 +193,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="fPW-0p-oe6"/>
-                                <exclude reference="5U7-gR-oit"/>
                             </mask>
                         </variation>
                     </view>
@@ -217,15 +213,15 @@
             <objects>
                 <viewController id="niz-ZS-gm9" customClass="LyricsViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NaK-7o-S8e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="325"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-oi-BB3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="327"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這首歌目前沒有歌詞喔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pZ-mx-D8P">
-                                <rect key="frame" x="101.66666666666667" y="154" width="173.33333333333331" height="20.333333333333343"/>
+                                <rect key="frame" x="101.00000000000001" y="152.33333333333334" width="173.33333333333337" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.98719999650000001" blue="0.93691083740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

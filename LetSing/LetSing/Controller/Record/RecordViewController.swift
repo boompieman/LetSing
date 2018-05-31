@@ -16,13 +16,13 @@ class RecordViewController: UIViewController {
 
     private static var observerContext = 0
 
+    @IBOutlet weak var endRecordButton: EndRecordButton!
     @IBOutlet weak var loadingView: LoadingView!
     @IBOutlet weak var recordNavigationView: RecordNavigationView!
     @IBOutlet weak var recordVideoPanelView: RecordVideoPanelView!
     let videoProvider = LSYoutubeVideoProvider()
     var song: Song?
 
-    @IBOutlet weak var endRecordButton: EndRecordButton!
     var recordPlayerManager = LSRecordPlayerManager()
 
     override func viewDidLoad() {
@@ -117,13 +117,13 @@ class RecordViewController: UIViewController {
         videoProvider.seekTo(percentage: sender.value)
     }
 
-    @IBAction func startRecordBtnTapped(_ sender: UIButton) {
+    @IBAction func startRecordBtnTapped(_ sender: EndRecordButton) {
 
         sender.isSelected = !sender.isSelected
 
         if sender.isSelected {
             recordPlayerManager.start()
-            sender.titleLabel?.text = "結束錄音"
+
         } else {
             Analytics.logEvent("record_button_tapped", parameters: nil)
             recordPlayerManager.stop()
@@ -228,23 +228,28 @@ extension RecordViewController: YouTubePlayerDelegate {
 extension RecordViewController: ScreenCaptureManagerDelegate {
     func didStartRecord() {
 
-        guard let cameraView = recordPlayerManager.recorder.cameraPreviewView else {
-            print("cameraView did not generate")
-            return
-        }
+//        guard let cameraView = recordPlayerManager.recorder.cameraPreviewView else {
+//            print("cameraView did not generate")
+//            return
+//        }
+//
+//        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
+//
+//        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
+//
+//        print(cameraView.frame)
+//
+//        self.view.addSubview(cameraView)
+        print("didStartRecord")
 
-        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
-
-        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
-
-        print(cameraView.frame)
-
-        self.view.addSubview(cameraView)
+        endRecordButton.startRecording()
     }
 
     func didFinishRecord(preview: UIViewController) {
 
         print("Record did finish")
+
+        endRecordButton.stopRecording()
 
         let previewController = preview as! RPPreviewViewController
 
@@ -255,8 +260,10 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 
     func didStopWithError(error: Error) {
 
+        endRecordButton.stopRecording()
+
         let alert = AlertManager.shared.showAlert(
-            with: "error",
+            with: "好像出現什麼問題",
             message: error.localizedDescription,
             completion: { }
         )

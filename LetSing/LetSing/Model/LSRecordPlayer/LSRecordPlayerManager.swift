@@ -127,9 +127,7 @@ class LSRecordPlayerManager: NSObject {
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
 
                 if let error = error {
-
-
-                    print("error:", error)
+                    self.delegate?.didStopWithError(error: error)
                     return
                 }
 
@@ -156,12 +154,9 @@ class LSRecordPlayerManager: NSObject {
 
             }) { (error) in
                 if let error = error {
-                    print("error:", error)
+                    self.delegate?.didStartRecord()
                 }
             }
-        }
-        else {
-            print("record is not available or is recording")
         }
     }
 
@@ -172,16 +167,13 @@ class LSRecordPlayerManager: NSObject {
             self.recorder.stopCapture { (error) in
 
                 if let error = error {
-                    print("error: ", error)
+                    self.delegate?.didStopWithError(error: error)
                 }
 
                 self.assetWriter.finishWriting {
                     print("All Records:", LSRecordFileManager.shared.fetchAllRecords())
                 }
             }
-        }
-        else {
-            print("record is not available or is not recording")
         }
     }
 
