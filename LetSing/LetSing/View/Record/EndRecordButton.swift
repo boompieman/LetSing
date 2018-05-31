@@ -23,4 +23,26 @@ class EndRecordButton: UIButton {
 
     }
 
+    // anamation
+    func startRecording() {
+
+        DispatchQueue.main.async {
+
+            self.isSelected = true
+            UIView.animate(withDuration: 0.85, delay: 0, options: [.autoreverse, .repeat], animations: { () in
+                self.titleLabel?.alpha = 0
+            })
+        }
+    }
+
+    func stopRecording() {
+
+        DispatchQueue.main.async {
+            self.layer.removeAllAnimations()
+            self.isSelected = false
+            self.titleLabel?.alpha = 1
+            
+        }
+    }
+
 }

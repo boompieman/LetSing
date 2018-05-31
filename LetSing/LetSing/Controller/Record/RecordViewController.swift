@@ -15,6 +15,7 @@ class RecordViewController: UIViewController {
 
     private static var observerContext = 0
 
+    @IBOutlet weak var endRecordButton: EndRecordButton!
     @IBOutlet weak var loadingView: LoadingView!
     @IBOutlet weak var recordNavigationView: RecordNavigationView!
     @IBOutlet weak var recordVideoPanelView: RecordVideoPanelView!
@@ -113,13 +114,13 @@ class RecordViewController: UIViewController {
         videoProvider.seekTo(percentage: sender.value)
     }
 
-    @IBAction func startRecordBtnTapped(_ sender: UIButton) {
+    @IBAction func startRecordBtnTapped(_ sender: EndRecordButton) {
 
         sender.isSelected = !sender.isSelected
 
         if sender.isSelected {
             recordManager.start()
-            sender.titleLabel?.text = "結束錄音"
+
         } else {
             recordManager.stop()
         }
@@ -215,12 +216,17 @@ extension RecordViewController: YouTubePlayerDelegate {
 
 extension RecordViewController: ScreenCaptureManagerDelegate {
     func didStartRecord() {
-        print("Record did start")
+
+        print("didStartRecord")
+
+        endRecordButton.startRecording()
     }
 
     func didFinishRecord(preview: UIViewController) {
 
         print("Record did finish")
+
+        endRecordButton.stopRecording()
 
         let previewController = preview as! RPPreviewViewController
 
@@ -231,8 +237,10 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 
     func didStopWithError(error: Error) {
 
+        endRecordButton.stopRecording()
+
         let alert = AlertManager.shared.showAlert(
-            with: "error",
+            with: "好像出現什麼問題",
             message: error.localizedDescription,
             completion: { }
         )

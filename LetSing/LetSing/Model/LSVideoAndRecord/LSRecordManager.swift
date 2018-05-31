@@ -52,11 +52,12 @@ class LSRecordManager: NSObject {
 
             self.recorder.startRecording { (error) in
 
-                self.delegate?.didStartRecord()
-
                 if let error = error {
-                    print(error)
+                    self.delegate?.didStopWithError(error: error)
+                    return
                 }
+
+                self.delegate?.didStartRecord()
             }
         }
     }
@@ -73,7 +74,7 @@ class LSRecordManager: NSObject {
 
                 }
                 if let error = error {
-                    print(error)
+                    self.delegate?.didStopWithError(error: error)
                 }
             }
         }

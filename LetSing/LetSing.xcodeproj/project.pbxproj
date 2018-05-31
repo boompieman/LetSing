@@ -71,6 +71,7 @@
 		FA92785920A979F800CFBF94 /* LSRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
 		FABE5BF420B716610025D801 /* EndRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE5BF320B716610025D801 /* EndRecordButton.swift */; };
+		FAC2947F20BF93B2002F87BF /* RecordingDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2947E20BF93B2002F87BF /* RecordingDiagramView.swift */; };
 		FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */; };
 		FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */; };
 		FACCB76C20AE7AFB0067ADC5 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */; };
@@ -151,6 +152,7 @@
 		FA92785820A979F800CFBF94 /* LSRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		FABE5BF320B716610025D801 /* EndRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRecordButton.swift; sourceTree = "<group>"; };
+		FAC2947E20BF93B2002F87BF /* RecordingDiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDiagramView.swift; sourceTree = "<group>"; };
 		FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sam.swift"; sourceTree = "<group>"; };
 		FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTransformatter.swift; sourceTree = "<group>"; };
 		FACCB76B20AE7AFB0067ADC5 /* Lyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */,
 				FA92785A20A997E700CFBF94 /* LoadingView.swift */,
 				FABE5BF320B716610025D801 /* EndRecordButton.swift */,
+				FAC2947E20BF93B2002F87BF /* RecordingDiagramView.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				FA7C96BF209962B800890325 /* LetSingColor.swift in Sources */,
 				FA1DD01220A18EF000F92475 /* RecordVideoPanelView.swift in Sources */,
 				FA7F707F20B6A50E00D9DDA1 /* LoginManager.swift in Sources */,
+				FAC2947F20BF93B2002F87BF /* RecordingDiagramView.swift in Sources */,
 				FACCB76C20AE7AFB0067ADC5 /* Lyrics.swift in Sources */,
 				FA4335B2209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift in Sources */,
 				FAEE0C3520BBEE6400B828EC /* LSRefresh.swift in Sources */,
