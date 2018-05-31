@@ -47,7 +47,6 @@ class LSRecordFileManager {
     func fetchAllRecords() -> [URL] {
 
         createFolder()
-
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 
         let recordPath = documentsDirectory?.appendingPathComponent("/Records")

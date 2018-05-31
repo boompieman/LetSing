@@ -37,10 +37,7 @@ class userProfileViewController: UIViewController {
     func requestProfile() {
 
         UserManager.shared.getUserProfile(success: { (user) in
-            DispatchQueue.main.async {
-
                 self.userInfoView.updateProfileWith(name: user.name, image: user.image)
-            }
         }) { (error) in
             print(error)
         }
@@ -90,31 +87,15 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-
-//        let destinationVC = VideoPlayerViewController()
-//        destinationVC.videoURL = self.records[indexPath.row]
-
-
 
         performSegue(withIdentifier: String(describing: VideoPlayerViewController.self), sender: indexPath)
-
-//        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row])
-//        self.records.remove(at: indexPath.row)
-//
-//        self.tableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         guard let identifier = segue.identifier else { return }
 
-        print(identifier)
-        print(String(describing: VideoPlayerViewController.self))
-
-
         if identifier == String(describing: VideoPlayerViewController.self) {
-
             
             if let indexPath = self.tableView.indexPathForSelectedRow {
 

@@ -60,6 +60,7 @@ class RecordViewController: UIViewController {
 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
 
     func setupRecordPlayerManager() {
@@ -75,10 +76,7 @@ class RecordViewController: UIViewController {
     func setBar() {
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+        UIApplication.shared.setStatusBarHidden(true, with: .none)
     }
 
 
@@ -240,7 +238,7 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 //        print(cameraView.frame)
 //
 //        self.view.addSubview(cameraView)
-        print("didStartRecord")
+        print("did Start Record")
 
         endRecordButton.startRecording()
     }

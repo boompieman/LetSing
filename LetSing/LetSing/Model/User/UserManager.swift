@@ -63,8 +63,6 @@ class UserManager {
             return
         }
 
-        print(userToken)
-
         let request = ref.child("users").child(userToken)
 
         request.observeSingleEvent(of: .value) { (snapshot) in
@@ -80,7 +78,9 @@ class UserManager {
 
             print("-------",profile,"-------")
 
-            success(User(name: name, email: email, image: image, id: id))
+            DispatchQueue.main.async {
+                success(User(name: name, email: email, image: image, id: id))
+            }
         }
     }
 

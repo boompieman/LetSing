@@ -21,11 +21,15 @@ class LSVideoProvider: NSObject {
 
     @objc dynamic var currentTime: String = LSConstants.emptyString
 
+    private static var observerContext = 0
+
     private let timeTransformer = LSTimeTransFormer()
 
     func generatePlayer(url: URL) -> AVPlayer? {
 
-        let item = AVPlayerItem(asset: generateAsset(url: url))
+        let item = AVPlayerItem(asset: generateAsset(url: URL(string: "/private/var/mobile/Containers/Data/Application/13823AE1-3C87-446E-BD5F-274073A582B0/Documents/Records/2018-05-30-12:24:00.mp4")!))
+
+
 
         player = AVPlayer(playerItem: item)
 
@@ -42,6 +46,22 @@ class LSVideoProvider: NSObject {
         }
 
         return player!
+    }
+
+    func generatePlayerAndObserveStatus(
+        url: URL,
+        observer: NSObject,
+        context: UnsafeMutableRawPointer?
+        ) -> AVPlayer?
+    {
+
+        guard let player = generatePlayer(url: url),
+            let item = player.currentItem
+            else { return nil }
+
+        item.addObserver(observer, forKeyPath: #keyPath(AVPlayerItem.status), options: NSKeyValueObservingOptions.new, context: context)
+
+        return player
     }
 
     private func generateAsset(url: URL) -> AVAsset {
@@ -62,7 +82,6 @@ class LSVideoProvider: NSObject {
                     object: self
                 )
             }
-
         }
 
         print("asset:", asset)
@@ -70,10 +89,18 @@ class LSVideoProvider: NSObject {
         return asset
     }
 
+    // MARK: - Player Action
     func play() {
 
         guard let player = player else { return }
 
         player.play()
+    }
+
+    func pause() {
+
+        guard let player = player else { return }
+
+        player.pause()
     }
 }
