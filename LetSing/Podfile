@@ -21,5 +21,8 @@ target 'LetSing' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'MJRefresh'
+  pod 'Fabric'
+  pod 'Crashlytics'
+
 
 end

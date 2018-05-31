@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import YouTubePlayer
 import ReplayKit
+import Firebase
 
 class RecordViewController: UIViewController {
 
@@ -122,6 +123,7 @@ class RecordViewController: UIViewController {
             recordManager.start()
 
         } else {
+            Analytics.logEvent("record_button_tapped", parameters: nil)
             recordManager.stop()
         }
     }
