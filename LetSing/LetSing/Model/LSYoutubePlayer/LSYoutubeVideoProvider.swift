@@ -63,6 +63,17 @@ class LSYoutubeVideoProvider: NSObject {
         guard let timer = timer else { return }
 
         timer.invalidate()
+        
+    }
+
+    func isPlaying() -> Bool {
+
+        if player?.playerState == .Playing {
+            return true
+        }
+
+        return false
+
     }
 
 
@@ -71,7 +82,6 @@ class LSYoutubeVideoProvider: NSObject {
         guard let player = player, let currentTime = player.getCurrentTime(), let floatCurrentTime = Float(currentTime) else { return }
 
         self.floatCurrentTime = floatCurrentTime
-
 
         self.currentTime = self.timeTransformer.time(currentTime)
     }

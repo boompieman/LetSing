@@ -120,6 +120,7 @@ class LSRecordPlayerManager: NSObject {
 
             self.recorder.isMicrophoneEnabled = true
 //                self.recorder.isCameraEnabled = true
+            self.delegate?.didStartRecord()
 
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
 
@@ -128,7 +129,6 @@ class LSRecordPlayerManager: NSObject {
                     return
                 }
 
-//                self.delegate?.didStartRecord()
                 self.queue.async(execute: {
                     if CMSampleBufferDataIsReady(sampleBuffer) {
 

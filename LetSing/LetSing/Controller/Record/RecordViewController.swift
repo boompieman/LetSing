@@ -29,12 +29,12 @@ class RecordViewController: UIViewController {
         super.viewDidLoad()
 
         setupRecordPlayerManager()
+        setPlayerViewGestureRecognizer()
         observePlayerCurrentTime()
         generatePlayer()
         sendData()
     }
 
-    
 
     func sendData() {
         let lyricsVC = childViewControllers[0] as? LyricsViewController
@@ -133,6 +133,30 @@ class RecordViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    func setPlayerViewGestureRecognizer() {
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(playerViewDidTapped))
+
+        gesture.numberOfTapsRequired = 1
+
+        // 幾根指頭觸發
+        gesture.numberOfTouchesRequired = 1
+
+        gesture.delegate = self
+
+        self.recordVideoPanelView.videoPlayerView.addGestureRecognizer(gesture)
+    }
+
+    @objc func playerViewDidTapped() {
+
+        if videoProvider.isPlaying() {
+            videoProvider.pause()
+        } else {
+            videoProvider.play()
+        }
+        
+    }
+
     // MARK: - KVO
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -178,6 +202,15 @@ class RecordViewController: UIViewController {
             proportion: videoProvider.currentProportion()
         )
     }
+
+    private func removeObserverAndPlayer() {
+
+        videoProvider.pause()
+        videoProvider.clear()
+        videoProvider.invalidateTimer()
+//        self.removeObserver(videoProvider, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
+//        self.removeObserver(videoProvider, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
+    }
 }
 
 extension RecordViewController: YouTubePlayerDelegate {
@@ -211,16 +244,10 @@ extension RecordViewController: YouTubePlayerDelegate {
             
             print("Pause")
 
-//            videoPlayer.play()
-
         default:
             break
         }
     }
-
-
-
-
 }
 
 extension RecordViewController: ScreenCaptureManagerDelegate {
@@ -328,14 +355,11 @@ extension RecordViewController: RPPreviewViewControllerDelegate {
             }
         }
     }
+}
 
-    func removeObserverAndPlayer() {
-
-        videoProvider.pause()
-        videoProvider.clear()
-        videoProvider.invalidateTimer()
-        removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
-        removeObserver(self, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
+extension RecordViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 

@@ -26,7 +26,7 @@ class VideoPlayerViewController: UIViewController {
 
         registerNotification()
 
-        videoProvider.play()
+        observePlayerCurrentTime()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,12 +42,9 @@ class VideoPlayerViewController: UIViewController {
     // MARK: - Notification
     @objc private func didCompleteDuration(notification: NSNotification) {
 
-
     }
 
     func setupPlayer() {
-
-        videoProvider.pause()
 
         guard let url = videoURL else {
 
@@ -60,11 +57,20 @@ class VideoPlayerViewController: UIViewController {
         ) else { return }
 
         videoPanelView.updatePlayer(player: player)
-
-//        videoProvider.play()
     }
 
+
     // MARK: - KVO
+    private func observePlayerCurrentTime() {
+
+        videoProvider.addObserver(
+            self,
+            forKeyPath: #keyPath(LSVideoProvider.currentTime),
+            options: NSKeyValueObservingOptions.new,
+            context: &VideoPlayerViewController.observerContext
+        )
+    }
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
         guard context == &VideoPlayerViewController.observerContext else {
@@ -81,6 +87,9 @@ class VideoPlayerViewController: UIViewController {
         if path == #keyPath(AVPlayerItem.status) {
 
             playerStatusHandler(change: change)
+        } else if path == #keyPath(LSVideoProvider.currentTime) {
+
+            playerCurrentTimeHandler(change: change)
         }
     }
 
@@ -102,12 +111,22 @@ class VideoPlayerViewController: UIViewController {
 
 //            videoPanelView.playerDidPlay()
         }
-
     }
+
+    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
+        guard let newValue = change[NSKeyValueChangeKey.newKey] as? String else { return }
+
+//        videoPanelView.updateCurrentTime(
+//            newValue,
+//            proportion: videoProvider.currentProportion()
+//        )
+    }
+
 
     func removeObserverAndPlayer() {
         videoProvider.pause()
-        removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+//        removeObserver(videoProvider, forKeyPath: #keyPath(AVPlayerItem.status))
+//        removeObserver(videoProvider, forKeyPath: #keyPath(LSVideoProvider.currentTime))
 
     }
 

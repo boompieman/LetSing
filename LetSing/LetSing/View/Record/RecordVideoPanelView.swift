@@ -37,7 +37,7 @@ class RecordVideoPanelView: UIView {
 
         videoPlayerView.clear()
 
-        videoPlayerView.isUserInteractionEnabled = false
+        videoPlayerView.isUserInteractionEnabled = true
 
         updateEndTime(time: LSConstants.PlayerTime.originTime)
 
@@ -48,4 +48,3 @@ class RecordVideoPanelView: UIView {
         //TODO
     }
 }
-

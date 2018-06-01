@@ -14,8 +14,6 @@ class userProfileViewController: UIViewController {
     @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var tableView: UITableView!
 
-    let manager = RecordManager()
-
     var records = [URL]()
 
     override func viewDidLoad() {
@@ -24,20 +22,19 @@ class userProfileViewController: UIViewController {
         requestProfile()
         setupTableView()
 
-        manager.getRecordFromRealm()
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.records = LSRecordFileManager.shared.fetchAllRecords()
+
         self.tableView.reloadData()
     }
 
     func requestProfile() {
 
-        UserManager.shared.getUserProfile(success: { (user) in
-                self.userInfoView.updateProfileWith(name: user.name, image: user.image)
+        UserManager.shared.getUserProfile(success: { [weak self](user) in
+            self?.userInfoView.updateProfileWith(name: user.name, image: user.image)
         }) { (error) in
             print(error)
         }
