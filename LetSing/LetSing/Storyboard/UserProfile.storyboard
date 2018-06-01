@@ -110,10 +110,27 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8R-Bc-tF9" customClass="LSPlayerView" customModule="LetSing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-Gz-GEP">
+                                                <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="1p2-Rb-Y57"/>
+                                                    <constraint firstAttribute="height" constant="30" id="DBB-yQ-rID"/>
+                                                </constraints>
+                                                <state key="normal" image="btn_back"/>
+                                                <connections>
+                                                    <action selector="didTappedBackBtn:" destination="0Gs-8V-OHm" eventType="touchUpInside" id="lfR-ZE-FIe"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="SYQ-Gz-GEP" firstAttribute="top" secondItem="D8R-Bc-tF9" secondAttribute="top" constant="10" id="hZ4-2M-tfW"/>
+                                            <constraint firstItem="SYQ-Gz-GEP" firstAttribute="leading" secondItem="D8R-Bc-tF9" secondAttribute="leading" constant="20" id="yfu-6K-8gW"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="D8R-Bc-tF9" secondAttribute="bottom" id="Xkm-Qb-bRd"/>
                                     <constraint firstItem="D8R-Bc-tF9" firstAttribute="leading" secondItem="5O2-Hb-LZs" secondAttribute="leading" id="h8P-4Q-vL9"/>
@@ -125,7 +142,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="J1N-8Q-MVw" firstAttribute="trailing" secondItem="5O2-Hb-LZs" secondAttribute="trailing" id="15a-Nh-VOe"/>
                             <constraint firstItem="5O2-Hb-LZs" firstAttribute="top" secondItem="J1N-8Q-MVw" secondAttribute="top" id="HL4-SN-t05"/>
@@ -143,4 +160,7 @@
             <point key="canvasLocation" x="1654" y="-4"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_back" width="34" height="34"/>
+    </resources>
 </document>

@@ -128,44 +128,52 @@ class LSRecordPlayerManager: NSObject {
                     return
                 }
 
-                self.queue.async(execute: {
-                    if CMSampleBufferDataIsReady(sampleBuffer) {
+                if CMSampleBufferDataIsReady(sampleBuffer) {
 
-                        if self.assetWriter.status == AVAssetWriterStatus.failed {
+                    self.queue.async { [weak self] in
 
-                            print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
+                        guard let strongSelf = self else { return }
+
+                        if strongSelf.assetWriter.status == AVAssetWriterStatus.failed {
+
+                            print("Error occured, status = \(strongSelf.assetWriter.status.rawValue), \(strongSelf.assetWriter.error!.localizedDescription) \(String(describing: strongSelf.assetWriter.error))")
                             return
                         }
 
-                        if self.assetWriter.status == AVAssetWriterStatus.unknown {
-                            self.assetWriter.startWriting()
+                        if strongSelf.assetWriter.status == AVAssetWriterStatus.unknown {
 
-                            self.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
+                            if !strongSelf.assetWriter.startWriting() {
+                                return
+                            }
+
+                            strongSelf.assetWriter.startWriting()
+
+                            strongSelf.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
 
                             print("unknown")
                         }
 
                         switch sampleBufferType {
                         case .video:
-                            if self.videoInput.isReadyForMoreMediaData {
+                            if strongSelf.videoInput.isReadyForMoreMediaData {
                                 print("videoInput")
-                                self.videoInput.append(sampleBuffer)
+                                strongSelf.videoInput.append(sampleBuffer)
                             }
                         case .audioApp:
-                            if self.audioInput.isReadyForMoreMediaData {
+                            if strongSelf.audioInput.isReadyForMoreMediaData {
                                 print("audioInput")
-                                self.audioInput.append(sampleBuffer)
+                                strongSelf.audioInput.append(sampleBuffer)
                             }
                         case .audioMic:
-                            if self.recorder.isMicrophoneEnabled && self.microInput.isReadyForMoreMediaData {
+                            if strongSelf.recorder.isMicrophoneEnabled && strongSelf.microInput.isReadyForMoreMediaData {
                                 print("microInput")
-                                self.microInput.append(sampleBuffer)
+                                strongSelf.microInput.append(sampleBuffer)
                             }
                         }
                     }
-                })
-
-            }) { (error) in
+                }
+            })
+            { (error) in
                 if let error = error {
                     self.delegate?.didStopWithError(error: error)
                 }

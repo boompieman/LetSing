@@ -29,11 +29,29 @@ class VideoPlayerViewController: UIViewController {
         observePlayerCurrentTime()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setBar()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         videoProvider.removeAllObserver(observer: self, context: &VideoPlayerViewController.observerContext)
+
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
+
+    func setBar() {
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        UIApplication.shared.setStatusBarHidden(true, with: .none)
+    }
+
+    
 
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didCompleteDuration(notification:)), name: .finishVideoDuration, object: self.videoProvider)
@@ -59,6 +77,9 @@ class VideoPlayerViewController: UIViewController {
         videoPanelView.updatePlayer(player: player)
     }
 
+    @IBAction func didTappedBackBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 
     // MARK: - KVO
     private func observePlayerCurrentTime() {
