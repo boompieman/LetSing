@@ -297,16 +297,6 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
             })
         })
     }
-
-    func didDiscardRecord() {
-        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-            withIdentifier: String(describing: TabBarViewController.self)
-            ) as? TabBarViewController else { return }
-
-        self.present(tabbarController, animated: true, completion: { [unowned self] in
-            self.removeFromParentViewController()
-        })
-    }
 }
 
 extension RecordViewController: RPPreviewViewControllerDelegate {

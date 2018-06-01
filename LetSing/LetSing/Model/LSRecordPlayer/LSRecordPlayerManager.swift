@@ -16,7 +16,6 @@ protocol ScreenCaptureManagerDelegate: class{
     func didStartRecord() // 開始錄製
     func didFinishRecord() // 完成錄製
     func didStopWithError(error: Error) //發生錯誤
-    func didDiscardRecord()
 }
 
 class LSRecordPlayerManager: NSObject {

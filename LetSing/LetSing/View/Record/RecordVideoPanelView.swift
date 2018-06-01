@@ -22,6 +22,8 @@ class RecordVideoPanelView: UIView {
         super.awakeFromNib()
     }
 
+
+
     func updateEndTime(time: String) {
 
         timeEndLabel.text = time
