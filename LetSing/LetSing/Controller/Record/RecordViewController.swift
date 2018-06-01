@@ -56,7 +56,7 @@ class RecordViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        self.removeObserverAndPlayer()
+        videoProvider.removeObserverAndPlayer(observer: self, context: &RecordViewController.observerContext)
 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -201,15 +201,6 @@ class RecordViewController: UIViewController {
             time: newValue,
             proportion: videoProvider.currentProportion()
         )
-    }
-
-    private func removeObserverAndPlayer() {
-
-        videoProvider.pause()
-        videoProvider.clear()
-        videoProvider.invalidateTimer()
-//        self.removeObserver(videoProvider, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
-//        self.removeObserver(videoProvider, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
     }
 }
 

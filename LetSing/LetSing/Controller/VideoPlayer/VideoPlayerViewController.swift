@@ -32,7 +32,7 @@ class VideoPlayerViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        removeObserverAndPlayer()
+        videoProvider.removeAllObserver(observer: self, context: &VideoPlayerViewController.observerContext)
     }
 
     func registerNotification() {
@@ -121,13 +121,4 @@ class VideoPlayerViewController: UIViewController {
 //            proportion: videoProvider.currentProportion()
 //        )
     }
-
-
-    func removeObserverAndPlayer() {
-        videoProvider.pause()
-//        removeObserver(videoProvider, forKeyPath: #keyPath(AVPlayerItem.status))
-//        removeObserver(videoProvider, forKeyPath: #keyPath(LSVideoProvider.currentTime))
-
-    }
-
 }

@@ -81,11 +81,24 @@ class LSVideoProvider: NSObject {
                 )
             }
         }
-
-        print("asset:", asset)
-
         return asset
     }
+
+    func removeAllObserver (
+        observer: NSObject,
+        context: UnsafeMutableRawPointer?
+        ) {
+
+        guard let player = player,
+            let item = player.currentItem
+            else { return }
+
+        pause()
+
+        item.removeObserver(observer, forKeyPath: #keyPath(AVPlayerItem.status), context: context)
+        self.removeObserver(observer, forKeyPath: #keyPath(LSVideoProvider.currentTime), context: context)
+    }
+
 
     // MARK: - Player Action
     func play() {

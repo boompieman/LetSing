@@ -58,6 +58,19 @@ class LSYoutubeVideoProvider: NSObject {
         )
     }
 
+    func removeObserverAndPlayer (
+        observer: NSObject,
+        context: UnsafeMutableRawPointer?
+        ) {
+
+        pause()
+        clear()
+        invalidateTimer()
+        removeObserver(observer, forKeyPath:  #keyPath(LSYoutubeVideoProvider.floatCurrentTime), context: context)
+        removeObserver(observer, forKeyPath:  #keyPath(LSYoutubeVideoProvider.currentTime), context: context)
+    }
+
+
     func invalidateTimer() {
 
         guard let timer = timer else { return }
