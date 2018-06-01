@@ -261,17 +261,19 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
         endRecordButton.startRecording()
     }
 
-    func didFinishRecord(preview: UIViewController) {
+    func didFinishRecord() {
 
         print("Record did finish")
 
         endRecordButton.stopRecording()
 
-        let previewController = preview as! RPPreviewViewController
+        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+            withIdentifier: String(describing: TabBarViewController.self)
+            ) as? TabBarViewController else { return }
 
-        previewController.previewControllerDelegate = self
-
-        self.present(previewController, animated: true, completion: nil)
+        self.present(tabbarController, animated: true, completion: { [unowned self] in
+            self.removeFromParentViewController()
+        })
     }
 
     func didStopWithError(error: Error) {
@@ -293,6 +295,16 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
             self.present(tabbarController, animated: false, completion: { [unowned self] in
                 self.removeFromParentViewController()
             })
+        })
+    }
+
+    func didDiscardRecord() {
+        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+            withIdentifier: String(describing: TabBarViewController.self)
+            ) as? TabBarViewController else { return }
+
+        self.present(tabbarController, animated: true, completion: { [unowned self] in
+            self.removeFromParentViewController()
         })
     }
 }

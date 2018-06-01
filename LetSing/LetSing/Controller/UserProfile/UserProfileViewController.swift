@@ -21,7 +21,6 @@ class userProfileViewController: UIViewController {
 
         requestProfile()
         setupTableView()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {

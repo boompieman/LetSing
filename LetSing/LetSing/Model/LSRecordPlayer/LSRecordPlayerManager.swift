@@ -14,8 +14,9 @@ import ReplayKit
 // manager protocol to notify controller when to start or end
 protocol ScreenCaptureManagerDelegate: class{
     func didStartRecord() // 開始錄製
-    func didFinishRecord(preview: UIViewController) // 完成錄製
+    func didFinishRecord() // 完成錄製
     func didStopWithError(error: Error) //發生錯誤
+    func didDiscardRecord()
 }
 
 class LSRecordPlayerManager: NSObject {
@@ -85,7 +86,6 @@ class LSRecordPlayerManager: NSObject {
 
         let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.newRecordFilePath())
 
-        LSRecordFileManager.shared.deleteRecord(at: fileURL)
         assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType: .mp4)
 
         let videoOutputSettings: [String : Any] = [
@@ -132,6 +132,12 @@ class LSRecordPlayerManager: NSObject {
                 self.queue.async(execute: {
                     if CMSampleBufferDataIsReady(sampleBuffer) {
 
+                        if self.assetWriter.status == AVAssetWriterStatus.failed {
+
+                            print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
+                            return
+                        }
+
                         if self.assetWriter.status == AVAssetWriterStatus.unknown {
                             self.assetWriter.startWriting()
 
@@ -140,29 +146,20 @@ class LSRecordPlayerManager: NSObject {
                             print("unknown")
                         }
 
-
-
-                        if self.assetWriter.status == AVAssetWriterStatus.failed {
-
-                            print("Error occured, status = \(self.assetWriter.status.rawValue), \(self.assetWriter.error!.localizedDescription) \(String(describing: self.assetWriter.error))")
-                            return
-                        }
-
-                        if sampleBufferType == .video {
+                        switch sampleBufferType {
+                        case .video:
                             if self.videoInput.isReadyForMoreMediaData {
+                                print("videoInput")
                                 self.videoInput.append(sampleBuffer)
                             }
-                        }
-                        if sampleBufferType == .audioApp {
+                        case .audioApp:
                             if self.audioInput.isReadyForMoreMediaData {
-                                print("appInput")
+                                print("audioInput")
                                 self.audioInput.append(sampleBuffer)
                             }
-                        }
-
-                        if sampleBufferType == .audioMic {
-                            if self.microInput.isReadyForMoreMediaData {
-                                print("micInput")
+                        case .audioMic:
+                            if self.recorder.isMicrophoneEnabled && self.microInput.isReadyForMoreMediaData {
+                                print("microInput")
                                 self.microInput.append(sampleBuffer)
                             }
                         }
@@ -187,10 +184,12 @@ class LSRecordPlayerManager: NSObject {
                     self.delegate?.didStopWithError(error: error)
                 }
 
-                self.assetWriter.finishWriting {
+                self.queue.async {
+                    self.assetWriter.finishWriting {
 
-                    print("All Records:", LSRecordFileManager.shared.fetchAllRecords())
+                        self.delegate?.didFinishRecord()
 
+                    }
                 }
             }
         }
@@ -216,9 +215,14 @@ class LSRecordPlayerManager: NSObject {
 
     func discard() {
 
-        recorder.stopRecording { (preViewController, error) in
-            self.recorder.discardRecording {
-                print("did discard")
+        self.recorder.stopCapture { (error) in
+
+            if let error = error {
+                self.delegate?.didStopWithError(error: error)
+            }
+
+            self.queue.async {
+                self.assetWriter.cancelWriting()
             }
         }
     }
