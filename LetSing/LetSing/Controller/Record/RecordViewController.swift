@@ -244,6 +244,8 @@ extension RecordViewController: YouTubePlayerDelegate {
 extension RecordViewController: ScreenCaptureManagerDelegate {
     func didStartRecord() {
 
+        endRecordButton.startRecording()
+
 //        guard let cameraView = recordPlayerManager.recorder.cameraPreviewView else {
 //            print("cameraView did not generate")
 //            return
@@ -257,8 +259,6 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 //
 //        self.view.addSubview(cameraView)
         print("did Start Record")
-
-        endRecordButton.startRecording()
     }
 
     func didFinishRecord() {

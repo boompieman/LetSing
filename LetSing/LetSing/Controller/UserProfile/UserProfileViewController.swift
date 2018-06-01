@@ -84,13 +84,30 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //刪資料！！
-//        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row])
-//        self.records.remove(at: indexPath.row)
-//        self.tableView.reloadData()
-
         performSegue(withIdentifier: String(describing: VideoPlayerViewController.self), sender: indexPath)
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
+            self.records.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "刪除"
+    }
+
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//
+//        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
+//        self.records.remove(at: indexPath.row)
+//        self.tableView.reloadData()
+//
+//        return true
+//    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 

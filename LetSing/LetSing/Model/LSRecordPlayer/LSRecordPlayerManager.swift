@@ -118,7 +118,7 @@ class LSRecordPlayerManager: NSObject {
         if self.recorder.isAvailable && !self.recorder.isRecording {
 
             self.recorder.isMicrophoneEnabled = true
-//                self.recorder.isCameraEnabled = true
+//            self.recorder.isCameraEnabled = true
             self.delegate?.didStartRecord()
 
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
