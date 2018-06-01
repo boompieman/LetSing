@@ -49,8 +49,6 @@ class userProfileViewController: UIViewController {
 
         tableView.contentInset = LSConstants.tableViewInset
     }
-
-
 }
 
 extension userProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -77,7 +75,9 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
             for: indexPath
             ) as! UserVideoTableViewCell
 
-        tableViewCell.urlLabel.text = self.records[indexPath.row].createdTime
+        tableViewCell.titleLabel.text = self.records[indexPath.row].title
+
+        print(self.records[indexPath.row].videoUrl.absoluteString.components(separatedBy: "/"))
 
         return tableViewCell
     }
@@ -89,25 +89,42 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
-        if editingStyle == .delete {
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var actionArray = [UITableViewRowAction]()
+
+        let actionEdit = UITableViewRowAction(style: .default, title:"編輯") { (action, indexPath) in
+
+            let alert = AlertManager.shared.showEdit(
+                with: "編輯標題",
+                message: nil,
+                placeholder: "請輸入標題..",
+                completion: { (text) in
+                    LSRecordFileManager.shared.updateRecordTitle(from: self.records[indexPath.row].videoUrl, to: text)
+                    self.records[indexPath.row].title = text
+                    self.tableView.isEditing = false
+                    self.tableView.reloadData()
+            })
+
+            self.present(alert, animated: true, completion: nil)
+        }
+
+        actionEdit.backgroundColor = UIColor.orange
+
+        let actionDelete = UITableViewRowAction(style: .default, title: "刪除") { (action, indexPath) in
             LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
             self.records.remove(at: indexPath.row)
-            self.tableView.reloadData()
+            tableView.isEditing = false
+            tableView.reloadData()
         }
-    }
 
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "刪除"
-    }
+        actionDelete.backgroundColor = UIColor.red
+        actionArray.append(actionDelete)
+        actionArray.append(actionEdit)
 
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//
-//        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
-//        self.records.remove(at: indexPath.row)
-//        self.tableView.reloadData()
-//
-//        return true
-//    }
+        return actionArray
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 

@@ -56,11 +56,28 @@ class LSRecordFileManager {
         var recordArray = [Record]()
 
         for url in directoryContents {
-            let record = Record(user: nil, videoUrl: url, createdTime: String(url.absoluteString.suffix(23)))
+            let record = Record(title: String(url.absoluteString.components(separatedBy: "/").last!), user: nil, videoUrl: url, createdTime: "not yet done")
             recordArray.append(record)
         }
 
         return recordArray
+    }
+
+    func updateRecordTitle(from fromPath: URL,to toPath: String) {
+
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+
+        let recordPath = documentsDirectory?.appendingPathComponent("/Records")
+
+        print("rrrrr:", recordPath)
+
+        let pathString = (recordPath?.absoluteString)! + toPath
+
+        let newURL = URL(string: pathString)
+
+
+
+        try? FileManager.default.moveItem(at: fromPath, to: newURL!)
     }
 
 
