@@ -142,15 +142,13 @@ class LSRecordPlayerManager: NSObject {
 
                         if strongSelf.assetWriter.status == AVAssetWriterStatus.unknown {
 
-                            if !strongSelf.assetWriter.startWriting() {
-                                return
-                            }
+//                            if !strongSelf.assetWriter.startWriting() {
+//                                return
+//                            }
 
                             strongSelf.assetWriter.startWriting()
 
                             strongSelf.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
-
-                            print("unknown")
                         }
 
                         switch sampleBufferType {
