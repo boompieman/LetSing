@@ -13,7 +13,7 @@ struct Record: Codable {
 
     var user: User?
 
-    let videoUrl: URL?
+    let videoUrl: URL
 
     let createdTime: String
 

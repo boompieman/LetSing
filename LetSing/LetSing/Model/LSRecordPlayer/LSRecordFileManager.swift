@@ -44,7 +44,7 @@ class LSRecordFileManager {
         return filePath
     }
 
-    func fetchAllRecords() -> [URL] {
+    func fetchAllRecords() -> [Record] {
 
         createFolder()
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -53,8 +53,17 @@ class LSRecordFileManager {
 
         let directoryContents = try! FileManager.default.contentsOfDirectory(at: recordPath!, includingPropertiesForKeys: nil, options: [])
 
-        return directoryContents
+        var recordArray = [Record]()
+
+        for url in directoryContents {
+            let record = Record(user: nil, videoUrl: url, createdTime: String(url.absoluteString.suffix(23)))
+            recordArray.append(record)
+        }
+
+        return recordArray
     }
+
+
 
     func deleteRecord(at filePath: URL) {
 

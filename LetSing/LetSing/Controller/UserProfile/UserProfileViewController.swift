@@ -14,7 +14,7 @@ class userProfileViewController: UIViewController {
     @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var tableView: UITableView!
 
-    var records = [URL]()
+    var records = [Record]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,7 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
             for: indexPath
             ) as! UserVideoTableViewCell
 
-        tableViewCell.urlLabel.text = self.records[indexPath.row].absoluteString
+        tableViewCell.urlLabel.text = self.records[indexPath.row].createdTime
 
         return tableViewCell
     }
@@ -101,7 +101,7 @@ extension userProfileViewController: UITableViewDelegate, UITableViewDataSource 
             if let indexPath = self.tableView.indexPathForSelectedRow {
 
                 let destinationVC = segue.destination as? VideoPlayerViewController
-                destinationVC?.videoURL = self.records[indexPath.row]
+                destinationVC?.videoURL = self.records[indexPath.row].videoUrl
             }
         }
     }
