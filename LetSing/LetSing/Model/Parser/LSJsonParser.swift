@@ -10,17 +10,13 @@ import Foundation
 
 class LSJsonParser {
 
-    var songList = [Song]()
+//    func getPaging(pageToken: String) -> String {
+//        return pageToken
+//    }
 
-    var pageToken = LSConstants.emptyString
+    func parseToSongs(data: Data, completion: ([Song], String) -> Void) {
 
-    func getPaging(pageToken: String) -> String {
-        return pageToken
-    }
-
-    func parseToSongs(data: Data) {
-
-        songList.removeAll()
+        var songList = [Song]()
 
         guard let json = try? parse(data: data) else {
             return
@@ -31,8 +27,6 @@ class LSJsonParser {
             return }
 
         guard let pageToken = json["nextPageToken"] as? String else { return }
-
-        self.pageToken = pageToken
 
         for result in items {
 
@@ -46,7 +40,9 @@ class LSJsonParser {
 
             let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, rank: nil, type: nil)
 
-            self.songList.append(song)
+            songList.append(song)
+
+            completion(songList, pageToken)
         }
     }
 

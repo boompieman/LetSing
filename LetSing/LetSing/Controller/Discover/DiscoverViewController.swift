@@ -44,12 +44,10 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
             manager.getBoardFromRealm(type: type)
         }
-
         else {
 
             manager.getBoardSongFromYoutube(type: type)
         }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
