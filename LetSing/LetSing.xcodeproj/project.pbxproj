@@ -33,6 +33,7 @@
 		FA4335B2209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4335B1209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift */; };
 		FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4335B3209C689500BC90FC /* DiscoverSongCollectionViewController.swift */; };
 		FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */; };
+		FA594BB320C3DC3700747CD9 /* UIDevice+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */; };
 		FA5CA13B209976E500811B4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA13A209976E500811B4B /* GoogleService-Info.plist */; };
 		FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA13C209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift */; };
 		FA5CA142209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA140209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift */; };
@@ -117,6 +118,7 @@
 		FA4335B1209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTypeCollectionViewController.swift; sourceTree = "<group>"; };
 		FA4335B3209C689500BC90FC /* DiscoverSongCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSongCollectionViewController.swift; sourceTree = "<group>"; };
 		FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProductionViewController.swift; sourceTree = "<group>"; };
+		FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Sam.swift"; sourceTree = "<group>"; };
 		FA5CA13A209976E500811B4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FA5CA13C209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		FA5CA140209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTypeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				FA7C96BC20995D9800890325 /* UIStoryboard+Sam.swift */,
 				FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */,
 				FA32EF5F20AF0EE700A0F3F6 /* UIView+Sam.swift */,
+				FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				FAC2947A20BE6A11002F87BF /* LSVideoPanelView.swift in Sources */,
 				FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */,
 				FA5CA142209AE32800811B4B /* DiscoverTypeCollectionViewCell.swift in Sources */,
+				FA594BB320C3DC3700747CD9 /* UIDevice+Sam.swift in Sources */,
 				FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */,
 				FA7F707620B69A8300D9DDA1 /* UserInfoView.swift in Sources */,
 				FA7C96AA20994B1600890325 /* SearchViewController.swift in Sources */,

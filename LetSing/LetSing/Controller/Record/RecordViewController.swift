@@ -23,6 +23,8 @@ class RecordViewController: UIViewController {
     let videoProvider = LSYoutubeVideoProvider()
     var song: Song?
 
+    @IBOutlet weak var notIphoneXConstraint: NSLayoutConstraint!
+    @IBOutlet weak var iphoneXConstraint: NSLayoutConstraint!
     var recordPlayerManager = LSRecordPlayerManager()
 
     override func viewDidLoad() {
@@ -35,6 +37,25 @@ class RecordViewController: UIViewController {
         sendData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setBar()
+        setupRecordNavigationView()
+    }
+
+    override func viewWillLayoutSubviews() {
+        if UIDevice.current.isX() {
+            //            print("it's X")
+//            endRecordButton.translatesAutoresizingMaskIntoConstraints = false
+//            recordVideoPanelView.translatesAutoresizingMaskIntoConstraints = false
+            iphoneXConstraint.isActive = true
+            notIphoneXConstraint.isActive = false
+
+//            view.layoutIfNeeded()
+        }
+    }
+
 
     func sendData() {
         let lyricsVC = childViewControllers[0] as? LyricsViewController
@@ -44,13 +65,6 @@ class RecordViewController: UIViewController {
         }
 
         lyricsVC?.requestLyrics(song: song)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        setBar()
-        setupRecordNavigationView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

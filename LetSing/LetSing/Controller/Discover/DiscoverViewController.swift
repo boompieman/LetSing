@@ -80,7 +80,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastRow, section: 0)) as? DiscoverTypeCollectionViewCell
 
-        lastCell?.typeLabel.textColor = UIColor(red: 255/255, green: 205/255, blue: 200/255, alpha: 1.0)
+        lastCell?.typeLabel.textColor = UIColor(red: 255/255, green: 190/255, blue: 185/255, alpha: 1.0)
         lastCell?.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
 
         let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: currentRow, section: 0)) as? DiscoverTypeCollectionViewCell
