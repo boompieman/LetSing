@@ -84,6 +84,7 @@
 		FACCB76E20AE7C840067ADC5 /* LyricsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */; };
 		FACCB77020AE885A0067ADC5 /* LyricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */; };
 		FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */; };
+		FAD0AB0B20C4E73200FB1E03 /* LSAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0AB0A20C4E73200FB1E03 /* LSAnalytics.swift */; };
 		FAD67C8420B7C0C900402335 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD67C8320B7C0C900402335 /* Record.swift */; };
 		FAD67C8620B7C5F100402335 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD67C8520B7C5F100402335 /* RecordManager.swift */; };
 		FAEE0C3520BBEE6400B828EC /* LSRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE0C3420BBEE6400B828EC /* LSRefresh.swift */; };
@@ -171,6 +172,7 @@
 		FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsProvider.swift; sourceTree = "<group>"; };
 		FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsManager.swift; sourceTree = "<group>"; };
 		FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
+		FAD0AB0A20C4E73200FB1E03 /* LSAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSAnalytics.swift; sourceTree = "<group>"; };
 		FAD67C8320B7C0C900402335 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		FAD67C8520B7C5F100402335 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		FAEE0C3420BBEE6400B828EC /* LSRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRefresh.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAD0AB0920C4E71000FB1E03 /* LSAnalytics */,
 				FAC2947D20BE7D3D002F87BF /* TimeTransformer */,
 				FAC2947020BE62CB002F87BF /* LSVideoPlayer */,
 				FAC2946D20BE58F1002F87BF /* DateFormatter */,
@@ -652,6 +655,14 @@
 				FACCB76D20AE7C840067ADC5 /* LyricsProvider.swift */,
 			);
 			path = lyrics;
+			sourceTree = "<group>";
+		};
+		FAD0AB0920C4E71000FB1E03 /* LSAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				FAD0AB0A20C4E73200FB1E03 /* LSAnalytics.swift */,
+			);
+			path = LSAnalytics;
 			sourceTree = "<group>";
 		};
 		FAD67C8220B7C0B300402335 /* Record */ = {
@@ -908,6 +919,7 @@
 				FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */,
 				FA7C96942098205400890325 /* AppDelegate.swift in Sources */,
 				FAC2946C20BE435C002F87BF /* LSRecordFileManager.swift in Sources */,
+				FAD0AB0B20C4E73200FB1E03 /* LSAnalytics.swift in Sources */,
 				FA41DDF9209DA4C700CDAB08 /* SongManager.swift in Sources */,
 				FA7C96C12099675200890325 /* UserProfileViewController.swift in Sources */,
 				FA1DD01920A1A6F900F92475 /* LSPlayerView.swift in Sources */,

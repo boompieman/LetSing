@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 import YouTubePlayer
 import ReplayKit
-import Firebase
 
 class RecordViewController: UIViewController {
 
@@ -30,8 +29,6 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        recordVideoPanelView.delegate = self
-
         setupRecordPlayerManager()
         observePlayerCurrentTime()
         generatePlayer()
@@ -45,15 +42,11 @@ class RecordViewController: UIViewController {
         setupRecordNavigationView()
     }
 
+    // set IphoneX layout
     override func viewWillLayoutSubviews() {
         if UIDevice.current.isX() {
-            //            print("it's X")
-//            endRecordButton.translatesAutoresizingMaskIntoConstraints = false
-//            recordVideoPanelView.translatesAutoresizingMaskIntoConstraints = false
             iphoneXConstraint.isActive = true
             notIphoneXConstraint.isActive = false
-
-//            view.layoutIfNeeded()
         }
     }
 
@@ -121,6 +114,8 @@ class RecordViewController: UIViewController {
 
         recordVideoPanelView.updatePlayer()
         recordVideoPanelView.videoPlayerView.delegate = self
+
+        recordVideoPanelView.delegate = self
         videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, song.id, observer: self, context: &RecordViewController.observerContext)
     }
 
@@ -138,7 +133,7 @@ class RecordViewController: UIViewController {
             recordPlayerManager.start()
 
         } else {
-            Analytics.logEvent("record_button_tapped", parameters: nil)
+            LSAnalytics.shared.logEvent("record_button_tapped", parameter: nil)
             recordPlayerManager.stop()
         }
     }
@@ -350,12 +345,5 @@ extension RecordViewController: LSVideoPanelViewDelegate {
 //        }
 //    }
 //}
-
-//extension RecordViewController: UIGestureRecognizerDelegate {
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-//}
-
 
 

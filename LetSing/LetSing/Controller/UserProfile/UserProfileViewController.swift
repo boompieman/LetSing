@@ -26,7 +26,6 @@ class userProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.records = LSRecordFileManager.shared.fetchAllRecords()
-
         self.tableView.reloadData()
     }
 

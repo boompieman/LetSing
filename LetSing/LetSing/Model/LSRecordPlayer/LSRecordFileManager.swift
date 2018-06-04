@@ -56,26 +56,32 @@ class LSRecordFileManager {
         var recordArray = [Record]()
 
         for url in directoryContents {
-            let record = Record(title: String(url.absoluteString.components(separatedBy: "/").last!), user: nil, videoUrl: url, createdTime: "not yet done")
+
+            guard let title = String(url.absoluteString.components(separatedBy: "/").last!).removingPercentEncoding else {
+                return recordArray
+            }
+
+            let record = Record(title: title, user: nil, videoUrl: url, createdTime: "not yet done")
             recordArray.append(record)
         }
 
         return recordArray
     }
 
+    // 中文輸入有bug
     func updateRecordTitle(from fromPath: URL,to toPath: String) {
 
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 
         let recordPath = documentsDirectory?.appendingPathComponent("/Records")
 
-        print("rrrrr:", recordPath)
+        guard let encodeToPath = toPath.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
+            return
+        }
 
-        let pathString = (recordPath?.absoluteString)! + toPath
+        let pathString = (recordPath?.absoluteString)! + encodeToPath + ".mp4"
 
         let newURL = URL(string: pathString)
-
-
 
         try? FileManager.default.moveItem(at: fromPath, to: newURL!)
     }
