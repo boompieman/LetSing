@@ -85,6 +85,7 @@
 		FACCB77020AE885A0067ADC5 /* LyricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */; };
 		FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */; };
 		FAD0AB0B20C4E73200FB1E03 /* LSAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0AB0A20C4E73200FB1E03 /* LSAnalytics.swift */; };
+		FAD0AB0F20C517DA00FB1E03 /* DiscoverSongTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0AB0E20C517DA00FB1E03 /* DiscoverSongTableViewController.swift */; };
 		FAD67C8420B7C0C900402335 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD67C8320B7C0C900402335 /* Record.swift */; };
 		FAD67C8620B7C5F100402335 /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD67C8520B7C5F100402335 /* RecordManager.swift */; };
 		FAEE0C3520BBEE6400B828EC /* LSRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE0C3420BBEE6400B828EC /* LSRefresh.swift */; };
@@ -173,6 +174,7 @@
 		FACCB76F20AE885A0067ADC5 /* LyricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsManager.swift; sourceTree = "<group>"; };
 		FACCB77120AE89EA0067ADC5 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
 		FAD0AB0A20C4E73200FB1E03 /* LSAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSAnalytics.swift; sourceTree = "<group>"; };
+		FAD0AB0E20C517DA00FB1E03 /* DiscoverSongTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSongTableViewController.swift; sourceTree = "<group>"; };
 		FAD67C8320B7C0C900402335 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		FAD67C8520B7C5F100402335 /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		FAEE0C3420BBEE6400B828EC /* LSRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRefresh.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			children = (
 				FA4335B1209C687F00BC90FC /* DiscoverTypeCollectionViewController.swift */,
 				FA4335B3209C689500BC90FC /* DiscoverSongCollectionViewController.swift */,
+				FAD0AB0E20C517DA00FB1E03 /* DiscoverSongTableViewController.swift */,
 				FA7C96B720995ABD00890325 /* DiscoverViewController.swift */,
 			);
 			path = Discover;
@@ -876,6 +879,7 @@
 				FA32EF6020AF0EE700A0F3F6 /* UIView+Sam.swift in Sources */,
 				FA7F708220B6A66100D9DDA1 /* AlertManager.swift in Sources */,
 				FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */,
+				FAD0AB0F20C517DA00FB1E03 /* DiscoverSongTableViewController.swift in Sources */,
 				FA7F708720B6EEC100D9DDA1 /* LoginButtonView.swift in Sources */,
 				FA7F708520B6D36A00D9DDA1 /* LoginInputView.swift in Sources */,
 				FAC2946F20BE590B002F87BF /* LSDateFormatter.swift in Sources */,
