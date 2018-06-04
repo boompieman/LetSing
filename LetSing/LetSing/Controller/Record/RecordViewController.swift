@@ -30,8 +30,9 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        recordVideoPanelView.delegate = self
+
         setupRecordPlayerManager()
-        setPlayerViewGestureRecognizer()
         observePlayerCurrentTime()
         generatePlayer()
         sendData()
@@ -145,30 +146,6 @@ class RecordViewController: UIViewController {
     @IBAction func didTappedBackButton(_ sender: Any) {
         recordPlayerManager.discard()
         self.navigationController?.popViewController(animated: true)
-    }
-
-    func setPlayerViewGestureRecognizer() {
-
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(playerViewDidTapped))
-
-        gesture.numberOfTapsRequired = 1
-
-        // 幾根指頭觸發
-        gesture.numberOfTouchesRequired = 1
-
-        gesture.delegate = self
-
-        self.recordVideoPanelView.videoPlayerView.addGestureRecognizer(gesture)
-    }
-
-    @objc func playerViewDidTapped() {
-
-        if videoProvider.isPlaying() {
-            videoProvider.pause()
-        } else {
-            videoProvider.play()
-        }
-        
     }
 
     // MARK: - KVO
@@ -313,60 +290,72 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
     }
 }
 
-extension RecordViewController: RPPreviewViewControllerDelegate {
-
-    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
-        DispatchQueue.main.async {
-
-            guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-                withIdentifier: String(describing: TabBarViewController.self)
-                ) as? TabBarViewController else { return }
-
-            previewController.present(tabbarController, animated: false, completion: {[unowned self] in
-                self.removeFromParentViewController()
-            })
-        }
-    }
-
-    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
-        
-        if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
-            DispatchQueue.main.async {
-
-                let alert = AlertManager.shared.showAlert(
-                    with: "提醒您",
-                    message: "你的影片已儲存在手機相簿內",
-                    completion: { [unowned self] in
-                        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-                            withIdentifier: String(describing: TabBarViewController.self)
-                            ) as? TabBarViewController else { return }
-
-                        previewController.present(tabbarController, animated: false, completion: { [unowned self] in
-                            self.removeFromParentViewController()
-                        })
-                    }
-                )
-
-                previewController.present(alert, animated: false, completion: nil)
-//
-//                guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-//                    withIdentifier: String(describing: TabBarViewController.self)
-//                    ) as? TabBarViewController else { return }
-//
-//                previewController.present(tabbarController, animated: false, completion: {[unowned self] in
-//                    self.removeFromParentViewController()
-//                })
-//                previewController.present((PostProductionViewController()), animated: false, completion: {[unowned self] in
-//                    self.removeFromParentViewController()
-//                })
-            }
+extension RecordViewController: LSVideoPanelViewDelegate {
+    func didTappedPlayer(playerView: YouTubePlayerView) {
+        if videoProvider.isPlaying() {
+            videoProvider.pause()
+        } else {
+            videoProvider.play()
         }
     }
 }
 
-extension RecordViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-}
+//extension RecordViewController: RPPreviewViewControllerDelegate {
+//
+//    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+//        DispatchQueue.main.async {
+//
+//            guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+//                withIdentifier: String(describing: TabBarViewController.self)
+//                ) as? TabBarViewController else { return }
+//
+//            previewController.present(tabbarController, animated: false, completion: {[unowned self] in
+//                self.removeFromParentViewController()
+//            })
+//        }
+//    }
+//
+//    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+//
+//        if activityTypes.contains(UIActivityType.saveToCameraRoll.rawValue) {
+//            DispatchQueue.main.async {
+//
+//                let alert = AlertManager.shared.showAlert(
+//                    with: "提醒您",
+//                    message: "你的影片已儲存在手機相簿內",
+//                    completion: { [unowned self] in
+//                        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+//                            withIdentifier: String(describing: TabBarViewController.self)
+//                            ) as? TabBarViewController else { return }
+//
+//                        previewController.present(tabbarController, animated: false, completion: { [unowned self] in
+//                            self.removeFromParentViewController()
+//                        })
+//                    }
+//                )
+//
+//                previewController.present(alert, animated: false, completion: nil)
+////
+////                guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+////                    withIdentifier: String(describing: TabBarViewController.self)
+////                    ) as? TabBarViewController else { return }
+////
+////                previewController.present(tabbarController, animated: false, completion: {[unowned self] in
+////                    self.removeFromParentViewController()
+////                })
+////                previewController.present((PostProductionViewController()), animated: false, completion: {[unowned self] in
+////                    self.removeFromParentViewController()
+////                })
+//            }
+//        }
+//    }
+//}
+
+//extension RecordViewController: UIGestureRecognizerDelegate {
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+//    }
+//}
+
+
 
