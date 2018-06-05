@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,26 +70,27 @@
                                     <outlet property="nameLabel" destination="zNi-qr-uQ7" id="vpf-We-QDz"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aF6-QS-Xyc">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-g7-4ne">
                                 <rect key="frame" x="0.0" y="244" width="375" height="423"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                                <connections>
+                                    <segue destination="IUk-fW-oHH" kind="embed" id="HdJ-ji-jQL"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="u5b-go-KdB" secondAttribute="trailing" id="FzL-rb-hV0"/>
                             <constraint firstItem="u5b-go-KdB" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="LZS-dX-7rv"/>
-                            <constraint firstItem="aF6-QS-Xyc" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="NpK-WK-4d4"/>
-                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="aF6-QS-Xyc" secondAttribute="trailing" id="dyD-DD-ihq"/>
+                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="bottom" secondItem="5jm-g7-4ne" secondAttribute="bottom" id="MMs-bh-SfA"/>
+                            <constraint firstItem="5jm-g7-4ne" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="ccx-rT-q9e"/>
+                            <constraint firstItem="5jm-g7-4ne" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="bottom" id="gXS-gA-B7c"/>
                             <constraint firstItem="u5b-go-KdB" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="hFP-1J-xg8"/>
-                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="bottom" secondItem="aF6-QS-Xyc" secondAttribute="bottom" id="hqB-NY-idZ"/>
-                            <constraint firstItem="aF6-QS-Xyc" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="bottom" id="qZ9-Wc-88T"/>
+                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="5jm-g7-4ne" secondAttribute="trailing" id="wG9-1V-r5E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i3m-Gc-DjK"/>
                     </view>
                     <navigationItem key="navigationItem" title="個人資料" id="Zq6-10-RZu"/>
                     <connections>
-                        <outlet property="tableView" destination="aF6-QS-Xyc" id="VbD-Ol-cBp"/>
                         <outlet property="userInfoView" destination="u5b-go-KdB" id="gkK-Tt-rmh"/>
                         <segue destination="0Gs-8V-OHm" kind="show" identifier="VideoPlayerViewController" id="BCz-pL-BKF"/>
                     </connections>
@@ -158,6 +160,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osh-0H-3hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1654" y="-4"/>
+        </scene>
+        <!--Record Table View Controller-->
+        <scene sceneID="RQO-ca-4ph">
+            <objects>
+                <viewController id="IUk-fW-oHH" customClass="RecordTableViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WPP-km-a4c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-AM-M0m">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="FkM-AM-M0m" secondAttribute="bottom" id="JI3-bx-eKi"/>
+                            <constraint firstItem="FkM-AM-M0m" firstAttribute="top" secondItem="WPP-km-a4c" secondAttribute="topMargin" id="awd-3n-5mT"/>
+                            <constraint firstItem="FkM-AM-M0m" firstAttribute="leading" secondItem="WPP-km-a4c" secondAttribute="leading" id="mhY-Mu-ODv"/>
+                            <constraint firstAttribute="trailing" secondItem="FkM-AM-M0m" secondAttribute="trailing" id="rlD-tb-1Xz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="FkM-AM-M0m" id="kGK-X5-pFj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODL-fl-wsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1546" y="-678"/>
         </scene>
     </scenes>
     <resources>
