@@ -25,31 +25,13 @@ class RecordTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTableView()
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // 一滑動後，整個offset會變化，要讓userInfoView貼著tableView，所以要給一個userInfoViewHeight
-        let distance = scrollView.contentOffset.y - (-userInfoViewHeight)
-
-
-
-        self.delegate?.tableViewDidScroll(self, translation: distance)
-    }
-
-    //定義好物件與周圍的距離(Inset)與物件一開始的位置(Offset) // 180為 userInfoView 高度
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
-        self.tableView.contentOffset = CGPoint(x: 0, y: -userInfoViewHeight)
-
-    }
-
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         self.records = LSRecordFileManager.shared.fetchAllRecords()
         self.tableView.reloadData()
     }
@@ -61,7 +43,14 @@ class RecordTableViewController: UIViewController {
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: UserVideoTableViewCell.self))
 
-        tableView.contentInset = LSConstants.tableViewInset
+        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        let distance = scrollView.contentOffset.y + userInfoViewHeight
+
+        self.delegate?.tableViewDidScroll(self, translation: distance)
     }
 }
 

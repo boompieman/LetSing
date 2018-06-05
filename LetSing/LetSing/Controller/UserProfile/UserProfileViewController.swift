@@ -40,10 +40,8 @@ class userProfileViewController: UIViewController {
 
 extension userProfileViewController: RecordTableViewControllerDelegate {
     func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat) {
-        print(translation)
+        
         self.userInfoView.frame = CGRect(x:0, y: navBarHeightPlusStatusHeight - translation, width: userInfoView.frame.width, height: 180)
-
-//        self.view.bounds.origin.y = self.view.bounds.origin.y - translation
     }
 
 
