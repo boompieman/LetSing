@@ -6,9 +6,7 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import SDWebImage
 
 protocol DiscoverSongCollectionViewControllerDelegate: class {
 

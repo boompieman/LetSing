@@ -31,7 +31,7 @@ class LSRecordPlayerManager: NSObject {
     var audioInput: AVAssetWriterInput!
     var microInput: AVAssetWriterInput!
 
-    private var queue = DispatchQueue(label: "audio")
+    private var queue = DispatchQueue(label: String(describing: LSRecordPlayerManager.self))
 
     func setLSAudioCategory(isActive flag: Bool) {
 
@@ -48,35 +48,6 @@ class LSRecordPlayerManager: NSObject {
     func generateRecorder() -> RPScreenRecorder {
         return recorder
     }
-
-    // MARK: recorder action
-//    func start() {
-//
-//        self.recorder.delegate = self
-//
-//        if isSystemVersionSupport() || isRecorderAvailable() {
-//            if !self.recorder.isRecording {
-//
-//                self.recorder.isMicrophoneEnabled = true
-//
-//
-//
-//                self.recorder.isCameraEnabled = true
-//
-//
-//
-//                self.recorder.startRecording { (error) in
-//
-//                    if let error = error {
-//                        self.delegate?.didStopWithError(error: error)
-//                    }
-//
-//
-//                    self.delegate?.didStartRecord()
-//                }
-//            }
-//        }
-//    }
 
     // start recording
     func start() {
@@ -199,24 +170,6 @@ class LSRecordPlayerManager: NSObject {
             }
         }
     }
-
-//    func stop() {
-//
-//        if self.recorder.isRecording {
-//
-//            recorder.stopRecording { (previewController, error) in
-//
-//                if let previewController = previewController {
-//
-//                    self.delegate?.didFinishRecord(preview: previewController)
-//
-//                }
-//                if let error = error {
-//                    print(error)
-//                }
-//            }
-//        }
-//    }
 
     func discard() {
 

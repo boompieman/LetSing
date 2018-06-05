@@ -10,10 +10,6 @@ import Foundation
 
 class LSJsonParser {
 
-//    func getPaging(pageToken: String) -> String {
-//        return pageToken
-//    }
-
     func parseToSongs(data: Data, completion: ([Song], String) -> Void) {
 
         var songList = [Song]()
@@ -24,7 +20,8 @@ class LSJsonParser {
 
         guard let items = json["items"] as? [AnyObject] else {
 
-            return }
+            return
+        }
 
         guard let pageToken = json["nextPageToken"] as? String else { return }
 

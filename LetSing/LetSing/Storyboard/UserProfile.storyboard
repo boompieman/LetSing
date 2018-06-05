@@ -38,10 +38,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-g7-4ne">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <segue destination="IUk-fW-oHH" kind="embed" id="HdJ-ji-jQL"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5b-go-KdB" customClass="UserInfoView" customModule="LetSing" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="180"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="apB-od-5vn">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="discover" translatesAutoresizingMaskIntoConstraints="NO" id="apB-od-5vn">
                                         <rect key="frame" x="147" y="30" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="eHa-Yg-fdm"/>
@@ -70,12 +76,6 @@
                                     <outlet property="nameLabel" destination="zNi-qr-uQ7" id="vpf-We-QDz"/>
                                 </connections>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jm-g7-4ne">
-                                <rect key="frame" x="0.0" y="244" width="375" height="423"/>
-                                <connections>
-                                    <segue destination="IUk-fW-oHH" kind="embed" id="HdJ-ji-jQL"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -83,7 +83,7 @@
                             <constraint firstItem="u5b-go-KdB" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="LZS-dX-7rv"/>
                             <constraint firstItem="i3m-Gc-DjK" firstAttribute="bottom" secondItem="5jm-g7-4ne" secondAttribute="bottom" id="MMs-bh-SfA"/>
                             <constraint firstItem="5jm-g7-4ne" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="ccx-rT-q9e"/>
-                            <constraint firstItem="5jm-g7-4ne" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="bottom" id="gXS-gA-B7c"/>
+                            <constraint firstItem="5jm-g7-4ne" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="gXS-gA-B7c"/>
                             <constraint firstItem="u5b-go-KdB" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="hFP-1J-xg8"/>
                             <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="5jm-g7-4ne" secondAttribute="trailing" id="wG9-1V-r5E"/>
                         </constraints>
@@ -92,7 +92,6 @@
                     <navigationItem key="navigationItem" title="個人資料" id="Zq6-10-RZu"/>
                     <connections>
                         <outlet property="userInfoView" destination="u5b-go-KdB" id="gkK-Tt-rmh"/>
-                        <segue destination="0Gs-8V-OHm" kind="show" identifier="VideoPlayerViewController" id="BCz-pL-BKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2m-2G-wgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -104,14 +103,14 @@
             <objects>
                 <viewController id="0Gs-8V-OHm" customClass="VideoPlayerViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="moM-Vu-Ses">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5O2-Hb-LZs" customClass="LSVideoPanelView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="583"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8R-Bc-tF9" customClass="LSPlayerView" customModule="LetSing" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-Gz-GEP">
                                                 <rect key="frame" x="20" y="10" width="30" height="30"/>
@@ -153,37 +152,39 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J1N-8Q-MVw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vis-gY-949"/>
                     <connections>
                         <outlet property="videoPanelView" destination="5O2-Hb-LZs" id="8M3-ye-W4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osh-0H-3hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="-4"/>
+            <point key="canvasLocation" x="2425" y="-679"/>
         </scene>
         <!--Record Table View Controller-->
         <scene sceneID="RQO-ca-4ph">
             <objects>
                 <viewController id="IUk-fW-oHH" customClass="RecordTableViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPP-km-a4c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-AM-M0m">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-AM-M0m">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="FkM-AM-M0m" secondAttribute="bottom" id="JI3-bx-eKi"/>
-                            <constraint firstItem="FkM-AM-M0m" firstAttribute="top" secondItem="WPP-km-a4c" secondAttribute="topMargin" id="awd-3n-5mT"/>
+                            <constraint firstItem="FkM-AM-M0m" firstAttribute="top" secondItem="WPP-km-a4c" secondAttribute="top" id="Xd3-En-fnv"/>
                             <constraint firstItem="FkM-AM-M0m" firstAttribute="leading" secondItem="WPP-km-a4c" secondAttribute="leading" id="mhY-Mu-ODv"/>
                             <constraint firstAttribute="trailing" secondItem="FkM-AM-M0m" secondAttribute="trailing" id="rlD-tb-1Xz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="FkM-AM-M0m" id="kGK-X5-pFj"/>
+                        <segue destination="0Gs-8V-OHm" kind="show" identifier="VideoPlayerViewController" id="Qbl-u6-xae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODL-fl-wsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,5 +194,6 @@
     </scenes>
     <resources>
         <image name="btn_back" width="34" height="34"/>
+        <image name="discover" width="24" height="24"/>
     </resources>
 </document>

@@ -18,10 +18,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     var currentCellRow: Int = 0
 
-    var manager = SongManager()
-
-    var songList = [Song]()
-
     @IBOutlet weak var scrollView: UIScrollView!
 
     override func viewDidLoad() {

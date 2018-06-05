@@ -9,18 +9,45 @@
 import Foundation
 import UIKit
 
+protocol RecordTableViewControllerDelegate: class {
+    func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat)
+}
+
 class RecordTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
+    weak var delegate: RecordTableViewControllerDelegate?
 
     var records = [Record]()
+
+    private let userInfoViewHeight: CGFloat = 180.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupTableView()
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 一滑動後，整個offset會變化，要讓userInfoView貼著tableView，所以要給一個userInfoViewHeight
+        let distance = scrollView.contentOffset.y - (-userInfoViewHeight)
+
+
+
+        self.delegate?.tableViewDidScroll(self, translation: distance)
+    }
+
+    //定義好物件與周圍的距離(Inset)與物件一開始的位置(Offset) // 180為 userInfoView 高度
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 進入時cell已經生成好，所以看到的視野會是從180開始
+        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 0, 0)
+
+        self.tableView.contentOffset = CGPoint(x: 0, y: -userInfoViewHeight)
+
+    }
+
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,8 +91,6 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
             ) as! UserVideoTableViewCell
 
         tableViewCell.titleLabel.text = self.records[indexPath.row].title
-
-        print(self.records[indexPath.row].videoUrl.absoluteString.components(separatedBy: "/"))
 
         return tableViewCell
     }
@@ -113,6 +138,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
         return actionArray
     }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 

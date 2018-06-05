@@ -13,13 +13,19 @@ class userProfileViewController: UIViewController {
 
     @IBOutlet weak var userInfoView: UserInfoView!
 
-    var records = [Record]()
+    private let navBarHeightPlusStatusHeight: CGFloat = 64.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         requestProfile()
-        
+        childViewConfiguration()
+    }
+
+    func childViewConfiguration() {
+        guard let recordTableVC = self.childViewControllers[0] as? RecordTableViewController else { return }
+
+        recordTableVC.delegate = self
     }
 
     func requestProfile() {
@@ -30,4 +36,15 @@ class userProfileViewController: UIViewController {
             print(error)
         }
     }
+}
+
+extension userProfileViewController: RecordTableViewControllerDelegate {
+    func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat) {
+        print(translation)
+        self.userInfoView.frame = CGRect(x:0, y: navBarHeightPlusStatusHeight - translation, width: userInfoView.frame.width, height: 180)
+
+//        self.view.bounds.origin.y = self.view.bounds.origin.y - translation
+    }
+
+
 }
