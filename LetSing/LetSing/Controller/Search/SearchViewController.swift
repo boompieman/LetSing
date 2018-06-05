@@ -17,9 +17,9 @@ class SearchViewController: UIViewController {
 
     var isSetupTableView: Bool = false
 
-    var searchText = LSConstants.emptyString
+    private var searchText = LSConstants.emptyString
 
-    var pageToken = LSConstants.emptyString
+    private var pageToken = LSConstants.emptyString
 
     var songManager = SongManager()
 
@@ -33,8 +33,6 @@ class SearchViewController: UIViewController {
 //        setupTableView()
 
         searchController.searchBarDelegate = self
-
-        self.navigationController?.navigationBar.isHidden = false
 
         songManager.delegate = self
     }
