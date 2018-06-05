@@ -25,27 +25,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
 
     override func viewDidLoad() {
-
-        requestYoutubeData(type: .chinese)
-    }
-
-    func requestYoutubeData(type: LSSongType) {
-
-        manager.delegate = self
-
-        Analytics.logEvent("type_in_\(type.rawValue)", parameters: nil)
-
-        let hasDataInRealm: Bool =
-            !(manager.generateRealm().objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
-
-        if hasDataInRealm {
-
-            manager.getBoardFromRealm(type: type)
-        }
-        else {
-
-            manager.getBoardSongFromYoutube(type: type)
-        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -88,42 +68,22 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-extension DiscoverViewController: SongManagerDelegate {
-
-    func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String) {
-
-        let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-        guard let tableVC = songVC?.childViewControllers[0] as? DiscoverSongTableViewController else {
-            return
-        }
-
-        let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
-
-        tableVC.songs = songs
-
-        currentSongCell?.tableViewController.tableView.reloadData()
-    }
-}
-
 extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
 
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat) {
 
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
         songVC?.collectionView.bounds.origin.x = translation / offsetFactor
-
     }
 
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType) {
 
         resetCell(from: lastCellRow, to: type.hashValue)
-        requestYoutubeData(type: type)
     }
 
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow: Int, to currentRow: Int) {
         
         resetCell(from: lastRow, to: currentRow)
-        requestYoutubeData(type: controller.typeList[currentCellRow])
     }
 }
 
@@ -131,12 +91,6 @@ extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, from lastRow: Int, to currentRow: Int) {
 
         resetCell(from: lastRow,to: currentRow)
-
-        guard let typeVC = childViewControllers[0] as? DiscoverTypeCollectionViewController else {
-            return
-        }
-
-        requestYoutubeData(type: typeVC.typeList[currentRow])
     }
 
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat) {

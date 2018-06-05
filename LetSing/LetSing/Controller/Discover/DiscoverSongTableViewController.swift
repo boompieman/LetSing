@@ -11,21 +11,40 @@ import UIKit
 
 class DiscoverSongTableViewController: UIViewController {
 
+    var type: LSSongType?
     var tableView = UITableView()
     var songs = [Song]()
+
+    var manager = SongManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        requestYoutubeData(type: type!)
+
         setupTableView()
-        
+    }
+
+    func requestYoutubeData(type: LSSongType) {
+
+        manager.delegate = self
+
+        LSAnalytics.shared.logEvent("type_in_\(type.rawValue)", parameters: nil)
+
+        let hasDataInRealm: Bool =
+            !(manager.generateRealm().objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
+
+        if hasDataInRealm {
+
+            manager.getBoardFromRealm(type: type)
+        }
+        else {
+
+            manager.getBoardSongFromYoutube(type: type)
+        }
     }
 
     func setupTableView() {
-
-//        guard let tableView = self.tableView else {
-//            return
-//        }
 
         let nib = UINib(nibName: String(describing: SongTableViewCell.self), bundle: nil)
 
@@ -36,6 +55,8 @@ class DiscoverSongTableViewController: UIViewController {
         tableView.dataSource = self
 
         tableView.delegate = self
+
+        self.view.addSubview(tableView)
     }
 }
 
@@ -79,5 +100,14 @@ extension DiscoverSongTableViewController: UITableViewDelegate, UITableViewDataS
 
         recordController.song = songs[indexPath.row]
         show(recordController, sender: nil)
+    }
+}
+
+extension DiscoverSongTableViewController: SongManagerDelegate {
+
+    func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String) {
+
+        self.songs = songs
+        self.tableView.reloadData()
     }
 }

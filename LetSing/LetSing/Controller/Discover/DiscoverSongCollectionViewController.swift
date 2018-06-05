@@ -31,9 +31,15 @@ class DiscoverSongCollectionViewController: UIViewController {
 
     var currentRow: Int = 0
 
-    // lazy create controller
+    lazy var tableViewControllers = [
+        DiscoverSongTableViewController(),
+        DiscoverSongTableViewController(),
+        DiscoverSongTableViewController(),
+        DiscoverSongTableViewController(),
+        DiscoverSongTableViewController()
+    ]
 
-    // vcarray = []
+    private var songType: [LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
 
     override func viewDidLoad() {
 
@@ -53,6 +59,8 @@ class DiscoverSongCollectionViewController: UIViewController {
 
         self.collectionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
 
+        collectionView.backgroundColor = UIColor.white
+
         let nib = UINib(nibName: String(describing: DiscoverSongCollectionViewCell.self), bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverSongCollectionViewCell.self))
 
@@ -66,7 +74,7 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return 5
+        return tableViewControllers.count
 
     }
 
@@ -76,16 +84,6 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
         guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {return cell}
 
-        //問為何改bounds可以，frame不行！
-        discoverSongCollectionViewCell.tableViewController.tableView.frame = discoverSongCollectionViewCell.bounds
-
-        self.addChildViewController(discoverSongCollectionViewCell.tableViewController)
-
-        discoverSongCollectionViewCell.tableViewController.didMove(toParentViewController: self)
-
-        // 加這行才會讓每次reload Data時顯示資料在tableView上
-        discoverSongCollectionViewCell.contentView.addSubview(discoverSongCollectionViewCell.tableViewController.view)
-
         return discoverSongCollectionViewCell
     }
 
@@ -94,6 +92,19 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {
             return
         }
+
+        self.tableViewControllers[indexPath.row].type = self.songType[indexPath.row]
+
+        //問為何改bounds可以，frame不行!!
+        tableViewControllers[indexPath.row].tableView.frame = discoverSongCollectionViewCell.bounds
+
+        // 問為何明明沒有kill掉，卻不會加一
+        self.addChildViewController(tableViewControllers[indexPath.row])
+    self.tableViewControllers[indexPath.row].didMove(toParentViewController: self)
+
+        // 加這行才會讓tableView顯示在collectionView上
+        discoverSongCollectionViewCell.addSubview(tableViewControllers[indexPath.row].view)
+
     }
 
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -102,14 +113,6 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
             
             return
         }
-
-        discoverSongCollectionViewCell.tableViewController.removeFromParentViewController()
-//
-//
-//
-//        for cell in discoverSongCollectionViewCell.tableView.subviews {
-//            cell.removeFromSuperview()
-//        }
     }
 
     // scrollView

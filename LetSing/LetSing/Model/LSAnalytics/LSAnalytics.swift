@@ -13,7 +13,7 @@ class LSAnalytics {
 
     static let shared = LSAnalytics()
 
-    func logEvent(_ name: String, parameter: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameter)
+    func logEvent(_ name: String, parameters: [String: Any]?) {
+        Analytics.logEvent(name, parameters: parameters)
     }
 }

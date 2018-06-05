@@ -133,7 +133,7 @@ class RecordViewController: UIViewController {
             recordPlayerManager.start()
 
         } else {
-            LSAnalytics.shared.logEvent("record_button_tapped", parameter: nil)
+            LSAnalytics.shared.logEvent("record_button_tapped", parameters: nil)
             recordPlayerManager.stop()
         }
     }

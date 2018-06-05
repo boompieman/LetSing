@@ -10,14 +10,14 @@ import UIKit
 
 class DiscoverSongCollectionViewCell: UICollectionViewCell {
 
-    var tableViewController = DiscoverSongTableViewController()
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 
         // 加這行collectionView Cell內才會有tableView
-        self.addSubview(tableViewController.tableView)
+//        self.addSubview(tableViewController.tableView)
 
 //        setupTableView()
     }
