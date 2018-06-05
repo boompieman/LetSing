@@ -78,7 +78,7 @@ class LSRecordPlayerManager: NSObject {
 //        }
 //    }
 
-    // using startCapture
+    // start recording
     func start() {
 
         self.recorder.delegate = self

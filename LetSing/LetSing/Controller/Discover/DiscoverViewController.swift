@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Firebase
 
-
 class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
     var offsetFactor: CGFloat = 0.0
@@ -28,7 +27,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
 
         requestYoutubeData(type: .chinese)
-
     }
 
     func requestYoutubeData(type: LSSongType) {
@@ -95,14 +93,15 @@ extension DiscoverViewController: SongManagerDelegate {
     func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String) {
 
         let songVC = childViewControllers[1] as? DiscoverSongCollectionViewController
-        songVC?.songs = songs
+        guard let tableVC = songVC?.childViewControllers[0] as? DiscoverSongTableViewController else {
+            return
+        }
 
         let currentSongCell = songVC?.collectionView.cellForItem(at: IndexPath(row: currentCellRow, section: 0)) as? DiscoverSongCollectionViewCell
-        
 
-        currentSongCell?.tableView.reloadData()
+        tableVC.songs = songs
 
-        
+        currentSongCell?.tableViewController.tableView.reloadData()
     }
 }
 

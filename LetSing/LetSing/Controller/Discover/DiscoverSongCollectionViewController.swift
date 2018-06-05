@@ -31,6 +31,10 @@ class DiscoverSongCollectionViewController: UIViewController {
 
     var currentRow: Int = 0
 
+    // lazy create controller
+
+    // vcarray = []
+
     override func viewDidLoad() {
 
         setupCollectionView()
@@ -72,6 +76,16 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
         guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {return cell}
 
+        //問為何改bounds可以，frame不行！
+        discoverSongCollectionViewCell.tableViewController.tableView.frame = discoverSongCollectionViewCell.bounds
+
+        self.addChildViewController(discoverSongCollectionViewCell.tableViewController)
+
+        discoverSongCollectionViewCell.tableViewController.didMove(toParentViewController: self)
+
+        // 加這行才會讓每次reload Data時顯示資料在tableView上
+        discoverSongCollectionViewCell.contentView.addSubview(discoverSongCollectionViewCell.tableViewController.view)
+
         return discoverSongCollectionViewCell
     }
 
@@ -80,8 +94,6 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
         guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {
             return
         }
-
-        discoverSongCollectionViewCell.setTableViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
 
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -91,19 +103,20 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
             return
         }
 
-        for cell in discoverSongCollectionViewCell.tableView.subviews {
-            cell.removeFromSuperview()
-        }
+        discoverSongCollectionViewCell.tableViewController.removeFromParentViewController()
+//
+//
+//
+//        for cell in discoverSongCollectionViewCell.tableView.subviews {
+//            cell.removeFromSuperview()
+//        }
     }
 
     // scrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        // 只要分childView，如此一來這邊就不用在寫if else惹
-        if scrollView === self.collectionView {
-            let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
-            self.delegate?.songViewDidScroll(self, translation: offsetX)
-        }
+        let offsetX = scrollView.contentOffset.x - scrollView.frame.origin.x
+        self.delegate?.songViewDidScroll(self, translation: offsetX)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -147,52 +160,5 @@ extension DiscoverSongCollectionViewController: UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
         return CGSize.zero
-    }
-}
-
-// 可以在封裝進一個childViewController，如此一來一個ViewController就可以只管好一個scrollView
-extension DiscoverSongCollectionViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return songs.count
-
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-        return 150
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let tableViewCell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: SongTableViewCell.self),
-            for: indexPath
-            ) as! SongTableViewCell
-
-
-
-        tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
-
-
-        return tableViewCell
-        
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-
-        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
-            withIdentifier: String(describing: RecordViewController.self)
-            ) as? RecordViewController else { return }
-
-        recordController.song = songs[indexPath.row]
-        show(recordController, sender: nil)
     }
 }
