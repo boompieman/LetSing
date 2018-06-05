@@ -41,9 +41,8 @@ class RecordTableViewController: UIViewController {
     //定義好物件與周圍的距離(Inset)與物件一開始的位置(Offset) // 180為 userInfoView 高度
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 進入時cell已經生成好，所以看到的視野會是從180開始
-        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 0, 0)
 
+        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
         self.tableView.contentOffset = CGPoint(x: 0, y: -userInfoViewHeight)
 
     }
