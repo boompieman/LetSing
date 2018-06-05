@@ -52,7 +52,7 @@ class LyricsViewController: UIViewController {
     func requestLyrics(song: Song) {
 
         manager.delegate = self
-        self.manager.getLyricBySong(id: song.id)
+//        self.manager.getLyricBySong(id: song.id)
     }
 
     func moveLyrics(currentTime: Float) {
