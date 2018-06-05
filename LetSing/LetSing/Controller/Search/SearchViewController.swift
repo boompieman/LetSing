@@ -142,7 +142,7 @@ extension SearchViewController: LSSearchControllerDelegate {
         if !isSetupTableView {
 
             self.setupTableView()
-            isSetupTableView = !isSetupTableView
+            isSetupTableView = true
         }
     }
 

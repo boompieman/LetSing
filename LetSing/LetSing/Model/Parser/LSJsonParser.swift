@@ -41,9 +41,9 @@ class LSJsonParser {
             let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, rank: nil, type: nil)
 
             songList.append(song)
-
-            completion(songList, pageToken)
         }
+        
+        completion(songList, pageToken)
     }
 
     private func parse(data: Data) throws -> [String : AnyObject] {
