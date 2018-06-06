@@ -15,7 +15,7 @@ class LSDateFormatter {
 
     func getCurrentTime() -> String {
 
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = LSConstants.dateFormat
         let date = Date()
         let interval = date.timeIntervalSince1970
 

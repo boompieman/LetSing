@@ -20,7 +20,7 @@ protocol ScreenCaptureManagerDelegate: class{
 
 class LSRecordPlayerManager: NSObject {
 
-    let recorder = RPScreenRecorder.shared()
+    private let recorder = RPScreenRecorder.shared()
 
     weak var delegate: ScreenCaptureManagerDelegate?
     // play music using speaker
@@ -41,7 +41,7 @@ class LSRecordPlayerManager: NSObject {
             
             try self.audioSession.setActive(flag)
         } catch {
-            print(error)
+            self.delegate?.didStopWithError(error: error)
         }
     }
 
@@ -52,39 +52,9 @@ class LSRecordPlayerManager: NSObject {
     // start recording
     func start() {
 
+        setupAssetWriter()
+
         self.recorder.delegate = self
-
-        let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.newRecordFilePath())
-
-        assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType: .mp4)
-
-        let videoOutputSettings: [String : Any] = [
-            AVVideoCodecKey: AVVideoCodecType.h264,
-            AVVideoWidthKey: UIScreen.main.bounds.width,
-            AVVideoHeightKey: UIScreen.main.bounds.height
-        ]
-
-        var acl:AudioChannelLayout!
-        bzero(&acl, MemoryLayout.size(ofValue: acl))
-        acl.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo
-
-        let audioOutputSettings: [String : Any] = [
-            AVFormatIDKey: kAudioFormatMPEG4AAC,
-            AVSampleRateKey: 44100,
-            AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
-        ]
-
-        audioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
-        microInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
-        videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
-
-        videoInput.expectsMediaDataInRealTime = true
-        audioInput.expectsMediaDataInRealTime = true
-        microInput.expectsMediaDataInRealTime = true
-
-        self.assetWriter.add(videoInput)
-        self.assetWriter.add(audioInput)
-        self.assetWriter.add(microInput)
 
         if self.recorder.isAvailable && !self.recorder.isRecording {
 
@@ -112,10 +82,6 @@ class LSRecordPlayerManager: NSObject {
                         }
 
                         if strongSelf.assetWriter.status == AVAssetWriterStatus.unknown {
-
-//                            if !strongSelf.assetWriter.startWriting() {
-//                                return
-//                            }
 
                             strongSelf.assetWriter.startWriting()
 
@@ -183,6 +149,42 @@ class LSRecordPlayerManager: NSObject {
                 self.assetWriter.cancelWriting()
             }
         }
+    }
+
+    // MARK: private func
+    private func setupAssetWriter() {
+
+        let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.newRecordFilePath())
+
+        assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType: .mp4)
+
+        let videoOutputSettings: [String : Any] = [
+            AVVideoCodecKey: AVVideoCodecType.h264,
+            AVVideoWidthKey: UIScreen.main.bounds.width,
+            AVVideoHeightKey: UIScreen.main.bounds.height
+        ]
+
+        var acl:AudioChannelLayout!
+        bzero(&acl, MemoryLayout.size(ofValue: acl))
+        acl.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo
+
+        let audioOutputSettings: [String : Any] = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: 44100,
+            AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
+        ]
+
+        audioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
+        microInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
+        videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
+
+        videoInput.expectsMediaDataInRealTime = true
+        audioInput.expectsMediaDataInRealTime = true
+        microInput.expectsMediaDataInRealTime = true
+
+        assetWriter.add(videoInput)
+        assetWriter.add(audioInput)
+        assetWriter.add(microInput)
     }
 }
 

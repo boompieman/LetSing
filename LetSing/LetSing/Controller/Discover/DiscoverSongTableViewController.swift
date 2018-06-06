@@ -85,7 +85,7 @@ extension DiscoverSongTableViewController: UITableViewDelegate, UITableViewDataS
             for: indexPath
             ) as! SongTableViewCell
 
-        tableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
+        tableViewCell.updateWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
         return tableViewCell
     }

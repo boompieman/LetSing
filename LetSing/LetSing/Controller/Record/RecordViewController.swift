@@ -14,17 +14,18 @@ import ReplayKit
 class RecordViewController: UIViewController {
 
     private static var observerContext = 0
+    let videoProvider = LSYoutubeVideoProvider()
+    var song: Song?
+    var recordPlayerManager = LSRecordPlayerManager()
+
 
     @IBOutlet weak var endRecordButton: EndRecordButton!
     @IBOutlet weak var loadingView: LoadingView!
     @IBOutlet weak var recordNavigationView: RecordNavigationView!
     @IBOutlet weak var recordVideoPanelView: RecordVideoPanelView!
-    let videoProvider = LSYoutubeVideoProvider()
-    var song: Song?
 
     @IBOutlet weak var notIphoneXConstraint: NSLayoutConstraint!
     @IBOutlet weak var iphoneXConstraint: NSLayoutConstraint!
-    var recordPlayerManager = LSRecordPlayerManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,8 +115,8 @@ class RecordViewController: UIViewController {
 
         recordVideoPanelView.updatePlayer()
         recordVideoPanelView.videoPlayerView.delegate = self
-
         recordVideoPanelView.delegate = self
+
         videoProvider.generatePlayer(player: recordVideoPanelView.videoPlayerView, song.id, observer: self, context: &RecordViewController.observerContext)
     }
 
@@ -172,18 +173,18 @@ class RecordViewController: UIViewController {
     // 需要解決若此首歌沒有歌詞就不要追蹤的問題
     private func playerCurrentLyricsHandler(change: [NSKeyValueChangeKey : Any]) {
 
-        guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
+//        guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
 
-        let lyricsVC = childViewControllers[0] as? LyricsViewController
+//        let lyricsVC = childViewControllers[0] as? LyricsViewController
 
-        lyricsVC?.moveLyrics(currentTime: newValue)
+//        lyricsVC?.moveLyrics(currentTime: newValue)
     }
 
     private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
 
         guard let newValue = change[NSKeyValueChangeKey.newKey] as? String else { return }
 
-        recordVideoPanelView.updateCurrentTime(
+        recordVideoPanelView.updateCurrentTime (
             time: newValue,
             proportion: videoProvider.currentProportion()
         )
@@ -198,8 +199,6 @@ extension RecordViewController: YouTubePlayerDelegate {
         videoProvider.play()
 
         loadingView.removeView()
-
-        print("player Ready")
     }
 
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
@@ -210,19 +209,14 @@ extension RecordViewController: YouTubePlayerDelegate {
 
             videoProvider.startTimer()
 
-            print("playing")
-
         case .Ended:
-            print("Ended")
 
             recordPlayerManager.stop()
 
-        case .Paused:
-            
-            print("Pause")
-
         default:
+
             break
+
         }
     }
 }
@@ -244,18 +238,13 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 //        print(cameraView.frame)
 //
 //        self.view.addSubview(cameraView)
-        print("did Start Record")
     }
 
     func didFinishRecord() {
 
-        print("Record did finish")
-
         endRecordButton.stopRecording()
 
-        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-            withIdentifier: String(describing: TabBarViewController.self)
-            ) as? TabBarViewController else { return }
+        guard let tabbarController = self.generateTabBarController() else { return }
 
         self.present(tabbarController, animated: true, completion: { [unowned self] in
             self.removeFromParentViewController()
@@ -266,23 +255,41 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 
         endRecordButton.stopRecording()
 
-        let alert = AlertManager.shared.showAlert(
-            with: "好像出現什麼問題",
-            message: error.localizedDescription,
-            completion: { }
-        )
+        let alert = generateAlert(with: error)
 
         self.present(alert, animated: true, completion: { [unowned self] in
 
-            guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-                withIdentifier: String(describing: TabBarViewController.self)
-                ) as? TabBarViewController else { return }
+            guard let tabbarController = self.generateTabBarController() else { return }
 
             self.present(tabbarController, animated: false, completion: { [unowned self] in
                 self.removeFromParentViewController()
             })
         })
     }
+
+    // MARK: private func
+    private func generateAlert(with error: Error) -> UIAlertController {
+
+        let alert =
+            AlertManager.shared.showAlert (
+                with: NSLocalizedString(
+                    LSConstants.Localization.alertTitle,
+                    comment: LSConstants.emptyString),
+                message: error.localizedDescription,
+                completion: { }
+        )
+
+        return alert
+    }
+
+    private func generateTabBarController() -> TabBarViewController? {
+        guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+            withIdentifier: String(describing: TabBarViewController.self)
+            ) as? TabBarViewController else { return nil}
+
+        return tabbarController
+    }
+
 }
 
 extension RecordViewController: LSVideoPanelViewDelegate {

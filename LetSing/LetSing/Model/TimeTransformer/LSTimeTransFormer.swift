@@ -28,7 +28,7 @@ struct LSTimeTransFormer {
 
         guard let floatTime = Float(time) else {
 
-            return "Nah"
+            return LSConstants.emptyString
 
         }
 

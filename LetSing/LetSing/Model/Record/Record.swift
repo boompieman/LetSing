@@ -17,7 +17,7 @@ struct Record: Codable {
 
     let videoUrl: URL
 
-    let createdTime: String
+    let createdTime: Date?
 
 }
 

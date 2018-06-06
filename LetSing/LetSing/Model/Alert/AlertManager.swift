@@ -18,7 +18,7 @@ class AlertManager {
     func showEdit(with title: String, message: String?, placeholder: String?, completion: @escaping (String) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        var text = LSConstants.emptyString
+        let text = LSConstants.emptyString
 
         alertController.addTextField { (textField) in
             textField.placeholder = placeholder
@@ -26,8 +26,9 @@ class AlertManager {
             textField.text = text
         }
 
-        let action = UIAlertAction(title: "確定", style: .default) { _ in
-
+        let action = UIAlertAction(title: NSLocalizedString(
+            LSConstants.Localization.confirm,
+            comment: LSConstants.emptyString), style: .default) { _ in
 
             completion((alertController.textFields?.first?.text!)!)
         }
@@ -41,7 +42,11 @@ class AlertManager {
 
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "確定", style: .default) { _ in
+        let action = UIAlertAction(
+            title: NSLocalizedString(
+                LSConstants.Localization.confirm,
+                comment: LSConstants.emptyString),
+            style: .default) { _ in
             completion()
         }
 
@@ -61,8 +66,8 @@ class AlertManager {
 
         let action = UIAlertAction(
             title: NSLocalizedString(
-                "Cancel",
-                comment: ""
+                LSConstants.Localization.cancel,
+                comment: LSConstants.emptyString
             ),
             style: .cancel,
             handler: nil

@@ -14,28 +14,6 @@ class DiscoverSongCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
 
-        // 加這行collectionView Cell內才會有tableView
-//        self.addSubview(tableViewController.tableView)
-
-//        setupTableView()
     }
-
-//    func setupTableView() {
-//
-//        let nib = UINib(nibName: String(describing: SongTableViewCell.self), bundle: nil)
-//
-//        self.tableView.register(nib, forCellReuseIdentifier: String(describing: SongTableViewCell.self))
-//
-//        tableView.contentInset = LSConstants.tableViewInset
-//    }
-
-//    func setTableViewDataSourceDelegate <D: UITableViewDataSource & UITableViewDelegate>
-//        (dataSourceDelegate: D, forRow row: Int) {
-//
-//        self.tableView.delegate = dataSourceDelegate
-//        self.tableView.dataSource = dataSourceDelegate
-//        self.tableView.tag = row
-//    }
 }

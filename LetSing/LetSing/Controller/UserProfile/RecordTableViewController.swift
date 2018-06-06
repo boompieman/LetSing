@@ -6,7 +6,6 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 protocol RecordTableViewControllerDelegate: class {
@@ -52,6 +51,35 @@ class RecordTableViewController: UIViewController {
 
         self.delegate?.tableViewDidScroll(self, translation: distance)
     }
+
+    // MARK: private function
+    private func generateEditAlert(indexPath: IndexPath) -> UIAlertController {
+        let alert = AlertManager.shared.showEdit(
+            with: NSLocalizedString(
+                LSConstants.Localization.editTitle,
+                comment: LSConstants.emptyString
+            ),
+            message: nil,
+            placeholder: NSLocalizedString(
+                LSConstants.Localization.editPlaceHolder,
+                comment: LSConstants.emptyString
+            ),
+            completion: { (text) in
+                LSRecordFileManager.shared.updateRecordTitle(from: self.records[indexPath.row].videoUrl, to: text)
+                self.records[indexPath.row].title = text
+                self.tableView.isEditing = false
+                self.tableView.reloadData()
+        })
+
+        return alert
+    }
+
+    private func deleteRecord(indexPath: IndexPath) {
+        LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
+        self.records.remove(at: indexPath.row)
+        self.tableView.isEditing = false
+        self.tableView.reloadData()
+    }
 }
 
 extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -68,7 +96,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 150
+        return LSConstants.songCellHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,32 +123,31 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         var actionArray = [UITableViewRowAction]()
 
-        let actionEdit = UITableViewRowAction(style: .default, title:"編輯") { (action, indexPath) in
+        let actionEdit = UITableViewRowAction(
+            style: .default,
+            title: NSLocalizedString(
+                LSConstants.Localization.edit,
+                comment: LSConstants.emptyString)
+            ) { (action, indexPath) in
 
-            let alert = AlertManager.shared.showEdit(
-                with: "編輯標題",
-                message: nil,
-                placeholder: "請輸入標題..",
-                completion: { (text) in
-                    LSRecordFileManager.shared.updateRecordTitle(from: self.records[indexPath.row].videoUrl, to: text)
-                    self.records[indexPath.row].title = text
-                    self.tableView.isEditing = false
-                    self.tableView.reloadData()
-            })
+            let alert = self.generateEditAlert(indexPath: indexPath)
 
             self.present(alert, animated: true, completion: nil)
         }
 
         actionEdit.backgroundColor = UIColor.orange
 
-        let actionDelete = UITableViewRowAction(style: .default, title: "刪除") { (action, indexPath) in
-            LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
-            self.records.remove(at: indexPath.row)
-            tableView.isEditing = false
-            tableView.reloadData()
+        let actionDelete = UITableViewRowAction(
+        style: .default,
+        title: NSLocalizedString(
+            LSConstants.Localization.delete,
+            comment: LSConstants.emptyString)) { (action, indexPath) in
+
+            self.deleteRecord(indexPath: indexPath)
         }
 
         actionDelete.backgroundColor = UIColor.red
+
         actionArray.append(actionDelete)
         actionArray.append(actionEdit)
 

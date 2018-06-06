@@ -23,12 +23,6 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -44,7 +38,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     }
 
     // 可以封裝進view裏，將包覆兩個大collectionView的View在定義成一個swift檔出來
-    func resetCell(from lastRow:Int, to currentRow: Int) {
+    func resetCell(from lastRow: Int, to currentRow: Int) {
 
         currentCellRow = currentRow
 
@@ -52,12 +46,12 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
 
         let lastCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: lastRow, section: 0)) as? DiscoverTypeCollectionViewCell
 
-        lastCell?.typeLabel.textColor = UIColor(red: 255/255, green: 190/255, blue: 185/255, alpha: 1.0)
+        lastCell?.typeLabel.textColor = UIColor(named: LSColor.type.color())
         lastCell?.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
 
         let currentCell = typeVC?.collectionView.cellForItem(at: IndexPath(row: currentRow, section: 0)) as? DiscoverTypeCollectionViewCell
 
-        currentCell?.typeLabel.textColor = UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1.0)
+        currentCell?.typeLabel.textColor = UIColor(named: LSColor.brand.color())
         currentCell?.typeLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
 
         lastCellRow = currentRow

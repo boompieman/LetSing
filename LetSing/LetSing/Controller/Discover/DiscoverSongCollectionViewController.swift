@@ -37,17 +37,12 @@ class DiscoverSongCollectionViewController: UIViewController {
         DiscoverSongTableViewController()
     ]
 
-    private var songType: [LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
+    private let songType: [LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
 
     override func viewDidLoad() {
 
         setupCollectionView()
         
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
     }
 
     func setupCollectionView() {
@@ -57,10 +52,10 @@ class DiscoverSongCollectionViewController: UIViewController {
 
         self.collectionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
 
-        collectionView.backgroundColor = UIColor.white
-
         let nib = UINib(nibName: String(describing: DiscoverSongCollectionViewCell.self), bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverSongCollectionViewCell.self))
+
+        collectionView.backgroundColor = UIColor.white
 
         // set song collection view layout
 
@@ -93,12 +88,9 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
 
         self.tableViewControllers[indexPath.row].type = self.songType[indexPath.row]
 
-        //問為何改bounds可以，frame不行!!
         tableViewControllers[indexPath.row].tableView.frame = discoverSongCollectionViewCell.bounds
 
-        // 問為何明明沒有kill掉，卻不會加一
-        self.addChildViewController(tableViewControllers[indexPath.row])
-    self.tableViewControllers[indexPath.row].didMove(toParentViewController: self)
+        self.add(tableViewControllers[indexPath.row])
 
         // 加這行才會讓tableView顯示在collectionView上
         discoverSongCollectionViewCell.addSubview(tableViewControllers[indexPath.row].view)
@@ -111,6 +103,7 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
             
             return
         }
+        tableViewControllers[indexPath.row].view.removeFromSuperview()
     }
 
     // scrollView

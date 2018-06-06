@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var isSetupTableView: Bool = false
+    private var isSetupTableView: Bool = false
 
     private var searchText = LSConstants.emptyString
 
@@ -29,10 +29,6 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         configureCustomSearchController()
-
-//        setupTableView()
-
-        searchController.searchBarDelegate = self
 
         songManager.delegate = self
     }
@@ -57,15 +53,13 @@ class SearchViewController: UIViewController {
 
     func configureCustomSearchController() {
 
-//        self.navigationController?.isNavigationBarHidden = false
-
         let barFrame = CGRect(x: 0.0, y: 0.0, width: (self.navigationController?.navigationBar.frame.width)!, height: (self.navigationController?.navigationBar.frame.height)!)
 
         searchController = LSSearchController(searchResultsController: self, searchBarFrame: barFrame, searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.white, searchBarTintColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1))
 
-//        LSSearchController.searchBarDelegate = self
-
         self.navigationItem.titleView = searchController.customSearchBar
+
+        searchController.searchBarDelegate = self
     }
 }
 
@@ -85,7 +79,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
         guard let searchResultTableViewCell = cell as? SongTableViewCell else {return cell}
 
-        searchResultTableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
+        searchResultTableViewCell.updateWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
         return searchResultTableViewCell
     }
