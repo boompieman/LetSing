@@ -34,6 +34,8 @@
 		FA4335B4209C689500BC90FC /* DiscoverSongCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4335B3209C689500BC90FC /* DiscoverSongCollectionViewController.swift */; };
 		FA43A57320C77AE2005E1CCE /* UIViewController+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A57220C77AE2005E1CCE /* UIViewController+Sam.swift */; };
 		FA43A57820C78082005E1CCE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA43A57A20C78082005E1CCE /* Localizable.strings */; };
+		FA43A58020C8CC34005E1CCE /* LSFirebaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */; };
+		FA43A58220C8CCE8005E1CCE /* LSFirebaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */; };
 		FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */; };
 		FA594BB320C3DC3700747CD9 /* UIDevice+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */; };
 		FA5CA13B209976E500811B4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA13A209976E500811B4B /* GoogleService-Info.plist */; };
@@ -127,6 +129,8 @@
 		FA43A57B20C780D2005E1CCE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Record.strings"; sourceTree = "<group>"; };
 		FA43A57C20C780D2005E1CCE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		FA43A57D20C780D2005E1CCE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFirebaseSession.swift; sourceTree = "<group>"; };
+		FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFirebaseRequest.swift; sourceTree = "<group>"; };
 		FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProductionViewController.swift; sourceTree = "<group>"; };
 		FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Sam.swift"; sourceTree = "<group>"; };
 		FA5CA13A209976E500811B4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -324,6 +328,8 @@
 			children = (
 				FA4335A4209C344200BC90FC /* LSHTTPRequest.swift */,
 				FA4335AD209C4A0700BC90FC /* LSHTTPSession.swift */,
+				FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */,
+				FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -896,11 +902,13 @@
 				FA7F708A20B6F3BF00D9DDA1 /* User.swift in Sources */,
 				FA4335A2209C334C00BC90FC /* Song.swift in Sources */,
 				FA4335AA209C37C000BC90FC /* LSConstants.swift in Sources */,
+				FA43A58020C8CC34005E1CCE /* LSFirebaseSession.swift in Sources */,
 				FACCB77220AE89EA0067ADC5 /* LyricsViewController.swift in Sources */,
 				FA4335A7209C353C00BC90FC /* LSError.swift in Sources */,
 				FA32EF6020AF0EE700A0F3F6 /* UIView+Sam.swift in Sources */,
 				FA7F708220B6A66100D9DDA1 /* AlertManager.swift in Sources */,
 				FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */,
+				FA43A58220C8CCE8005E1CCE /* LSFirebaseRequest.swift in Sources */,
 				FAD0AB0F20C517DA00FB1E03 /* DiscoverSongTableViewController.swift in Sources */,
 				FA7F708720B6EEC100D9DDA1 /* LoginButtonView.swift in Sources */,
 				FA7F708520B6D36A00D9DDA1 /* LoginInputView.swift in Sources */,
