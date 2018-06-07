@@ -211,7 +211,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="fPW-0p-oe6"/>
-                                <exclude reference="5U7-gR-oit"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="31R-ED-rxm"/>

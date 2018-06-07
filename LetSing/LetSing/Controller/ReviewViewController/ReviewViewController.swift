@@ -9,11 +9,12 @@
 import UIKit
 import AVFoundation
 
-class VideoPlayerViewController: UIViewController {
+class ReviewViewController: UIViewController {
 
     private static var observerContext = 0
 
     @IBOutlet weak var videoPanelView: LSVideoPanelView!
+    @IBOutlet weak var footerView: LSVideoFooterView!
 
     var videoURL: URL?
 
@@ -38,7 +39,7 @@ class VideoPlayerViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        videoProvider.removeAllObserver(observer: self, context: &VideoPlayerViewController.observerContext)
+        videoProvider.removeAllObserver(observer: self, context: &ReviewViewController.observerContext)
 
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -71,14 +72,40 @@ class VideoPlayerViewController: UIViewController {
         guard let player = videoProvider.generatePlayerAndObserveStatus(
             url: url,
             observer: self,
-            context: &VideoPlayerViewController.observerContext
+            context: &ReviewViewController.observerContext
         ) else { return }
 
         videoPanelView.updatePlayer(player: player)
+
+        videoPanelView.delegate = self
     }
 
     @IBAction func didTappedBackBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+
+    //MARK: - player action
+
+
+    @IBAction func rewindBtnDidTapped(_ sender: UIButton) {
+
+        videoProvider.changePlayerStep(LSConstants.backStep)
+
+    }
+
+    @IBAction func playBtnDidTapped(_ sender: UIButton) {
+
+        sender.isSelected = !sender.isSelected
+
+        sender.isSelected ? videoProvider.play() : videoProvider.pause()
+
+    }
+
+
+    @IBAction func fastFowardBtnDidTapped(_ sender: UIButton) {
+
+        videoProvider.changePlayerStep(LSConstants.forwardStep)
+
     }
 
     // MARK: - KVO
@@ -88,13 +115,13 @@ class VideoPlayerViewController: UIViewController {
             self,
             forKeyPath: #keyPath(LSVideoProvider.currentTime),
             options: NSKeyValueObservingOptions.new,
-            context: &VideoPlayerViewController.observerContext
+            context: &ReviewViewController.observerContext
         )
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
-        guard context == &VideoPlayerViewController.observerContext else {
+        guard context == &ReviewViewController.observerContext else {
 
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 
@@ -108,6 +135,7 @@ class VideoPlayerViewController: UIViewController {
         if path == #keyPath(AVPlayerItem.status) {
 
             playerStatusHandler(change: change)
+
         } else if path == #keyPath(LSVideoProvider.currentTime) {
 
             playerCurrentTimeHandler(change: change)
@@ -129,8 +157,8 @@ class VideoPlayerViewController: UIViewController {
         case .readyToPlay:
 
             videoProvider.play()
-
-//            videoPanelView.playerDidPlay()
+            footerView.playerDidPlay()
+            
         }
     }
 
@@ -141,5 +169,14 @@ class VideoPlayerViewController: UIViewController {
 //            newValue,
 //            proportion: videoProvider.currentProportion()
 //        )
+    }
+}
+
+extension ReviewViewController: LSVideoPanelViewDelegate {
+    func didTappedPlayer(_ playerView: LSVideoPanelView) {
+
+        playerView.isSelected = !playerView.isSelected
+
+        playerView.isSelected ? footerView.isHidden(false) : footerView.isHidden(true)
     }
 }

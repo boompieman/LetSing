@@ -113,7 +113,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        performSegue(withIdentifier: String(describing: VideoPlayerViewController.self), sender: indexPath)
+        performSegue(withIdentifier: String(describing: ReviewViewController.self), sender: indexPath)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -159,11 +159,11 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
         guard let identifier = segue.identifier else { return }
 
-        if identifier == String(describing: VideoPlayerViewController.self) {
+        if identifier == String(describing: ReviewViewController.self) {
 
             if let indexPath = self.tableView.indexPathForSelectedRow {
 
-                let destinationVC = segue.destination as? VideoPlayerViewController
+                let destinationVC = segue.destination as? ReviewViewController
                 destinationVC?.videoURL = self.records[indexPath.row].videoUrl
             }
         }

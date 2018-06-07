@@ -114,4 +114,24 @@ class LSVideoProvider: NSObject {
 
         player.pause()
     }
+
+    func changePlayerStep(_ step: Double) {
+
+        guard let player = player else { return }
+
+        let time = Double(CMTimeGetSeconds(player.currentTime())) + step
+
+        seekTo(portion: time)
+    }
+
+    //MRAK: private func
+    private func seekTo(portion: Double) {
+
+        guard let player = player else { return }
+
+        player.seek(
+            to: CMTime(seconds: portion, preferredTimescale: 1),
+            completionHandler: { _ in }
+        )
+    }
 }

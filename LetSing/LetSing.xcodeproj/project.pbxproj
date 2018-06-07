@@ -36,6 +36,7 @@
 		FA43A57820C78082005E1CCE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA43A57A20C78082005E1CCE /* Localizable.strings */; };
 		FA43A58020C8CC34005E1CCE /* LSFirebaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */; };
 		FA43A58220C8CCE8005E1CCE /* LSFirebaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */; };
+		FA43A58420C8E932005E1CCE /* LSVideoFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A58320C8E932005E1CCE /* LSVideoFooterView.swift */; };
 		FA553BCB20AAF01600A72A3D /* PostProductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */; };
 		FA594BB320C3DC3700747CD9 /* UIDevice+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */; };
 		FA5CA13B209976E500811B4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA13A209976E500811B4B /* GoogleService-Info.plist */; };
@@ -80,7 +81,7 @@
 		FAC2946C20BE435C002F87BF /* LSRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */; };
 		FAC2946F20BE590B002F87BF /* LSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2946E20BE590B002F87BF /* LSDateFormatter.swift */; };
 		FAC2947220BE62E4002F87BF /* LSVideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2947120BE62E4002F87BF /* LSVideoProvider.swift */; };
-		FAC2947820BE63E4002F87BF /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2947720BE63E4002F87BF /* VideoPlayerViewController.swift */; };
+		FAC2947820BE63E4002F87BF /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2947720BE63E4002F87BF /* ReviewViewController.swift */; };
 		FAC2947A20BE6A11002F87BF /* LSVideoPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2947920BE6A11002F87BF /* LSVideoPanelView.swift */; };
 		FACCB76620ADA96A0067ADC5 /* AVAsset+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */; };
 		FACCB76920AE6E8D0067ADC5 /* AudioTransformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */; };
@@ -131,6 +132,7 @@
 		FA43A57D20C780D2005E1CCE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFirebaseSession.swift; sourceTree = "<group>"; };
 		FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFirebaseRequest.swift; sourceTree = "<group>"; };
+		FA43A58320C8E932005E1CCE /* LSVideoFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSVideoFooterView.swift; sourceTree = "<group>"; };
 		FA553BCA20AAF01600A72A3D /* PostProductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProductionViewController.swift; sourceTree = "<group>"; };
 		FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Sam.swift"; sourceTree = "<group>"; };
 		FA5CA13A209976E500811B4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -177,7 +179,7 @@
 		FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordFileManager.swift; sourceTree = "<group>"; };
 		FAC2946E20BE590B002F87BF /* LSDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSDateFormatter.swift; sourceTree = "<group>"; };
 		FAC2947120BE62E4002F87BF /* LSVideoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSVideoProvider.swift; sourceTree = "<group>"; };
-		FAC2947720BE63E4002F87BF /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		FAC2947720BE63E4002F87BF /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		FAC2947920BE6A11002F87BF /* LSVideoPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSVideoPanelView.swift; sourceTree = "<group>"; };
 		FACCB76520ADA96A0067ADC5 /* AVAsset+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Sam.swift"; sourceTree = "<group>"; };
 		FACCB76820AE6E8D0067ADC5 /* AudioTransformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTransformatter.swift; sourceTree = "<group>"; };
@@ -455,7 +457,7 @@
 		FA7C96A5209949CB00890325 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAC2947620BE63D3002F87BF /* VideoPlayer */,
+				FAC2947620BE63D3002F87BF /* ReviewViewController */,
 				FA7F707820B69BFB00D9DDA1 /* Login */,
 				FA553BC920AAEFBC00A72A3D /* PostProduction */,
 				FA41DDF6209D7A1400CDAB08 /* UserProfile */,
@@ -494,7 +496,7 @@
 		FA7C96A7209949E400890325 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FAC2947320BE62F6002F87BF /* LSVideo */,
+				FAC2947320BE62F6002F87BF /* Review */,
 				FAEE0C3320BBEE4F00B828EC /* LSRefresh */,
 				FA7F708320B6D35500D9DDA1 /* Login */,
 				FA7F706D20B68D3D00D9DDA1 /* UserProfile */,
@@ -643,21 +645,22 @@
 			path = LSVideoPlayer;
 			sourceTree = "<group>";
 		};
-		FAC2947320BE62F6002F87BF /* LSVideo */ = {
+		FAC2947320BE62F6002F87BF /* Review */ = {
 			isa = PBXGroup;
 			children = (
 				FA1DD01820A1A6F900F92475 /* LSPlayerView.swift */,
 				FAC2947920BE6A11002F87BF /* LSVideoPanelView.swift */,
+				FA43A58320C8E932005E1CCE /* LSVideoFooterView.swift */,
 			);
-			path = LSVideo;
+			path = Review;
 			sourceTree = "<group>";
 		};
-		FAC2947620BE63D3002F87BF /* VideoPlayer */ = {
+		FAC2947620BE63D3002F87BF /* ReviewViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FAC2947720BE63E4002F87BF /* VideoPlayerViewController.swift */,
+				FAC2947720BE63E4002F87BF /* ReviewViewController.swift */,
 			);
-			path = VideoPlayer;
+			path = ReviewViewController;
 			sourceTree = "<group>";
 		};
 		FAC2947D20BE7D3D002F87BF /* TimeTransformer */ = {
@@ -907,6 +910,7 @@
 				FA4335A7209C353C00BC90FC /* LSError.swift in Sources */,
 				FA32EF6020AF0EE700A0F3F6 /* UIView+Sam.swift in Sources */,
 				FA7F708220B6A66100D9DDA1 /* AlertManager.swift in Sources */,
+				FA43A58420C8E932005E1CCE /* LSVideoFooterView.swift in Sources */,
 				FA4335B0209C4AD200BC90FC /* SongProvider.swift in Sources */,
 				FA43A58220C8CCE8005E1CCE /* LSFirebaseRequest.swift in Sources */,
 				FAD0AB0F20C517DA00FB1E03 /* DiscoverSongTableViewController.swift in Sources */,
@@ -944,7 +948,7 @@
 				FACCB77020AE885A0067ADC5 /* LyricsManager.swift in Sources */,
 				FABE5BF420B716610025D801 /* EndRecordButton.swift in Sources */,
 				FA43A57320C77AE2005E1CCE /* UIViewController+Sam.swift in Sources */,
-				FAC2947820BE63E4002F87BF /* VideoPlayerViewController.swift in Sources */,
+				FAC2947820BE63E4002F87BF /* ReviewViewController.swift in Sources */,
 				FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */,
 				FA0A090920AEC339004D9696 /* LSXMLParser.swift in Sources */,
 				FA7C96962098205400890325 /* RecordViewController.swift in Sources */,

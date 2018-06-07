@@ -292,7 +292,7 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 
 }
 
-extension RecordViewController: LSVideoPanelViewDelegate {
+extension RecordViewController: RecordVideoPanelViewDelegate {
     func didTappedPlayer(playerView: YouTubePlayerView) {
         if videoProvider.isPlaying() {
             videoProvider.pause()

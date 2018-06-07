@@ -10,7 +10,7 @@ import AVFoundation
 import UIKit
 import YouTubePlayer
 
-protocol LSVideoPanelViewDelegate: class {
+protocol RecordVideoPanelViewDelegate: class {
     func didTappedPlayer(playerView: YouTubePlayerView)
 }
 
@@ -22,7 +22,7 @@ class RecordVideoPanelView: UIView {
     @IBOutlet weak var timeStartLabel: UILabel!
     @IBOutlet weak var timeEndLabel: UILabel!
 
-    weak var delegate: LSVideoPanelViewDelegate?
+    weak var delegate: RecordVideoPanelViewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

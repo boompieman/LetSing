@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="728.79999999999995" y="-4.0479760119940034"/>
         </scene>
-        <!--Video Player View Controller-->
+        <!--Review View Controller-->
         <scene sceneID="cXz-9J-SBl">
             <objects>
-                <viewController id="0Gs-8V-OHm" customClass="VideoPlayerViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0Gs-8V-OHm" customClass="ReviewViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="moM-Vu-Ses">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,6 +113,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8R-Bc-tF9" customClass="LSPlayerView" customModule="LetSing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQq-uO-AAU" userLabel="Background View">
+                                                <rect key="frame" x="0.0" y="523" width="375" height="60"/>
+                                                <color key="backgroundColor" name="Background"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="9TZ-8i-V9l"/>
+                                                </constraints>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-Gz-GEP">
                                                 <rect key="frame" x="20" y="10" width="30" height="30"/>
                                                 <constraints>
@@ -124,8 +132,11 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="Background"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="WQq-uO-AAU" secondAttribute="bottom" id="2Bw-lG-91a"/>
+                                            <constraint firstAttribute="trailing" secondItem="WQq-uO-AAU" secondAttribute="trailing" id="4Kd-kq-UH1"/>
+                                            <constraint firstItem="WQq-uO-AAU" firstAttribute="leading" secondItem="D8R-Bc-tF9" secondAttribute="leading" id="Exk-8a-IEN"/>
                                             <constraint firstItem="SYQ-Gz-GEP" firstAttribute="top" secondItem="D8R-Bc-tF9" secondAttribute="top" constant="10" id="hZ4-2M-tfW"/>
                                             <constraint firstItem="SYQ-Gz-GEP" firstAttribute="leading" secondItem="D8R-Bc-tF9" secondAttribute="leading" constant="20" id="yfu-6K-8gW"/>
                                         </constraints>
@@ -142,24 +153,82 @@
                                     <outlet property="playerView" destination="D8R-Bc-tF9" id="mKU-Of-5GL"/>
                                 </connections>
                             </view>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpY-4h-XcT" customClass="LSVideoFooterView" customModule="LetSing" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="543" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFG-JC-8cR">
+                                        <rect key="frame" x="87.5" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="2l3-p4-TO9"/>
+                                            <constraint firstAttribute="height" constant="40" id="Lum-n4-83D"/>
+                                        </constraints>
+                                        <state key="normal" image="back_forward"/>
+                                        <connections>
+                                            <action selector="rewindBtnDidTapped:" destination="0Gs-8V-OHm" eventType="touchUpInside" id="iyi-ux-vqP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oi1-UU-pDD">
+                                        <rect key="frame" x="247.5" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Br5-jZ-GoK"/>
+                                            <constraint firstAttribute="height" constant="40" id="Ow3-M0-r5R"/>
+                                        </constraints>
+                                        <state key="normal" image="fast_forward"/>
+                                        <connections>
+                                            <action selector="fastFowardBtnDidTapped:" destination="0Gs-8V-OHm" eventType="touchUpInside" id="gnB-UE-LGJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szi-mW-qRY">
+                                        <rect key="frame" x="167.5" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="RuC-bp-puC"/>
+                                            <constraint firstAttribute="height" constant="40" id="wHm-2D-imF"/>
+                                        </constraints>
+                                        <state key="normal" image="play_button"/>
+                                        <state key="selected" image="stop"/>
+                                        <connections>
+                                            <action selector="playBtnDidTapped:" destination="0Gs-8V-OHm" eventType="touchUpInside" id="AyJ-GR-7Ma"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="RFG-JC-8cR" firstAttribute="bottom" secondItem="szi-mW-qRY" secondAttribute="bottom" id="0at-Pm-dk7"/>
+                                    <constraint firstItem="oi1-UU-pDD" firstAttribute="bottom" secondItem="szi-mW-qRY" secondAttribute="bottom" id="3vZ-HK-H6x"/>
+                                    <constraint firstAttribute="height" constant="60" id="BIy-WK-2aZ"/>
+                                    <constraint firstItem="szi-mW-qRY" firstAttribute="centerY" secondItem="tpY-4h-XcT" secondAttribute="centerY" id="Z2Z-E4-LQN"/>
+                                    <constraint firstItem="szi-mW-qRY" firstAttribute="leading" secondItem="RFG-JC-8cR" secondAttribute="trailing" constant="40" id="jn3-nz-bpL"/>
+                                    <constraint firstItem="szi-mW-qRY" firstAttribute="centerX" secondItem="tpY-4h-XcT" secondAttribute="centerX" id="vJA-J4-Ja9"/>
+                                    <constraint firstItem="oi1-UU-pDD" firstAttribute="leading" secondItem="szi-mW-qRY" secondAttribute="trailing" constant="40" id="xAc-O4-tXK"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="fastForwardBtn" destination="oi1-UU-pDD" id="YFc-J9-EE3"/>
+                                    <outlet property="playBtn" destination="szi-mW-qRY" id="ASH-al-Wvj"/>
+                                    <outlet property="rewindBtn" destination="RFG-JC-8cR" id="H2c-cd-dC7"/>
+                                </connections>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.2822924852" green="0.3136731982" blue="0.3450064659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.19906398650000001" green="0.22694072130000001" blue="0.26024651529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="J1N-8Q-MVw" firstAttribute="trailing" secondItem="5O2-Hb-LZs" secondAttribute="trailing" id="15a-Nh-VOe"/>
+                            <constraint firstItem="tpY-4h-XcT" firstAttribute="leading" secondItem="J1N-8Q-MVw" secondAttribute="leading" id="6qX-UE-3cm"/>
                             <constraint firstItem="5O2-Hb-LZs" firstAttribute="top" secondItem="J1N-8Q-MVw" secondAttribute="top" id="HL4-SN-t05"/>
+                            <constraint firstItem="tpY-4h-XcT" firstAttribute="trailing" secondItem="J1N-8Q-MVw" secondAttribute="trailing" id="dh4-Bx-6c3"/>
                             <constraint firstItem="5O2-Hb-LZs" firstAttribute="leading" secondItem="J1N-8Q-MVw" secondAttribute="leading" id="hsw-bN-ULl"/>
+                            <constraint firstItem="J1N-8Q-MVw" firstAttribute="bottom" secondItem="tpY-4h-XcT" secondAttribute="bottom" id="ssT-zd-AYr"/>
                             <constraint firstItem="J1N-8Q-MVw" firstAttribute="bottom" secondItem="5O2-Hb-LZs" secondAttribute="bottom" id="yLP-IR-mRC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J1N-8Q-MVw"/>
                     </view>
                     <navigationItem key="navigationItem" id="vis-gY-949"/>
                     <connections>
+                        <outlet property="footerView" destination="tpY-4h-XcT" id="yIC-0y-PFQ"/>
                         <outlet property="videoPanelView" destination="5O2-Hb-LZs" id="8M3-ye-W4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Osh-0H-3hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2425" y="-679"/>
+            <point key="canvasLocation" x="2424.8000000000002" y="-679.61019490254876"/>
         </scene>
         <!--Record Table View Controller-->
         <scene sceneID="RQO-ca-4ph">
@@ -181,10 +250,11 @@
                             <constraint firstItem="FkM-AM-M0m" firstAttribute="leading" secondItem="WPP-km-a4c" secondAttribute="leading" id="mhY-Mu-ODv"/>
                             <constraint firstAttribute="trailing" secondItem="FkM-AM-M0m" secondAttribute="trailing" id="rlD-tb-1Xz"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="uvh-jw-GRf"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="FkM-AM-M0m" id="kGK-X5-pFj"/>
-                        <segue destination="0Gs-8V-OHm" kind="show" identifier="VideoPlayerViewController" id="Qbl-u6-xae"/>
+                        <segue destination="0Gs-8V-OHm" kind="show" identifier="ReviewViewController" id="Qbl-u6-xae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODL-fl-wsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,7 +263,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back_forward" width="12" height="12"/>
         <image name="btn_back" width="34" height="34"/>
         <image name="discover" width="24" height="24"/>
+        <image name="fast_forward" width="12" height="12"/>
+        <image name="play_button" width="12" height="12"/>
+        <image name="stop" width="12" height="12"/>
+        <namedColor name="Background">
+            <color red="0.20000000000000001" green="0.22745098039215686" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -51,6 +51,10 @@ struct LSConstants {
     ]
 
     static let songCellHeight: CGFloat = 150.0
+
+    static let forwardStep = 5.0
+
+    static let backStep = -5.0
 }
 
 extension LSConstants {
