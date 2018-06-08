@@ -264,13 +264,7 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
                 comment: LSConstants.emptyString
             ),
             completion: { [unowned self] in
-                guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
-                    withIdentifier: String(describing: TabBarViewController.self)
-                    ) as? TabBarViewController else { return }
-
-                self.present(tabbarController, animated: false, completion: { [unowned self] in
-                    self.removeFromParentViewController()
-                })
+                self.navigationController?.popViewController(animated: true)
             }
         )
 
