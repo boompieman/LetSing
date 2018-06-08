@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  LetSing
+
+  Created by MACBOOK on 2018/6/6.
+  Copyright © 2018年 MACBOOK. All rights reserved.
+*/
+
+"LSEdit" = "Edit";
+"LSEditPlaceHolder" = "Please enter the title";
+"LSEditTitle" = "Edit the title";
+"LSDelete" = "Delete";
+"LSAlertTitle" = "There's something wrong";
+"LSconfirm" = "Confirm";
+"LSCancel" = "Cancel";
+"LSRemind" = "Remind";
+"LSRemindMessage" = "The record is now in your profile page";

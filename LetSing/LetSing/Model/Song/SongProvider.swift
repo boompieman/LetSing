@@ -67,7 +67,7 @@ struct SongProvider {
 
     private weak var httpClient = LSHTTPClient.shared
 
-    let response = LSJsonParser()
+    let parser = LSJsonParser()
 
     func getSearchSongs(searchText: String, pageToken: String, success: @escaping ([Song], String) -> Void, failure: @escaping(LSError) -> Void) {
 
@@ -75,11 +75,9 @@ struct SongProvider {
             searchSongAPI.getSongBySearch(searchText, pageToken),
             success: { (data) in
 
-                self.response.parseToSongs(data: data)
-
-                print(self.response.songList.count)
-
-                success(self.response.songList, self.response.pageToken)
+                self.parser.parseToSongs(data: data, completion: {(songList, pageToken) in
+                    success(songList, pageToken)
+                })
         },
             failure: { (error) in
             print(error)
@@ -92,11 +90,9 @@ struct SongProvider {
             searchSongAPI.getSongByDiscover(songName),
             success: { (data) in
 
-                self.response.parseToSongs(data: data)
-
-                
-                success(self.response.songList[0])
-
+                self.parser.parseToSongs(data: data, completion: {(songList, pageToken) in
+                    success(songList[0])
+                })
         },
             failure: { (error) in
             print(error)

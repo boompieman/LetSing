@@ -10,6 +10,10 @@ import AVFoundation
 import UIKit
 import YouTubePlayer
 
+protocol RecordVideoPanelViewDelegate: class {
+    func didTappedPlayer(playerView: YouTubePlayerView)
+}
+
 class RecordVideoPanelView: UIView {
 
     @IBOutlet weak var videoPlayerView: YouTubePlayerView!
@@ -18,9 +22,13 @@ class RecordVideoPanelView: UIView {
     @IBOutlet weak var timeStartLabel: UILabel!
     @IBOutlet weak var timeEndLabel: UILabel!
 
+    weak var delegate: RecordVideoPanelViewDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        setPlayerViewGestureRecognizer()
     }
+
 
     func updateEndTime(time: String) {
 
@@ -37,7 +45,7 @@ class RecordVideoPanelView: UIView {
 
         videoPlayerView.clear()
 
-        videoPlayerView.isUserInteractionEnabled = false
+        videoPlayerView.isUserInteractionEnabled = true
 
         updateEndTime(time: LSConstants.PlayerTime.originTime)
 
@@ -47,5 +55,31 @@ class RecordVideoPanelView: UIView {
     func playerDidStopWithError(error: Error) {
         //TODO
     }
+
+    func setPlayerViewGestureRecognizer() {
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(playerViewDidTapped))
+
+        gesture.numberOfTapsRequired = 1
+
+        // 幾根指頭觸發
+        gesture.numberOfTouchesRequired = 1
+
+        gesture.delegate = self
+
+        videoPlayerView.addGestureRecognizer(gesture)
+    }
+
+    @objc func playerViewDidTapped() {
+
+        self.delegate?.didTappedPlayer(playerView: videoPlayerView)
+    }
 }
+
+extension RecordVideoPanelView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
+
 

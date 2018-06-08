@@ -18,6 +18,8 @@ enum TabBar {
 
     case login
 
+    case postProduction
+
     func controller() -> UIViewController {
 
         switch self {
@@ -36,7 +38,11 @@ enum TabBar {
 
         case .login:
 
-            return UIStoryboard.loginStoryBoard().instantiateInitialViewController()!
+            return UIStoryboard.loginStoryboard().instantiateInitialViewController()!
+
+        case .postProduction:
+
+            return UIStoryboard.postProductionStoryboard().instantiateInitialViewController()!
 
         }
     }
@@ -53,7 +59,7 @@ enum TabBar {
 
             return #imageLiteral(resourceName: "search")
 
-        case .userProfile, .login:
+        case .userProfile, .login, .postProduction:
 
             return #imageLiteral(resourceName: "userProfile")
 
@@ -72,7 +78,7 @@ enum TabBar {
 
             return #imageLiteral(resourceName: "search").withRenderingMode(.alwaysTemplate)
 
-        case .userProfile, .login:
+        case .userProfile, .login, .postProduction:
 
             return #imageLiteral(resourceName: "userProfile").withRenderingMode(.alwaysTemplate)
 
@@ -90,13 +96,13 @@ class TabBarViewController: UITabBarController {
         // 等到userProfile做好再打開
 
 //        if UserManager.shared.getUserToken() != nil {
-//            tabs = [.discover, .search, .userProfile]
+            tabs = [.discover, .search, .userProfile]
 //        }
 //        else {
 //            tabs = [.discover, .search, .login]
 //        }
 
-        tabs = [.discover, .search]
+//        tabs = [.discover, .search, .postProduction]
 
         setupTab()
     }
@@ -128,7 +134,7 @@ class TabBarViewController: UITabBarController {
             controllers.append(controller)
         }
 
-
+        
 
         setViewControllers(controllers, animated: false)
     }

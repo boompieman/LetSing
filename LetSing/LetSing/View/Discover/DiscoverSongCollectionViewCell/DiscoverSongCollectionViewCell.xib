@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,24 +17,9 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="403" height="290"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DmL-z8-C15">
-                        <rect key="frame" x="0.0" y="0.0" width="403" height="290"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tableView>
-                </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="DmL-z8-C15" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9Wu-nr-woU"/>
-                <constraint firstAttribute="bottom" secondItem="DmL-z8-C15" secondAttribute="bottom" id="OjQ-Ue-zhE"/>
-                <constraint firstItem="DmL-z8-C15" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="S3U-3x-msj"/>
-                <constraint firstAttribute="trailing" secondItem="DmL-z8-C15" secondAttribute="trailing" id="foj-mp-jGb"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="403" height="290"/>
-            <connections>
-                <outlet property="tableView" destination="DmL-z8-C15" id="gWU-RU-VbK"/>
-            </connections>
             <point key="canvasLocation" x="23.5" y="82"/>
         </collectionViewCell>
     </objects>

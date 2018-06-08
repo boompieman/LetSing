@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  LetSing
+
+  Created by MACBOOK on 2018/6/6.
+  Copyright © 2018年 MACBOOK. All rights reserved.
+*/
+
+"LSEdit" = "編輯";
+"LSEditPlaceHolder" = "請輸入標題..";
+"LSEditTitle" = "編輯標題";
+"LSDelete" = "刪除";
+"LSAlertTitle" = "好像出了什麼問題喔";
+"LSconfirm" = "確認";
+"LSCancel" = "取消";
+"LSRemind" = "提醒您";
+"LSRemindMessage" = "這份錄音已經存在個人頁面內";

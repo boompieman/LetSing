@@ -35,8 +35,6 @@ extension LSXMLParser: XMLParserDelegate {
 
         if elementName == "text" {
             let words = String()
-        
-            print("parser did start")
 
             guard let start = attributeDict["start"] as? String, let duration = attributeDict["dur"] as? String else { return }
 

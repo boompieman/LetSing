@@ -17,7 +17,7 @@ class UserManager {
     private let ref = Database.database().reference()
 
     func getUserToken() -> String? {
-        let token = UserDefaults.standard.value(forKey: "UserID")
+        let token = UserDefaults.standard.value(forKey: LSConstants.tokenID)
 
         guard let tokenString = token as? String else { return nil }
 
@@ -33,7 +33,8 @@ class UserManager {
 
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             if let error = error {
-                print("Login error: \(error.localizedDescription)")
+
+                failure(LSError.loginFacebookReject)
 
                 return
             }
@@ -63,8 +64,6 @@ class UserManager {
             return
         }
 
-        print(userToken)
-
         let request = ref.child("users").child(userToken)
 
         request.observeSingleEvent(of: .value) { (snapshot) in
@@ -77,10 +76,9 @@ class UserManager {
 
             guard let name = profile["name"] as? String, let email = profile["email"] as? String, let image = profile["image"] as? String else { return }
 
-
-            print("-------",profile,"-------")
-
-            success(User(name: name, email: email, image: image, id: id))
+            DispatchQueue.main.async {
+                success(User(name: name, email: email, image: image, id: id))
+            }
         }
     }
 

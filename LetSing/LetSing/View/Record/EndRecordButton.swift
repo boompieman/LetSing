@@ -41,7 +41,6 @@ class EndRecordButton: UIButton {
             self.layer.removeAllAnimations()
             self.isSelected = false
             self.titleLabel?.alpha = 1
-            
         }
     }
 

@@ -16,4 +16,8 @@ class DiscoverTypeCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
+    func updateWith(type: LSSongType) {
+        typeLabel.text = type.title()
+    }
+
 }

@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "這首歌目前沒有歌詞喔"; ObjectID = "9pZ-mx-D8P"; */
+"9pZ-mx-D8P.text" = "這首歌目前沒有歌詞喔";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QBi-lh-Ubq"; */
+"QBi-lh-Ubq.text" = "Label";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "S9l-qe-KLX"; */
+"S9l-qe-KLX.text" = "00:00";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "oYE-id-6be"; */
+"oYE-id-6be.text" = "Loading...";
+
+/* Class = "UIButton"; normalTitle = "開始錄音"; ObjectID = "u1Y-bk-kJw"; */
+"u1Y-bk-kJw.normalTitle" = "開始錄音";
+
+/* Class = "UIButton"; selectedTitle = "錄音中"; ObjectID = "u1Y-bk-kJw"; */
+"u1Y-bk-kJw.selectedTitle" = "錄音中";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "uzG-z9-Bgd"; */
+"uzG-z9-Bgd.text" = "00:00";

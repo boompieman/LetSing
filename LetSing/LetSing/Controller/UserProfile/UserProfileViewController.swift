@@ -12,80 +12,37 @@ import UIKit
 class userProfileViewController: UIViewController {
 
     @IBOutlet weak var userInfoView: UserInfoView!
-    @IBOutlet weak var tableView: UITableView!
 
-    let manager = RecordManager()
+    private let navBarHeightPlusStatusHeight: CGFloat = 64.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        requestProfile()
-        setupTableView()
-
-        manager.getRecordFromRealm()
-        
+//        requestProfile()
+//        childViewConfiguration()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func childViewConfiguration() {
+        guard let recordTableVC = self.childViewControllers[0] as? RecordTableViewController else { return }
+
+        recordTableVC.delegate = self
     }
 
     func requestProfile() {
 
-        UserManager.shared.getUserProfile(success: { (user) in
-            DispatchQueue.main.async {
-
-                self.userInfoView.updateProfileWith(name: user.name, image: user.image)
-            }
-        }) { (error) in
-            print(error)
-        }
-
+//        UserManager.shared.getUserProfile(success: { [weak self](user) in
+//            self?.userInfoView.updateProfileWith(image: user.image)
+//        }) { (error) in
+//            print("eeeeee:", error)
+//        }
     }
-
-    func setupTableView() {
-
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        let nib = UINib(nibName: String(describing: UserVideoTableViewCell.self), bundle: nil)
-
-        self.tableView.register(nib, forCellReuseIdentifier: String(describing: UserVideoTableViewCell.self))
-
-        tableView.contentInset = LSConstants.tableViewInset
-    }
-
-
 }
 
-extension userProfileViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-
-        return 1
+extension userProfileViewController: RecordTableViewControllerDelegate {
+    func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat) {
+        
+//        self.userInfoView.frame = CGRect(x:0, y: navBarHeightPlusStatusHeight - translation, width: userInfoView.frame.width, height: 180)
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 6
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-        return 150
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let tableViewCell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: UserVideoTableViewCell.self),
-            for: indexPath
-            ) as! UserVideoTableViewCell
-
-        return tableViewCell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-    }
 }

@@ -19,7 +19,7 @@ class LSYoutubeVideoProvider: NSObject {
 
     private var player: YouTubePlayerView?
 
-    private let timeTransformer = LSYoutubeTimerTransformer()
+    private let timeTransformer = LSTimeTransFormer()
 
     private static var observerContext = 0
 
@@ -58,11 +58,35 @@ class LSYoutubeVideoProvider: NSObject {
         )
     }
 
+    func removeObserverAndPlayer (
+        observer: NSObject,
+        context: UnsafeMutableRawPointer?
+        ) {
+
+        pause()
+        clear()
+        invalidateTimer()
+        removeObserver(observer, forKeyPath:  #keyPath(LSYoutubeVideoProvider.floatCurrentTime), context: context)
+        removeObserver(observer, forKeyPath:  #keyPath(LSYoutubeVideoProvider.currentTime), context: context)
+    }
+
+
     func invalidateTimer() {
 
         guard let timer = timer else { return }
 
         timer.invalidate()
+        
+    }
+
+    func isPlaying() -> Bool {
+
+        if player?.playerState == .Playing {
+            return true
+        }
+
+        return false
+
     }
 
 
@@ -70,10 +94,7 @@ class LSYoutubeVideoProvider: NSObject {
 
         guard let player = player, let currentTime = player.getCurrentTime(), let floatCurrentTime = Float(currentTime) else { return }
 
-
-
         self.floatCurrentTime = floatCurrentTime
-
 
         self.currentTime = self.timeTransformer.time(currentTime)
     }
@@ -129,19 +150,5 @@ class LSYoutubeVideoProvider: NSObject {
         }
 
         player.seekTo(percentage * floatDuration, seekAhead: true)
-    }
-
-    // clear all setting
-
-    func removeObserverAndPlayer(_ controller: UIViewController) {
-        guard let player = player else { return }
-
-        print("removeObserverAndPlayer")
-
-        player.pause()
-        player.clear()
-        invalidateTimer()
-        removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime))
-        removeObserver(controller, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime))
     }
 }

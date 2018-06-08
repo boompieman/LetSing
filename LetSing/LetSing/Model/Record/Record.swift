@@ -11,11 +11,13 @@ import RealmSwift
 
 struct Record: Codable {
 
+    var title: String
+
     var user: User?
 
-    let videoUrl: URL?
+    let videoUrl: URL
 
-    let createdTime: String
+    let createdTime: Date?
 
 }
 

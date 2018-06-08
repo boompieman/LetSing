@@ -49,7 +49,6 @@ class RecordManager {
             for recordObject in recordObjects {
                 print("record:", recordObject)
             }
-
         }
     }
 

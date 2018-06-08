@@ -6,7 +6,6 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 
@@ -28,9 +27,9 @@ class DiscoverTypeCollectionViewController: UIViewController {
 
     var currentRow: Int = 0
 
-    var typeList:[LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
+    private let typeList:[LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
 
-    weak var delegate: DiscoverTypeCollectionViewControllerDelegate? // to pass offset for parent controller
+    weak var delegate: DiscoverTypeCollectionViewControllerDelegate?
 
     var discoverTypeDistanceBetweenItemsCenter: CGFloat?
 
@@ -50,6 +49,7 @@ class DiscoverTypeCollectionViewController: UIViewController {
         let nib = UINib(nibName: String(describing: DiscoverTypeCollectionViewCell.self), bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self))
 
+        // MARK: Layout Setting and Calculate one item length
         let discoverTypeCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         discoverTypeCollectionViewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2, height: 40)
         discoverTypeCollectionViewFlowLayout.minimumLineSpacing = 0
@@ -72,7 +72,7 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         guard let discoverTypeCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else {return cell}
 
-        discoverTypeCollectionViewCell.typeLabel.text = typeList[indexPath.row].title()
+        discoverTypeCollectionViewCell.updateWith(type: typeList[indexPath.row])
 
         return discoverTypeCollectionViewCell
     }
@@ -81,7 +81,8 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         guard let discoverTypeCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else { return }
 
-        discoverTypeCollectionViewCell.typeLabel.textColor = UIColor(red: 255/255, green: 205/255, blue: 200/255, alpha: 1.0)
+        discoverTypeCollectionViewCell.typeLabel.textColor = UIColor(named: LSColor.type.color())
+
         discoverTypeCollectionViewCell.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
 
 
@@ -89,7 +90,6 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        // 詢問為何animated = false可以，animated = true不行？？
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
 
         
@@ -112,9 +112,8 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 
         currentRow = lastRow
-        // stop the sliding effect
-        targetContentOffset.pointee = scrollView.contentOffset
 
+        targetContentOffset.pointee = scrollView.contentOffset
 
         if (velocity.x == 0) {
 

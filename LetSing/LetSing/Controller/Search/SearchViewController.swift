@@ -15,11 +15,11 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var isSetupTableView: Bool = false
+    private var isSetupTableView: Bool = false
 
-    var searchText = LSConstants.emptyString
+    private var searchText = LSConstants.emptyString
 
-    var pageToken = LSConstants.emptyString
+    private var pageToken = LSConstants.emptyString
 
     var songManager = SongManager()
 
@@ -30,15 +30,8 @@ class SearchViewController: UIViewController {
 
         configureCustomSearchController()
 
-//        setupTableView()
-
-        searchController.searchBarDelegate = self
-
-        self.navigationController?.navigationBar.isHidden = false
-
         songManager.delegate = self
     }
-
 
     func setupTableView() {
 
@@ -54,19 +47,19 @@ class SearchViewController: UIViewController {
         self.tableView.mj_footer = LSRefresh.footer { [weak self] in
             self?.songManager.getSearchResult(searchText: (self?.searchText)!, pageToken: (self?.pageToken)!)
         }
+
+        self.tableView.separatorStyle = .singleLine
     }
 
     func configureCustomSearchController() {
-
-//        self.navigationController?.isNavigationBarHidden = false
 
         let barFrame = CGRect(x: 0.0, y: 0.0, width: (self.navigationController?.navigationBar.frame.width)!, height: (self.navigationController?.navigationBar.frame.height)!)
 
         searchController = LSSearchController(searchResultsController: self, searchBarFrame: barFrame, searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.white, searchBarTintColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1))
 
-//        LSSearchController.searchBarDelegate = self
-
         self.navigationItem.titleView = searchController.customSearchBar
+
+        searchController.searchBarDelegate = self
     }
 }
 
@@ -86,7 +79,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
         guard let searchResultTableViewCell = cell as? SongTableViewCell else {return cell}
 
-        searchResultTableViewCell.updateDataWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
+        searchResultTableViewCell.updateWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
         return searchResultTableViewCell
     }
@@ -143,7 +136,7 @@ extension SearchViewController: LSSearchControllerDelegate {
         if !isSetupTableView {
 
             self.setupTableView()
-            isSetupTableView = !isSetupTableView
+            isSetupTableView = true
         }
     }
 

@@ -4,22 +4,40 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserVideoTableViewCell" id="KGk-i7-Jjw" customClass="UserVideoTableViewCell" customModule="LetSing" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserVideoTableViewCell" rowHeight="103" id="KGk-i7-Jjw" customClass="UserVideoTableViewCell" customModule="LetSing" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="103"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="352" height="102.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBb-lb-g3t">
+                        <rect key="frame" x="16" y="11" width="320" height="81"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="mBb-lb-g3t" secondAttribute="trailing" id="UdH-4Y-cdm"/>
+                    <constraint firstItem="mBb-lb-g3t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="bf1-F7-gfK"/>
+                    <constraint firstItem="mBb-lb-g3t" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ek6-BF-rzO"/>
+                    <constraint firstItem="mBb-lb-g3t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="r9c-8u-Y7o"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="titleLabel" destination="mBb-lb-g3t" id="c6w-kv-ube"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="83.5"/>
         </tableViewCell>
     </objects>
 </document>

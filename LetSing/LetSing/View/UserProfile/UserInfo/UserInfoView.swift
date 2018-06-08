@@ -12,32 +12,28 @@ import SDWebImage
 
 class UserInfoView: UIView {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupView()
+//        setupView()
     }
 
     private func setupView() {
 
 //        imageView.layer.borderWidth = 1
 
-        imageView.layer.cornerRadius = 40
+//        imageView.layer.cornerRadius = 40
+//
+//        imageView.clipsToBounds = true
+//
+//        imageView.contentMode = .scaleAspectFill
 
-        imageView.clipsToBounds = true
+    }
 
-        imageView.contentMode = .scaleAspectFill
+    func updateProfileWith(image imageString: String) {
+
+//        imageView.sd_setImage(with: URL(string: imageString), completed: nil)
 
     }
 
-    func updateProfileWith(name: String, image imageString: String) {
-
-        nameLabel.text = name
-        imageView.sd_setImage(with: URL(string: imageString), completed: nil)
-
-    }
-    
 
 }
