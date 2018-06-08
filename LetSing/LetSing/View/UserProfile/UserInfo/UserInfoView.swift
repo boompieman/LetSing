@@ -13,7 +13,6 @@ import SDWebImage
 class UserInfoView: UIView {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,9 +31,8 @@ class UserInfoView: UIView {
 
     }
 
-    func updateProfileWith(name: String, image imageString: String) {
+    func updateProfileWith(image imageString: String) {
 
-        nameLabel.text = name
         imageView.sd_setImage(with: URL(string: imageString), completed: nil)
 
     }

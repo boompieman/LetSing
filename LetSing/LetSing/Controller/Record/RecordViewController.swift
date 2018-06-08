@@ -226,18 +226,19 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 
         endRecordButton.startRecording()
 
-//        guard let cameraView = recordPlayerManager.recorder.cameraPreviewView else {
-//            print("cameraView did not generate")
-//            return
-//        }
-//
-//        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
-//
-//        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
+        guard let cameraView = recordPlayerManager.generateCamaraPreView() else {
+            
+            print("cameraView did not generate")
+            return
+        }
+
+        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
+
+        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
 //
 //        print(cameraView.frame)
 //
-//        self.view.addSubview(cameraView)
+        self.view.addSubview(cameraView)
     }
 
     func didFinishRecord() {

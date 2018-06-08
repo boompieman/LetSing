@@ -173,6 +173,10 @@ class ReviewViewController: UIViewController {
 }
 
 extension ReviewViewController: LSVideoPanelViewDelegate {
+    func didSwipePlayer(_ playerView: LSVideoPanelView) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func didTappedPlayer(_ playerView: LSVideoPanelView) {
 
         playerView.isSelected = !playerView.isSelected

@@ -31,7 +31,7 @@ class userProfileViewController: UIViewController {
     func requestProfile() {
 
         UserManager.shared.getUserProfile(success: { [weak self](user) in
-            self?.userInfoView.updateProfileWith(name: user.name, image: user.image)
+            self?.userInfoView.updateProfileWith(image: user.image)
         }) { (error) in
             print(error)
         }

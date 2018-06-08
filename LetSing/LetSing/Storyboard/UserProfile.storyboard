@@ -55,26 +55,15 @@
                                             <constraint firstAttribute="width" constant="80" id="trb-oQ-hlL"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNi-qr-uQ7">
-                                        <rect key="frame" x="80" y="118" width="215" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="apB-od-5vn" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="top" constant="30" id="6yt-aX-dT6"/>
                                     <constraint firstAttribute="height" constant="180" id="7XK-Sh-yU8"/>
-                                    <constraint firstItem="zNi-qr-uQ7" firstAttribute="leading" secondItem="u5b-go-KdB" secondAttribute="leading" constant="80" id="MFa-wO-2iN"/>
                                     <constraint firstItem="apB-od-5vn" firstAttribute="centerX" secondItem="u5b-go-KdB" secondAttribute="centerX" id="Q4R-6Y-fi0"/>
-                                    <constraint firstAttribute="trailing" secondItem="zNi-qr-uQ7" secondAttribute="trailing" constant="80" id="ggB-rA-2WX"/>
-                                    <constraint firstItem="zNi-qr-uQ7" firstAttribute="top" secondItem="apB-od-5vn" secondAttribute="bottom" constant="8" id="mPO-16-aBd"/>
-                                    <constraint firstItem="zNi-qr-uQ7" firstAttribute="centerX" secondItem="u5b-go-KdB" secondAttribute="centerX" id="zrx-nh-VjU"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="apB-od-5vn" id="0Y6-nc-RJ5"/>
-                                    <outlet property="nameLabel" destination="zNi-qr-uQ7" id="vpf-We-QDz"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -162,7 +151,10 @@
                                             <constraint firstAttribute="width" constant="40" id="2l3-p4-TO9"/>
                                             <constraint firstAttribute="height" constant="40" id="Lum-n4-83D"/>
                                         </constraints>
-                                        <state key="normal" image="back_forward"/>
+                                        <inset key="titleEdgeInsets" minX="-46" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="5" image="back_forward">
+                                            <color key="titleColor" name="Background"/>
+                                        </state>
                                         <connections>
                                             <action selector="rewindBtnDidTapped:" destination="0Gs-8V-OHm" eventType="touchUpInside" id="iyi-ux-vqP"/>
                                         </connections>
@@ -173,7 +165,9 @@
                                             <constraint firstAttribute="width" constant="40" id="Br5-jZ-GoK"/>
                                             <constraint firstAttribute="height" constant="40" id="Ow3-M0-r5R"/>
                                         </constraints>
-                                        <state key="normal" image="fast_forward"/>
+                                        <state key="normal" title="5" image="fast_forward">
+                                            <color key="titleColor" name="Background"/>
+                                        </state>
                                         <connections>
                                             <action selector="fastFowardBtnDidTapped:" destination="0Gs-8V-OHm" eventType="touchUpInside" id="gnB-UE-LGJ"/>
                                         </connections>

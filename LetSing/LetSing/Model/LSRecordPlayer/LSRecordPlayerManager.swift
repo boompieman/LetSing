@@ -45,7 +45,7 @@ class LSRecordPlayerManager: NSObject {
         }
     }
 
-    func generateRecorder() -> RPScreenRecorder {
+    func getRecorder() -> RPScreenRecorder {
         return recorder
     }
 
@@ -59,7 +59,8 @@ class LSRecordPlayerManager: NSObject {
         if self.recorder.isAvailable && !self.recorder.isRecording {
 
             self.recorder.isMicrophoneEnabled = true
-//            self.recorder.isCameraEnabled = true
+            self.recorder.isCameraEnabled = true
+            
             self.delegate?.didStartRecord()
 
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
@@ -128,9 +129,9 @@ class LSRecordPlayerManager: NSObject {
 
                 self.queue.async {
                     self.assetWriter.finishWriting {
-
-                        self.delegate?.didFinishRecord()
-
+                        DispatchQueue.main.async {
+                            self.delegate?.didFinishRecord()
+                        }
                     }
                 }
             }
@@ -151,6 +152,11 @@ class LSRecordPlayerManager: NSObject {
         }
     }
 
+    func generateCamaraPreView() -> UIView? {
+
+        return recorder.cameraPreviewView
+    }
+
     // MARK: private func
     private func setupAssetWriter() {
 
@@ -161,7 +167,7 @@ class LSRecordPlayerManager: NSObject {
         let videoOutputSettings: [String : Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
             AVVideoWidthKey: UIScreen.main.bounds.width,
-            AVVideoHeightKey: UIScreen.main.bounds.height
+            AVVideoHeightKey: UIScreen.main.bounds.height,
         ]
 
         var acl:AudioChannelLayout!
@@ -170,12 +176,18 @@ class LSRecordPlayerManager: NSObject {
 
         let audioOutputSettings: [String : Any] = [
             AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: 11025,
+            AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
+        ]
+
+        let microOutputSettings: [String : Any] = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
             AVSampleRateKey: 44100,
             AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
         ]
 
         audioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
-        microInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
+        microInput = AVAssetWriterInput(mediaType: .audio, outputSettings: microOutputSettings)
         videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
 
         videoInput.expectsMediaDataInRealTime = true
@@ -189,6 +201,13 @@ class LSRecordPlayerManager: NSObject {
 }
 
 extension LSRecordPlayerManager: RPScreenRecorderDelegate {
+
+    func screenRecorderDidChangeAvailability(_ screenRecorder: RPScreenRecorder) {
+
+
+
+    }
+
 
     func screenRecorder(
         _ screenRecorder: RPScreenRecorder,

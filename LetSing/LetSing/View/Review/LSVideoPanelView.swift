@@ -11,6 +11,8 @@ import AVFoundation
 
 protocol LSVideoPanelViewDelegate: class {
     func didTappedPlayer(_ playerView: LSVideoPanelView)
+
+    func didSwipePlayer(_ playerView: LSVideoPanelView)
 }
 
 
@@ -34,6 +36,32 @@ class LSVideoPanelView: UIView {
 
     func setPlayerViewGestureRecognizer() {
 
+        let tappedGesture = generateTappedGesture()
+        let swipeRightGesture = generateSwipeGuesture(direction: .right)
+
+        playerView.addGestureRecognizer(swipeRightGesture)
+        playerView.addGestureRecognizer(tappedGesture)
+    }
+
+    // MARK: - private func
+    private func generateSwipeGuesture(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizer {
+
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(playerViewDidSwipeLeft))
+
+        gesture.delegate = self
+
+        gesture.direction = direction
+
+        return gesture
+    }
+
+
+    @objc func playerViewDidSwipeLeft() {
+        self.delegate?.didSwipePlayer(self)
+    }
+
+    private func generateTappedGesture() -> UITapGestureRecognizer {
+
         let gesture = UITapGestureRecognizer(target: self, action: #selector(playerViewDidTapped))
 
         gesture.numberOfTapsRequired = 1
@@ -43,7 +71,8 @@ class LSVideoPanelView: UIView {
 
         gesture.delegate = self
 
-        playerView.addGestureRecognizer(gesture)
+        return gesture
+
     }
 
     @objc func playerViewDidTapped() {
