@@ -46,25 +46,11 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5b-go-KdB" customClass="UserInfoView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="180"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="discover" translatesAutoresizingMaskIntoConstraints="NO" id="apB-od-5vn">
-                                        <rect key="frame" x="147" y="30" width="80" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="eHa-Yg-fdm"/>
-                                            <constraint firstAttribute="width" constant="80" id="trb-oQ-hlL"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
+                                <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="apB-od-5vn" firstAttribute="top" secondItem="u5b-go-KdB" secondAttribute="top" constant="30" id="6yt-aX-dT6"/>
-                                    <constraint firstAttribute="height" constant="180" id="7XK-Sh-yU8"/>
-                                    <constraint firstItem="apB-od-5vn" firstAttribute="centerX" secondItem="u5b-go-KdB" secondAttribute="centerX" id="Q4R-6Y-fi0"/>
+                                    <constraint firstAttribute="height" id="7XK-Sh-yU8"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="imageView" destination="apB-od-5vn" id="0Y6-nc-RJ5"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -142,7 +128,7 @@
                                     <outlet property="playerView" destination="D8R-Bc-tF9" id="mKU-Of-5GL"/>
                                 </connections>
                             </view>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpY-4h-XcT" customClass="LSVideoFooterView" customModule="LetSing" customModuleProvider="target">
+                            <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpY-4h-XcT" customClass="LSVideoFooterView" customModule="LetSing" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="543" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFG-JC-8cR">
@@ -232,7 +218,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-AM-M0m">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkM-AM-M0m">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -259,7 +245,6 @@
     <resources>
         <image name="back_forward" width="12" height="12"/>
         <image name="btn_back" width="34" height="34"/>
-        <image name="discover" width="24" height="24"/>
         <image name="fast_forward" width="12" height="12"/>
         <image name="play_button" width="12" height="12"/>
         <image name="stop" width="12" height="12"/>

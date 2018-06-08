@@ -59,8 +59,8 @@ class LSRecordPlayerManager: NSObject {
         if self.recorder.isAvailable && !self.recorder.isRecording {
 
             self.recorder.isMicrophoneEnabled = true
-            self.recorder.isCameraEnabled = true
-            
+//            self.recorder.isCameraEnabled = true
+
             self.delegate?.didStartRecord()
 
             self.recorder.startCapture(handler: { (sampleBuffer, sampleBufferType, error) in
@@ -85,9 +85,10 @@ class LSRecordPlayerManager: NSObject {
                         if strongSelf.assetWriter.status == AVAssetWriterStatus.unknown {
 
                             strongSelf.assetWriter.startWriting()
-
                             strongSelf.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
                         }
+
+                        print(strongSelf.assetWriter.status)
 
                         switch sampleBufferType {
                         case .video:
@@ -97,12 +98,13 @@ class LSRecordPlayerManager: NSObject {
                             }
                         case .audioApp:
                             if strongSelf.audioInput.isReadyForMoreMediaData {
-                                print("audioInput")
+                                print("audioInput:", strongSelf.audioInput.preferredVolume)
                                 strongSelf.audioInput.append(sampleBuffer)
                             }
                         case .audioMic:
                             if strongSelf.recorder.isMicrophoneEnabled && strongSelf.microInput.isReadyForMoreMediaData {
-                                print("microInput")
+                                print("microInput:", strongSelf.microInput.preferredVolume)
+
                                 strongSelf.microInput.append(sampleBuffer)
                             }
                         }
@@ -176,7 +178,7 @@ class LSRecordPlayerManager: NSObject {
 
         let audioOutputSettings: [String : Any] = [
             AVFormatIDKey: kAudioFormatMPEG4AAC,
-            AVSampleRateKey: 11025,
+            AVSampleRateKey: 44100,
             AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
         ]
 
@@ -187,8 +189,16 @@ class LSRecordPlayerManager: NSObject {
         ]
 
         audioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioOutputSettings)
+        audioInput.preferredVolume = 0
         microInput = AVAssetWriterInput(mediaType: .audio, outputSettings: microOutputSettings)
+        microInput.preferredVolume = 1.0
+
         videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
+
+        videoInput.preferredVolume = 0
+
+
+
 
         videoInput.expectsMediaDataInRealTime = true
         audioInput.expectsMediaDataInRealTime = true

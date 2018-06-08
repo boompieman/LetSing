@@ -30,10 +30,19 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+//        sendData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+
+        // 先讓畫面跑Loading，在做其他事情，增加使用者體驗
         setupRecordPlayerManager()
         observePlayerCurrentTime()
         generatePlayer()
-        sendData()
+        //
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -226,30 +235,46 @@ extension RecordViewController: ScreenCaptureManagerDelegate {
 
         endRecordButton.startRecording()
 
-        guard let cameraView = recordPlayerManager.generateCamaraPreView() else {
-            
-            print("cameraView did not generate")
-            return
-        }
-
-        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
-
-        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
+//        guard let cameraView = recordPlayerManager.generateCamaraPreView() else {
+//
+//            print("cameraView did not generate")
+//            return
+//        }
+//
+//        let cameraHeight = UIScreen.main.bounds.height - (self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height + self.endRecordButton.frame.height + 25)
+//
+//        cameraView.frame = CGRect(x: 0, y: self.recordNavigationView.frame.origin.y + self.recordNavigationView.frame.height, width: UIScreen.main.bounds.width, height: cameraHeight)
 //
 //        print(cameraView.frame)
 //
-        self.view.addSubview(cameraView)
+//        self.view.addSubview(cameraView)
     }
 
     func didFinishRecord() {
 
         endRecordButton.stopRecording()
 
-        guard let tabbarController = self.generateTabBarController() else { return }
+        let alert = AlertManager.shared.showAlert(
+            with: NSLocalizedString(
+                LSConstants.Localization.remind,
+                comment: LSConstants.emptyString
+            ),
+            message: NSLocalizedString(
+                LSConstants.Localization.remindMessage,
+                comment: LSConstants.emptyString
+            ),
+            completion: { [unowned self] in
+                guard let tabbarController = UIStoryboard.mainStoryboard().instantiateViewController(
+                    withIdentifier: String(describing: TabBarViewController.self)
+                    ) as? TabBarViewController else { return }
 
-        self.present(tabbarController, animated: true, completion: { [unowned self] in
-            self.removeFromParentViewController()
-        })
+                self.present(tabbarController, animated: false, completion: { [unowned self] in
+                    self.removeFromParentViewController()
+                })
+            }
+        )
+
+        self.present(alert, animated: false, completion: nil)
     }
 
     func didStopWithError(error: Error) {

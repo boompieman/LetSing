@@ -24,15 +24,18 @@ class RecordTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.records = LSRecordFileManager.shared.fetchAllRecords()
-        self.tableView.reloadData()
+
+        if self.records.count != 0 {
+            self.tableView.reloadData()
+        }
     }
 
     func setupTableView() {
@@ -42,14 +45,17 @@ class RecordTableViewController: UIViewController {
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: UserVideoTableViewCell.self))
 
-        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
+//        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
+        self.tableView.contentInset = LSConstants.tableViewInset
+
+//        self.tableView.separatorStyle = .singleLine
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        let distance = scrollView.contentOffset.y + userInfoViewHeight
-
-        self.delegate?.tableViewDidScroll(self, translation: distance)
+//        let distance = scrollView.contentOffset.y + userInfoViewHeight
+//
+//        self.delegate?.tableViewDidScroll(self, translation: distance)
     }
 
     // MARK: private function

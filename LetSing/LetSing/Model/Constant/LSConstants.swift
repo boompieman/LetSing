@@ -74,5 +74,9 @@ extension LSConstants {
 
         static let cancel = "LSCancel"
 
+        static let remind = "LSRemind"
+
+        static let remindMessage = "LSRemindMessage"
+
     }
 }

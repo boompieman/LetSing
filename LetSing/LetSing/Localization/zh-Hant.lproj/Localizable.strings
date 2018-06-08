@@ -13,3 +13,5 @@
 "LSAlertTitle" = "好像出了什麼問題喔";
 "LSconfirm" = "確認";
 "LSCancel" = "取消";
+"LSRemind" = "提醒您";
+"LSRemindMessage" = "這份錄音已經存在個人頁面內";

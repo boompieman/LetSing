@@ -13,3 +13,5 @@
 "LSAlertTitle" = "There's something wrong";
 "LSconfirm" = "Confirm";
 "LSCancel" = "Cancel";
+"LSRemind" = "Remind";
+"LSRemindMessage" = "The record is now in your profile page";

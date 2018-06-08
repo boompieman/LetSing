@@ -336,20 +336,20 @@
 			path = HTTP;
 			sourceTree = "<group>";
 		};
-		FA4335A8209C37AD00BC90FC /* LSConstant */ = {
+		FA4335A8209C37AD00BC90FC /* Constant */ = {
 			isa = PBXGroup;
 			children = (
 				FA4335A9209C37C000BC90FC /* LSConstants.swift */,
 			);
-			path = LSConstant;
+			path = Constant;
 			sourceTree = "<group>";
 		};
-		FA4335AB209C3F5600BC90FC /* LSError */ = {
+		FA4335AB209C3F5600BC90FC /* Error */ = {
 			isa = PBXGroup;
 			children = (
 				FA4335A6209C353C00BC90FC /* LSError.swift */,
 			);
-			path = LSError;
+			path = Error;
 			sourceTree = "<group>";
 		};
 		FA4335AC209C3F6800BC90FC /* Song */ = {
@@ -457,7 +457,7 @@
 		FA7C96A5209949CB00890325 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAC2947620BE63D3002F87BF /* ReviewViewController */,
+				FAC2947620BE63D3002F87BF /* Review */,
 				FA7F707820B69BFB00D9DDA1 /* Login */,
 				FA553BC920AAEFBC00A72A3D /* PostProduction */,
 				FA41DDF6209D7A1400CDAB08 /* UserProfile */,
@@ -473,9 +473,9 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAD0AB0920C4E71000FB1E03 /* LSAnalytics */,
+				FAD0AB0920C4E71000FB1E03 /* Analytics */,
 				FAC2947D20BE7D3D002F87BF /* TimeTransformer */,
-				FAC2947020BE62CB002F87BF /* LSVideoPlayer */,
+				FAC2947020BE62CB002F87BF /* Review */,
 				FAC2946D20BE58F1002F87BF /* DateFormatter */,
 				FAD67C8220B7C0B300402335 /* Record */,
 				FA7F708820B6F3B300D9DDA1 /* User */,
@@ -484,11 +484,11 @@
 				FA0A090A20AEC342004D9696 /* Parser */,
 				FACCB76A20AE7AEA0067ADC5 /* lyrics */,
 				FACCB76720AE6E800067ADC5 /* PostProduction */,
-				FAC2946920BE42F9002F87BF /* LSRecordPlayer */,
-				FAC2946A20BE4312002F87BF /* LSYoutubePlayer */,
+				FAC2946920BE42F9002F87BF /* RecordPlayer */,
+				FAC2946A20BE4312002F87BF /* YoutubePlayer */,
 				FA4335AC209C3F6800BC90FC /* Song */,
-				FA4335AB209C3F5600BC90FC /* LSError */,
-				FA4335A8209C37AD00BC90FC /* LSConstant */,
+				FA4335AB209C3F5600BC90FC /* Error */,
+				FA4335A8209C37AD00BC90FC /* Constant */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -612,21 +612,21 @@
 			path = UserInfo;
 			sourceTree = "<group>";
 		};
-		FAC2946920BE42F9002F87BF /* LSRecordPlayer */ = {
+		FAC2946920BE42F9002F87BF /* RecordPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */,
 				FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */,
 			);
-			path = LSRecordPlayer;
+			path = RecordPlayer;
 			sourceTree = "<group>";
 		};
-		FAC2946A20BE4312002F87BF /* LSYoutubePlayer */ = {
+		FAC2946A20BE4312002F87BF /* YoutubePlayer */ = {
 			isa = PBXGroup;
 			children = (
 				FA1DD01A20A3EBBC00F92475 /* LSYoutubeVideoProvider.swift */,
 			);
-			path = LSYoutubePlayer;
+			path = YoutubePlayer;
 			sourceTree = "<group>";
 		};
 		FAC2946D20BE58F1002F87BF /* DateFormatter */ = {
@@ -637,12 +637,12 @@
 			path = DateFormatter;
 			sourceTree = "<group>";
 		};
-		FAC2947020BE62CB002F87BF /* LSVideoPlayer */ = {
+		FAC2947020BE62CB002F87BF /* Review */ = {
 			isa = PBXGroup;
 			children = (
 				FAC2947120BE62E4002F87BF /* LSVideoProvider.swift */,
 			);
-			path = LSVideoPlayer;
+			path = Review;
 			sourceTree = "<group>";
 		};
 		FAC2947320BE62F6002F87BF /* Review */ = {
@@ -655,12 +655,12 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
-		FAC2947620BE63D3002F87BF /* ReviewViewController */ = {
+		FAC2947620BE63D3002F87BF /* Review */ = {
 			isa = PBXGroup;
 			children = (
 				FAC2947720BE63E4002F87BF /* ReviewViewController.swift */,
 			);
-			path = ReviewViewController;
+			path = Review;
 			sourceTree = "<group>";
 		};
 		FAC2947D20BE7D3D002F87BF /* TimeTransformer */ = {
@@ -689,12 +689,12 @@
 			path = lyrics;
 			sourceTree = "<group>";
 		};
-		FAD0AB0920C4E71000FB1E03 /* LSAnalytics */ = {
+		FAD0AB0920C4E71000FB1E03 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
 				FAD0AB0A20C4E73200FB1E03 /* LSAnalytics.swift */,
 			);
-			path = LSAnalytics;
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		FAD67C8220B7C0B300402335 /* Record */ = {
@@ -1059,7 +1059,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1113,7 +1113,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

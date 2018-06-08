@@ -165,6 +165,10 @@ class ReviewViewController: UIViewController {
     private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
         guard let newValue = change[NSKeyValueChangeKey.newKey] as? String else { return }
 
+        if videoProvider.shouldEnd() {
+            self.navigationController?.popViewController(animated: true)
+        }
+
 //        videoPanelView.updateCurrentTime(
 //            newValue,
 //            proportion: videoProvider.currentProportion()

@@ -21,7 +21,7 @@ class LSVideoFooterView: UIView {
     func playerDidPlay() {
 
         playBtn.isSelected = true
-        isHidden(true)
+
     }
 
     func isHidden(_ active: Bool) {

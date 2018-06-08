@@ -46,6 +46,20 @@ class LSVideoProvider: NSObject {
         return player!
     }
 
+    func shouldEnd() -> Bool {
+
+        guard let player = player else {
+            return false
+        }
+
+        if player.currentTime() >= (player.currentItem?.asset.duration)! {
+            return true
+        }
+
+        return false
+
+    }
+
     func generatePlayerAndObserveStatus(
         url: URL,
         observer: NSObject,

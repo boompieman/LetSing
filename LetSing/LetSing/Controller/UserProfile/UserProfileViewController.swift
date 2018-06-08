@@ -18,8 +18,8 @@ class userProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        requestProfile()
-        childViewConfiguration()
+//        requestProfile()
+//        childViewConfiguration()
     }
 
     func childViewConfiguration() {
@@ -30,18 +30,18 @@ class userProfileViewController: UIViewController {
 
     func requestProfile() {
 
-        UserManager.shared.getUserProfile(success: { [weak self](user) in
-            self?.userInfoView.updateProfileWith(image: user.image)
-        }) { (error) in
-            print(error)
-        }
+//        UserManager.shared.getUserProfile(success: { [weak self](user) in
+//            self?.userInfoView.updateProfileWith(image: user.image)
+//        }) { (error) in
+//            print("eeeeee:", error)
+//        }
     }
 }
 
 extension userProfileViewController: RecordTableViewControllerDelegate {
     func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat) {
         
-        self.userInfoView.frame = CGRect(x:0, y: navBarHeightPlusStatusHeight - translation, width: userInfoView.frame.width, height: 180)
+//        self.userInfoView.frame = CGRect(x:0, y: navBarHeightPlusStatusHeight - translation, width: userInfoView.frame.width, height: 180)
     }
 
 
