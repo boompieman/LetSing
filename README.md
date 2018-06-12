@@ -27,11 +27,11 @@ LetSing讓你唱得開心，不在走音； <br />
 
 ## ScreenShot
 
-![image]https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/main.PNG
-![image]https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/record.PNG
-![image]https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/search.PNG
-![image]https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/review.jpeg
-![image]https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/file.PNG
+ ![image](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/main.PNG)
+ ![image](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/record.PNG)
+ ![image](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/search.PNG)
+ ![image](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/review.jpeg)
+ ![image](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/file.PNG)
 
 ## Requirement
  - iOS 11.0+
