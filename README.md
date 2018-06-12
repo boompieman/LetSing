@@ -27,11 +27,11 @@ LetSing讓你唱得開心，不在走音； <br />
 
 ## ScreenShot
 
- ![GITHUB](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/main.PNG | width=100)
- ![GITHUB](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/record.PNG)
- ![GITHUB](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/search.PNG)
- ![GITHUB](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/review.jpeg)
- ![GITHUB](https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/file.PNG)
+<img src="https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/main.PNG" width="270" height="480">
+<img src="https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/record.PNG" width="270" height="480">
+<img src="https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/search.PNG" width="270" height="480">
+<img src="https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/review.PNG" width="270" height="480">
+<img src="https://github.com/boompieman/LetSing/blob/README/LetSing/ScreenShots/file.PNG" width="270" height="480">
 
 ## Requirement
  - iOS 11.0+
