@@ -21,7 +21,7 @@ struct Song: Codable {
 
 class SongObject: Object {
 
-    @objc dynamic var typeString: String? = nil
+    @objc dynamic var typeString: String?
 
     var type: LSSongType? {
         get {
@@ -34,7 +34,7 @@ class SongObject: Object {
         }
     }
 
-    @objc dynamic var structData: Data? = nil
+    @objc dynamic var structData: Data?
 
     var song: Song? {
         get {

@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
 
     @IBAction func loginFacebook() {
@@ -55,7 +54,7 @@ class LoginViewController: UIViewController {
 
         UserManager.shared.loginUserFromFacebook(
             facebookToken: token,
-            success: { [weak self] (user) in
+            success: { [weak self] (_) in
 
                 DispatchQueue.main.async {
 

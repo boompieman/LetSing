@@ -10,8 +10,6 @@ import UIKit
 
 class DiscoverSongCollectionViewCell: UICollectionViewCell {
 
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
 

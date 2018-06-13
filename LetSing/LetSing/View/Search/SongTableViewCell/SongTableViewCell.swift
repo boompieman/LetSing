@@ -16,7 +16,7 @@ class SongTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+
     }
 
     func updateWith(title: String, imageUrl: String?) {

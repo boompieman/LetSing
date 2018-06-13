@@ -19,11 +19,13 @@ class LSPlayerView: UIView {
             playerLayer.player = newValue
         }
 
-        
     }
 
     var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
+
+        guard let layer = layer as? AVPlayerLayer else { return AVPlayerLayer()}
+
+        return layer
     }
 
     // Override UIView property
@@ -31,4 +33,3 @@ class LSPlayerView: UIView {
         return AVPlayerLayer.self
     }
 }
-

@@ -29,7 +29,6 @@ class RecordVideoPanelView: UIView {
         setPlayerViewGestureRecognizer()
     }
 
-
     func updateEndTime(time: String) {
 
         timeEndLabel.text = time
@@ -81,5 +80,3 @@ extension RecordVideoPanelView: UIGestureRecognizerDelegate {
         return true
     }
 }
-
-

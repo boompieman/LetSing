@@ -32,13 +32,12 @@ class DiscoverSongTableViewController: UIViewController {
         LSAnalytics.shared.logEvent("type_in_\(type.rawValue)", parameters: nil)
 
         let hasDataInRealm: Bool =
-            !(manager.generateRealm().objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
+            !(manager.generateRealm()!.objects(SongObject.self).filter("typeString = '\(type.rawValue)'").isEmpty)
 
         if hasDataInRealm {
 
             manager.getBoardFromRealm(type: type)
-        }
-        else {
+        } else {
 
             manager.getBoardSongFromYoutube(type: type)
         }
@@ -60,7 +59,6 @@ class DiscoverSongTableViewController: UIViewController {
     }
 }
 
-
 extension DiscoverSongTableViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
 
@@ -80,10 +78,11 @@ extension DiscoverSongTableViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let tableViewCell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: SongTableViewCell.self),
-            for: indexPath
-            ) as! SongTableViewCell
+        guard let tableViewCell =
+            tableView.dequeueReusableCell(
+                withIdentifier: String(describing: SongTableViewCell.self),
+                for: indexPath
+            ) as? SongTableViewCell else { return UITableViewCell()}
 
         tableViewCell.updateWith(title: songs[indexPath.row].name, imageUrl: songs[indexPath.row].image)
 
@@ -92,7 +91,6 @@ extension DiscoverSongTableViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
 
         guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
             withIdentifier: String(describing: RecordViewController.self)

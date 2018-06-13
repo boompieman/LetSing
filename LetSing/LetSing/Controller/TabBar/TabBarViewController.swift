@@ -119,8 +119,6 @@ class TabBarViewController: UITabBarController {
 
             let controller = tab.controller()
 
-
-
             let item = UITabBarItem(
                 title: nil,
                 image: tab.image(),
@@ -133,8 +131,6 @@ class TabBarViewController: UITabBarController {
 
             controllers.append(controller)
         }
-
-        
 
         setViewControllers(controllers, animated: false)
     }

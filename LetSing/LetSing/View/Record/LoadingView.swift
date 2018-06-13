@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class LoadingView: UIView {
 
     @IBOutlet weak var loadingLabel: UILabel!
@@ -24,7 +23,7 @@ class LoadingView: UIView {
 
         UIView.animate(withDuration: 0.5, animations: { () in
             self.alpha = 0
-        }) { (finished) in
+        }) { (_) in
             self.removeFromSuperview()
         }
     }
@@ -36,4 +35,3 @@ class LoadingView: UIView {
         })
     }
 }
-

@@ -33,7 +33,7 @@ class AlertManager {
             completion((alertController.textFields?.first?.text!)!)
         }
 
-        alertController.addAction(action);
+        alertController.addAction(action)
 
         return alertController
     }

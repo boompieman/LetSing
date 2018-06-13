@@ -55,7 +55,15 @@ class SearchViewController: UIViewController {
 
         let barFrame = CGRect(x: 0.0, y: 0.0, width: (self.navigationController?.navigationBar.frame.width)!, height: (self.navigationController?.navigationBar.frame.height)!)
 
-        searchController = LSSearchController(searchResultsController: self, searchBarFrame: barFrame, searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: UIColor.white, searchBarTintColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1))
+        searchController = LSSearchController(
+            searchResultsController: self,
+            searchBarFrame: barFrame,
+            searchBarFont: UIFont(
+                name: "Futura",
+                size: 16.0)!,
+            searchBarTextColor: UIColor.white,
+            searchBarTintColor: UIColor(red: 215/255, green: 68/255, blue: 62/255, alpha: 1)
+        )
 
         self.navigationItem.titleView = searchController.customSearchBar
 
@@ -87,7 +95,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
 
-
         guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
             withIdentifier: String(describing: RecordViewController.self)
             ) as? RecordViewController else { return }
@@ -101,7 +108,7 @@ extension SearchViewController: SongManagerDelegate {
 
     func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String) {
 
-        guard songs.count > 0 else{
+        guard songs.count > 0 else {
             self.tableView.mj_footer.endRefreshingWithNoMoreData()
 
             return
@@ -110,9 +117,9 @@ extension SearchViewController: SongManagerDelegate {
         for song in songs {
             self.songs.append(song)
         }
-        
+
         self.pageToken = pageToken
-        
+
         self.tableView.reloadData()
         self.tableView.mj_footer.endRefreshing()
     }
@@ -131,7 +138,6 @@ extension SearchViewController: LSSearchControllerDelegate {
         searchController.customSearchBar.showsCancelButton = false
         self.songs.removeAll()
         songManager.getSearchResult(searchText: searchText, pageToken: LSConstants.emptyString)
-
 
         if !isSetupTableView {
 

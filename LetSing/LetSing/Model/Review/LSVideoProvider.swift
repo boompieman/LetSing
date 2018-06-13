@@ -64,8 +64,7 @@ class LSVideoProvider: NSObject {
         url: URL,
         observer: NSObject,
         context: UnsafeMutableRawPointer?
-        ) -> AVPlayer?
-    {
+        ) -> AVPlayer? {
 
         guard let player = generatePlayer(url: url),
             let item = player.currentItem
@@ -112,7 +111,6 @@ class LSVideoProvider: NSObject {
         item.removeObserver(observer, forKeyPath: #keyPath(AVPlayerItem.status), context: context)
         self.removeObserver(observer, forKeyPath: #keyPath(LSVideoProvider.currentTime), context: context)
     }
-
 
     // MARK: - Player Action
     func play() {

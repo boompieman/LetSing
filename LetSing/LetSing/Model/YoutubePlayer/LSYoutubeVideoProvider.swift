@@ -14,7 +14,6 @@ extension Notification.Name {
     static let currentTimeChanged = Notification.Name(LSConstants.NotificationKey.currentTimeChanged)
 }
 
-
 class LSYoutubeVideoProvider: NSObject {
 
     private var player: YouTubePlayerView?
@@ -53,8 +52,8 @@ class LSYoutubeVideoProvider: NSObject {
             timeInterval: 0.1,
             target: self,
             selector: #selector(setCurrentTime),
-            userInfo:nil,
-            repeats:true
+            userInfo: nil,
+            repeats: true
         )
     }
 
@@ -66,17 +65,16 @@ class LSYoutubeVideoProvider: NSObject {
         pause()
         clear()
         invalidateTimer()
-        removeObserver(observer, forKeyPath:  #keyPath(LSYoutubeVideoProvider.floatCurrentTime), context: context)
-        removeObserver(observer, forKeyPath:  #keyPath(LSYoutubeVideoProvider.currentTime), context: context)
+        removeObserver(observer, forKeyPath: #keyPath(LSYoutubeVideoProvider.floatCurrentTime), context: context)
+        removeObserver(observer, forKeyPath: #keyPath(LSYoutubeVideoProvider.currentTime), context: context)
     }
-
 
     func invalidateTimer() {
 
         guard let timer = timer else { return }
 
         timer.invalidate()
-        
+
     }
 
     func isPlaying() -> Bool {
@@ -88,7 +86,6 @@ class LSYoutubeVideoProvider: NSObject {
         return false
 
     }
-
 
     @objc func setCurrentTime() {
 
@@ -113,7 +110,7 @@ class LSYoutubeVideoProvider: NSObject {
         guard let player = player, let duration = player.getDuration() else {
             return LSConstants.PlayerTime.originTime
         }
-        
+
         return self.timeTransformer.time(duration)
     }
 
@@ -133,7 +130,7 @@ class LSYoutubeVideoProvider: NSObject {
     }
 
     func clear() {
-        
+
         guard let player = player else { return }
 
         player.clear()

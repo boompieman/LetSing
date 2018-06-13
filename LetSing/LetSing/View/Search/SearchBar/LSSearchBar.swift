@@ -34,9 +34,9 @@ class LSSearchBar: UISearchBar {
         var index: Int!
         let searchBarView = subviews[0]
 
-        for i in 0...searchBarView.subviews.count {
-            if searchBarView.subviews[i] is UITextField {
-                index = i
+        for ind in 0...searchBarView.subviews.count {
+            if searchBarView.subviews[ind] is UITextField {
+                index = ind
                 break
             }
         }
@@ -47,10 +47,14 @@ class LSSearchBar: UISearchBar {
         // Find the index of the search field in the search bar subviews.
         if let index = indexOfSearchFieldInSubviews() {
             // Access the search field
-            let searchField: UITextField = subviews[0].subviews[index] as! UITextField
+            guard let searchField: UITextField =
+                subviews[0].subviews[index] as? UITextField else {
+                return
+            }
 
             // Set its frame.
-            searchField.frame = CGRect(x: 20.0, y: 10.0, width: frame.size.width - 40.0, height: frame.size.height - 20.0)
+            searchField.frame =
+                CGRect(x: 20.0, y: 10.0, width: frame.size.width - 40.0, height: frame.size.height - 20.0)
 
             // Set the font and text color of the search field.
             searchField.font = preferredFont
@@ -66,14 +70,13 @@ class LSSearchBar: UISearchBar {
 
             // Set the placeholder
 
-            searchField.attributedPlaceholder = NSAttributedString(string: "搜尋", attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+            searchField.attributedPlaceholder = NSAttributedString(string: "搜尋", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
 
             searchField.clearButtonMode = .never
 
             if let leftImageView = searchField.leftView as? UIImageView {
                 leftImageView.image = leftImageView.image?.transform(withNewColor: UIColor.white)
             }
-
 
         }
 

@@ -38,12 +38,12 @@ class UserManager {
 
                 return
             }
-            
+
             if let FIRUser = user {
 
                 let LSUser = User(name: FIRUser.displayName!, email: FIRUser.email!, image: (FIRUser.photoURL?.absoluteString)!, id: FIRUser.uid)
 
-                let userData = ["name": FIRUser.displayName ,"email": FIRUser.email, "image": FIRUser.photoURL?.absoluteString] as [String : Any]
+                let userData = ["name": FIRUser.displayName, "email": FIRUser.email, "image": FIRUser.photoURL?.absoluteString] as [String: Any]
                 self.ref.child("users").child(FIRUser.uid).updateChildValues(userData)
 
                 self.saveToken(FIRUser.uid)
@@ -57,9 +57,8 @@ class UserManager {
 
     func getUserProfile(
         success: @escaping (User) -> Void,
-        failure: @escaping (LSError) -> Void)
-    {
-        
+        failure: @escaping (LSError) -> Void) {
+
         guard let userToken = getUserToken() else {
             return
         }
@@ -87,6 +86,5 @@ class UserManager {
         UserDefaults.standard.set(token, forKey: "UserID")
         UserDefaults.standard.synchronize()
     }
-
 
 }

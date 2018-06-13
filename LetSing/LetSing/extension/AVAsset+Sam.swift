@@ -8,13 +8,12 @@
 
 import AVFoundation
 
-
 extension AVAsset {
     // Provide a URL for where you wish to write
     // the audio file if successful
     func writeAudioTrack(to url: URL,
-                         success: @escaping () -> (),
-                         failure: @escaping (Error) -> ()) {
+                         success: @escaping () -> Void,
+                         failure: @escaping (Error) -> Void) {
         do {
             let asset = try audioAsset()
             asset.write(to: url, success: success, failure: failure)
@@ -24,8 +23,8 @@ extension AVAsset {
     }
 
     private func write(to url: URL,
-                       success: @escaping () -> (),
-                       failure: @escaping (Error) -> ()) {
+                       success: @escaping () -> Void,
+                       failure: @escaping (Error) -> Void) {
         // Create an export session that will output an
         // audio track (M4A file)
         guard let exportSession = AVAssetExportSession(asset: self,
@@ -38,9 +37,6 @@ extension AVAsset {
 
                                                         return
         }
-
-
-        
 
         exportSession.outputFileType = .m4a
         exportSession.outputURL = url

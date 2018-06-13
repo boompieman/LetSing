@@ -11,7 +11,7 @@ import UIKit
 class LyricsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lineLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,6 +21,4 @@ class LyricsTableViewCell: UITableViewCell {
         lineLabel.text = line
     }
 
-    
-    
 }

@@ -25,7 +25,7 @@ struct LSConstants {
     }
 
     struct PlayerTime {
-        
+
         static let originTime = "00:00"
 
         static let originProportion = 0.0

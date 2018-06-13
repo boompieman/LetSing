@@ -15,7 +15,6 @@ protocol LSVideoPanelViewDelegate: class {
     func didSwipePlayer(_ playerView: LSVideoPanelView)
 }
 
-
 class LSVideoPanelView: UIView {
 
     @IBOutlet weak var playerView: LSPlayerView!
@@ -26,7 +25,7 @@ class LSVideoPanelView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         setPlayerViewGestureRecognizer()
     }
 
@@ -54,7 +53,6 @@ class LSVideoPanelView: UIView {
 
         return gesture
     }
-
 
     @objc func playerViewDidSwipeLeft() {
         self.delegate?.didSwipePlayer(self)

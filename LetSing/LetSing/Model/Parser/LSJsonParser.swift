@@ -27,23 +27,27 @@ class LSJsonParser {
 
         for result in items {
 
-            guard let snippetDict = result["snippet"] as? [String:Any], let id = result["id"] as? [String: AnyObject] else {
+            guard let snippetDict = result["snippet"] as? [String: Any], let id = result["id"] as? [String: AnyObject] else {
                 return
             }
 
-            guard let thumbnails = snippetDict["thumbnails"] as? [String: AnyObject], let vedioID = id["videoId"] as? String, let title = snippetDict["title"] as? String, let defaultImage = thumbnails["default"] as? [String: AnyObject], let imageUrl = defaultImage["url"] as? String else {
-                return
-            }
+            guard let thumbnails =
+                snippetDict["thumbnails"] as? [String: AnyObject],
+                let vedioID = id["videoId"] as? String,
+                let title = snippetDict["title"] as? String,
+                let defaultImage = thumbnails["default"] as? [String: AnyObject],
+                let imageUrl = defaultImage["url"] as? String
+                else { return }
 
             let song = Song(id: vedioID, name: title, singer: nil, image: imageUrl, rank: nil, type: nil)
 
             songList.append(song)
         }
-        
+
         completion(songList, pageToken)
     }
 
-    private func parse(data: Data) throws -> [String : AnyObject] {
+    private func parse(data: Data) throws -> [String: AnyObject] {
 
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else {
             throw LSError.jsonParsedError

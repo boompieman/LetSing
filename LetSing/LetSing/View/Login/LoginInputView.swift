@@ -15,7 +15,6 @@ class LoginInputView: UIView {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var cornerView: UIView!
 
-
     @IBOutlet weak var loginButton: UIButton!
 
     override func awakeFromNib() {
