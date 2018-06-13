@@ -8,7 +8,7 @@
 
 import Foundation
 
-private enum lyricsAPI: LSHTTPRequest {
+private enum LyricsAPI: LSHTTPRequest {
 
     case getLyrics(String)
 
@@ -34,19 +34,18 @@ private enum lyricsAPI: LSHTTPRequest {
         }
     }
 
-    func requestParameters() -> [String : String] {
+    func requestParameters() -> [String: String] {
 
         switch self {
         case .getLyrics(let songId):
 
-            return ["lang" : "zh-TW", "v" : songId]
+            return ["lang": "zh-TW", "v": songId]
 
 //        case .getLyricsLines(let lyricsId):
 //
 //            return ["id": lyricsId]
         }
     }
-
 
     func httpMethod() -> LSHTTPMethod {
 
@@ -72,10 +71,9 @@ struct LyricsProvider {
     func getLyrics(
         songId: String,
         success: @escaping (Lyrics) -> Void,
-        failure: @escaping(LSError) -> Void)
-    {
+        failure: @escaping(LSError) -> Void) {
 
-        httpClient?.request(lyricsAPI.getLyrics(songId), success: { (data) in
+        httpClient?.request(LyricsAPI.getLyrics(songId), success: { (data) in
 
             let lines:[Line] = self.parser.parseForLines(data: data)
 

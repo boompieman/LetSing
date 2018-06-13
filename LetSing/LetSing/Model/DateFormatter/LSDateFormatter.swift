@@ -10,7 +10,6 @@ import Foundation
 
 class LSDateFormatter {
 
-
     private let dateFormatter = DateFormatter()
 
     func getCurrentTime() -> String {

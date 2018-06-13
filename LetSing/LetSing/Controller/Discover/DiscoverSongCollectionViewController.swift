@@ -42,7 +42,7 @@ class DiscoverSongCollectionViewController: UIViewController {
     override func viewDidLoad() {
 
         setupCollectionView()
-        
+
     }
 
     func setupCollectionView() {
@@ -100,7 +100,7 @@ extension DiscoverSongCollectionViewController: UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 
         guard let discoverSongCollectionViewCell = cell as? DiscoverSongCollectionViewCell else {
-            
+
             return
         }
         tableViewControllers[indexPath.row].view.removeFromSuperview()

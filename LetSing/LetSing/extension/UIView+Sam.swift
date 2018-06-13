@@ -10,7 +10,6 @@ import Foundation
 
 import UIKit
 
-
 extension UIView {
 
     func startChangeColor(duration: CGFloat) {
@@ -23,8 +22,7 @@ extension UIView {
 
     }
 
-
-    func startShimmering(){
+    func startShimmering() {
         let red = UIColor.red.cgColor
         let alpha = UIColor.white.withAlphaComponent(0.7).cgColor
 
@@ -44,7 +42,7 @@ extension UIView {
         gradient.add(animation, forKey: "shimmer")
     }
 
-    func stopShimmering(){
+    func stopShimmering() {
         self.layer.mask = nil
     }
 

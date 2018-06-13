@@ -11,12 +11,10 @@ import UIKit
 //import AVFoundation
 //import AudioKit
 
-
 class PostProductionViewController: UIViewController {
 
     let transformatter = AudioTransformatter()
     let manager = RecordManager()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +28,9 @@ class PostProductionViewController: UIViewController {
 
         transformatter.getRecoringViedoURL { (url) in
 
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as NSString
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
 
             let destinationPath = documentsPath.appendingPathComponent(url.absoluteString)
-
 
             print(destinationPath)
 
@@ -46,7 +43,7 @@ class PostProductionViewController: UIViewController {
     }
 
     func writeRecord() {
-        
+
         transformatter.getRecoringViedoURL { (url) in
             self.manager.writeRecordToRealm(videoUrl: url)
 

@@ -29,7 +29,6 @@ class LoginButtonView: UIView {
 
         //        FBLoginButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
 
-
         //        FBLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 50.0, bottom: 0.0, right: 0.0)
         //        FBLoginButton.contentHorizontalAlignment = .center
 

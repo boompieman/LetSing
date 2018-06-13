@@ -17,7 +17,6 @@ class LSRecordFileManager {
 
         let dateFormatter = LSDateFormatter()
 
-
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = path[0]
 
@@ -32,7 +31,7 @@ class LSRecordFileManager {
 
         let recordPath = documentsDirectory?.appendingPathComponent("/Records")
 
-        let directoryContents = try! FileManager.default.contentsOfDirectory(at: recordPath!, includingPropertiesForKeys: nil, options: [])
+        guard let directoryContents = try? FileManager.default.contentsOfDirectory(at: recordPath!, includingPropertiesForKeys: nil, options: []) else { return [Record]()}
 
         var recordArray = [Record]()
 
@@ -44,16 +43,15 @@ class LSRecordFileManager {
                 return recordArray
             }
 
-
             let record = Record(title: title, user: nil, videoUrl: url, createdTime: date)
-            print("aaaaaa:",record.createdTime)
+            print("aaaaaa:", record.createdTime)
             recordArray.append(record)
         }
 
         return recordArray
     }
 
-    func updateRecordTitle(from fromPath: URL,to toPath: String) {
+    func updateRecordTitle(from fromPath: URL, to toPath: String) {
 
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 
@@ -88,14 +86,14 @@ class LSRecordFileManager {
 
         do {
 
-            let aFileAttributes = try FileManager.default.attributesOfItem(atPath: url.absoluteString.components(separatedBy: ".").first!) as [FileAttributeKey:Any]
+            let aFileAttributes = try FileManager.default.attributesOfItem(atPath: url.absoluteString.components(separatedBy: ".").first!) as [FileAttributeKey: Any]
 
             if let date = aFileAttributes[FileAttributeKey.creationDate] as? Date {
 
                 return date
             }
         } catch let error {
-            print("rrrrrr:",error)
+            print("rrrrrr:", error)
         }
 
         return nil

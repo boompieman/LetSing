@@ -52,8 +52,6 @@ class ReviewViewController: UIViewController {
         UIApplication.shared.setStatusBarHidden(true, with: .none)
     }
 
-    
-
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(didCompleteDuration(notification:)), name: .finishVideoDuration, object: self.videoProvider)
     }
@@ -84,8 +82,7 @@ class ReviewViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    //MARK: - player action
-
+    // MARK: - player action
 
     @IBAction func rewindBtnDidTapped(_ sender: UIButton) {
 
@@ -100,7 +97,6 @@ class ReviewViewController: UIViewController {
         sender.isSelected ? videoProvider.play() : videoProvider.pause()
 
     }
-
 
     @IBAction func fastFowardBtnDidTapped(_ sender: UIButton) {
 
@@ -119,7 +115,7 @@ class ReviewViewController: UIViewController {
         )
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 
         guard context == &ReviewViewController.observerContext else {
 
@@ -142,7 +138,7 @@ class ReviewViewController: UIViewController {
         }
     }
 
-    private func playerStatusHandler(change: [NSKeyValueChangeKey : Any]) {
+    private func playerStatusHandler(change: [NSKeyValueChangeKey: Any]) {
 
         guard let status = change[NSKeyValueChangeKey.newKey] as? Int,
             let itemStatus = AVPlayerItemStatus(rawValue: status)
@@ -158,11 +154,11 @@ class ReviewViewController: UIViewController {
 
             videoProvider.play()
             footerView.playerDidPlay()
-            
+
         }
     }
 
-    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
+    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey: Any]) {
         guard let newValue = change[NSKeyValueChangeKey.newKey] as? String else { return }
 
         if videoProvider.shouldEnd() {

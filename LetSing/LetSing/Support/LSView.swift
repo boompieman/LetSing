@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension UIImage {
 
     func transform(withNewColor color: UIColor) -> UIImage {
@@ -30,5 +29,3 @@ extension UIImage {
         return newImage
     }
 }
-
-

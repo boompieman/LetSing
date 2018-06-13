@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class LyricsViewController: UIViewController {
 
     var manager = LyricsManager()
@@ -61,7 +60,6 @@ class LyricsViewController: UIViewController {
             return
         }
 
-
         if currentIndex < lyrics.lines.count && currentTime - lyrics.lines[currentIndex].start >= 0 {
 
             self.tableView.scrollToRow(
@@ -81,7 +79,6 @@ class LyricsViewController: UIViewController {
     }
 }
 
-
 extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -90,7 +87,7 @@ extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        guard let lyrics = lyrics else{
+        guard let lyrics = lyrics else {
             return 0
         }
 
@@ -104,11 +101,11 @@ extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: LyricsTableViewCell.self),
-            for: indexPath
-        ) as! LyricsTableViewCell
-
+        guard let cell =
+            tableView.dequeueReusableCell(
+                withIdentifier: String(describing: LyricsTableViewCell.self),
+                for: indexPath
+            ) as? LyricsTableViewCell else { return UITableViewCell()}
 
         if let lyrics = lyrics {
             guard indexPath.row < lyrics.lines.count else {
@@ -132,9 +129,7 @@ extension LyricsViewController: LyricsManagerDelegate {
         if lyrics.lines.count == 0 {
             self.tableView.removeFromSuperview()
 
-        }
-
-        else {
+        } else {
             noLyricsLabel.isHidden = true
             self.lyrics = lyrics
             self.tableView.reloadData()

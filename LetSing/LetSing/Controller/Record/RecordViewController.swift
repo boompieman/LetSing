@@ -18,7 +18,6 @@ class RecordViewController: UIViewController {
     var song: Song?
     var recordPlayerManager = LSRecordPlayerManager()
 
-
     @IBOutlet weak var endRecordButton: EndRecordButton!
     @IBOutlet weak var loadingView: LoadingView!
     @IBOutlet weak var recordNavigationView: RecordNavigationView!
@@ -30,13 +29,11 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
 //        sendData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
 
         // 先讓畫面跑Loading，在做其他事情，增加使用者體驗
         setupRecordPlayerManager()
@@ -59,7 +56,6 @@ class RecordViewController: UIViewController {
             notIphoneXConstraint.isActive = false
         }
     }
-
 
     func sendData() {
         let lyricsVC = childViewControllers[0] as? LyricsViewController
@@ -96,7 +92,6 @@ class RecordViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         UIApplication.shared.setStatusBarHidden(true, with: .none)
     }
-
 
     // MARK: vedioProvider
     private func observePlayerCurrentTime() {
@@ -155,7 +150,7 @@ class RecordViewController: UIViewController {
 
     // MARK: - KVO
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 
         guard context == &RecordViewController.observerContext else {
 
@@ -180,7 +175,7 @@ class RecordViewController: UIViewController {
     }
 
     // 需要解決若此首歌沒有歌詞就不要追蹤的問題
-    private func playerCurrentLyricsHandler(change: [NSKeyValueChangeKey : Any]) {
+    private func playerCurrentLyricsHandler(change: [NSKeyValueChangeKey: Any]) {
 
 //        guard let newValue = change[NSKeyValueChangeKey.newKey] as? Float else { return }
 
@@ -189,7 +184,7 @@ class RecordViewController: UIViewController {
 //        lyricsVC?.moveLyrics(currentTime: newValue)
     }
 
-    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey : Any]) {
+    private func playerCurrentTimeHandler(change: [NSKeyValueChangeKey: Any]) {
 
         guard let newValue = change[NSKeyValueChangeKey.newKey] as? String else { return }
 
@@ -372,5 +367,3 @@ extension RecordViewController: RecordVideoPanelViewDelegate {
 //        }
 //    }
 //}
-
-

@@ -8,7 +8,7 @@
 
 import Foundation
 
-private enum searchSongAPI: LSHTTPRequest {
+private enum SearchSongAPI: LSHTTPRequest {
 
     case getSongBySearch(String, String)
 
@@ -22,31 +22,44 @@ private enum searchSongAPI: LSHTTPRequest {
 
         switch self {
 
-        case .getSongBySearch(let _):
+        case .getSongBySearch:
 
             return "/search"
 
-        case .getSongByDiscover(let _):
+        case .getSongByDiscover:
 
             return "/search"
 
         }
     }
 
-    func requestParameters() -> [String : String] {
+    func requestParameters() -> [String: String] {
 
         switch self {
         case .getSongBySearch(let searchText, let pageToken):
 
             // partial request
-            return ["type" : "video", "part" : "snippet", "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))", "q" : searchText, "maxResults": "5", "key" : LSConstants.youtubeKey, "pageToken": pageToken]
+            return [
+                "type": "video",
+                "part": "snippet",
+                "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))",
+                "q": searchText,
+                "maxResults": "5",
+                "key": LSConstants.youtubeKey,
+                "pageToken": pageToken
+            ]
 
         case .getSongByDiscover(let songName):
 
-            return ["type" : "video", "part" : "snippet", "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))", "q" : songName, "maxResults": "1", "key" : LSConstants.youtubeKey]
+            return [
+                "type": "video",
+                "part": "snippet",
+                "fields": "nextPageToken,items(id,snippet(title,thumbnails(default)))",
+                "q": songName,
+                "maxResults": "1", "key": LSConstants.youtubeKey
+            ]
         }
     }
-
 
     func httpMethod() -> LSHTTPMethod {
 
@@ -72,7 +85,7 @@ struct SongProvider {
     func getSearchSongs(searchText: String, pageToken: String, success: @escaping ([Song], String) -> Void, failure: @escaping(LSError) -> Void) {
 
         httpClient?.request(
-            searchSongAPI.getSongBySearch(searchText, pageToken),
+            SearchSongAPI.getSongBySearch(searchText, pageToken),
             success: { (data) in
 
                 self.parser.parseToSongs(data: data, completion: {(songList, pageToken) in
@@ -87,10 +100,10 @@ struct SongProvider {
     func getDiscoverSong(songName: String, success: @escaping (Song) -> Void, failure: @escaping(LSError) -> Void) {
 
         httpClient?.request(
-            searchSongAPI.getSongByDiscover(songName),
+            SearchSongAPI.getSongByDiscover(songName),
             success: { (data) in
 
-                self.parser.parseToSongs(data: data, completion: {(songList, pageToken) in
+                self.parser.parseToSongs(data: data, completion: {(songList, _) in
                     success(songList[0])
                 })
         },

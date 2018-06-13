@@ -19,7 +19,6 @@ protocol LSSearchControllerDelegate: class {
     func didChangeSearchText(searchText: String)
 }
 
-
 class LSSearchController: UISearchController {
 
     var customSearchBar: LSSearchBar!
@@ -38,7 +37,6 @@ class LSSearchController: UISearchController {
         super.init(coder: aDecoder)
     }
 
-
     init(searchResultsController: UIViewController!, searchBarFrame: CGRect, searchBarFont: UIFont, searchBarTextColor: UIColor, searchBarTintColor: UIColor) {
         super.init(searchResultsController: searchResultsController)
 
@@ -46,7 +44,7 @@ class LSSearchController: UISearchController {
     }
 
     func configureSearchBar(frame: CGRect, font: UIFont, textColor: UIColor, bgColor: UIColor) {
-        customSearchBar = LSSearchBar(frame: frame, font: font , textColor: textColor)
+        customSearchBar = LSSearchBar(frame: frame, font: font, textColor: textColor)
 
         customSearchBar.barTintColor = bgColor
         customSearchBar.tintColor = textColor

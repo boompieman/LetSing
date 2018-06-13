@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class userProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController {
 
     @IBOutlet weak var userInfoView: UserInfoView!
 
@@ -38,11 +38,10 @@ class userProfileViewController: UIViewController {
     }
 }
 
-extension userProfileViewController: RecordTableViewControllerDelegate {
+extension UserProfileViewController: RecordTableViewControllerDelegate {
     func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat) {
-        
+
 //        self.userInfoView.frame = CGRect(x:0, y: navBarHeightPlusStatusHeight - translation, width: userInfoView.frame.width, height: 180)
     }
-
 
 }

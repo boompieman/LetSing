@@ -21,7 +21,7 @@ class DiscoverViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
 
     override func viewDidLoad() {
-        
+
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -72,7 +72,7 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
     }
 
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow: Int, to currentRow: Int) {
-        
+
         resetCell(from: lastRow, to: currentRow)
     }
 }
@@ -80,7 +80,7 @@ extension DiscoverViewController: DiscoverTypeCollectionViewControllerDelegate {
 extension DiscoverViewController: DiscoverSongCollectionViewControllerDelegate {
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, from lastRow: Int, to currentRow: Int) {
 
-        resetCell(from: lastRow,to: currentRow)
+        resetCell(from: lastRow, to: currentRow)
     }
 
     func songViewDidScroll(_ controller: DiscoverSongCollectionViewController, translation: CGFloat) {

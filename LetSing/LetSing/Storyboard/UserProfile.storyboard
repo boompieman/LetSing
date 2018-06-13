@@ -34,7 +34,7 @@
         <!--個人資料-->
         <scene sceneID="QlW-eN-LIw">
             <objects>
-                <viewController id="pwl-nB-yBy" customClass="userProfileViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pwl-nB-yBy" customClass="UserProfileViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iWf-xc-dB2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

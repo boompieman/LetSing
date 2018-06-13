@@ -12,7 +12,6 @@ import FirebaseDatabase
 import RealmSwift
 import Realm
 
-
 protocol SongManagerDelegate: class {
 
     func manager(_ manager: SongManager, didGet songs: [Song], _ pageToken: String)
@@ -27,12 +26,16 @@ struct SongManager {
 
     private let queue = DispatchQueue(label: String(describing: SongManager.self) + UUID().uuidString, qos: .default, attributes: .concurrent)
 
-    func generateRealm() -> Realm {
+    func generateRealm() -> Realm? {
         let url = URL(fileURLWithPath: RLMRealmPathForFile("songData.realm"), isDirectory: false)
         var config = Realm.Configuration(fileURL: url)
-        let realm = try! Realm(configuration: config)
 
-        return realm
+        do {
+            let realm = try Realm(configuration: config)
+            return realm
+        } catch {
+            return nil
+        }
     }
 
     func getBoardFromRealm(type: LSSongType) {
@@ -42,7 +45,7 @@ struct SongManager {
         // 使用concurrent thread的方式，讓程式跑起來更順暢
         queue.async {
 
-            let realm = self.generateRealm()
+            guard let realm = self.generateRealm() else { return }
 
             let songObjects = realm.objects(SongObject.self).filter("typeString = '\(type.rawValue)'")
             for songObject in songObjects {
@@ -81,7 +84,6 @@ struct SongManager {
             songVar.rank = rank
             songVar.singer = singer
             songVar.type = type
-            
 
             completion(songVar)
 
@@ -141,7 +143,7 @@ struct SongManager {
 
         queue.async {
 
-            let realm = self.generateRealm()
+            guard let realm = self.generateRealm() else { return }
 
             realm.beginWrite()
 
@@ -152,7 +154,11 @@ struct SongManager {
                 realm.add(songObject)
             }
 
-            try! realm.commitWrite()
+            do {
+                try realm.commitWrite()
+            } catch {
+
+            }
         }
     }
 
@@ -160,7 +166,7 @@ struct SongManager {
 
         queue.async {
 
-            let realm = self.generateRealm()
+            guard let realm = self.generateRealm() else { return }
 
             realm.deleteAll()
         }

@@ -8,16 +8,14 @@
 
 import UIKit
 
-
 protocol DiscoverTypeCollectionViewControllerDelegate: class {
 
     func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, translation: CGFloat)
 
     func typeViewDidSelect(_ controller: DiscoverTypeCollectionViewController, type: LSSongType)
 
-    func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow:Int, to currentRow: Int)
+    func typeViewDidScroll(_ controller: DiscoverTypeCollectionViewController, from lastRow: Int, to currentRow: Int)
 }
-
 
 class DiscoverTypeCollectionViewController: UIViewController {
 
@@ -27,7 +25,7 @@ class DiscoverTypeCollectionViewController: UIViewController {
 
     var currentRow: Int = 0
 
-    private let typeList:[LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
+    private let typeList: [LSSongType] = [.chinese, .english, .guan, .japanese, .taiwanese]
 
     weak var delegate: DiscoverTypeCollectionViewControllerDelegate?
 
@@ -45,19 +43,23 @@ class DiscoverTypeCollectionViewController: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
 
-
         let nib = UINib(nibName: String(describing: DiscoverTypeCollectionViewCell.self), bundle: nil)
-        self.collectionView.register(nib, forCellWithReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self))
+
+        self.collectionView.register(
+            nib,
+            forCellWithReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self)
+        )
 
         // MARK: Layout Setting and Calculate one item length
-        let discoverTypeCollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        guard let discoverTypeCollectionViewFlowLayout =
+            self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         discoverTypeCollectionViewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2, height: 40)
         discoverTypeCollectionViewFlowLayout.minimumLineSpacing = 0
 
-        discoverTypeDistanceBetweenItemsCenter = discoverTypeCollectionViewFlowLayout.minimumLineSpacing + discoverTypeCollectionViewFlowLayout.itemSize.width
+        discoverTypeDistanceBetweenItemsCenter =
+            discoverTypeCollectionViewFlowLayout.minimumLineSpacing + discoverTypeCollectionViewFlowLayout.itemSize.width
     }
 }
-
 
 extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -66,9 +68,15 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView (
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+        ) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self), for: indexPath)
+        let cell = collectionView.dequeueReusableCell (
+            withReuseIdentifier: String(describing: DiscoverTypeCollectionViewCell.self),
+            for: indexPath
+        )
 
         guard let discoverTypeCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else {return cell}
 
@@ -77,7 +85,11 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
         return discoverTypeCollectionViewCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+        ) {
 
         guard let discoverTypeCollectionViewCell = cell as? DiscoverTypeCollectionViewCell else { return }
 
@@ -85,14 +97,12 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
         discoverTypeCollectionViewCell.typeLabel.font = UIFont.systemFont(ofSize: 15.0)
 
-
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
 
-        
         self.delegate?.typeViewDidSelect(self, type: typeList[indexPath.row])
 
     }
@@ -109,7 +119,11 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
 
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging (
+        _ scrollView: UIScrollView,
+        withVelocity velocity: CGPoint,
+        targetContentOffset: UnsafeMutablePointer<CGPoint>
+        ) {
 
         currentRow = lastRow
 
@@ -118,9 +132,7 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
         if (velocity.x == 0) {
 
             currentRow = Int(self.collectionView.contentOffset.x  / discoverTypeDistanceBetweenItemsCenter!)
-        }
-
-        else {
+        } else {
 
             currentRow = velocity.x > 0 ? currentRow + 1 : currentRow - 1
 
@@ -134,14 +146,16 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDataSource, UICo
             }
         }
 
-        self.collectionView.scrollToItem(at: IndexPath(row: currentRow, section: 0), at: .centeredHorizontally, animated: true)
+        self.collectionView.scrollToItem(
+            at: IndexPath(row: currentRow, section: 0),
+            at: .centeredHorizontally, animated: true
+        )
 
         if lastRow != currentRow {
             self.delegate?.typeViewDidScroll(self, from: lastRow, to: currentRow)
         }
     }
 }
-
 
 extension DiscoverTypeCollectionViewController: UICollectionViewDelegateFlowLayout {
 
@@ -168,5 +182,3 @@ extension DiscoverTypeCollectionViewController: UICollectionViewDelegateFlowLayo
         return CGSize.zero
     }
 }
-
-

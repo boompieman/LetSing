@@ -107,10 +107,10 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let tableViewCell = tableView.dequeueReusableCell(
+        guard let tableViewCell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: UserVideoTableViewCell.self),
             for: indexPath
-            ) as! UserVideoTableViewCell
+            ) as? UserVideoTableViewCell else { return UITableViewCell()}
 
         tableViewCell.titleLabel.text = self.records[indexPath.row].title
 
@@ -134,7 +134,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
             title: NSLocalizedString(
                 LSConstants.Localization.edit,
                 comment: LSConstants.emptyString)
-            ) { (action, indexPath) in
+            ) { (_, indexPath) in
 
             let alert = self.generateEditAlert(indexPath: indexPath)
 
@@ -147,7 +147,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
         style: .default,
         title: NSLocalizedString(
             LSConstants.Localization.delete,
-            comment: LSConstants.emptyString)) { (action, indexPath) in
+            comment: LSConstants.emptyString)) { (_, indexPath) in
 
             self.deleteRecord(indexPath: indexPath)
         }
@@ -159,7 +159,6 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
         return actionArray
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 

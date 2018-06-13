@@ -12,7 +12,7 @@ import AVKit
 import ReplayKit
 
 // manager protocol to notify controller when to start or end
-protocol ScreenCaptureManagerDelegate: class{
+protocol ScreenCaptureManagerDelegate: class {
     func didStartRecord() // 開始錄製
     func didFinishRecord() // 完成錄製
     func didStopWithError(error: Error) //發生錯誤
@@ -38,7 +38,7 @@ class LSRecordPlayerManager: NSObject {
         do {
             // 需要使用者打開手機旁邊的音源鍵，不然不會有聲音...
             try self.audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
-            
+
             try self.audioSession.setActive(flag)
         } catch {
             self.delegate?.didStopWithError(error: error)
@@ -77,8 +77,6 @@ class LSRecordPlayerManager: NSObject {
                         guard let strongSelf = self else { return }
 
                         if strongSelf.assetWriter.status == AVAssetWriterStatus.failed {
-
-                            print("Error occured, status = \(strongSelf.assetWriter.status.rawValue), \(strongSelf.assetWriter.error!.localizedDescription) \(String(describing: strongSelf.assetWriter.error))")
                             return
                         }
 
@@ -110,8 +108,7 @@ class LSRecordPlayerManager: NSObject {
                         }
                     }
                 }
-            })
-            { (error) in
+            }) { (error) in
                 if let error = error {
                     self.delegate?.didStopWithError(error: error)
                 }
@@ -163,26 +160,30 @@ class LSRecordPlayerManager: NSObject {
     private func setupAssetWriter() {
 
         let fileURL = URL(fileURLWithPath: LSRecordFileManager.shared.newRecordFilePath())
+        
+        do {
+            assetWriter = try AVAssetWriter(outputURL: fileURL, fileType: .mp4)
+        } catch {
+            return
+        }
 
-        assetWriter = try! AVAssetWriter(outputURL: fileURL, fileType: .mp4)
-
-        let videoOutputSettings: [String : Any] = [
+        let videoOutputSettings: [String: Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
             AVVideoWidthKey: UIScreen.main.bounds.width,
-            AVVideoHeightKey: UIScreen.main.bounds.height,
+            AVVideoHeightKey: UIScreen.main.bounds.height
         ]
 
-        var acl:AudioChannelLayout!
+        var acl: AudioChannelLayout!
         bzero(&acl, MemoryLayout.size(ofValue: acl))
         acl.mChannelLayoutTag = kAudioChannelLayoutTag_Stereo
 
-        let audioOutputSettings: [String : Any] = [
+        let audioOutputSettings: [String: Any] = [
             AVFormatIDKey: kAudioFormatMPEG4AAC,
             AVSampleRateKey: 44100,
             AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
         ]
 
-        let microOutputSettings: [String : Any] = [
+        let microOutputSettings: [String: Any] = [
             AVFormatIDKey: kAudioFormatMPEG4AAC,
             AVSampleRateKey: 44100,
             AVChannelLayoutKey: NSData(bytes: &acl, length: MemoryLayout.size(ofValue: acl))
@@ -196,9 +197,6 @@ class LSRecordPlayerManager: NSObject {
         videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoOutputSettings)
 
         videoInput.preferredVolume = 0
-
-
-
 
         videoInput.expectsMediaDataInRealTime = true
         audioInput.expectsMediaDataInRealTime = true
@@ -214,17 +212,13 @@ extension LSRecordPlayerManager: RPScreenRecorderDelegate {
 
     func screenRecorderDidChangeAvailability(_ screenRecorder: RPScreenRecorder) {
 
-
-
     }
-
 
     func screenRecorder(
         _ screenRecorder: RPScreenRecorder,
         didStopRecordingWith previewViewController: RPPreviewViewController?,
         error: Error?
-        )
-    {
+        ) {
         if let error = error {
             self.delegate?.didStopWithError(error: error)
         }

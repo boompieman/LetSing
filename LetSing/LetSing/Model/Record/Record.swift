@@ -23,9 +23,9 @@ struct Record: Codable {
 
 class RecoedObject: Object {
 
-    @objc dynamic var userId: String? = nil
+    @objc dynamic var userId: String?
 
-    @objc dynamic var videoUrlString: String? = nil
+    @objc dynamic var videoUrlString: String?
 
     var videoUrl: URL? {
         get {

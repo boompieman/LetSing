@@ -6,7 +6,6 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-
 import UIKit
 
 class LetSingNavigationController: UINavigationController {
@@ -15,6 +14,6 @@ class LetSingNavigationController: UINavigationController {
         super.viewDidLoad()
 
         self.edgesForExtendedLayout = .init(rawValue: 0)
-        
+
     }
 }

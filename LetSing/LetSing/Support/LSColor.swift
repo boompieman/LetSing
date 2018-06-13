@@ -12,7 +12,7 @@ enum LSColor {
 
     case brand
 
-    case type 
+    case type
 
     func color() -> String {
         switch self {

@@ -728,6 +728,7 @@
 				AEF001CAA01E6819BCCEF02D /* [CP] Embed Pods Frameworks */,
 				7C9965EB3EA4E494F080417C /* [CP] Copy Pods Resources */,
 				FAC2946220BD0045002F87BF /* ShellScript */,
+				FAB2512A20CFFF9200F2AF9E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -881,6 +882,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FAB2512A20CFFF9200F2AF9E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		FAC2946220BD0045002F87BF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -6,16 +6,13 @@
 //  Copyright © 2018年 MACBOOK. All rights reserved.
 //
 
-
 import UIKit
 
 class LyricsTableView: UITableView {
-
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
     }
-
 
 }

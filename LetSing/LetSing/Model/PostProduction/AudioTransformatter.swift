@@ -11,7 +11,6 @@ import Photos
 import AVFoundation
 import AudioKit
 
-
 class AudioTransformatter {
 
     func getRecoringViedoURL(completion: @escaping (URL) -> Void) {
@@ -31,7 +30,7 @@ class AudioTransformatter {
         let videoOption = PHVideoRequestOptions()
         videoOption.version = .original
 
-        PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, audioMix, info) in
+        PHImageManager.default().requestAVAsset(forVideo: firstAsset, options: videoOption) { (asset, _, _) in
 
             guard let urlAsset = asset as? AVURLAsset else {
 
