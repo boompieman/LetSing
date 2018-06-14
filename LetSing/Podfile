@@ -23,8 +23,6 @@ target 'LetSing' do
   pod 'MJRefresh'
   pod 'Fabric'
   pod 'Crashlytics'
-
-
 end
 
 target 'LetSingTests' do

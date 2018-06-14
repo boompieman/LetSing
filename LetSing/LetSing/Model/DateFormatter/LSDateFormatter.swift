@@ -8,12 +8,13 @@
 
 import Foundation
 
+
 // 測format是不是我要的format
 // 測getCurrentTime是否回傳正確的值
 //protocol LSDateFormatterUsable {
 //    var format: String { get }
 //    func getCurrentTime()
-//}
+
 
 class LSDateFormatter {
 
@@ -25,6 +26,7 @@ class LSDateFormatter {
     init(format: String = LSConstants.dateFormat) {
 
         self.format = format
+
     }
 
     func getCurrentTime() -> String {
@@ -35,7 +37,7 @@ class LSDateFormatter {
 
         let interval = date.timeIntervalSince1970
 
-        let dateString = dateFormatter.string(from: date)
+        let dateString = self.dateFormatter.string(from: date)
 
         return dateString
     }
