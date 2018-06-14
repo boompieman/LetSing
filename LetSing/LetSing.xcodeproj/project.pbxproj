@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D4C4BD04F5461B3D8CADA9D /* Pods_LetSing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */; };
+		CD42C5F0C0E4310067CEC061 /* Pods_LetSingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D646F052AA987E84CE80B5C /* Pods_LetSingTests.framework */; };
 		FA0A090920AEC339004D9696 /* LSXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090820AEC339004D9696 /* LSXMLParser.swift */; };
 		FA0A090D20AED231004D9696 /* LyricsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090C20AED231004D9696 /* LyricsTableView.swift */; };
 		FA0A091020AEDD39004D9696 /* LyricsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090E20AEDD39004D9696 /* LyricsTableViewCell.swift */; };
@@ -76,6 +77,7 @@
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA92785920A979F800CFBF94 /* LSRecordPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
+		FAB2513220D103F800F2AF9E /* LSDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2513120D103F800F2AF9E /* LSDateFormatterTests.swift */; };
 		FABE5BF420B716610025D801 /* EndRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE5BF320B716610025D801 /* EndRecordButton.swift */; };
 		FAC2946620BD3499002F87BF /* PostProduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAC2946520BD3499002F87BF /* PostProduction.storyboard */; };
 		FAC2946C20BE435C002F87BF /* LSRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */; };
@@ -97,10 +99,23 @@
 		FAEE0C3520BBEE6400B828EC /* LSRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE0C3420BBEE6400B828EC /* LSRefresh.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FAB2513420D103F800F2AF9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA7C96882098205400890325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA7C968F2098205400890325;
+			remoteInfo = LetSing;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		39FA2353D2F9AC0A4D435705 /* Pods-LetSing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LetSing/Pods-LetSing.debug.xcconfig"; sourceTree = "<group>"; };
+		3D646F052AA987E84CE80B5C /* Pods_LetSingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetSingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4093D1CACF0D3B54835936A7 /* Pods-LetSing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSing.release.xcconfig"; path = "Pods/Target Support Files/Pods-LetSing/Pods-LetSing.release.xcconfig"; sourceTree = "<group>"; };
+		77DFF75357E2F674E3F3F39B /* Pods-LetSingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetSing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8BCEF162ED4E1DBDF48A23F /* Pods-LetSingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests.release.xcconfig"; sourceTree = "<group>"; };
 		FA0A090820AEC339004D9696 /* LSXMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSXMLParser.swift; sourceTree = "<group>"; };
 		FA0A090C20AED231004D9696 /* LyricsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsTableView.swift; sourceTree = "<group>"; };
 		FA0A090E20AEDD39004D9696 /* LyricsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsTableViewCell.swift; sourceTree = "<group>"; };
@@ -174,6 +189,9 @@
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordPlayerManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FAB2512F20D103F700F2AF9E /* LetSingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LetSingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB2513120D103F800F2AF9E /* LSDateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSDateFormatterTests.swift; sourceTree = "<group>"; };
+		FAB2513320D103F800F2AF9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FABE5BF320B716610025D801 /* EndRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndRecordButton.swift; sourceTree = "<group>"; };
 		FAC2946520BD3499002F87BF /* PostProduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostProduction.storyboard; sourceTree = "<group>"; };
 		FAC2946B20BE435C002F87BF /* LSRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordFileManager.swift; sourceTree = "<group>"; };
@@ -205,6 +223,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAB2512C20D103F700F2AF9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD42C5F0C0E4310067CEC061 /* Pods_LetSingTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -213,6 +239,8 @@
 			children = (
 				39FA2353D2F9AC0A4D435705 /* Pods-LetSing.debug.xcconfig */,
 				4093D1CACF0D3B54835936A7 /* Pods-LetSing.release.xcconfig */,
+				77DFF75357E2F674E3F3F39B /* Pods-LetSingTests.debug.xcconfig */,
+				C8BCEF162ED4E1DBDF48A23F /* Pods-LetSingTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -222,6 +250,7 @@
 			children = (
 				FA92785420A574BD00CFBF94 /* ReplayKit.framework */,
 				C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */,
+				3D646F052AA987E84CE80B5C /* Pods_LetSingTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -420,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7C96922098205400890325 /* LetSing */,
+				FAB2513020D103F700F2AF9E /* LetSingTests */,
 				FA7C96912098205400890325 /* Products */,
 				034FF8C70F81E73B35A86BA9 /* Pods */,
 				044DA50AADB60636A16D8875 /* Frameworks */,
@@ -430,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7C96902098205400890325 /* LetSing.app */,
+				FAB2512F20D103F700F2AF9E /* LetSingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -612,6 +643,15 @@
 			path = UserInfo;
 			sourceTree = "<group>";
 		};
+		FAB2513020D103F700F2AF9E /* LetSingTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAB2513120D103F800F2AF9E /* LSDateFormatterTests.swift */,
+				FAB2513320D103F800F2AF9E /* Info.plist */,
+			);
+			path = LetSingTests;
+			sourceTree = "<group>";
+		};
 		FAC2946920BE42F9002F87BF /* RecordPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,13 +779,34 @@
 			productReference = FA7C96902098205400890325 /* LetSing.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FAB2512E20D103F700F2AF9E /* LetSingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB2513820D103F800F2AF9E /* Build configuration list for PBXNativeTarget "LetSingTests" */;
+			buildPhases = (
+				553DDA493E6DA51D1ADEBA5D /* [CP] Check Pods Manifest.lock */,
+				FAB2512B20D103F700F2AF9E /* Sources */,
+				FAB2512C20D103F700F2AF9E /* Frameworks */,
+				FAB2512D20D103F700F2AF9E /* Resources */,
+				AF02C21EC8F32EE9E4A87BED /* [CP] Embed Pods Frameworks */,
+				9A7140961A2B0B3005592B30 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAB2513520D103F800F2AF9E /* PBXTargetDependency */,
+			);
+			name = LetSingTests;
+			productName = LetSingTests;
+			productReference = FAB2512F20D103F700F2AF9E /* LetSingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		FA7C96882098205400890325 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = MACBOOK;
 				TargetAttributes = {
@@ -757,6 +818,11 @@
 								enabled = 1;
 							};
 						};
+					};
+					FAB2512E20D103F700F2AF9E = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FA7C968F2098205400890325;
 					};
 				};
 			};
@@ -775,6 +841,7 @@
 			projectRoot = "";
 			targets = (
 				FA7C968F2098205400890325 /* LetSing */,
+				FAB2512E20D103F700F2AF9E /* LetSingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -803,6 +870,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAB2512D20D103F700F2AF9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -824,6 +898,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		553DDA493E6DA51D1ADEBA5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LetSingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7C9965EB3EA4E494F080417C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -837,6 +929,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A7140961A2B0B3005592B30 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AEF001CAA01E6819BCCEF02D /* [CP] Embed Pods Frameworks */ = {
@@ -881,6 +988,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF02C21EC8F32EE9E4A87BED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FAB2512A20CFFF9200F2AF9E /* ShellScript */ = {
@@ -989,7 +1116,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAB2512B20D103F700F2AF9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB2513220D103F800F2AF9E /* LSDateFormatterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAB2513520D103F800F2AF9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA7C968F2098205400890325 /* LetSing */;
+			targetProxy = FAB2513420D103F800F2AF9E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FA43A57A20C78082005E1CCE /* Localizable.strings */ = {
@@ -1169,6 +1312,45 @@
 			};
 			name = Release;
 		};
+		FAB2513620D103F800F2AF9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77DFF75357E2F674E3F3F39B /* Pods-LetSingTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 57PZX8729Q;
+				INFOPLIST_FILE = LetSingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "appWorksSchool-ios6.LetSingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LetSing.app/LetSing";
+			};
+			name = Debug;
+		};
+		FAB2513720D103F800F2AF9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8BCEF162ED4E1DBDF48A23F /* Pods-LetSingTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57PZX8729Q;
+				INFOPLIST_FILE = LetSingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "appWorksSchool-ios6.LetSingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LetSing.app/LetSing";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1186,6 +1368,15 @@
 			buildConfigurations = (
 				FA7C96A32098205400890325 /* Debug */,
 				FA7C96A42098205400890325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB2513820D103F800F2AF9E /* Build configuration list for PBXNativeTarget "LetSingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB2513620D103F800F2AF9E /* Debug */,
+				FAB2513720D103F800F2AF9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,17 +8,28 @@
 
 import Foundation
 
+//protocol  {
+//
+//    func getCurrentTime(date: Date) -> String
+//}
+
 class LSDateFormatter {
 
     private let dateFormatter = DateFormatter()
 
+    init(format: String = LSConstants.dateFormat) {
+
+        self.dateFormatter.dateFormat = format
+    }
+
     func getCurrentTime() -> String {
 
-        dateFormatter.dateFormat = LSConstants.dateFormat
+//        dateFormatter.dateFormat = LSConstants.dateFormat
+
         let date = Date()
         let interval = date.timeIntervalSince1970
 
-        let dateString = dateFormatter.string(from: date)
+        let dateString = self.dateFormatter.string(from: date)
 
         return dateString
     }

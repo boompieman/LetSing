@@ -24,5 +24,10 @@ target 'LetSing' do
   pod 'Fabric'
   pod 'Crashlytics'
 
+  target 'LetSingTests' do
+    inherit! :search_paths
+    pod 'Firebase'
+  end
+
 
 end
