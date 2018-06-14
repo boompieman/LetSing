@@ -8,21 +8,28 @@
 
 import Foundation
 
+// 測format是不是我要的format
+// 測getCurrentTime是否回傳正確的值
+//protocol LSDateFormatterUsable {
+//    var format: String { get }
+//    func getCurrentTime()
+//}
+
 class LSDateFormatter {
 
     private let dateFormatter = DateFormatter()
 
-    let formate: String
+    let format: String
 
     //Dependency Injection
     init(format: String = LSConstants.dateFormat) {
 
-        self.formate = LSConstants.dateFormat
+        self.format = format
     }
 
     func getCurrentTime() -> String {
 
-        dateFormatter.dateFormat = self.formate
+        self.dateFormatter.dateFormat = format
 
         let date = Date()
 

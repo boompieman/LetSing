@@ -46,7 +46,7 @@ class LSDateFormatterTests: XCTestCase {
 
     func test_GetCurrentTime_IsCorrectFormat() {
 
-        let input = "yyyy-MM-dd HH:mm"
+        let input = "yyyy-MM-dd HH:mm:ss"
 
         let lsFormatter = LSDateFormatter(format: input)
 
