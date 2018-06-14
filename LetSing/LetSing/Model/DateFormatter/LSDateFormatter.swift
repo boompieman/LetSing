@@ -12,10 +12,20 @@ class LSDateFormatter {
 
     private let dateFormatter = DateFormatter()
 
+    let formate: String
+
+    //Dependency Injection
+    init(format: String = LSConstants.dateFormat) {
+
+        self.formate = LSConstants.dateFormat
+    }
+
     func getCurrentTime() -> String {
 
-        dateFormatter.dateFormat = LSConstants.dateFormat
+        dateFormatter.dateFormat = self.formate
+
         let date = Date()
+
         let interval = date.timeIntervalSince1970
 
         let dateString = dateFormatter.string(from: date)
