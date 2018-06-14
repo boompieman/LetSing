@@ -8,6 +8,14 @@
 
 import Foundation
 
+//extension LSRecordFileManager: LSDateFormatterUsable {
+//    var format: String {
+//        return LSConstants.dateFormat
+//    }
+//}
+
+
+
 class LSRecordFileManager {
 
     static let shared = LSRecordFileManager()
@@ -15,7 +23,9 @@ class LSRecordFileManager {
     func newRecordFilePath() -> String {
         createFolder()
 
-        let dateFormatter = LSDateFormatter()
+        let format = LSFormat()
+
+        let dateFormatter = LSDateFormatter(with: format)
 
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = path[0]

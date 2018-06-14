@@ -10,23 +10,26 @@ import Foundation
 
 
 // 測format是不是我要的format
-// 測getCurrentTime是否回傳正確的值
-//protocol LSDateFormatterUsable {
-//    var format: String { get }
-//    func getCurrentTime()
 
+protocol LSDateFormatterUsable {
+    var format: String { get }
+}
+
+struct LSFormat: LSDateFormatterUsable {
+    var format: String {
+        return LSConstants.dateFormat
+    }
+}
 
 class LSDateFormatter {
 
     private let dateFormatter = DateFormatter()
 
-    let format: String
+    private let format: String
 
     //Dependency Injection
-    init(format: String = LSConstants.dateFormat) {
-
-        self.format = format
-
+    init(with usable: LSDateFormatterUsable) {
+        self.format = usable.format
     }
 
     func getCurrentTime() -> String {

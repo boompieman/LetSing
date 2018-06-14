@@ -13,52 +13,29 @@ import XCTest
 
 @testable import LetSing
 
+struct MockFormat: LSDateFormatterUsable {
+    var format: String {
+        return "yyyy-MM-dd HH:mm:ss"
+    }
+}
+
 class LSDateFormatterTests: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func test_GetCurrentTime_IsCurrentTime() {
-
-        let input = LSConstants.dateFormat
-
-        let lsFormatter = LSDateFormatter(format: input)
-
-        let output = lsFormatter.getCurrentTime()
-
-        let date = Date()
-
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = input
-
-        let expectOutput = dateFormatter.string(from: date)
-
-        XCTAssertEqual(output, expectOutput)
-    }
 
     func test_GetCurrentTime_IsCorrectFormat() {
 
-        let input = "yyyy-MM-dd HH:mm:ss"
+        let mockFormat = MockFormat()
 
-        let lsFormatter = LSDateFormatter(format: input)
-
-        let output = lsFormatter.getCurrentTime()
-
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = input
-
-        let expectOuput = dateFormatter.string(from: Date())
-
-        XCTAssertEqual(output, expectOuput)
+        XCTAssertEqual(LSConstants.dateFormat, mockFormat.format)
     }
 
 }
