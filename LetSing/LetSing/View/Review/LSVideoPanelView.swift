@@ -1,4 +1,3 @@
-//
 //  VideoPanelView.swift
 //  LetSing
 //
@@ -64,7 +63,6 @@ class LSVideoPanelView: UIView {
 
         gesture.numberOfTapsRequired = 1
 
-        // 幾根指頭觸發
         gesture.numberOfTouchesRequired = 1
 
         gesture.delegate = self

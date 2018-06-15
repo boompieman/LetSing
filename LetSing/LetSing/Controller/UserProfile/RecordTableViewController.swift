@@ -8,19 +8,11 @@
 
 import UIKit
 
-protocol RecordTableViewControllerDelegate: class {
-    func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat)
-}
-
 class RecordTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    weak var delegate: RecordTableViewControllerDelegate?
-
     var records = [Record]()
-
-    private let userInfoViewHeight: CGFloat = 180.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,17 +37,7 @@ class RecordTableViewController: UIViewController {
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: UserVideoTableViewCell.self))
 
-//        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
         self.tableView.contentInset = LSConstants.tableViewInset
-
-//        self.tableView.separatorStyle = .singleLine
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-//        let distance = scrollView.contentOffset.y + userInfoViewHeight
-//
-//        self.delegate?.tableViewDidScroll(self, translation: distance)
     }
 
     // MARK: private function
