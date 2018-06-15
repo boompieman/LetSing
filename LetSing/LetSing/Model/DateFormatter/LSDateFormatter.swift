@@ -10,12 +10,11 @@ import Foundation
 
 
 // 測format是不是我要的format
-
 protocol LSDateFormatterUsable {
     var format: String { get }
 }
 
-struct LSFormat: LSDateFormatterUsable {
+struct LSDateFormat: LSDateFormatterUsable {
     var format: String {
         return LSConstants.dateFormat
     }
@@ -37,8 +36,6 @@ class LSDateFormatter {
         self.dateFormatter.dateFormat = format
 
         let date = Date()
-
-        let interval = date.timeIntervalSince1970
 
         let dateString = self.dateFormatter.string(from: date)
 

@@ -80,7 +80,7 @@ struct SongProvider {
 
     private weak var httpClient = LSHTTPClient.shared
 
-    let parser = LSJsonParser()
+    private let parser = LSJsonParser()
 
     func getSearchSongs(searchText: String, pageToken: String, success: @escaping ([Song], String) -> Void, failure: @escaping(LSError) -> Void) {
 

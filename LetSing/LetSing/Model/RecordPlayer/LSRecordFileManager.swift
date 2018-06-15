@@ -23,7 +23,7 @@ class LSRecordFileManager {
     func newRecordFilePath() -> String {
         createFolder()
 
-        let format = LSFormat()
+        let format = LSDateFormat()
 
         let dateFormatter = LSDateFormatter(with: format)
 

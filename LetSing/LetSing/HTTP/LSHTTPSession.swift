@@ -9,24 +9,28 @@
 import Foundation
 import Alamofire
 
-class LSHTTPClient {
+typealias DataCallBack = (Data) -> Void
+typealias ErrorCallBack = (Error) -> Void
 
-    static let shared = LSHTTPClient()
+protocol LSHTTPApiClient {
+    @discardableResult
+    func requestAlamofire(
+        _ request: URLRequestConvertible,
+        success: @escaping DataCallBack,
+        failure: @escaping ErrorCallBack
+        ) -> DataRequest?
+}
 
-    private let queue: DispatchQueue
+struct ApiClient: LSHTTPApiClient {
 
-    private init () {
-
-        queue = DispatchQueue(label: String(describing: LSHTTPClient.self) + UUID().uuidString, qos: .default, attributes: .concurrent)
-    }
+    let queue: DispatchQueue
 
     @discardableResult
-    private func request(
+    func requestAlamofire(
         _ request: URLRequestConvertible,
         success: @escaping (Data) -> Void,
         failure: @escaping (Error) -> Void
-        ) -> DataRequest {
-
+        ) -> DataRequest? {
         return Alamofire.SessionManager.default.request(request).validate().responseData(
             queue: queue,
             completionHandler: { response in
@@ -46,6 +50,25 @@ class LSHTTPClient {
         )
     }
 
+}
+
+class LSHTTPClient {
+
+    static let shared = LSHTTPClient()
+
+    let queue: DispatchQueue
+
+    var apiClient: LSHTTPApiClient
+
+    private init () {
+
+        queue = DispatchQueue(label: String(describing: LSHTTPClient.self) + UUID().uuidString, qos: .default, attributes: .concurrent)
+
+        apiClient = ApiClient(queue: queue)
+    }
+
+    // 當你 return 的東西沒有進入一個值，為避免compiler給予警告，所以會加discardable
+    // ex: _ = LSHTTPClient.shared.request
     @discardableResult
     func request(
         _ LSHTTPRequest: LSHTTPRequest,
@@ -55,12 +78,11 @@ class LSHTTPClient {
 
         do {
 
-            return try request(LSHTTPRequest.request(), success: success, failure: failure)
+            return try apiClient.requestAlamofire(LSHTTPRequest.request(), success: success, failure: failure)
 
         } catch {
 
             failure(error)
-
             return nil
         }
     }

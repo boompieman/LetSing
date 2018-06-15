@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D4C4BD04F5461B3D8CADA9D /* Pods_LetSing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */; };
-		CD42C5F0C0E4310067CEC061 /* Pods_LetSingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D646F052AA987E84CE80B5C /* Pods_LetSingTests.framework */; };
+		EC9DDF5174DAE962C5DEFE44 /* Pods_LetSingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7813708712D5273BB815DCE /* Pods_LetSingTests.framework */; };
 		FA0A090920AEC339004D9696 /* LSXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090820AEC339004D9696 /* LSXMLParser.swift */; };
 		FA0A090D20AED231004D9696 /* LyricsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090C20AED231004D9696 /* LyricsTableView.swift */; };
 		FA0A091020AEDD39004D9696 /* LyricsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A090E20AEDD39004D9696 /* LyricsTableViewCell.swift */; };
@@ -74,7 +74,7 @@
 		FA7F708720B6EEC100D9DDA1 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708620B6EEC100D9DDA1 /* LoginButtonView.swift */; };
 		FA7F708A20B6F3BF00D9DDA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708920B6F3BF00D9DDA1 /* User.swift */; };
 		FA7F708C20B6F43C00D9DDA1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */; };
-		FA8B5AB1FC43E57007FD36FA /* libPods-LetSingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE47A74FE8189F0BCCECF946 /* libPods-LetSingTests.a */; };
+		FA8581BB20D364FB009CC9A6 /* LSHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8581BA20D364FB009CC9A6 /* LSHTTPClientTests.swift */; };
 		FA92785520A574BD00CFBF94 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA92785420A574BD00CFBF94 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA92785920A979F800CFBF94 /* LSRecordPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */; };
 		FA92785B20A997E700CFBF94 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92785A20A997E700CFBF94 /* LoadingView.swift */; };
@@ -114,11 +114,10 @@
 /* Begin PBXFileReference section */
 		0D6D7229322FB50B65620573 /* Pods-LetSingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests.release.xcconfig"; sourceTree = "<group>"; };
 		39FA2353D2F9AC0A4D435705 /* Pods-LetSing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LetSing/Pods-LetSing.debug.xcconfig"; sourceTree = "<group>"; };
-		3D646F052AA987E84CE80B5C /* Pods_LetSingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetSingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4093D1CACF0D3B54835936A7 /* Pods-LetSing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSing.release.xcconfig"; path = "Pods/Target Support Files/Pods-LetSing/Pods-LetSing.release.xcconfig"; sourceTree = "<group>"; };
-		AE47A74FE8189F0BCCECF946 /* libPods-LetSingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LetSingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetSing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D608E089CEF4A8ADB1DE68BB /* Pods-LetSingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetSingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7813708712D5273BB815DCE /* Pods_LetSingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetSingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0A090820AEC339004D9696 /* LSXMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSXMLParser.swift; sourceTree = "<group>"; };
 		FA0A090C20AED231004D9696 /* LyricsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsTableView.swift; sourceTree = "<group>"; };
 		FA0A090E20AEDD39004D9696 /* LyricsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +188,7 @@
 		FA7F708620B6EEC100D9DDA1 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		FA7F708920B6F3BF00D9DDA1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA7F708B20B6F43C00D9DDA1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FA8581BA20D364FB009CC9A6 /* LSHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSHTTPClientTests.swift; sourceTree = "<group>"; };
 		FA92785420A574BD00CFBF94 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		FA92785820A979F800CFBF94 /* LSRecordPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSRecordPlayerManager.swift; sourceTree = "<group>"; };
 		FA92785A20A997E700CFBF94 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA8B5AB1FC43E57007FD36FA /* libPods-LetSingTests.a in Frameworks */,
+				EC9DDF5174DAE962C5DEFE44 /* Pods_LetSingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +254,7 @@
 			children = (
 				FA92785420A574BD00CFBF94 /* ReplayKit.framework */,
 				C0024C7B4BA37A2824CC5CE1 /* Pods_LetSing.framework */,
-				AE47A74FE8189F0BCCECF946 /* libPods-LetSingTests.a */,
+				D7813708712D5273BB815DCE /* Pods_LetSingTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -652,6 +652,7 @@
 			children = (
 				FAB2513F20D1F95F00F2AF9E /* LetSingTests.swift */,
 				FAB2514720D1F99F00F2AF9E /* LSDateFormatterTests.swift */,
+				FA8581BA20D364FB009CC9A6 /* LSHTTPClientTests.swift */,
 				FAB2514120D1F95F00F2AF9E /* Info.plist */,
 			);
 			path = LetSingTests;
@@ -909,9 +910,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LetSingTests/Pods-LetSingTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS11.3/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS11.3/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS11.3/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -955,20 +963,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LetSing/Pods-LetSing-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS11.0/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-framework/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS11.0/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb-framework/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS11.0/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1121,6 +1129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAB2514020D1F95F00F2AF9E /* LetSingTests.swift in Sources */,
+				FA8581BB20D364FB009CC9A6 /* LSHTTPClientTests.swift in Sources */,
 				FAB2514820D1F99F00F2AF9E /* LSDateFormatterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
