@@ -136,6 +136,9 @@ class RecordViewController: UIViewController {
 
         if sender.isSelected {
             recordPlayerManager.start()
+            guard let song = song else { return }
+
+            recordPlayerManager.updateSong(song: song)
 
         } else {
             LSAnalytics.shared.logEvent("record_button_tapped", parameters: nil)
