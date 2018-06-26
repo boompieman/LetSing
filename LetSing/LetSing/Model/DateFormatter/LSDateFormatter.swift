@@ -41,4 +41,13 @@ class LSDateFormatter {
 
         return dateString
     }
+
+    func getDateTime(date: Date) -> String {
+        self.dateFormatter.dateFormat = format
+
+        let dateString = self.dateFormatter.string(from: date)
+
+        return dateString
+
+    }
 }

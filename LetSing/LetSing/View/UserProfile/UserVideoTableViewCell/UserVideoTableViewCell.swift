@@ -10,16 +10,16 @@ import UIKit
 
 class UserVideoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var createdTimeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func updateCellWith(title: String, createdTime: String) {
+        self.titleLabel.text = title
+        self.createdTimeLabel.text = createdTime
     }
 
 }

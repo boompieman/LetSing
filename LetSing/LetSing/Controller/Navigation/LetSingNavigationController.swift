@@ -14,6 +14,5 @@ class LetSingNavigationController: UINavigationController {
         super.viewDidLoad()
 
         self.edgesForExtendedLayout = .init(rawValue: 0)
-
     }
 }
