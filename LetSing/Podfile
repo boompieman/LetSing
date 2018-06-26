@@ -8,7 +8,7 @@ target 'LetSing' do
   # Pods for LetSing
 
   pod 'SDWebImage'
-  pod "Alamofire"
+  pod 'Alamofire'
   pod 'YouTubePlayer', :git => 'https://github.com/boompieman/Swift-YouTube-Player.git'
   pod 'SwiftLint'
   pod 'AudioKit', '~> 4.2'
@@ -23,6 +23,11 @@ target 'LetSing' do
   pod 'MJRefresh'
   pod 'Fabric'
   pod 'Crashlytics'
+end
 
-
+target 'LetSingTests' do
+    use_frameworks!
+    pod 'Firebase'
+    pod 'Alamofire'
+    
 end

@@ -28,8 +28,6 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        sendData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +37,7 @@ class RecordViewController: UIViewController {
         setupRecordPlayerManager()
         observePlayerCurrentTime()
         generatePlayer()
-        //
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,16 +53,6 @@ class RecordViewController: UIViewController {
             iphoneXConstraint.isActive = true
             notIphoneXConstraint.isActive = false
         }
-    }
-
-    func sendData() {
-        let lyricsVC = childViewControllers[0] as? LyricsViewController
-
-        guard let song = song else {
-            return
-        }
-
-        lyricsVC?.requestLyrics(song: song)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,6 +124,9 @@ class RecordViewController: UIViewController {
 
         if sender.isSelected {
             recordPlayerManager.start()
+            guard let song = song else { return }
+
+            recordPlayerManager.updateSong(song: song)
 
         } else {
             LSAnalytics.shared.logEvent("record_button_tapped", parameters: nil)

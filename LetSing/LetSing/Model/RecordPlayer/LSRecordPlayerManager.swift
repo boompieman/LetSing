@@ -11,25 +11,25 @@ import AVFoundation
 import AVKit
 import ReplayKit
 
-// manager protocol to notify controller when to start or end
+
 protocol ScreenCaptureManagerDelegate: class {
-    func didStartRecord() // 開始錄製
-    func didFinishRecord() // 完成錄製
-    func didStopWithError(error: Error) //發生錯誤
+    func didStartRecord()
+    func didFinishRecord()
+    func didStopWithError(error: Error)
 }
 
 class LSRecordPlayerManager: NSObject {
 
-    private let recorder = RPScreenRecorder.shared()
-
     weak var delegate: ScreenCaptureManagerDelegate?
-    // play music using speaker
-    let audioSession = AVAudioSession.sharedInstance()
 
-    var assetWriter: AVAssetWriter!
-    var videoInput: AVAssetWriterInput!
-    var audioInput: AVAssetWriterInput!
-    var microInput: AVAssetWriterInput!
+    private let recorder = RPScreenRecorder.shared()
+    private var song: Song?
+
+    private let audioSession = AVAudioSession.sharedInstance()
+    private var assetWriter: AVAssetWriter!
+    private var videoInput: AVAssetWriterInput!
+    private var audioInput: AVAssetWriterInput!
+    private var microInput: AVAssetWriterInput!
 
     private var queue = DispatchQueue(label: String(describing: LSRecordPlayerManager.self))
 
@@ -45,8 +45,8 @@ class LSRecordPlayerManager: NSObject {
         }
     }
 
-    func getRecorder() -> RPScreenRecorder {
-        return recorder
+    func updateSong(song: Song) {
+        self.song = song
     }
 
     // start recording
@@ -83,7 +83,8 @@ class LSRecordPlayerManager: NSObject {
                         if strongSelf.assetWriter.status == AVAssetWriterStatus.unknown {
 
                             strongSelf.assetWriter.startWriting()
-                            strongSelf.assetWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
+                            strongSelf.assetWriter.startSession(
+                                atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
                         }
 
                         print(strongSelf.assetWriter.status)
@@ -102,7 +103,6 @@ class LSRecordPlayerManager: NSObject {
                         case .audioMic:
                             if strongSelf.recorder.isMicrophoneEnabled && strongSelf.microInput.isReadyForMoreMediaData {
                                 print("microInput:", strongSelf.microInput.preferredVolume)
-
                                 strongSelf.microInput.append(sampleBuffer)
                             }
                         }
@@ -149,11 +149,6 @@ class LSRecordPlayerManager: NSObject {
                 self.assetWriter.cancelWriting()
             }
         }
-    }
-
-    func generateCamaraPreView() -> UIView? {
-
-        return recorder.cameraPreviewView
     }
 
     // MARK: private func

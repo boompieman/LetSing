@@ -10,7 +10,9 @@ import AVFoundation
 
 extension Notification.Name {
 
-    static let finishVideoDuration = Notification.Name(LSConstants.NotificationKey.finishVideoDuration)
+    static let finishVideoDuration =
+
+        Notification.Name(LSConstants.NotificationKey.finishVideoDuration)
 }
 
 class LSVideoProvider: NSObject {

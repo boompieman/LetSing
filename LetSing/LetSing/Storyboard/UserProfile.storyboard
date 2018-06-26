@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wqB-d6-hUy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wqB-d6-hUy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="-254" y="-4"/>
         </scene>
-        <!--個人資料-->
+        <!--個人收藏-->
         <scene sceneID="QlW-eN-LIw">
             <objects>
                 <viewController id="pwl-nB-yBy" customClass="UserProfileViewController" customModule="LetSing" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,27 +45,17 @@
                                     <segue destination="IUk-fW-oHH" kind="embed" id="HdJ-ji-jQL"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5b-go-KdB" customClass="UserInfoView" customModule="LetSing" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="7XK-Sh-yU8"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="u5b-go-KdB" secondAttribute="trailing" id="FzL-rb-hV0"/>
-                            <constraint firstItem="u5b-go-KdB" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="LZS-dX-7rv"/>
                             <constraint firstItem="i3m-Gc-DjK" firstAttribute="bottom" secondItem="5jm-g7-4ne" secondAttribute="bottom" id="MMs-bh-SfA"/>
                             <constraint firstItem="5jm-g7-4ne" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="ccx-rT-q9e"/>
                             <constraint firstItem="5jm-g7-4ne" firstAttribute="top" secondItem="i3m-Gc-DjK" secondAttribute="top" id="gXS-gA-B7c"/>
-                            <constraint firstItem="u5b-go-KdB" firstAttribute="leading" secondItem="i3m-Gc-DjK" secondAttribute="leading" id="hFP-1J-xg8"/>
                             <constraint firstItem="i3m-Gc-DjK" firstAttribute="trailing" secondItem="5jm-g7-4ne" secondAttribute="trailing" id="wG9-1V-r5E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i3m-Gc-DjK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="個人資料" id="Zq6-10-RZu"/>
+                    <navigationItem key="navigationItem" title="個人收藏" id="Zq6-10-RZu"/>
                     <connections>
                         <outlet property="userInfoView" destination="u5b-go-KdB" id="gkK-Tt-rmh"/>
                     </connections>

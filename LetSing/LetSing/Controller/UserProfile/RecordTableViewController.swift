@@ -8,19 +8,11 @@
 
 import UIKit
 
-protocol RecordTableViewControllerDelegate: class {
-    func tableViewDidScroll(_ tableView: RecordTableViewController, translation: CGFloat)
-}
-
 class RecordTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    weak var delegate: RecordTableViewControllerDelegate?
-
     var records = [Record]()
-
-    private let userInfoViewHeight: CGFloat = 180.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +24,8 @@ class RecordTableViewController: UIViewController {
         super.viewWillAppear(animated)
 
         self.records = LSRecordFileManager.shared.fetchAllRecords()
+
+        
 
         if self.records.count != 0 {
             self.tableView.reloadData()
@@ -45,10 +39,7 @@ class RecordTableViewController: UIViewController {
 
         self.tableView.register(nib, forCellReuseIdentifier: String(describing: UserVideoTableViewCell.self))
 
-//        self.tableView.contentInset = UIEdgeInsetsMake(userInfoViewHeight, 0, 49, 0)
         self.tableView.contentInset = LSConstants.tableViewInset
-
-//        self.tableView.separatorStyle = .singleLine
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -72,7 +63,7 @@ class RecordTableViewController: UIViewController {
             ),
             completion: { (text) in
                 LSRecordFileManager.shared.updateRecordTitle(from: self.records[indexPath.row].videoUrl, to: text)
-                self.records[indexPath.row].title = text
+                self.records = LSRecordFileManager.shared.fetchAllRecords()
                 self.tableView.isEditing = false
                 self.tableView.reloadData()
         })
@@ -82,7 +73,7 @@ class RecordTableViewController: UIViewController {
 
     private func deleteRecord(indexPath: IndexPath) {
         LSRecordFileManager.shared.deleteRecord(at: self.records[indexPath.row].videoUrl)
-        self.records.remove(at: indexPath.row)
+        self.records = LSRecordFileManager.shared.fetchAllRecords()
         self.tableView.isEditing = false
         self.tableView.reloadData()
     }
@@ -102,7 +93,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return LSConstants.songCellHeight
+        return LSConstants.recordCellHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +103,12 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
             for: indexPath
             ) as? UserVideoTableViewCell else { return UITableViewCell()}
 
-        tableViewCell.titleLabel.text = self.records[indexPath.row].title
+        let currentRecord = records[indexPath.row]
+
+        tableViewCell.updateCellWith(
+            title: currentRecord.title,
+            createdTime: currentRecord.createdTimeString
+        )
 
         return tableViewCell
     }
@@ -137,7 +133,6 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
             ) { (_, indexPath) in
 
             let alert = self.generateEditAlert(indexPath: indexPath)
-
             self.present(alert, animated: true, completion: nil)
         }
 
@@ -169,6 +164,7 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
             if let indexPath = self.tableView.indexPathForSelectedRow {
 
                 let destinationVC = segue.destination as? ReviewViewController
+
                 destinationVC?.videoURL = self.records[indexPath.row].videoUrl
             }
         }

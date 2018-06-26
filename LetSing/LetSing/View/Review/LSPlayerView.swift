@@ -18,7 +18,6 @@ class LSPlayerView: UIView {
         set {
             playerLayer.player = newValue
         }
-
     }
 
     var playerLayer: AVPlayerLayer {
