@@ -29,5 +29,4 @@ target 'LetSingTests' do
     use_frameworks!
     pod 'Firebase'
     pod 'Alamofire'
-    
 end

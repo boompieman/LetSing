@@ -130,6 +130,7 @@ struct SongManager {
             }
 
             dispatchGroup.notify(queue: .main) {
+                
                 songList.sort(by: { (song1, song2) -> Bool in
                     return song1.rank! < song2.rank!
                 })
