@@ -87,8 +87,6 @@ class LSRecordPlayerManager: NSObject {
                                 atSourceTime: CMSampleBufferGetPresentationTimeStamp(sampleBuffer))
                         }
 
-                        print(strongSelf.assetWriter.status)
-
                         switch sampleBufferType {
                         case .video:
                             if strongSelf.videoInput.isReadyForMoreMediaData {

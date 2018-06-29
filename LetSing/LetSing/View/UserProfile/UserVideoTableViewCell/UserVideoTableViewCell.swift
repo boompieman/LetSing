@@ -12,6 +12,8 @@ class UserVideoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var createdTimeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +23,4 @@ class UserVideoTableViewCell: UITableViewCell {
         self.titleLabel.text = title
         self.createdTimeLabel.text = createdTime
     }
-
 }

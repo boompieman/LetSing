@@ -22,7 +22,6 @@ class LSSearchBar: UISearchBar {
         preferredTextColor = textColor
 
         searchBarStyle = UISearchBarStyle.prominent
-//        isTranslucent = false
 
     }
 
@@ -79,20 +78,6 @@ class LSSearchBar: UISearchBar {
             }
 
         }
-
-        // 下面那條橘色的線
-
-//        let startPoint = CGPoint(x: 0.0, y: frame.size.height)
-//        let endPoint = CGPoint(x: frame.size.width, y: frame.size.height)
-//        let path = UIBezierPath()
-//        path.move(to: startPoint)
-//        path.addLine(to: endPoint)
-//
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = path.cgPath
-//        shapeLayer.strokeColor = preferredTextColor.cgColor
-//        shapeLayer.lineWidth = 2.5
-//        layer.addSublayer(shapeLayer)
 
         super.draw(rect)
     }

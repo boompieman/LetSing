@@ -44,28 +44,49 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-5N-LuO">
+                        <rect key="frame" x="304" y="27.5" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="7GM-VB-uBj"/>
+                            <constraint firstAttribute="height" constant="48" id="i0e-6W-QtM"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipsis" translatesAutoresizingMaskIntoConstraints="NO" id="9kn-ss-c9W">
+                        <rect key="frame" x="330" y="45.5" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="BdL-8L-ziG"/>
+                            <constraint firstAttribute="height" constant="12" id="UZ2-IK-h8i"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="8aF-5N-LuO" firstAttribute="centerY" secondItem="GMw-Oh-7cB" secondAttribute="centerY" id="2rS-16-jag"/>
                     <constraint firstAttribute="trailing" secondItem="Q5e-p3-Qbd" secondAttribute="trailing" id="3Gj-Ld-cul"/>
                     <constraint firstItem="txR-Dg-cZF" firstAttribute="leading" secondItem="mBb-lb-g3t" secondAttribute="leading" id="L9l-mW-5s2"/>
+                    <constraint firstAttribute="trailing" secondItem="8aF-5N-LuO" secondAttribute="trailing" id="M5m-7a-ZGh"/>
                     <constraint firstItem="GMw-Oh-7cB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="MB9-Ut-Qos"/>
                     <constraint firstItem="mBb-lb-g3t" firstAttribute="top" secondItem="GMw-Oh-7cB" secondAttribute="top" id="Mga-0s-uSl"/>
+                    <constraint firstItem="9kn-ss-c9W" firstAttribute="centerY" secondItem="GMw-Oh-7cB" secondAttribute="centerY" id="N0w-k8-pOz"/>
                     <constraint firstItem="Q5e-p3-Qbd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="W7e-Q3-CYJ"/>
                     <constraint firstItem="GMw-Oh-7cB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WLn-Ka-JT3"/>
                     <constraint firstItem="mBb-lb-g3t" firstAttribute="leading" secondItem="GMw-Oh-7cB" secondAttribute="trailing" constant="20" id="WtV-f7-opQ"/>
                     <constraint firstItem="txR-Dg-cZF" firstAttribute="bottom" secondItem="GMw-Oh-7cB" secondAttribute="bottom" id="aYz-wY-7ql"/>
                     <constraint firstAttribute="bottom" secondItem="Q5e-p3-Qbd" secondAttribute="bottom" id="akY-sb-nQq"/>
+                    <constraint firstAttribute="trailing" secondItem="9kn-ss-c9W" secondAttribute="trailing" constant="10" id="sNq-4w-Ui3"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="createdTimeLabel" destination="txR-Dg-cZF" id="N3Z-fw-QvB"/>
+                <outlet property="moreButton" destination="8aF-5N-LuO" id="MgE-X6-xJA"/>
                 <outlet property="titleLabel" destination="mBb-lb-g3t" id="c6w-kv-ube"/>
             </connections>
-            <point key="canvasLocation" x="50" y="83.5"/>
+            <point key="canvasLocation" x="-17" y="84.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ellipsis" width="32" height="32"/>
         <image name="play-button" width="64" height="64"/>
     </resources>
 </document>

@@ -126,8 +126,11 @@ struct SongManager {
                     songList.append(song)
 
                     dispatchGroup.leave()
+
                 })
+
             }
+
 
             dispatchGroup.notify(queue: .main) {
                 

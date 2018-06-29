@@ -25,8 +25,6 @@ class RecordTableViewController: UIViewController {
 
         self.records = LSRecordFileManager.shared.fetchAllRecords()
 
-        
-
         if self.records.count != 0 {
             self.tableView.reloadData()
         }
@@ -47,6 +45,15 @@ class RecordTableViewController: UIViewController {
 //        let distance = scrollView.contentOffset.y + userInfoViewHeight
 //
 //        self.delegate?.tableViewDidScroll(self, translation: distance)
+    }
+
+    @objc func moreButtonDidTapped(_ sender: UIButton) {
+
+        guard let cell = sender.superview?.superview as? UserVideoTableViewCell,
+            let indexPath = tableView.indexPath(for: cell) else { return }
+
+        
+
     }
 
     // MARK: private function
@@ -109,6 +116,11 @@ extension RecordTableViewController: UITableViewDelegate, UITableViewDataSource 
             title: currentRecord.title,
             createdTime: currentRecord.createdTimeString
         )
+
+        tableViewCell.moreButton.addTarget(
+            self,
+            action: #selector(moreButtonDidTapped(_:)),
+            for: .touchUpInside)
 
         return tableViewCell
     }
