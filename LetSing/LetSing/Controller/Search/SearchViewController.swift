@@ -100,6 +100,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             ) as? RecordViewController else { return }
 
         recordController.song = songs[indexPath.row]
+
+
         show(recordController, sender: nil)
     }
 }
@@ -115,6 +117,7 @@ extension SearchViewController: SongManagerDelegate {
         }
 
         for song in songs {
+
             self.songs.append(song)
         }
 

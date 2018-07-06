@@ -14,6 +14,8 @@ class RecordTableViewController: UIViewController {
 
     var records = [Record]()
 
+    private let dataTransformer = LSDataTransformer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -52,7 +54,19 @@ class RecordTableViewController: UIViewController {
         guard let cell = sender.superview?.superview as? UserVideoTableViewCell,
             let indexPath = tableView.indexPath(for: cell) else { return }
 
-        
+        guard let urlScheme = URL(string: LSConstants.InstagramAPI.SCHEMEURL) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(urlScheme) {
+            let pasteboardItems = [["com.instagram.sharedSticker.backgroundVideo" : dataTransformer.videoToData(url: self.records[indexPath.row].videoUrl)]]
+
+            let pasteboardOptions = [UIPasteboardOption.expirationDate : Date(timeIntervalSinceNow: 60 * 5)]
+
+            UIPasteboard.general.setItems(pasteboardItems, options: pasteboardOptions)
+
+            UIApplication.shared.open(urlScheme, options: [:], completionHandler: nil)
+        }
 
     }
 

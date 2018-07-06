@@ -11,6 +11,14 @@ import FBSDKLoginKit
 
 struct LoginManager {
 
+    private let httpClient = LSHTTPClient.shared
+
+    func instagramLogin(completion: @escaping (_ error: LSError?, _ token: String?) -> Void) {
+
+        
+
+    }
+
     func facebookLogin(completion: @escaping (_ error: LSError?, _ token: String?) -> Void) {
 
         let manager = FBSDKLoginManager()

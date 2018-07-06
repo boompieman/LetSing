@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FBSDKApplicationDelegate.sharedInstance()
 
+//        setUserActivityForHighlightSearch()
+
         switchToMainStoryBoard()
 
         return true
@@ -57,6 +59,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    private func application(
+        application: UIApplication,
+        continueUserActivity userActivity: NSUserActivity,
+        restorationHandler: @escaping (([AnyObject]?) -> Void))
+        -> Bool {
+
+            // Do some checks to make sure you can proceed
+            if let window = self.window {
+                window.rootViewController?.restoreUserActivityState(userActivity)
+            }
+            return true
+    }
+
     func switchToMainStoryBoard() {
 
         if !Thread.current.isMainThread {
@@ -70,6 +85,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         window?.rootViewController = UIStoryboard.mainStoryboard().instantiateInitialViewController()
+
+
     }
+
+    func setUserActivityForHighlightSearch() {
+        let activity = NSUserActivity(activityType: "com.letSing.appWorksSchool")
+        activity.title = "來唱"
+        activity.isEligibleForSearch = true
+        activity.keywords = Set(arrayLiteral: "LetSing", "來唱", "卡拉OK")
+
+        self.userActivity = activity
+        activity.becomeCurrent()
+    }
+
 
 }

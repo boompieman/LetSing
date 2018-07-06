@@ -81,4 +81,22 @@ extension LSConstants {
         static let remindMessage = "LSRemindMessage"
 
     }
+
+    struct InstagramAPI {
+
+        static let SCHEMEURL = "instagram-stories://share"
+
+        static let AUTHURL = "https://api.instagram.com/oauth/authorize/"
+
+        static let APIURL = "https://api.instagram.com/v1/users"
+
+        static let CLIENT_ID = "cf3b2b7402c94fbcb572a56415b0254f"
+
+        static let CLIENTSERCRET = "ed7b9142ed8749acb66b9bd9a12e4452"
+
+        static let REDIRECT_URI = "http://localhost"
+        static let ACCESS_TOKEN = "access_token"
+
+        static let SCOPE = "https://www.instagram.com/developer/authorization/"
+    }
 }

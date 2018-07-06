@@ -28,6 +28,7 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUserActivityForSearch()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +64,15 @@ class RecordViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.shared.setStatusBarHidden(false, with: .none)
+    }
+
+    func setUserActivityForSearch() {
+
+        guard let song = song else { return }
+
+        let activity = song.userActivity
+        activity.isEligibleForSearch = true
+        self.userActivity = activity
     }
 
     func setupRecordPlayerManager() {
