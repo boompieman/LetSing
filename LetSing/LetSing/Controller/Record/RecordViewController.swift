@@ -66,6 +66,7 @@ class RecordViewController: UIViewController {
         UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
 
+    // MARK: UserActivity
     func setUserActivityForSearch() {
 
         guard let song = song else { return }
@@ -73,6 +74,15 @@ class RecordViewController: UIViewController {
         let activity = song.userActivity
         activity.isEligibleForSearch = true
         self.userActivity = activity
+    }
+
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+
+        guard let song = song else { return }
+
+        activity.addUserInfoEntries(
+            from: song.userActivityUserInfo)
+        
     }
 
     func setupRecordPlayerManager() {

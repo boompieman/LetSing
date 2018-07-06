@@ -25,4 +25,21 @@ class LetSingNavigationController: UINavigationController {
         self.navigationBar.layer.shadowOpacity = 1
 
     }
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+
+        guard activity.activityType == Song.domainIdentifier,
+            let songData = activity.userInfo?["song"] as? Data else { return }
+
+        let song = try? JSONDecoder().decode(Song.self, from: songData)
+
+        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
+            withIdentifier: String(describing: RecordViewController.self)
+            ) as? RecordViewController else { return }
+
+        recordController.song = song
+
+        show(recordController, sender: nil)
+
+    }
 }

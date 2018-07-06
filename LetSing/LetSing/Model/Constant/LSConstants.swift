@@ -99,4 +99,10 @@ extension LSConstants {
 
         static let SCOPE = "https://www.instagram.com/developer/authorization/"
     }
+
+    struct Activity {
+        static let ActivityTypeView = "com.LetSing.Sam.view"
+
+        static let ActivitySongsKey = "songs.key"
+    }
 }

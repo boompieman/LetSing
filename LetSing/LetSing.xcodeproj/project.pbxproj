@@ -34,7 +34,7 @@
 		FA43A58020C8CC34005E1CCE /* LSFirebaseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */; };
 		FA43A58220C8CCE8005E1CCE /* LSFirebaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */; };
 		FA43A58420C8E932005E1CCE /* LSVideoFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43A58320C8E932005E1CCE /* LSVideoFooterView.swift */; };
-		FA4CE2A520EDDE0300B7CD18 /* SongSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CE2A420EDDE0300B7CD18 /* SongSearch.swift */; };
+		FA4CE2A520EDDE0300B7CD18 /* SongSpotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CE2A420EDDE0300B7CD18 /* SongSpotlight.swift */; };
 		FA594BB320C3DC3700747CD9 /* UIDevice+Sam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */; };
 		FA5CA13B209976E500811B4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA13A209976E500811B4B /* GoogleService-Info.plist */; };
 		FA5CA13D209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA13C209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift */; };
@@ -135,7 +135,7 @@
 		FA43A57F20C8CC34005E1CCE /* LSFirebaseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFirebaseSession.swift; sourceTree = "<group>"; };
 		FA43A58120C8CCE8005E1CCE /* LSFirebaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFirebaseRequest.swift; sourceTree = "<group>"; };
 		FA43A58320C8E932005E1CCE /* LSVideoFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSVideoFooterView.swift; sourceTree = "<group>"; };
-		FA4CE2A420EDDE0300B7CD18 /* SongSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearch.swift; sourceTree = "<group>"; };
+		FA4CE2A420EDDE0300B7CD18 /* SongSpotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSpotlight.swift; sourceTree = "<group>"; };
 		FA594BB220C3DC3700747CD9 /* UIDevice+Sam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Sam.swift"; sourceTree = "<group>"; };
 		FA5CA13A209976E500811B4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FA5CA13C209ADFCC00811B4B /* POMCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -357,6 +357,7 @@
 				FA4335A1209C334C00BC90FC /* Song.swift */,
 				FA41DDF8209DA4C700CDAB08 /* SongManager.swift */,
 				FA4335AF209C4AD200BC90FC /* SongProvider.swift */,
+				FA4CE2A420EDDE0300B7CD18 /* SongSpotlight.swift */,
 			);
 			path = Song;
 			sourceTree = "<group>";
@@ -378,14 +379,6 @@
 				FA43A57A20C78082005E1CCE /* Localizable.strings */,
 			);
 			path = Localization;
-			sourceTree = "<group>";
-		};
-		FA4CE2A320EDDDE800B7CD18 /* SongSearch */ = {
-			isa = PBXGroup;
-			children = (
-				FA4CE2A420EDDE0300B7CD18 /* SongSearch.swift */,
-			);
-			path = SongSearch;
 			sourceTree = "<group>";
 		};
 		FA5CA144209AE33600811B4B /* Discover */ = {
@@ -472,7 +465,6 @@
 		FA7C96A6209949DE00890325 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA4CE2A320EDDDE800B7CD18 /* SongSearch */,
 				FAB3918B20E63A410001E107 /* DataTransformer */,
 				FAD0AB0920C4E71000FB1E03 /* Analytics */,
 				FAC2947D20BE7D3D002F87BF /* TimeTransformer */,
@@ -1015,7 +1007,7 @@
 				FA3B815720A00B5300915CC6 /* LSSearchController.swift in Sources */,
 				FA7C96BA20995C9600890325 /* LetSingNavigationController.swift in Sources */,
 				FA92785920A979F800CFBF94 /* LSRecordPlayerManager.swift in Sources */,
-				FA4CE2A520EDDE0300B7CD18 /* SongSearch.swift in Sources */,
+				FA4CE2A520EDDE0300B7CD18 /* SongSpotlight.swift in Sources */,
 				FA1DD01020A1713700F92475 /* RecordNavigationView.swift in Sources */,
 				FAB3918D20E63A590001E107 /* LSDataTransformer.swift in Sources */,
 				FAD67C8420B7C0C900402335 /* Record.swift in Sources */,

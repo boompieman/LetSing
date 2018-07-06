@@ -10,10 +10,18 @@ import CoreSpotlight
 import Foundation
 
 extension Song {
-    public static let domainIdentifier = "com.appWorksSchool-ios6.LetSing"
+
+    var songData: Data? {
+        get {
+            return try? JSONEncoder().encode(self)
+        }
+    }
+
+    public static let domainIdentifier = "com.appWorksSchool-ios6.LetSing.Song"
 
     public var userActivityUserInfo: [String: AnyObject] {
-        return ["id" : id as AnyObject]
+
+        return ["song" : songData as AnyObject]
     }
 
     public var userActivity: NSUserActivity {
@@ -21,7 +29,11 @@ extension Song {
         activity.title = name
         activity.userInfo = userActivityUserInfo
 
-        activity.keywords = Set(arrayLiteral: name)
+        if singer != nil {
+            activity.keywords = Set(arrayLiteral: name, singer!)
+        } else {
+            activity.keywords = Set(arrayLiteral: name)
+        }
         return activity
     }
 }
