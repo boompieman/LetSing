@@ -66,47 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let mainController = (window!.rootViewController! as! TabBarViewController).viewControllers?.first
 
-        print(mainController)
-
         mainController?.restoreUserActivityState(userActivity)
-
-//        guard userActivity.activityType == Song.domainIdentifier,
-//            let songData = userActivity.userInfo?["song"] as? Data else { return false }
-//
-//        let song = try? JSONDecoder().decode(Song.self, from: songData)
-//
-//        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
-//            withIdentifier: String(describing: RecordViewController.self)
-//            ) as? RecordViewController else { return false}
-//
-//        recordController.song = song
 
         return true
     }
-
-//    func application(application: UIApplication,
-//                     continueUserActivity userActivity: NSUserActivity,
-//                     restorationHandler: ([AnyObject]?) -> Void) -> Bool {
-
-
-//        if let nav = window?.rootViewController as? UINavigationController,
-//            let discoverViewController = nav.viewControllers.first as? DiscoverViewController,
-//            let song = EmployeeService().employeeWithObjectId(objectId) {
-//            nav.popToRootViewControllerAnimated(false)
-//
-//            guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
-//                withIdentifier: String(describing: RecordViewController.self)
-//                ) as? RecordViewController else { return }
-//
-//            recordController.song = song
-//            nav.pushViewController(recordController, animated: false)
-//            return true
-//        }
-//
-//        return false
-
-//        return true
-//    }
 
     func switchToMainStoryBoard() {
 

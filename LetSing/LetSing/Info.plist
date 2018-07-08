@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>NSUserActivityTypes</key>
-	<array/>
+	<array>
+		<string>com.LetSing.Sam.UserRecord.view</string>
+		<string>com.LetSing.Sam.UserRecord.edit</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

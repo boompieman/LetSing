@@ -7,7 +7,8 @@
 //
 
 import CoreSpotlight
-import Foundation
+import MobileCoreServices
+import UIKit
 
 extension Song {
 
@@ -24,16 +25,40 @@ extension Song {
         return ["song" : songData as AnyObject]
     }
 
-    public var userActivity: NSUserActivity {
-        let activity = NSUserActivity(activityType: Song.domainIdentifier)
-        activity.title = name
-        activity.userInfo = userActivityUserInfo
+    public var attributeSet: CSSearchableItemAttributeSet {
+
+        let attributeSet = CSSearchableItemAttributeSet(
+            itemContentType: kUTTypeContact as String)
+
+        attributeSet.title = name
+        attributeSet.thumbnailData = UIImageJPEGRepresentation(
+            loadPicture(), 0.9)
 
         if singer != nil {
-            activity.keywords = Set(arrayLiteral: name, singer!)
+            attributeSet.keywords = [singer!, name]
         } else {
-            activity.keywords = Set(arrayLiteral: name)
+            attributeSet.keywords = [name]
         }
+
+        return attributeSet
+    }
+
+    public var userActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: Song.domainIdentifier)
+        activity.userInfo = userActivityUserInfo
+
+        activity.contentAttributeSet = attributeSet
         return activity
+    }
+
+    func loadPicture() -> UIImage {
+
+        guard let imageData = try? Data(contentsOf: URL(string: image)!) else { return UIImage() }
+
+        print(imageData)
+
+        return UIImage(data: imageData)!
+
+
     }
 }

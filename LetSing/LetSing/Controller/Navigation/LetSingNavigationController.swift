@@ -28,18 +28,28 @@ class LetSingNavigationController: UINavigationController {
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
 
-        guard activity.activityType == Song.domainIdentifier,
-            let songData = activity.userInfo?["song"] as? Data else { return }
+        if activity.activityType == Song.domainIdentifier {
 
-        let song = try? JSONDecoder().decode(Song.self, from: songData)
+            guard let songData = activity.userInfo?["song"] as? Data else {
+                return
+            }
 
-        guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
-            withIdentifier: String(describing: RecordViewController.self)
-            ) as? RecordViewController else { return }
+            let song = try? JSONDecoder().decode(Song.self, from: songData)
 
-        recordController.song = song
+            guard let recordController = UIStoryboard.recordStoryboard().instantiateViewController(
+                withIdentifier: String(describing: RecordViewController.self)
+                ) as? RecordViewController else { return }
 
-        show(recordController, sender: nil)
+            recordController.song = song
 
+            show(recordController, sender: nil)
+
+        }
+        
+        if activity.activityType == LSConstants.UserActivity.TypeUserRecordView {
+
+            print("aaaa:", activity.userInfo)
+            
+        }
     }
 }

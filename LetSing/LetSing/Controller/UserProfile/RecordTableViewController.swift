@@ -29,7 +29,12 @@ class RecordTableViewController: UIViewController {
 
         if self.records.count != 0 {
             self.tableView.reloadData()
+            startUserActivity()
         }
+    }
+
+    deinit {
+        stopUserActivity()
     }
 
     func setupTableView() {
@@ -45,7 +50,6 @@ class RecordTableViewController: UIViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
 //        let distance = scrollView.contentOffset.y + userInfoViewHeight
-//
 //        self.delegate?.tableViewDidScroll(self, translation: distance)
     }
 
@@ -97,6 +101,24 @@ class RecordTableViewController: UIViewController {
         self.records = LSRecordFileManager.shared.fetchAllRecords()
         self.tableView.isEditing = false
         self.tableView.reloadData()
+    }
+
+    private func startUserActivity() {
+        let activity = NSUserActivity(activityType: LSConstants.UserActivity.TypeUserRecordView)
+        activity.title = "Record List"
+        activity.userInfo = [LSConstants.UserActivity.RecordsKey: ["Ice cream", "Apple", "Nuts"]]
+        userActivity = activity
+        userActivity?.becomeCurrent()
+    }
+
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+
+        activity.addUserInfoEntries(from: [LSConstants.UserActivity.RecordsKey: ["Ice cream", "Apple", "Nuts"]])
+        super.updateUserActivityState(activity)
+    }
+
+    private func stopUserActivity() {
+        userActivity?.invalidate()
     }
 }
 
