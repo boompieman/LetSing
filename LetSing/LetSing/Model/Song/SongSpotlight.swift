@@ -1,13 +1,13 @@
 //
-//  SongSearch.swift
+//  SongSpotlight.swift
 //  LetSing
 //
 //  Created by MACBOOK on 2018/7/5.
 //  Copyright © 2018年 MACBOOK. All rights reserved.
-//
+
 
 import CoreSpotlight
-import MobileCoreServices
+import MobileCoreServices // 使用統一的type id，如此可以在app與app間傳遞資訊
 import UIKit
 
 extension Song {
@@ -31,6 +31,9 @@ extension Song {
             itemContentType: kUTTypeContact as String)
 
         attributeSet.title = name
+
+        attributeSet.authorEmailAddresses = ["aaaaa@gmail.com"]
+
         attributeSet.thumbnailData = UIImageJPEGRepresentation(
             loadPicture(), 0.9)
 
@@ -51,14 +54,12 @@ extension Song {
         return activity
     }
 
+
+    // 可用 extension
     func loadPicture() -> UIImage {
 
         guard let imageData = try? Data(contentsOf: URL(string: image)!) else { return UIImage() }
 
-        print(imageData)
-
         return UIImage(data: imageData)!
-
-
     }
 }

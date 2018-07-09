@@ -106,14 +106,16 @@ class RecordTableViewController: UIViewController {
     private func startUserActivity() {
         let activity = NSUserActivity(activityType: LSConstants.UserActivity.TypeUserRecordView)
         activity.title = "Record List"
-        activity.userInfo = [LSConstants.UserActivity.RecordsKey: ["Ice cream", "Apple", "Nuts"]]
+        activity.userInfo = [LSConstants.UserActivity.RecordsKey: ["record 1", "record 2", "record 3"]]
         userActivity = activity
         userActivity?.becomeCurrent()
     }
 
+    // 更新userActivity的狀態
     override func updateUserActivityState(_ activity: NSUserActivity) {
 
-        activity.addUserInfoEntries(from: [LSConstants.UserActivity.RecordsKey: ["Ice cream", "Apple", "Nuts"]])
+        // 小資料傳遞用userInfo，大資料用 getContinuationStreams
+        activity.addUserInfoEntries(from: [LSConstants.UserActivity.RecordsKey: ["record 1", "record 2", "record 3"]])
         super.updateUserActivityState(activity)
     }
 

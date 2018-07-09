@@ -19,5 +19,4 @@ class LSDataTransformer {
 
         return videoData
     }
-
 }

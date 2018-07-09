@@ -42,6 +42,7 @@
 		FA5CA143209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA141209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib */; };
 		FA5CA147209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CA145209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift */; };
 		FA5CA148209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5CA146209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib */; };
+		FA6DE61320F366EC00721E44 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE61220F366EB00721E44 /* File.swift */; };
 		FA7049E120B3BE830007EF06 /* LSJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7049E020B3BE820007EF06 /* LSJsonParser.swift */; };
 		FA7C96942098205400890325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96932098205400890325 /* AppDelegate.swift */; };
 		FA7C96962098205400890325 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C96952098205400890325 /* RecordViewController.swift */; };
@@ -143,6 +144,7 @@
 		FA5CA141209AE32800811B4B /* DiscoverTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		FA5CA145209AEC5100811B4B /* DiscoverSongCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSongCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA5CA146209AEC5100811B4B /* DiscoverSongCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverSongCollectionViewCell.xib; sourceTree = "<group>"; };
+		FA6DE61220F366EB00721E44 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		FA7049E020B3BE820007EF06 /* LSJsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSJsonParser.swift; sourceTree = "<group>"; };
 		FA7C96902098205400890325 /* LetSing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetSing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7C96932098205400890325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				FA4335AC209C3F6800BC90FC /* Song */,
 				FA4335AB209C3F5600BC90FC /* Error */,
 				FA4335A8209C37AD00BC90FC /* Constant */,
+				FA6DE61220F366EB00721E44 /* File.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				FA3B815720A00B5300915CC6 /* LSSearchController.swift in Sources */,
 				FA7C96BA20995C9600890325 /* LetSingNavigationController.swift in Sources */,
 				FA92785920A979F800CFBF94 /* LSRecordPlayerManager.swift in Sources */,
+				FA6DE61320F366EC00721E44 /* File.swift in Sources */,
 				FA4CE2A520EDDE0300B7CD18 /* SongSpotlight.swift in Sources */,
 				FA1DD01020A1713700F92475 /* RecordNavigationView.swift in Sources */,
 				FAB3918D20E63A590001E107 /* LSDataTransformer.swift in Sources */,

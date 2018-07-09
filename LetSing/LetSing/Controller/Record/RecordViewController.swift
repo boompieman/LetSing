@@ -28,7 +28,7 @@ class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUserActivityForSearch()
+        startUserActivityForSearch()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +67,7 @@ class RecordViewController: UIViewController {
     }
 
     // MARK: UserActivity
-    func setUserActivityForSearch() {
+    func startUserActivityForSearch() {
 
         guard let song = song else { return }
 

@@ -43,13 +43,11 @@ class LetSingNavigationController: UINavigationController {
             recordController.song = song
 
             show(recordController, sender: nil)
-
         }
-        
+
         if activity.activityType == LSConstants.UserActivity.TypeUserRecordView {
 
             print("aaaa:", activity.userInfo)
-            
         }
     }
 }
